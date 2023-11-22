@@ -18,9 +18,9 @@ interface AboutPageProps {
 const AboutPage = ({ data }: AboutPageProps) => {
   const { data: session }: any = useSession()
   const [isEditable, setIsEditable] = React.useState(false)
-  const aboutData: About = data?.data[0]
-  const { currentWorks, profileImgUrl } = aboutData
-
+  const aboutData: About = data
+  // const { currentWorks, profileImgUrl } = aboutData
+  console.log(aboutData, 'aboutData')
   const toggleEditable = () => {
     setIsEditable(!isEditable)
   }
@@ -40,14 +40,14 @@ const AboutPage = ({ data }: AboutPageProps) => {
       ) : (
         <>
           <div className='w-[95%] flex flex-col gap-8 md:w-[100%] md:flex-row md:items-center md:gap-20' data-aos="fade-up">
-            {isMobile ? <Image src={profileImgUrl} alt='Ola' width={300} height={400} className='profile w-[150px] h-[150px] rounded-full object-cover shadow-xl self-center' /> : <AboutImage photo={profileImgUrl} />}
+            {isMobile ? <Image src={aboutData?.profileImgUrl} alt='Ola' width={300} height={400} className='profile w-[150px] h-[150px] rounded-full object-cover shadow-xl self-center' /> : <AboutImage photo={aboutData?.profileImgUrl} />}
             <div className='about'>
               <AboutContent content={data} />
             </div>
           </div>
           <div className='current w-[95%] my-8 mx-auto flex flex-col justify-between items-center md:w-[90%] md:my-12' data-aos="fade-up">
             <h2 className='text-center my-8 mx-auto text-2xl md:text-5xl'>Currently working on</h2>
-            {currentWorks?.map((work, idx) => (
+            {aboutData?.currentWorks?.map((work, idx) => (
               <CurrentWork
                 key={idx}
                 appImage={work.imageUrl}

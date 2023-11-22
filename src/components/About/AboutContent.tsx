@@ -6,7 +6,7 @@ interface Props {
 }
 
 const AboutContent = ({ content }: Props) => {
-  const { intro, title, transitionOne, transitionTwo, focused, hobbies } = content?.data[0]
+  const { intro, title, transitionOne, transitionTwo, focused, hobbies } = content
   return (
     <main className='w-full'>
       <h2 className='font-bold text-3xl md:text-6xl my-4 text-center mb-8'>{title}</h2>

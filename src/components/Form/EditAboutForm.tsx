@@ -17,7 +17,7 @@ const EditAboutForm: React.FC<AboutPageProps> = (props) => {
   const [error, setError] = React.useState(false)
   const { register, handleSubmit, control, formState: { isSubmitting } } = useForm<About>({
     mode: 'onBlur',
-    defaultValues: data?.about[0]
+    defaultValues: data?.about
   })
 
   const onSubmit = async (data: About) => {
@@ -31,7 +31,7 @@ const EditAboutForm: React.FC<AboutPageProps> = (props) => {
       profileImgUrl: data.profileImgUrl,
       currentWorks: data.currentWorks
     }
-    const res = await updateAboutInfo(props?.about[0]?.id, updateData)
+    const res = await updateAboutInfo(props?.about?.id, updateData)
     if (res?.status === 200 || res?.status === 'success') {
       setSuccess(!success)
     } else {
@@ -100,7 +100,7 @@ const EditAboutForm: React.FC<AboutPageProps> = (props) => {
           width={'100%'}
         />
 
-        {data?.about[0].currentWorks?.map((work: currentWork, index: number) => (
+        {data?.about.currentWorks?.map((work: currentWork, index: number) => (
           <div key={index} className='w-full flex flex-col items-center gap-8'>
             <h2>{work.name}</h2>
             <ControllInput
