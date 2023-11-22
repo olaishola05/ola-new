@@ -11,7 +11,7 @@ import { BlogModal } from '..';
 
 
 type props = {
-  projects: Project[]
+  projects: any
   posts: any
 }
 

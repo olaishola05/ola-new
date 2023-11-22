@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next';
 import Homepage from '@/components/Home/Homepage';
+import prisma from './lib/prisma';
 
 export const metadata: Metadata = {
   title: 'Ola Ishola | Software Engineer',
@@ -8,13 +9,24 @@ export const metadata: Metadata = {
 }
 
 const getProjects = async (state: boolean) => {
-  const res = await fetch(`${process.env.API_URL}/projects?published=${state}`, {
-    cache: 'no-cache',
+  // const res = await fetch(`${process.env.API_URL}/projects?published=${state}`, {
+  //   cache: 'no-cache',
+  // })
+  // if (!res.ok) {
+  //   throw new Error('Something went wrong')
+  // }
+  // return res.json()
+  const projects = await prisma.project.findMany({
+    where: {
+      published: state
+    }
   })
-  if (!res.ok) {
+
+  if (!projects) {
     throw new Error('Something went wrong')
   }
-  return res.json()
+
+  return projects
 }
 
 const getMediumPosts = async () => {
@@ -30,10 +42,9 @@ export default async function Home() {
   const projectsData = getProjects(true)
   const postsData = getMediumPosts()
   const [projects, posts] = await Promise.all([projectsData, postsData])
-
   return (
     <main className="mt-4">
-      <Homepage projects={projects?.data} posts={posts} />
+      <Homepage projects={projects} posts={posts} />
     </main>
   )
 }
