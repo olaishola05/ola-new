@@ -15,34 +15,34 @@ interface Props {
   }
 }
 
-export async function generateStaticParams() {
-  // const projects = await fetch(`${process.env.API_URL}/projects`).then(res => res.json())
+// export async function generateStaticParams() {
+//   // const projects = await fetch(`${process.env.API_URL}/projects`).then(res => res.json())
 
-  // if (!projects) {
-  //   return null
-  // }
-  // return projects?.data?.map((project: any) => ({
-  //   params: {
-  //     id: project.id
-  //   }
-  // }))
+//   // if (!projects) {
+//   //   return null
+//   // }
+//   // return projects?.data?.map((project: any) => ({
+//   //   params: {
+//   //     id: project.id
+//   //   }
+//   // }))
 
-  const projects = await prisma.project.findMany({
-    where: {
-      published: true
-    }
-  })
+//   const projects = await prisma.project.findMany({
+//     where: {
+//       published: true
+//     }
+//   })
 
-  if (!projects) {
-    return null
-  }
+//   if (!projects) {
+//     return null
+//   }
 
-  return projects?.map((project: any) => ({
-    params: {
-      id: project.id
-    }
-  }))
-}
+//   return projects?.map((project: any) => ({
+//     params: {
+//       id: project.id
+//     }
+//   }))
+// }
 
 const getProjectWithGeneratedParams = async (id: string) => {
   // const res = await fetch(`${process.env.API_URL}/projects/${id}`)
