@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String    @unique
+  description String?
+  githubUrl   String?   @unique
+  liveUrl     String?
+  coverImgUrl String?
+  stacks      String[]
+  modalImgUrl String?
+  tag         String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  published   Boolean   @default(false)
+
+  author   User?   @relation(fields: [authorId], references: [id])
+  authorId String? @db.ObjectId
+}
+
+type currentWork {
+  name        String
+  role        String
+  description String
+  imageUrl    String
+  date        String
+  link        String
+}
+
+model About {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  profileImgUrl String
+  intro         String
+  focused       String
+  transitionOne String
+  transitionTwo String
+  hobbies       String
+  currentWorks  currentWork[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  author        User?         @relation(fields: [authorId], references: [id])
+  authorId      String?       @db.ObjectId
+}
+
+model Account {
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String  @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.String
+  access_token       String? @db.String
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.String
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique @map("session_token")
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  image         String?
+  emailVerified DateTime? @map(name: "email_verified")
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  projects      Project[]
+  accounts      Account[]
+  sessions      Session[]
+  about         About[]
+
+  @@map(name: "users")
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
