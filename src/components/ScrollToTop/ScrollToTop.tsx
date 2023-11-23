@@ -30,7 +30,7 @@ const ScrollToTop = () => {
 
   return (
     <div
-      style={{ position: 'fixed', bottom: '2rem', right: '3rem', zIndex: 10 }}
+      className='transition-all duration-300 ease-in-out fixed bottom-8 right-2 lg:right-12 z-10'
     >
       <ArrowCircleUpIcon
         onClick={scrollTop}
