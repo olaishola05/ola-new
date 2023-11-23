@@ -4,7 +4,7 @@ import { ButtonProps } from "@/app/types";
 
 
 export default function CustomButton(props: ButtonProps) {
-  const { variant, color, size, width, children, onClick } = props;
+  const { variant, color, size, width, children, onClick, className } = props;
   const tailwindClasses = `
   h-[45px]
   px-3
@@ -26,7 +26,7 @@ export default function CustomButton(props: ButtonProps) {
   return <button
     color={color}
     onClick={onClick}
-    className={tailwindClasses}
+    className={`${tailwindClasses} ${className}`}
     style={width ? { width: width } : { width: '200px' }}
   >
     {children}

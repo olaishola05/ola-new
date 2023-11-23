@@ -186,7 +186,7 @@ export const resumeTabs: TabArray = [
 
 export const updateAboutInfo = async (id: string, data: About) => {
   try {
-    const response = await axios.patch(`${process.env.API_URL}id}`, data, {
+    const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/about/${id}`, data, {
       headers: {
         'Content-Type': 'application/json',
       }

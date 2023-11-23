@@ -27,7 +27,7 @@ const CurrentWork: React.FC<CurrentWorkProps> = ({ appImage, role, appTitle, app
           </div>
         </div>
         <Link href={link} target='_blank'
-          rel='noopener noreferrer' className='border-none py-2.5 px-5 rounded-md cursor-pointer transi duration-500 ease-in-out bg-[var(--primary)] text-[var(--ctaText)] text-center'>
+          rel='noopener noreferrer' className='border-none py-2.5 px-5 md:w-32 rounded-md cursor-pointer transi duration-500 ease-in-out bg-[var(--primary)] text-[var(--ctaText)] text-center'>
           View
         </Link>
       </div>

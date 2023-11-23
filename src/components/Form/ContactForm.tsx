@@ -135,10 +135,10 @@ const ContactForm = () => {
         </div>
         <CustomButton
           variant='contained'
-          width='25%'
           type='submit'
           disabled={isSubmitting}
           size='large'
+          className='self-center md:self-start'
         >
           {isSubmitting ? 'Loading' : 'Send'}
         </CustomButton>

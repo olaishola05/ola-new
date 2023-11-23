@@ -19,8 +19,7 @@ const AboutPage = ({ data }: AboutPageProps) => {
   const { data: session }: any = useSession()
   const [isEditable, setIsEditable] = React.useState(false)
   const aboutData: About = data
-  // const { currentWorks, profileImgUrl } = aboutData
-  console.log(aboutData, 'aboutData')
+
   const toggleEditable = () => {
     setIsEditable(!isEditable)
   }
