@@ -8,7 +8,7 @@ import { TypeAnimation } from 'react-type-animation';
 const Hero = () => {
   return (
     <main
-      className='flex p-2 w-full h-[55vh] my-[10px] mx-auto gap-10 relative md:flex-row md:py-0 md:px-5 md:my-12 md:h-[50vh] lg:h-[75vh] lg:flex-col lg:my-12 lg:mx-auto md:w-[90%] lg:w-[100%] md:gap-8'
+      className='flex p-2 w-full h-full my-[10px] mx-auto gap-10 relative md:flex-row md:py-0 md:px-5 md:my-12 md:h-[50vh] lg:h-[70vh] lg:flex-col lg:my-12 lg:mx-auto md:w-[90%] lg:w-[100%] md:gap-8 mb-10'
       data-aos="fade-up"
       data-aos-duration="3000"
     >
@@ -41,8 +41,10 @@ const Hero = () => {
           >Hire me</Link>
         </div>
       </div>
-      <div data-aos="fade-up" data-aos-duration="3000"
-        className='absolute bottom-3 flex p-0 gap-2 my-0 text-3xl lg:flex-col md:gap-3 lg:my-0 lg:mx-0 lg:mb-60 lg:fixed lg:right-16 lg:bottom-0 lg:z-10'
+      <div
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        className='fixed right-2 bottom-60 p-0 gap-2 my-0 text-3xl lg:flex lg:flex-col md:gap-3 lg:my-0 lg:mx-0 lg:mb-60 lg:fixed lg:right-16 lg:bottom-0 z-10'
       >
         {socialLinks.map((link) => (
           <div
