@@ -51,7 +51,7 @@ const ProjectModal = ({ open, handleClose, project }: ProjectModalProps) => {
                 width='180px'
               >
                 <Link className='flex gap-3 items-center' href={project?.liveUrl} target='_blank'>
-                  Live Demo <LinkIcon />
+                  Live <LinkIcon />
                 </Link>
               </CustomButton>
             )}
@@ -63,7 +63,7 @@ const ProjectModal = ({ open, handleClose, project }: ProjectModalProps) => {
                 width='180px'
               >
                 <Link className='flex gap-3 items-center' href={project?.githubUrl} target='_black'>
-                  Source Code <GitHubIcon />
+                  Source <GitHubIcon />
                 </Link>
               </CustomButton>
             )}

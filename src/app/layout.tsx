@@ -11,7 +11,7 @@ const monserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Developer Portfolio with Personal Blog',
-  description: 'Developer Portfolio with Personal Blog',
+  description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
 }
 
 export default function RootLayout({
