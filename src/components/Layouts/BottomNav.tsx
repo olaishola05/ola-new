@@ -23,7 +23,7 @@ const BottomNav = () => {
 
   return (
     <main data-aos="fade-up" className='w-full h-full'>
-      {pathname === '/admin' ? '' : (
+      {pathname.includes('/admin') || pathname.includes('/blogs') ? '' : (
         <>
           <div className='h-full border border-b-[var(--textColor)] border-t-[var(--textColorDark)] md:border-none md:w-full md:h-[400px] md:flex md:justify-center md:items-center mt-8'>
             <h1>
@@ -47,7 +47,7 @@ const BottomNav = () => {
         </>
       )}
 
-      {pathname === '/admin' ? '' : (
+      {pathname.includes('/admin') || pathname.includes('/blogs') ? '' : (
         <>
           <div data-aos="fade-up" className='w-full h-full my-5 md:w-[85%] md:flex md:flex-col md:items-center md:mx-auto md:my-20 lg:mx-0 lg:w-full'>
 
