@@ -3,6 +3,7 @@ import { responseReturn, Contact, sendEmail } from '../../utils';
 
 export async function POST(req: NextRequest) {
   const { name, email, number, subject, message }: Contact = await req.json()
+  console.log(name, email, number, subject, message)
   try {
     const { data, error } = await sendEmail({ name, email, number, subject, message });
 

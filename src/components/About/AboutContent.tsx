@@ -2,7 +2,7 @@ import React from 'react'
 import { About } from '@/app/types'
 
 interface Props {
-  content: any
+  content: About
 }
 
 const AboutContent = ({ content }: Props) => {

@@ -43,6 +43,7 @@ const ContactForm = () => {
         });
       }
     } catch (error) {
+      console.log(error);
       toast.error('Something went wrong. Please try again later.', {
         duration: 5000,
         position: 'bottom-center',

@@ -3,11 +3,8 @@
 import React from 'react'
 import { signIn } from 'next-auth/react'
 import { BsGithub } from 'react-icons/bs'
-import { useRouter } from 'next/navigation'
 
 export default function LoginButton() {
-  const router = useRouter();
-
   const handleLogin = async (provider: string) => {
     try {
       const res = await signIn(provider, {

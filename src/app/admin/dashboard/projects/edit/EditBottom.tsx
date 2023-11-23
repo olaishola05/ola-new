@@ -15,7 +15,7 @@ export default function EditBottom({ project, reset, register, isSubmitting }: a
     reset();
     setIsUpdateCancel(!isUpdateCancel)
     tailwindToast('info', 'Update Cancelled, redirecting...')
-    navigate(`/admin/dashboard/projects/${project.id}`)
+    navigate(`${process.env.NEXT_PUBLIC_ADMIN_URL}/projects/${project.id}`)
   }, [reset, isUpdateCancel, project.id, navigate])
 
   const userHasValidSession = Boolean(session);

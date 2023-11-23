@@ -30,7 +30,7 @@ export default function DeleteProject({ project, session }: Props) {
   }
 
   const handleProjectEdit = (id: string) => {
-    navigate(`/admin/dashboard/projects/edit/${id}`);
+    navigate(`${process.env.NEXT_PUBLIC_ADMIN_URL}/projects/edit/${id}`);
   }
 
   return (
