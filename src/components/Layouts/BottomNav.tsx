@@ -31,14 +31,14 @@ const BottomNav = () => {
                 <p>
                   <strong>“</strong>
                   <em>
-                    {quote?.quote}
+                    {quote?.quote || 'The best way to predict the future is to create it.'}
                   </em>
                   <strong>”</strong>
 
                   <br />
                   <br />
                   <em>
-                    - {quote?.author}
+                    - {quote?.author || 'Abraham Lincoln'}
                   </em>
                 </p>
               </blockquote>
