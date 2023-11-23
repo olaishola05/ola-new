@@ -8,6 +8,8 @@ import BlogSection from '../Blogs/BlogSection'
 import { useToggle } from '@/app/hooks';
 import ProjectModal from '../Modal/ProjectModal';
 import { BlogModal } from '..';
+import { socialLinks } from '@/app/utils';
+import { Icons } from '..'
 
 
 type props = {
@@ -34,12 +36,26 @@ export default function Homepage({ projects, posts }: props) {
   }
 
   return (
-    <div>
+    <div className='relative'>
       {openModal && <ProjectModal open={openModal} handleClose={handleOpenModal} project={project} />}
       {openBlogModal && <BlogModal blogItem={blog} open={openBlogModal} handleClose={handleOpenBlogModal} />}
       <Hero />
       <ProjectSection data={projects} handleOpenModal={handleOpenModal} />
       <BlogSection data={posts} handleOpenBlogModal={handleOpenBlogModal} />
+      <div
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        className='fixed right-2 bottom-60 p-0 gap-2 my-0 text-3xl lg:flex lg:flex-col md:gap-3 lg:my-0 lg:mx-0 lg:mb-60 lg:fixed lg:right-16 lg:bottom-0 z-10'
+      >
+        {socialLinks.map((link) => (
+          <div
+            key={link.id}
+            data-aos="zoom-in-up" data-aos-duration="8000"
+          >
+            <Icons link={link} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
