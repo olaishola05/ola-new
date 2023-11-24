@@ -6,6 +6,7 @@ import AnimationProvider from '@/app/providers/AnimationProvider';
 import AppThemeProvider from '@/app/providers/AppThemeProvider';
 import App from '@/components/app/App'
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from '@vercel/analytics/react';
 
 const monserrat = Montserrat({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function RootLayout({
                   <App>
                     {children}
                     <Toaster />
+                    <Analytics />
                   </App>
                 </div>
               </main>
