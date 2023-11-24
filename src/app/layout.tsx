@@ -7,6 +7,7 @@ import AppThemeProvider from '@/app/providers/AppThemeProvider';
 import App from '@/components/app/App'
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
+import GoogleAnalytics from '@/components/Analytic/GoogleAnalytics';
 
 const monserrat = Montserrat({ subsets: ['latin'] })
 
@@ -33,6 +34,9 @@ export default function RootLayout({
                     {children}
                     <Toaster />
                     <Analytics />
+                    {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
+                      <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+                    )}
                   </App>
                 </div>
               </main>
