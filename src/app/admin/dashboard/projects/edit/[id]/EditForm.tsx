@@ -31,7 +31,7 @@ export default function EditForm({ project }: { project: Project }) {
     const res = await updateProject(project?.id, updatedData, `${process.env.NEXT_PUBLIC_API_URL}`)
     if (res?.status === 200 || res?.status === 'success') {
       successToast(res?.message)
-      router.push(`${process.env.NEXT_PUBLIC_ADMIN_URL}/${project.id}`)
+      router.push(`${process.env.NEXT_PUBLIC_ADMIN_URL}/projects/${project.id}`)
     } else {
       console.log(res)
       errorToast(res?.message)
