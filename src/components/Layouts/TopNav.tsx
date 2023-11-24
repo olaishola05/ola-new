@@ -17,7 +17,7 @@ export default function TopNav() {
       <div className='flex gap-1 flex-1 items-center'>
         <Logo />
         <Link href='/'>
-          <h1 className='text-2xl font-bold text-[var(--primary)]'>Oladipupo Ishola</h1>
+          <h1 className='hidden md:block text-2xl font-bold text-[var(--primary)]'>Oladipupo Ishola</h1>
         </Link>
       </div>
       <div className='hidden lg:flex gap-3 flex-1'>
