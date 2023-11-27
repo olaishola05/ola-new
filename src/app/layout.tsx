@@ -12,7 +12,7 @@ import GoogleAnalytics from '@/components/Analytic/GoogleAnalytics';
 const monserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Developer Portfolio with Personal Blog',
+  title: 'Ola - Fullstack Developer',
   description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
 }
 
