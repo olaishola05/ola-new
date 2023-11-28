@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import LoginButton from '@/components/auths/LoginButton'
 
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: 'Register | Kindly Sign Up',
   description: 'Register page',
 }

@@ -1,7 +1,14 @@
 import { NextResponse, NextRequest } from "next/server"
 
-export default async function middleware(req: NextRequest) {
-  const isLoggedIn = req.cookies?.getAll()?.some(cookie => cookie.name === 'next-auth.session-token') ?? false;
+const getCookieBasedOnEnv = (req: NextRequest) => {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const cookie = isProduction ? req?.cookies?.getAll()?.find(cookie => cookie.name === '__Secure-next-auth.session-token') : req?.cookies?.getAll()?.find(cookie => cookie.name === 'next-auth.session-token') ?? false;
+
+  return cookie;
+}
+
+export default function middleware(req: NextRequest) {
+  const isLoggedIn = getCookieBasedOnEnv(req);
   const isOnAdminPage = req.nextUrl?.pathname.startsWith('/admin');
   if (isOnAdminPage) {
     if (isLoggedIn) return NextResponse.next()
@@ -15,23 +22,7 @@ export default async function middleware(req: NextRequest) {
 
 
 export const config = {
-  matcher: ['/admin/:path*',],
+  matcher: ['/admin/:path*',]
 }
 
-// import { NextResponse, NextRequest } from "next/server";
-
-// export default async function middleware(req: NextRequest) {
-//   const isLoggedIn = req.cookies?.getAll()?.some(cookie => cookie.name === 'next-auth.session-token') ?? false;
-//   if (isLoggedIn) {
-//     const adminRedirect = new URL('/admin/dashboard', req.nextUrl.origin);
-//     return NextResponse.redirect(adminRedirect);
-//   } else {
-//     const redirectUrl = new URL('/auths/signin', req.nextUrl.origin);
-//     redirectUrl.search = `redirect=${encodeURIComponent(req.nextUrl.pathname)}`;
-//     return NextResponse.redirect(redirectUrl);
-//   }
-// }
-
-// export const config = {
-//   matcher: ['/admin/:path*'],
-// };
+// req.cookies?.getAll()?.some(cookie => cookie.name === 'next-auth.session-token') ?? false;
