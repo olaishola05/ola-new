@@ -2,42 +2,24 @@
 
 import React from 'react'
 import { socialLinks } from '@/app/utils'
-import { Copyright, ContactForm, Icons, ScrollToView } from '@/components'
+import { Copyright, ContactForm, Icons } from '@/components'
 import Image from 'next/image'
 import ContactImage from '../../../public/images/contact1.png'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Quotes from '../Quotes/Quotes';
 
 const BottomNav = () => {
   const pathname = usePathname()
   return (
-
     <main data-aos="fade-up" className='w-full h-full'>
-      {pathname === '/admin' ? '' : (
+      {pathname.includes('/admin') || pathname.includes('/blogs') ? '' : (
         <>
-          <div className='h-full border border-b-[var(--textColor)] border-t-[var(--textColorDark)] md:border-none md:w-full md:h-[400px] md:flex md:justify-center md:items-center'>
-            <h1>
-              <blockquote className='text-xl p-5 text-[var(--textColor)] md:w-[80%] md:mx-auto md:py-5 md:px-1 lg:p-5 lg:text-6xl md:text-4xl font-medium text-center'>
-                <p>
-                  <strong>“</strong>
-                  <em>
-                    Choose a job you love, and you will never have to work a day in your life.
-                  </em>
-                  <strong>”</strong>
-
-                  <br />
-                  <br />
-                  <em>
-                    - Confucius
-                  </em>
-                </p>
-              </blockquote>
-            </h1>
-          </div>
+          <Quotes />
         </>
       )}
 
-      {pathname === '/admin' ? '' : (
+      {pathname.includes('/admin') || pathname.includes('/blogs') ? '' : (
         <>
           <div data-aos="fade-up" className='w-full h-full my-5 md:w-[85%] md:flex md:flex-col md:items-center md:mx-auto md:my-20 lg:mx-0 lg:w-full'>
 

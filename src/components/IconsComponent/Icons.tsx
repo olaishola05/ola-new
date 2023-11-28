@@ -16,7 +16,7 @@ const Icons = ({ link }: IconProps) => {
   return (
     <>
       <Link href={link.path} target='_blank'
-        rel='noopener noreferrer' passHref className='flex items-center justify-center text-base md:text-xl w-7 h-7 rounded-full hover:bg-[var(--primary)] hover:text-[var(--ctaText)] cursor-pointer transition-all duration-300 ease-in-out bg-[var(--ctaText)]'>
+        rel='noopener noreferrer' passHref className='flex items-center justify-center text-base md:text-xl w-7 h-7 rounded-full hover:bg-[var(--primary)] hover:text-[var(--ctaText)] cursor-pointer transition-all duration-300 ease-in-out bg-transparent md:bg-[var(--ctaText)]'>
         <CustomIcon icon={IconComponent} />
       </Link>
     </>

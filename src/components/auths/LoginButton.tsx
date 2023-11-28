@@ -3,15 +3,12 @@
 import React from 'react'
 import { signIn } from 'next-auth/react'
 import { BsGithub } from 'react-icons/bs'
-import { useRouter } from 'next/navigation'
 
 export default function LoginButton() {
-  const router = useRouter();
-
   const handleLogin = async (provider: string) => {
     try {
       const res = await signIn(provider, {
-        callbackUrl: `${process.env.NEXT_PUBLIC_ADMIN_URL}`,
+        callbackUrl: '/admin/dashboard',
       });
       if (res?.error) {
         console.log(res.error);

@@ -5,6 +5,7 @@ import { About, currentWork } from '@/app/types';
 import { useForm } from 'react-hook-form';
 import { ControllInput } from '@/components';
 import { updateAboutInfo } from '@/app/utils'
+import { tailwindToast } from '../Toast/Toast';
 
 interface AboutPageProps {
   about: any,
@@ -33,14 +34,18 @@ const EditAboutForm: React.FC<AboutPageProps> = (props) => {
     }
     const res = await updateAboutInfo(props?.about?.id, updateData)
     if (res?.status === 200 || res?.status === 'success') {
+      console.log(res)
       setSuccess(!success)
+      tailwindToast('success', 'About updated successfully')
     } else {
+      tailwindToast('error', 'Something went wrong. Please try again later.')
       setError(!error)
     }
   }
 
   const handleCancel = () => {
     props.toggleEdit(false)
+    tailwindToast('info', 'Edit cancelled')
   }
 
   return (

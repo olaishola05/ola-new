@@ -30,7 +30,7 @@ const ScrollToTop = () => {
 
   return (
     <div
-      style={{ position: 'fixed', bottom: '2rem', right: '3rem', zIndex: 10 }}
+      className='transition-all duration-300 ease-in-out fixed bottom-8 right-2 lg:right-8 z-10'
     >
       <ArrowCircleUpIcon
         onClick={scrollTop}
@@ -39,7 +39,7 @@ const ScrollToTop = () => {
           transform: atTop ? 'rotate(180deg)' : 'rotate(0deg)',
           transition: 'transform 0.3s ease-in-out',
         }}
-        className='transition-all duration-300 ease-in-out text-5xl text-[var(--cta)] hover:bg-[var(--primary)] hover:text-[var(--ctaText)] cursor-pointer rounded-full'
+        className='transition-all duration-300 ease-in-out w-7 h-7 md:w-12 md:h-12 text-5xl text-[var(--cta)] hover:bg-[var(--primary)] hover:text-[var(--ctaText)] cursor-pointer rounded-full z-10'
       />
     </div>
   );

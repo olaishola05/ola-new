@@ -43,6 +43,7 @@ const ContactForm = () => {
         });
       }
     } catch (error) {
+      console.log(error);
       toast.error('Something went wrong. Please try again later.', {
         duration: 5000,
         position: 'bottom-center',
@@ -134,10 +135,10 @@ const ContactForm = () => {
         </div>
         <CustomButton
           variant='contained'
-          width='25%'
           type='submit'
           disabled={isSubmitting}
           size='large'
+          className='self-center md:self-start'
         >
           {isSubmitting ? 'Loading' : 'Send'}
         </CustomButton>

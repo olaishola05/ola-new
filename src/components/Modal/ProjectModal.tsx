@@ -37,13 +37,11 @@ const ProjectModal = ({ open, handleClose, project }: ProjectModalProps) => {
             {project.tag}
           </h6>
           <h4 className="text-2xl md:text-4xl font-bold mb-4 text-[var(--textColor)]">{project.name}</h4>
-          <p className="text-base md:text-lg mb-4 text-[var(--textColor)] ">
-            {isMobile
-              ? "Prompt engineering is not just about designing and developing prompts. It encompasses a wide range of skills and techniques that are useful for interacting and developing with LLMs. It's an important skill to interface, build with, and understand capabilities of LLMs."
-              : project.description}
+          <p className="text-base text-justify md:text-lg mb-4 text-[var(--textColor)] ">
+            {project.description}
           </p>
           <p className="text-base md:text-lg text-[var(--textColor)] mb-4">
-            Tech Stacks: {project.stacks.join(', ')}
+            <strong>Tech Stacks:</strong> {project.stacks.join(', ')}
           </p>
           <div className="flex gap-4 items-center">
             {project?.liveUrl.startsWith('https') && (
@@ -53,7 +51,7 @@ const ProjectModal = ({ open, handleClose, project }: ProjectModalProps) => {
                 width='180px'
               >
                 <Link className='flex gap-3 items-center' href={project?.liveUrl} target='_blank'>
-                  Live Demo <LinkIcon />
+                  Live <LinkIcon />
                 </Link>
               </CustomButton>
             )}
@@ -65,7 +63,7 @@ const ProjectModal = ({ open, handleClose, project }: ProjectModalProps) => {
                 width='180px'
               >
                 <Link className='flex gap-3 items-center' href={project?.githubUrl} target='_black'>
-                  Source Code <GitHubIcon />
+                  Source <GitHubIcon />
                 </Link>
               </CustomButton>
             )}

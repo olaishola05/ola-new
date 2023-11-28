@@ -1,14 +1,14 @@
 import React from 'react'
 import { TfiEye } from 'react-icons/tfi'
-import { BsGithub } from 'react-icons/bs'
 import Link from 'next/link'
-import { signIn } from 'next-auth/react'
+import { Metadata } from 'next'
 import LoginButton from '@/components/auths/LoginButton'
 
-// const handleLogin = async () => {
-//   const res = await 
-// }
 
+export const metadata: Metadata = {
+  title: 'Register | Kindly Sign Up',
+  description: 'Register page',
+}
 
 export default function RegisterPage() {
   return (

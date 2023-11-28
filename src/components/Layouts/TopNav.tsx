@@ -14,8 +14,11 @@ export default function TopNav() {
   const isActive = (pathname: string) => routePath === pathname;
   return (
     <div className='flex items-center justify-between h-[80px] sticky top-0 z-10 bg-[var(--bg)]'>
-      <div className='flex gap-3 flex-1'>
+      <div className='flex gap-1 flex-1 items-center'>
         <Logo />
+        <Link href='/'>
+          <h1 className='hidden md:block text-2xl font-bold text-[var(--primary)]'>Oladipupo Ishola</h1>
+        </Link>
       </div>
       <div className='hidden lg:flex gap-3 flex-1'>
         {socialLinks.map(({ id, path, icon }) => (

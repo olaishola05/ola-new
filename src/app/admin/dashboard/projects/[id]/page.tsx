@@ -7,7 +7,9 @@ import { getAuthSession } from '@/app/utils/auth';
 import ConditionalHeader from './ConditionalHeader';
 import DeleteProject from './DeleteProject';
 import Link from 'next/link';
-import prisma from '@/app/lib/prisma';
+import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: {
@@ -15,62 +17,43 @@ interface Props {
   }
 }
 
-// export async function generateStaticParams() {
-//   // const projects = await fetch(`${process.env.API_URL}/projects`).then(res => res.json())
+export const metadata: Metadata = {
+  title: 'Project Details',
+  description: 'Project details page',
+}
 
-//   // if (!projects) {
-//   //   return null
-//   // }
-//   // return projects?.data?.map((project: any) => ({
-//   //   params: {
-//   //     id: project.id
-//   //   }
-//   // }))
+export async function generateStaticParams() {
+  const projects = await fetch(`${process.env.API_URL}/projects`).then(res => res.json())
 
-//   const projects = await prisma.project.findMany({
-//     where: {
-//       published: true
-//     }
-//   })
-
-//   if (!projects) {
-//     return null
-//   }
-
-//   return projects?.map((project: any) => ({
-//     params: {
-//       id: project.id
-//     }
-//   }))
-// }
+  if (!projects) {
+    return null
+  }
+  return projects?.data?.map((project: any) => ({
+    params: {
+      id: project.id
+    }
+  }))
+}
 
 const getProjectWithGeneratedParams = async (id: string) => {
-  // const res = await fetch(`${process.env.API_URL}/projects/${id}`)
-
-  // if (!res) {
-  //   return null
-  // }
-  // return res.json()
-
-  const project = await prisma.project.findUnique({
-    where: {
-      id
+  const res = await fetch(`${process.env.API_URL}/projects/${id}`, {
+    next: {
+      revalidate: 10,
     }
   })
 
-  if (!project) {
+  if (!res) {
     return null
   }
-
-  return project
+  return res.json()
 }
 
 const ProjectPage = async ({ params }: Props) => {
   const { id } = params
-  const sessionData = getAuthSession();
+  const sessionData = await getAuthSession();
   const response = getProjectWithGeneratedParams(id)
   const [projectData, session] = await Promise.all([response, sessionData])
-  const project = projectData
+  const project = projectData?.data
 
   if (!project || project === null) {
     return (

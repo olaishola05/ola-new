@@ -37,6 +37,7 @@ export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTML
   width?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  className?: string;
 }
 
 export type NavItem = {

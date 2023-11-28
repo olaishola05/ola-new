@@ -2,7 +2,13 @@ import React from 'react'
 import { MdEmail } from 'react-icons/md'
 import { HiLockClosed } from 'react-icons/hi'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import LoginButton from '@/components/auths/LoginButton'
+
+export const metadata: Metadata = {
+  title: 'Welcome back! | Sign In',
+  description: 'Sign In page',
+}
 
 export default function LoginPage() {
   return (
