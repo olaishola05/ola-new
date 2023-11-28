@@ -22,10 +22,10 @@ A fullstack app built with NextJS/TS, Prisma, MongoDB, Material UI, Next API, Ne
 
 ## Demo
 
-[Live.](https://www.olaishola.tech/)
+[Live Here.](https://www.olaishola.tech/)
 </br>
 
-![demo-image](public/images/demo.png)
+![demo-image](https://www.olaishola.tech/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fhebronhq%2Fimage%2Fupload%2Fv1699630270%2FPortfolio%2FScreenshot_2023-11-10_at_4.27.15_PM_stlgrn.png&w=2048&q=75)
 
 ## Built With
 
@@ -65,8 +65,7 @@ npx prisma generate
 3. Create a `.env.local` file in the root directory and add the following environment variables
 
 ```bash
-MONGODB_URI= # Your MongoDB URI
-MONGODB_DB= # Your MongoDB Database Name
+DATABASE_URL= # Your MongoDB URL
 NEXT_PUBLIC_MEDIUM_API_URL= # Your Medium API URL
 NEXTAUTH_URL= # Your Next Auth URL
 NEXTAUTH_SECRET= # Your Next Auth Secret
