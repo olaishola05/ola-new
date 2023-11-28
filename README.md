@@ -22,7 +22,7 @@ A fullstack app built with NextJS/TS, Prisma, MongoDB, Material UI, Next API, Ne
 
 ## Demo
 
-[Live Demo](coming soon)
+[Live.](https://www.olaishola.tech/)
 </br>
 
 ![demo-image](public/images/demo.png)
@@ -110,7 +110,7 @@ vercel
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
+Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/olaishola05/ola/issues) here 😏😏.
 
@@ -120,7 +120,7 @@ Feel free to check the [issues page](https://github.com/olaishola05/ola/issues) 
 
 ## Acknowledgments
 
-- Thanks to everyone building tools to make developers lives easier
+- Thanks to everyone building tools to make developers' lives easier
 
 ## License
 
