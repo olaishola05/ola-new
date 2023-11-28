@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import LoginButton from '@/components/auths/LoginButton'
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: 'Welcome back! | Sign In',
   description: 'Sign In page',
 }
