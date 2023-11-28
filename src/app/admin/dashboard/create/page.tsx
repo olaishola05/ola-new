@@ -1,5 +1,11 @@
 import React from 'react'
 import CreateForm from './CreateForm';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Create Project - Dashboard',
+  description: 'Create a new project page',
+}
 
 const CreateProjectPage = () => {
   return (
