@@ -7,11 +7,19 @@ import { getAuthSession } from '@/app/utils/auth';
 import ConditionalHeader from './ConditionalHeader';
 import DeleteProject from './DeleteProject';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: {
     id: string
   }
+}
+
+export const metadata: Metadata = {
+  title: 'Project Details',
+  description: 'Project details page',
 }
 
 export async function generateStaticParams() {
