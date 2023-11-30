@@ -20,7 +20,7 @@ const CardContainer = ({ children }: React.PropsWithChildren<{}>) => (
 
 const CardMediaContainer = ({ image }: { image: string }) => (
   <div className="relative w-full h-[170px] md:h-[200px] lg:h-[200px] rounded-lg transform m-auto">
-    <Image src={image} alt={image} fill className="object-cover rounded-lg w-full h-full" />
+    <Image src={image} alt={image} fill className="object-cover rounded-lg w-full h-full" sizes='100' />
   </div>
 );
 

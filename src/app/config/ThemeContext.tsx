@@ -20,12 +20,23 @@ export default function ThemeContextProvider({ children }: { children: React.Rea
   })
 
   const toggleTheme = () => {
-    setTheme(themeMode === "light" ? "dark" : "light")
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
   }
+
+  const updateThemeBasedOnTime = () => {
+    const hour = new Date().getHours();
+    const isNight = hour >= 18 || hour <= 6;
+
+    setTheme(isNight ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     localStorage.setItem("themeMode", themeMode);
   }, [themeMode])
+
+  useEffect(() => {
+    updateThemeBasedOnTime();
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ theme: themeMode, toggleTheme }}>{children}
