@@ -7,9 +7,9 @@ import { ITestimonial } from '@/app/api/utils';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Testimonials() {
-  const { data, error } = swr(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`, fetcher);
+  const { data, error } = swr('/api/v1/testimonials', fetcher);
 
-  if (error) return <div>failed to load</div>
+  // if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
 
   const testimonials = data?.data
@@ -34,7 +34,6 @@ export default function Testimonials() {
   //   },
   // ]
 
-  // console.log(error, 'error')
   return (
     <section className="py-8 lg:py-24 my-10">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
