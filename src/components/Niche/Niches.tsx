@@ -35,7 +35,7 @@ export default function Niches() {
                   Build your App solution with help from an expert
                 </p>
                 <p className="mt-3 text-[var(--textColor)] text-base">
-                  I create high-end software solutions tailored to your specific needs across multiple web platforms, using React, Nextjs, Tailwindcss, MUI, Nodejs, Express, MongoDB, PostgreSQL, and other technologies that align with business objectives.
+                  I excel in developing premium software solutions customized to your unique requirements across various web platforms. I leverage a range of cutting-edge technologies including React, Next.js, Tailwind CSS, MUI, Node.js, Express, MongoDB, PostgreSQL, and other relevant tools to align with your business objectives.
                 </p>
                 <Link href={`${process.env.NEXT_PUBLIC_RESUME_URL}`} target='_blank' className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium">
                   {"Let's work together"}
@@ -64,7 +64,7 @@ export default function Niches() {
                   Write technical articles and documentation for your software projects
                 </p>
                 <p className="mt-3 text-[var(--textColor)]">
-                  I write technical articles about web development, software development, possible solutions to technical problems, and other related topics. In addition, I produce technical documentation for software projects.
+                  I am adept at crafting insightful technical articles encompassing web and software development, as well as offering potential solutions to technical challenges and other pertinent topics. Furthermore, I excel in creating comprehensive technical documentation for software projects.
                 </p>
                 <Link href={`${process.env.NEXT_PUBLIC_ADMIN_MEDIUM_URL}`} target='_blank' className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium">
                   Visit my blog
@@ -92,7 +92,7 @@ export default function Niches() {
                   Learn to code with help from an expert
                 </p>
                 <p className="mt-3 text-[var(--textColor)]">
-                  I teach people how to code using project-based approach and build software solutions. I Provide one-on-one mentorship, guidance to aspiring developers and also an access to communities of likeminds.
+                  I specialize in providing personalized coding education through a project-based approach, offering individualized mentorship and guidance to aspiring developers. My focus is on equipping others with the skills they need to create innovative software solutions, while also facilitating access to supportive communities of like-minded individuals.
                 </p>
                 <Link href="https://www.techverseacademy.com/" target='_blank' className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium">
                   Join here

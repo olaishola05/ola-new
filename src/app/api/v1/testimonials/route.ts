@@ -39,9 +39,9 @@ export async function GET() {
         { createdAt: 'desc' },
         { updatedAt: 'desc' }
       ],
-      // where: {
-      //   published: true
-      // },
+      where: {
+        published: true
+      },
     });
     return responseReturn(200, 'Testimonials fetched successfully', 'success', testimonials);
   } catch (error: any) {

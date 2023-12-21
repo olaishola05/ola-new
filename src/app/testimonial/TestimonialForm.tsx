@@ -16,7 +16,7 @@ type IFormValues = {
   email: string
   message: string
   jobTitle: string
-  photo: any
+  photo: string | undefined
 }
 
 const defualtValues: IFormValues = {
@@ -31,7 +31,7 @@ export default function TestimonialForm() {
   const { register, handleSubmit, control, trigger, reset, formState: { errors, isSubmitting } } = useForm<IFormValues>({
     mode: 'onBlur',
     defaultValues: defualtValues,
-    resolver: formValidation,
+    resolver: formValidation as any,
   });
 
   const onSubmit = async (data: IFormValues) => {
@@ -107,7 +107,6 @@ export default function TestimonialForm() {
           {errors.email?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.email.message}`}</small>}
         </div>
         <div className='w-full'>
-          {/* <input type='file' placeholder='photo' {...register('photo')} accept="image/*" className='p-3 rounded-md outline-none bg-white focus:bg-[var(--cta)] text-black focus:text-[var(--formText)] border-[var(--primary)] border-[1px] focus:border-solid focus:border-[var(--textColor)] w-full' /> */}
           <ControlInput control={control} name="photo" type='file' placeholder='photo' inputprops={register('photo')} width={'100%'} error={errors.photo?.message} trigger={trigger} />
           {errors.photo && <small className={errors && 'text-red-700 text-sm'}>{`${errors.photo.message}`}</small>}
           <small className="text-[textColor] text-sm">Maximum file size: 2 MB</small>

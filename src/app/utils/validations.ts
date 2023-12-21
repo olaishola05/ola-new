@@ -88,5 +88,5 @@ export const TestimonialSchema = yup.object().shape({
     .string()
     .required('Message is required')
     .min(3, 'Message should be at least 3 characters long')
-    .max(100, 'Message should be less than 100 characters long'),
+    .max(200, 'Message should be less than or equals to 200 characters long'),
 });

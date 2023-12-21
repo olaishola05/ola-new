@@ -27,15 +27,15 @@ const getMediumPosts = async () => {
 }
 
 export default async function Home() {
-  // const projectsData = getProjects(true)
-  // const postsData = getMediumPosts()
-  // const [projects, posts] = await Promise.all([projectsData, postsData])
-  const projects = {
-    data: []
-  }
-  const posts = {
-    items: []
-  }
+  const projectsData = getProjects(true)
+  const postsData = getMediumPosts()
+  const [projects, posts] = await Promise.all([projectsData, postsData])
+  // const projects = {
+  //   data: []
+  // }
+  // const posts = {
+  //   items: []
+  // }
   return (
     <main className="mt-4">
       <Homepage projects={projects?.data} posts={posts} />
