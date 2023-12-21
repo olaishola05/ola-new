@@ -33,6 +33,8 @@ export default function Testimonials() {
   //     quote: "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain."
   //   },
   // ]
+
+  // console.log(error, 'error')
   return (
     <section className="py-8 lg:py-24 my-10">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
