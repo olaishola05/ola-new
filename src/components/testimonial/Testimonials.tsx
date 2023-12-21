@@ -8,7 +8,6 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Testimonials() {
   const { data, error } = swr(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`, fetcher);
-  console.log(data, error)
 
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
@@ -34,7 +33,6 @@ export default function Testimonials() {
   //     quote: "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain."
   //   },
   // ]
-  // console.log(testimonials)
   return (
     <section className="py-8 lg:py-24 my-10">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
