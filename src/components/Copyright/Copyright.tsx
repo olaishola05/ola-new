@@ -13,7 +13,7 @@ export default function Copyright() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Ola Ishola
+          Oladipupo Ishola
         </Link>{' '}
         {new Date().getFullYear()}
       </p>

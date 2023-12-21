@@ -3,17 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --bg: #ecf3f3;
+  --bg: #fff;
   --textColor: #404756;
   --textColorDark: #23272f;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
-  --primary: #087ea4;
+  --primary: #392467;
   --contactBg: #fff;
-  --cta: #087ea4;
+  --cta: #392467;
   --ctaText: #fff;
   --formText: #fff;
-  --btnMode: #087ea4;
+  --btnMode: #392467;
+  --contact: #392467;
+  --contactText: #fff;
 }
 
 * {
@@ -67,15 +69,17 @@ body {
 }
 
 .light {
-  --bg: #ecf3f3;
+  --bg: #fff;
   --textColor: #404756;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
-  --primary: #087ea4;
+  --primary: #392467;
   --contactBg: #fff;
-  --cta: #087ea4;
+  --cta: #392467;
   --ctaText: #fff;
   --formText: #fff;
+  --contact: #392467;
+  --contactText: #fff;
 }
 
 .dark {
@@ -86,9 +90,11 @@ body {
   --primary: #fff;
   --contactBg: #1f273a;
   --cta: #fff;
-  --ctaText: #087ea4;
+  --ctaText: #392467;
   --formText: #0f172a;
   --btnMode: #1f273a;
+  --contact: #1f273a;
+  --contactText: #ddd;
 }
 
 .contents {
@@ -179,6 +185,7 @@ body {
 @media screen and (max-width: 1536px) {
   .container {
     max-width: 100%;
+    // border: 1px solid red;
   }
   .wrapper {
     max-width: 100%;

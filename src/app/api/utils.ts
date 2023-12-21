@@ -24,6 +24,14 @@ export interface Contact {
   message: string;
 }
 
+export interface ITestimonial {
+  name: string;
+  email: string;
+  message: string;
+  photo: string;
+  jobTitle: string;
+}
+
 export async function sendEmail({ name, email, number, subject, message }: Contact) {
 
   const options = {

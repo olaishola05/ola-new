@@ -38,7 +38,7 @@ const ContactForm = () => {
       if (response.ok && result?.status === 'success') {
         toast.success('Thank you! I will get back to you shortly.', {
           duration: 5000,
-          position: 'top-center',
+          position: 'bottom-left',
           className: 'w-full h-12 flex items-center justify-center bg-green-500 text-white',
         });
       }
@@ -46,7 +46,7 @@ const ContactForm = () => {
       console.log(error);
       toast.error('Something went wrong. Please try again later.', {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'bottom-left',
         className: 'w-full h-12 flex items-center justify-center bg-red-500 text-white',
       });
     }
@@ -138,7 +138,7 @@ const ContactForm = () => {
           type='submit'
           disabled={isSubmitting}
           size='large'
-          className='self-center md:self-start'
+          className='self-center md:self-center'
         >
           {isSubmitting ? 'Loading' : 'Send'}
         </CustomButton>

@@ -8,18 +8,20 @@ import ContactImage from '../../../public/images/contact1.png'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Quotes from '../Quotes/Quotes';
+import Testimonials from '../testimonial/Testimonials';
 
 const BottomNav = () => {
   const pathname = usePathname()
+  const excludePaths = ['/admin', '/blog', '/contact', '/testimonial']
   return (
     <main data-aos="fade-up" className='w-full h-full'>
-      {pathname.includes('/admin') || pathname.includes('/blogs') ? '' : (
+      {excludePaths.includes(pathname) ? '' : (
         <>
           <Quotes />
         </>
       )}
-
-      {pathname.includes('/admin') || pathname.includes('/blogs') ? '' : (
+      {pathname === '/' && (<Testimonials />)}
+      {excludePaths.includes(pathname) ? '' : (
         <>
           <div data-aos="fade-up" className='w-full h-full my-5 md:w-[85%] md:flex md:flex-col md:items-center md:mx-auto md:my-20 lg:mx-0 lg:w-full'>
 
@@ -33,7 +35,7 @@ const BottomNav = () => {
               </p>
             </div>
 
-            <div id='contact' className='flex-col items-center justify-center w-full lg:flex lg:flex-row-reverse lg:p-5 gap-[90px] lg:justify-between mt-5'>
+            <div id='contact' className='flex-col items-center justify-center w-[96%] lg:flex lg:flex-row-reverse lg:p-5 gap-[90px] lg:justify-between mt-5'>
               <ContactForm />
               <div className='hidden lg:flex lg:flex-col lg:gap-3 p-5 bg-white rounded-xl shadow-[rgb(209, 217, 230) 5px 5px 15px 0px, rgb(255, 255, 255) -5px -5px 15px 0px] lg:bg-[var(--contactBg)]'>
                 <div className='w-full p-5 flex flex-col gap-3 rounded[10px] px-2 py-3'>
@@ -55,7 +57,7 @@ const BottomNav = () => {
                       <p className='text-lg'>
                         Phone: +234 8110837448
                         <br />
-                        Email: <Link href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className='text-blue-500'>Click here.</Link>
+                        Email: <Link href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className='text-[var(--primary)]'>Click here.</Link>
                       </p>
                     </div>
                     <div className='flex gap-1.5 md:items-end md:gap-2 pt-5'>
@@ -72,7 +74,9 @@ const BottomNav = () => {
               </div>
             </div>
           </div>
-          <Copyright />
+          <div className='pb-4'>
+            <Copyright />
+          </div>
         </>
       )
       }

@@ -44,10 +44,11 @@ export default function Homepage({ projects, posts }: props) {
       <Niches />
       <ProjectSection data={projects} handleOpenModal={handleOpenModal} />
       <BlogSection data={posts} handleOpenBlogModal={handleOpenBlogModal} />
+
       <div
         data-aos="fade-up"
         data-aos-duration="3000"
-        className='fixed right-2 bottom-60 p-0 gap-2 my-0 text-3xl lg:flex lg:flex-col md:gap-3 lg:my-0 lg:mx-0 lg:mb-60 lg:fixed lg:right-10 lg:bottom-0 z-10'
+        className='hidden right-2 bottom-60 p-0 gap-2 my-0 text-3xl lg:flex lg:flex-col md:gap-3 lg:my-0 lg:mx-0 lg:mb-60 lg:fixed lg:right-10 lg:bottom-0 z-10'
       >
         {socialLinks.map((link) => (
           <div

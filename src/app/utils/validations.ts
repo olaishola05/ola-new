@@ -33,3 +33,60 @@ export const contactSchema = yup.object().shape({
     .min(3, 'Message should be at least 3 characters long')
     .max(500, 'Message should be less than 100 characters long')
 });
+
+const MAX_FILE_SIZE = 2000000; // 2MB
+
+const supportedFormats: { [key: string]: string[] } = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
+
+function isValidFileType(fileName: string, fileType: keyof typeof supportedFormats) {
+  return fileName && supportedFormats[fileType].includes(fileName.split('.').pop()!.toLowerCase());
+}
+
+function isValidFileSize(fileSize: number) {
+  return fileSize && fileSize <= MAX_FILE_SIZE;
+}
+
+
+export const TestimonialSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required('Name is required')
+    .min(3, 'Name should be at least 3 characters long')
+    .max(20, 'Name should be less than 20 characters long'),
+
+  email:
+    yup.string()
+      .required('Email is required')
+      .email('Email is invalid')
+      .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Email is invalid'),
+
+  jobTitle: yup
+    .string()
+    .required('Job Title is required')
+    .min(6, 'Designation should be at least 6 characters long')
+    .max(40, 'Designation should be less than 40 characters long'),
+
+  photo: yup
+    .mixed()
+    .required('Photo is required')
+    .test('fileSize', function (value: any) {
+      if (value.length > 0) {
+        const fileSize = value[0]?.size;
+        if (isValidFileSize(fileSize)) return true;
+      }
+      return this.createError({ message: 'File Size is too large' });
+    })
+    .test('fileType', function (value: any) {
+      if (value.length > 0) {
+        const fileName = value[0]?.name;
+        if (isValidFileType(fileName, 'image')) return true;
+      }
+      return this.createError({ message: 'Unsupported File Format' });
+    }),
+
+  message: yup
+    .string()
+    .required('Message is required')
+    .min(3, 'Message should be at least 3 characters long')
+    .max(100, 'Message should be less than 100 characters long'),
+});

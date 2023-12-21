@@ -1,6 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { TypeAnimation } from 'react-type-animation';
+import Companies from './Companies';
+import { socialLinks } from '@/app/utils';
+import { Icons } from '..';
 
 
 const Hero = () => {
@@ -38,6 +41,19 @@ const Hero = () => {
             className='w-[200px] h-[45px] px-3 py-5 rounded-full leading-4 tracking-tighter shadow-lg flex items-center justify-center gap-10 text-base md:text-lg text-[var(--ctaText)] bg-[var(--cta)] border border-[var(--primary)] hover:bg-inherit hover:text-[var(--cta)] hover:border hover:border-[var(--cta)]'
           >Hire me</Link>
         </div>
+
+        <div className='flex md:hidden items-center justify-center mt-5'>
+          {socialLinks.map((link) => (
+            <div
+              key={link.id}
+              data-aos="zoom-in-up" data-aos-duration="8000"
+            >
+              <Icons link={link} />
+            </div>
+          )
+          )}
+        </div>
+        <Companies />
       </div>
     </main>
   )

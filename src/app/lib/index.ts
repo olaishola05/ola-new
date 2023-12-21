@@ -1,3 +1,4 @@
-import { connectToDatabase } from "./mongodb";
+import { uploadToCloudinary } from './upload';
+// import { connectToDatabase } from "./mongodb";
 
-export default connectToDatabase;
+export { uploadToCloudinary };
