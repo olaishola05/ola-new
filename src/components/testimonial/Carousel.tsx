@@ -17,7 +17,7 @@ export default function Carousel({ data }: ICarouselProps) {
       setSlide((slide + 1) % data.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [activeIndex, slide]);
+  }, [activeIndex, slide, data.length]);
 
   return (
     <ul className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
