@@ -68,25 +68,26 @@ export const TestimonialSchema = yup.object().shape({
 
   photo: yup
     .mixed()
-    .required('Photo is required')
-    .test('fileSize', function (value: any) {
+    .test('required', 'Photo is required', function (value: any) {
+      if (value) return true;
+      return false;
+    })
+    .test('fileSize', 'File Size is too large', function (value: any) {
       if (value.length > 0) {
         const fileSize = value[0]?.size;
         if (isValidFileSize(fileSize)) return true;
       }
-      return this.createError({ message: 'File Size is too large' });
     })
-    .test('fileType', function (value: any) {
+    .test('fileType', 'Unsupported File Format', function (value: any) {
       if (value.length > 0) {
         const fileName = value[0]?.name;
         if (isValidFileType(fileName, 'image')) return true;
       }
-      return this.createError({ message: 'Unsupported File Format' });
     }),
 
   message: yup
     .string()
     .required('Message is required')
     .min(3, 'Message should be at least 3 characters long')
-    .max(200, 'Message should be less than or equals to 200 characters long'),
+    .max(100, 'Message should be less than or equals to 100 characters long'),
 });

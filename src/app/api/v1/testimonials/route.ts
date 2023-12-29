@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server'
-import { responseReturn, ITestimonial } from '../../utils';
+import { responseReturn, ITestimonial, sendTestimonialNotificationEmail, sendTestimonialThankYouEmail } from '../../utils';
 import prisma from '@/app/lib/prisma';
+
 
 export async function POST(req: NextRequest) {
   const { name, email, message, photo, jobTitle }: ITestimonial = await req.json()
@@ -18,14 +19,20 @@ export async function POST(req: NextRequest) {
         name,
         email,
         message,
-        photo,
+        photo: photo || '',
         jobTitle
       }
     });
-    return responseReturn(200, {
-      message: 'Email sent successfully',
-      data: createTestimonial
-    }, 'success');
+
+    if (createTestimonial) {
+      await sendTestimonialNotificationEmail({ name, email, message, jobTitle });
+      await sendTestimonialThankYouEmail({ name, email, message });
+      return responseReturn(200, {
+        message: 'Email sent successfully',
+        data: createTestimonial
+      }, 'success');
+
+    }
   } catch (error: any) {
     console.log(error);
     return responseReturn(500, 'Oops! Something happened!', 'error', null, error?.message);

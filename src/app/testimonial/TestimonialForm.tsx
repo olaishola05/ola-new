@@ -28,11 +28,13 @@ const defualtValues: IFormValues = {
 }
 
 export default function TestimonialForm() {
-  const { register, handleSubmit, control, trigger, reset, formState: { errors, isSubmitting } } = useForm<IFormValues>({
+  const { register, handleSubmit, control, watch, trigger, reset, formState: { errors, isSubmitting } } = useForm<IFormValues>({
     mode: 'onBlur',
     defaultValues: defualtValues,
     resolver: formValidation as any,
   });
+  const count = watch('message').length;
+  const watchPhoto = watch('photo');
 
   const onSubmit = async (data: IFormValues) => {
     try {
@@ -107,9 +109,12 @@ export default function TestimonialForm() {
           {errors.email?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.email.message}`}</small>}
         </div>
         <div className='w-full'>
-          <ControlInput control={control} name="photo" type='file' placeholder='photo' inputprops={register('photo')} width={'100%'} error={errors.photo?.message} trigger={trigger} />
+          <ControlInput control={control} name="photo" type='file' placeholder='photo' inputprops={register('photo')} width={'100%'} error={errors.photo?.message} trigger={trigger}
+            watchPhoto={!watchPhoto}
+          />
+
           {errors.photo && <small className={errors && 'text-red-700 text-sm'}>{`${errors.photo.message}`}</small>}
-          <small className="text-[textColor] text-sm">Maximum file size: 2 MB</small>
+          {!errors.photo && <small className="text-[textColor] text-sm">Maximum file size: 2 MB</small>}
         </div>
       </div>
 
@@ -123,7 +128,9 @@ export default function TestimonialForm() {
           width={'100%'}
           error={errors.message?.message}
         />
-        {errors.message?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.message.message}*`}</small>}
+        {count > 100 && <small className={errors && 'text-red-700 text-sm mr-3'}>{`Word count: ${count}.`}</small>}
+        {errors.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.message.message}*`}</small>}
+        {!errors.message?.message && count <= 100 && <small className="text-[textColor] text-sm">{`Word count: ${count}, Max 100 words`}</small>}
       </div>
       <CustomButton
         variant='contained'

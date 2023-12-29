@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ChangeEvent } from 'react';
-import { Controller, FieldValues } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 interface Props {
   name: string;
@@ -14,6 +14,7 @@ interface Props {
   error?: string;
   required?: boolean;
   trigger?: any
+  watchPhoto?: any
 }
 
 const ControlInput: React.FC<Props> = ({
@@ -50,7 +51,7 @@ const ControlInput: React.FC<Props> = ({
             <>
               <input
                 type="file"
-                style={{ width, border: error && '1px solid red' }}
+                style={{ width, border: error && otherProps.watchPhoto && '1px solid red' }}
                 className='p-2 rounded-md outline-none bg-white focus:bg-[var(--cta)] text-black focus:text-[var(--formText)] border-[var(--primary)] border-[1px] focus:border-solid focus:border-[var(--textColor)]'
                 placeholder={placeholder}
                 accept="image/*"
@@ -63,9 +64,6 @@ const ControlInput: React.FC<Props> = ({
                 onBlur={onBlur}
                 {...otherProps}
               />
-              {/* {value && typeof value === 'object' && 'name' in value && (
-                <p>Selected File: {(value as File).name}</p>
-              )} */}
             </>
           ) : (
             <input
