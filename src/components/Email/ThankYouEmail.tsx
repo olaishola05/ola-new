@@ -9,6 +9,7 @@ import {
   Tailwind,
   Section,
   Img,
+  Link
 } from '@react-email/components';
 
 export default function ThankYouEmail({ name }: { name: string }) {
@@ -50,6 +51,22 @@ export default function ThankYouEmail({ name }: { name: string }) {
                   <br />
                   Oladipupo Ishola.
                 </Text>
+              </div>
+              <hr className='my-10' />
+              <div className='py-5'>
+                <div className='flex flex-col-reverse gap-2 mb-3'>
+                  <p className='flex items-center justify-center text-center gap-1 m-1'>
+                    {'Copyright © '}
+                    <Link href="https://github.com/olaishola05"
+                      color="inherit"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Oladipupo Ishola
+                    </Link>{' '}
+                    {new Date().getFullYear()}
+                  </p>
+                </div>
               </div>
             </Section>
           </div>
