@@ -59,6 +59,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification: {
+    other: {
+      'p:domain_verify':
+        '861620612d1417f5d3f0043781c79dd0'
+    },
+  }
 }
 
 export default function RootLayout({
