@@ -38,31 +38,39 @@ export default function TestimonialForm() {
 
   const onSubmit = async (data: IFormValues) => {
     try {
-      const photoUrl = await uploadToCloudinary(data.photo);
+      const [photoUrl] = await Promise.all([uploadToCloudinary(data.photo)]);
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...data, photo: photoUrl })
+        body: JSON.stringify({ ...data, photo: photoUrl }),
       });
+
       const result = await response.json();
-      if (response.ok && result?.status === 'success') {
+
+      if (response.ok) {
         reset();
         toast.success('Thank you for your feedback. I appreciate you.', {
           position: 'bottom-left',
           duration: 5000,
         });
       } else {
-        toast.error(result?.message, {
+        toast.error(result?.message || 'An unexpected error occurred. Please try again later.', {
           position: 'bottom-left',
           duration: 5000,
         });
       }
     } catch (error) {
-      console.log(error);
+      console.error('Error submitting form:', error);
+      toast.error('An unexpected error occurred. Please try again later.', {
+        position: 'bottom-left',
+        duration: 5000,
+      });
     }
-  }
+  };
+
 
   return (
     <form
