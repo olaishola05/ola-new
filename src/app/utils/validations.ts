@@ -63,8 +63,8 @@ export const TestimonialSchema = yup.object().shape({
   jobTitle: yup
     .string()
     .required('Job Title is required')
-    .min(6, 'Designation should be at least 6 characters long')
-    .max(40, 'Designation should be less than 40 characters long'),
+    .min(3, 'Job Title should be at least 6 characters long')
+    .max(40, 'Job Title should be less than 40 characters long'),
 
   photo: yup
     .mixed()
@@ -89,5 +89,5 @@ export const TestimonialSchema = yup.object().shape({
     .string()
     .required('Message is required')
     .min(3, 'Message should be at least 3 characters long')
-    .max(100, 'Message should be less than or equals to 100 characters long'),
+    .max(200, 'Message should be less than or equals to 200 characters long'),
 });

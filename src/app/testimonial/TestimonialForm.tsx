@@ -33,6 +33,7 @@ export default function TestimonialForm() {
     defaultValues: defualtValues,
     resolver: formValidation as any,
   });
+  const MAX_LENGTH = 200;
   const count = watch('message').length;
   const watchPhoto = watch('photo');
 
@@ -62,16 +63,15 @@ export default function TestimonialForm() {
           duration: 5000,
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting form:', error);
-      toast.error('An unexpected error occurred. Please try again later.', {
+      toast.error(error?.message || 'Internal Server error', {
         position: 'bottom-left',
         duration: 5000,
       });
     }
   };
 
-  //He is a baller and a badass developer, with plethora knowledge of software development.
   return (
     <form
       className='w-full flex flex-col gap-3 mt-3 md:w-8/12 mx-auto py-4 px-4 md:px-8 md:py-8'
@@ -136,9 +136,9 @@ export default function TestimonialForm() {
           width={'100%'}
           error={errors.message?.message}
         />
-        {count > 100 && <small className={errors && 'text-red-700 text-sm mr-3'}>{`Word count: ${count}.`}</small>}
+        {count > MAX_LENGTH && <small className={errors && 'text-red-700 text-sm mr-3'}>{`Word count: ${count}.`}</small>}
         {errors.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.message.message}*`}</small>}
-        {!errors.message?.message && count <= 100 && <small className="text-[textColor] text-sm">{`Word count: ${count}, Max 100 words`}</small>}
+        {!errors.message?.message && count <= MAX_LENGTH && <small className="text-[textColor] text-sm">{`Word count: ${count}, Max ${MAX_LENGTH} words`}</small>}
       </div>
       <CustomButton
         variant='contained'
