@@ -3,15 +3,52 @@ import { responseReturn, ITestimonial, sendTestimonialNotificationEmail, sendTes
 import prisma from '@/app/lib/prisma';
 
 
+// export async function POST(req: NextRequest) {
+//   const { name, email, message, photo, jobTitle }: ITestimonial = await req.json()
+//   try {
+//     const checkEmail = await prisma.testimonial.findUnique({
+//       where: { email }
+//     });
+
+//     if (checkEmail) {
+//       return responseReturn(400, 'Thanks for your interest, but you have already submitted a testimonial', 'Email already exist', null, 'bad request');
+//     }
+
+//     const createTestimonial = await prisma.testimonial.create({
+//       data: {
+//         name,
+//         email,
+//         message,
+//         photo: photo || '',
+//         jobTitle
+//       }
+//     });
+
+//     if (createTestimonial) {
+//       await sendTestimonialNotificationEmail({ name, email, message, jobTitle });
+//       await sendTestimonialThankYouEmail({ name, email, message });
+//       return responseReturn(200, {
+//         message: 'Email sent successfully',
+//         data: createTestimonial
+//       }, 'success');
+
+//     }
+//   } catch (error: any) {
+//     console.log(error);
+//     return responseReturn(500, 'Oops! Something happened!', 'error', null, error?.message);
+//   }
+// }
+
 export async function POST(req: NextRequest) {
-  const { name, email, message, photo, jobTitle }: ITestimonial = await req.json()
+  const { name, email, message, photo, jobTitle }: ITestimonial = await req.json();
+
   try {
     const checkEmail = await prisma.testimonial.findUnique({
       where: { email }
     });
 
     if (checkEmail) {
-      return responseReturn(400, 'Thanks for your interest, but you have already submitted a testimonial', 'Email already exist', null, 'bad request');
+      return responseReturn(400, 'Thanks for your interest, but you have already submitted a testimonial', 'Email already exists', null, 'bad request');
     }
 
     const createTestimonial = await prisma.testimonial.create({
@@ -24,20 +61,23 @@ export async function POST(req: NextRequest) {
       }
     });
 
-    if (createTestimonial) {
+    const response = responseReturn(200, {
+      message: 'Email sent successfully',
+      data: createTestimonial
+    }, 'success');
+
+    process.nextTick(async () => {
       await sendTestimonialNotificationEmail({ name, email, message, jobTitle });
       await sendTestimonialThankYouEmail({ name, email, message });
-      return responseReturn(200, {
-        message: 'Email sent successfully',
-        data: createTestimonial
-      }, 'success');
+    });
 
-    }
+    return response;
   } catch (error: any) {
-    console.log(error);
+    console.error('Error in POST /endpoint:', error);
     return responseReturn(500, 'Oops! Something happened!', 'error', null, error?.message);
   }
 }
+
 
 export async function GET() {
   try {

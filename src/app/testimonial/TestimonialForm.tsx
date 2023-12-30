@@ -71,7 +71,7 @@ export default function TestimonialForm() {
     }
   };
 
-
+  //He is a baller and a badass developer, with plethora knowledge of software development.
   return (
     <form
       className='w-full flex flex-col gap-3 mt-3 md:w-8/12 mx-auto py-4 px-4 md:px-8 md:py-8'
