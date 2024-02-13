@@ -13,7 +13,8 @@ export default function page() {
 
   return (
     <div>page
-      <TestimonialNotification {...data} />
+      {/* <TestimonialNotification {...data} /> */}
+      <ThankYouEmail name='Adrian Moses' />
     </div>
   )
 }

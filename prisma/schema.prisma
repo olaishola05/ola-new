@@ -80,11 +80,18 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Role {
+  admin
+  user
+  author
+}
+
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
   image         String?
+  role          Role @default(user)
   emailVerified DateTime? @map(name: "email_verified")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
@@ -92,6 +99,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   about         About[]
+  posts         Post[]
+  comments      Comment[]
 
   @@map(name: "users")
 }
@@ -115,4 +124,39 @@ model Testimonial {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
+}
+
+model Category {
+  id    String  @id @default(cuid()) @map("_id")
+  slug  String  @unique
+  title String
+  img   String?
+  posts Post[]
+}
+
+model Post {
+  id        String    @id @default(cuid()) @map("_id")
+  slug      String    @unique
+  title     String
+  desc      String
+  img       String?
+  category  Category  @relation(fields: [catSlug], references: [slug])
+  catSlug   String
+  user      User      @relation(fields: [userEmail], references: [email])
+  userEmail String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  views     Int       @default(0)
+  comments  Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid()) @map("_id")
+  desc      String
+  user      User     @relation(fields: [userEmail], references: [email])
+  userEmail String
+  post      Post     @relation(fields: [postSlug], references: [slug])
+  postSlug  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

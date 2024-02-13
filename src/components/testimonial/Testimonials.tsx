@@ -56,12 +56,12 @@ export default function Testimonials() {
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="max-w-xl sm:text-center md:mx-auto">
           <h3 className="text-[var(--textColor)] text-xl font-semibold lg:text-4xl">
-            {testimonials.length > 0 ? 'See what others are saying' : ''}
+            {testimonials?.length > 0 ? 'See what others are saying' : ''}
           </h3>
         </div>
-        <div className={`mt-6 lg:mt-12 ${testimonials.length <= 3 && 'flex justify-center'}`}>
+        <div className={`mt-6 lg:mt-12 ${testimonials?.length <= 3 && 'flex justify-center'}`}>
           {testimonials.length <= 3 ? <ul className='flex flex-col lg:flex-row gap-6 items-center justify-center'>
-            {testimonials.map((item: any, idx: number) => (
+            {testimonials?.map((item: any, idx: number) => (
               <li key={idx} className={`bg-[var(--contact)] p-4 rounded-xl border w-[300px] lg:w-[350px]`
               }>
                 <figure>

@@ -17,6 +17,22 @@ export const responseReturn =
     })
   }
 
+export const blogResponse = (status: number, message: string, data?: unknown) => {
+  return new NextResponse(JSON.stringify({
+    status,
+    message,
+    data,
+  }))
+}
+
+export const errorResponse = (status: number, message: string, error?: unknown) => {
+  return new NextResponse(JSON.stringify({
+    status,
+    message,
+    error
+  }))
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 export interface Contact {
   name: string;

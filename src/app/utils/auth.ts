@@ -20,6 +20,7 @@ export const authOptions: NextAuthOptions = {
       if (user && user.idToken) {
         token.idToken = user.idToken;
         token.accessToken = user.accessToken;
+        token.role = user.role;
       }
       return token;
     },
@@ -32,7 +33,7 @@ export const authOptions: NextAuthOptions = {
         email: user.email,
         image: user.image,
         accessToken: token?.accessToken,
-        role: 'admin'
+        role: token.role,
       };
       return session;
     },
