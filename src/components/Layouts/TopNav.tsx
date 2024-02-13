@@ -28,7 +28,7 @@ export default function TopNav() {
           </Link>
         ))}
       </div>
-      <div className='flex flex-2 md:flex-1 gap-4 items-center text-base'>
+      <div className='flex md:flex-1 gap-4 items-center text-base'>
         <ThemeToggle />
         {navItems.map(({ path, title, id }) => (
           <Link href={path}
