@@ -28,6 +28,7 @@ body {
   width: 100vw;
   overflow-x: hidden;
   background-color: var(--bg);
+  border: 1px solid red;
 
   @media screen and (max-width: 768px) {
     background-color: var(--bg);
@@ -182,10 +183,9 @@ body {
   }
 }
 
-@media screen and (max-width: 1536px) {
+@media screen and (min-width: 1536px) {
   .container {
     max-width: 100%;
-    // border: 1px solid red;
   }
   .wrapper {
     max-width: 100%;

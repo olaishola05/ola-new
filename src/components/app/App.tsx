@@ -19,7 +19,7 @@ export default function App({ children }: Props) {
   }
 
   return (
-    <div>
+    <>
       {pathname.includes('auths') ? (
         <>{children}</>
       ) : (
@@ -28,6 +28,6 @@ export default function App({ children }: Props) {
         </Layout>
       )
       }
-    </div >
+    </>
   )
 }
