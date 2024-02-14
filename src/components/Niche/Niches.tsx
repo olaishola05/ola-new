@@ -7,7 +7,7 @@ export default function Niches() {
   return (
     <section className="py-14 mb-10" data-aos="fade-up"
       data-aos-duration="3000">
-      <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+      <div className="w-full mx-auto px-4 text-gray-600 md:px-0">
         <div className="max-w-2xl mx-auto flex flex-col gap-2 mb-8 lg:mb-5">
           <p className="mt-3 info text-[var(--textColor)] text-center text-base md:text-xl font-light">
             Below are some of the things I do
@@ -18,7 +18,7 @@ export default function Niches() {
         </div>
 
         <div className='flex flex-col gap-20 lg:gap-32'>
-          <div className="max-w-screen-xl mx-auto md:px-8 md:py-14">
+          <div className="max-w-screen-xl mx-auto md:px-0 md:py-14">
             <div className="items-center gap-x-12 sm:px-0 md:px-0 lg:flex">
               <div className="flex-1 sm:hidden lg:block">
                 <Image width={512} height={383.66} src="https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D" className="md:max-w-lg rounded-lg" alt="coding screen" />
@@ -34,7 +34,7 @@ export default function Niches() {
                 <p className="text-[var(--textColor)] text-2xl md:text-3xl font-semibold sm:text-4xl">
                   Build your App solution with help from an expert
                 </p>
-                <p className="mt-3 text-[var(--textColor)] text-base">
+                <p className="mt-3 text-[var(--textColor)] text-lg">
                   I excel in developing premium software solutions customized to your unique requirements across various web platforms. I leverage a range of cutting-edge technologies including React, Next.js, Tailwind CSS, MUI, Node.js, Express, MongoDB, PostgreSQL, and other relevant tools to align with your business objectives.
                 </p>
                 <Link href={`${process.env.NEXT_PUBLIC_RESUME_URL}`} target='_blank' className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium">
@@ -47,7 +47,7 @@ export default function Niches() {
             </div>
           </div>
 
-          <div className="max-w-screen-xl mx-auto md:px-8 md:py-14">
+          <div className="max-w-screen-xl mx-auto md:px-0 md:py-14">
             <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex lg:flex-row-reverse">
               <div className="flex-1 sm:hidden lg:block">
                 <Image width={512} height={383.66} src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dGVjaG5pY2FsJTIwd3JpdGVyfGVufDB8fDB8fHww" className="md:max-w-lg rounded-lg" alt="content writing" />
@@ -63,7 +63,7 @@ export default function Niches() {
                 <p className="text-[var(--textColor)] text-2xl md:text-3xl font-semibold sm:text-4xl">
                   Write technical articles and documentation for your software projects
                 </p>
-                <p className="mt-3 text-[var(--textColor)]">
+                <p className="mt-3 text-[var(--textColor)] text-lg">
                   I am adept at crafting insightful technical articles encompassing web and software development, as well as offering potential solutions to technical challenges and other pertinent topics. Furthermore, I excel in creating comprehensive technical documentation for software projects.
                 </p>
                 <Link href={`${process.env.NEXT_PUBLIC_ADMIN_MEDIUM_URL}`} target='_blank' className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium">
@@ -76,7 +76,7 @@ export default function Niches() {
             </div>
           </div>
 
-          <div className="max-w-screen-xl mx-auto md:px-8 md:py-14">
+          <div className="max-w-screen-xl mx-auto md:px-0 md:py-14">
             <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex">
               <div className="flex-1 sm:hidden lg:block">
                 <Image width={512} height={383.66} src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHdlYnNpdGV8ZW58MHx8MHx8fDA%3D" className="md:max-w-lg rounded-lg" alt="coding instructor" />
@@ -91,7 +91,7 @@ export default function Niches() {
                 <p className="text-[var(--textColor)] text-2xl md:text-3xl font-semibold sm:text-4xl">
                   Learn to code with help from an expert
                 </p>
-                <p className="mt-3 text-[var(--textColor)]">
+                <p className="mt-3 text-[var(--textColor)] text-lg">
                   I specialize in providing personalized coding education through a project-based approach, offering individualized mentorship and guidance to aspiring developers. My focus is on equipping others with the skills they need to create innovative software solutions, while also facilitating access to supportive communities of like-minded individuals.
                 </p>
                 <Link href="https://www.techverseacademy.com/" target='_blank' className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium">
