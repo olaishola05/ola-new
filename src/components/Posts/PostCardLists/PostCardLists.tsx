@@ -23,13 +23,20 @@ export default async function PostCardLists({ page, cat }: { page: number, cat?:
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
   return (
     <div className='flex-3'>
-      <h1 className={styles.title}>Recent Posts</h1>
-      <div className="posts">
-        {data.posts?.map((item: any) => (
-          <PostCard key={item.id} item={item} />
-        ))}
-      </div>
-      <Pagination page={page} hasNext={hasNext} hasPrev={hasPrev} />
+      {count > 0 ? (
+        <React.Fragment>
+          <h1 className={styles.title}>Recent Posts</h1>
+          <div className="posts">
+            {data.posts?.map((item: any) => (
+              <PostCard key={item.id} item={item} />
+            ))}
+          </div>
+          <Pagination page={page} hasNext={hasNext} hasPrev={hasPrev} />
+        </React.Fragment>
+      ) : (
+        <h1 className={!cat ? 'mt-16 text-3xl text-center' : 'mt-8 text-center text-2xl'}>
+          {cat ? `No posts found on ${cat} category` : 'No Posts Found'}</h1>
+      )}
     </div>
   )
 }
