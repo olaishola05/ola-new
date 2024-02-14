@@ -91,3 +91,11 @@ export const TestimonialSchema = yup.object().shape({
     .min(3, 'Message should be at least 3 characters long')
     .max(200, 'Message should be less than or equals to 200 characters long'),
 });
+
+export const subscribeSchema = yup.object().shape({
+  email:
+    yup.string()
+      .required('Email is required')
+      .email('Email is invalid')
+      .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Email is invalid'),
+});
