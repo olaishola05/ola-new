@@ -91,7 +91,7 @@ model User {
   name          String?
   email         String?   @unique
   image         String?
-  role          Role @default(user)
+  role          Role      @default(user)
   emailVerified DateTime? @map(name: "email_verified")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
@@ -159,4 +159,9 @@ model Comment {
   postSlug  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Subscriber {
+  id    String @id @default(cuid()) @map("_id")
+  email String @unique
 }
