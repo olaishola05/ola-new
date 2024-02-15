@@ -21,13 +21,13 @@ const fetcher = async (url: string) => {
 export default function Comments({ postSlug }: { postSlug: string }) {
   const { status } = useSession();
   const [desc, setDesc] = React.useState('');
-  const { data, mutate, error, isLoading } = useSWR(`http://localhost:3000/api/comments?postSlug=${postSlug}`, fetcher);
+  const { data, mutate, error, isLoading } = useSWR(`http://localhost:3000/api/v1/comments?postSlug=${postSlug}`, fetcher);
 
   const refinedPostSlug = postSlug.replace(/%20/g, ' ');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:3000/api/comments', {
+    const res = await fetch('http://localhost:3000/api/v1/comments', {
       method: 'POST',
       body: JSON.stringify({ desc, postSlug: refinedPostSlug }),
       headers: {
