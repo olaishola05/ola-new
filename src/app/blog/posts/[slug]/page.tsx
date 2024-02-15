@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Menu from '@/components/Menu/Menu'
 import styles from './slug.module.css'
 import Comments from '@/components/Comments/Comments'
+import Subscribe from '@/components/Subscribe/Subscribe'
 
 const getPost = async (slug: string) => {
   const res = await fetch(`http://localhost:3000/api/v1/posts/${slug}`, {
@@ -59,6 +60,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
           <div className={styles.description}
             dangerouslySetInnerHTML={{ __html: desc }} />
           <div className={styles.comments}>
+            <Subscribe />
             <Comments postSlug={slug} />
           </div>
         </div>

@@ -48,7 +48,7 @@ export default async function CategoryList() {
   ]
   return (
     <div className=''>
-      <h1 className={styles.title}>Popular Categories</h1>
+      <h1 className={`${styles.title} text-3xl text-softText font-medium`}>Popular Categories</h1>
       <div className={styles.categories}>
         {categories?.map(({ id, slug, img, title }: any) => (
           <Link href={`/blog/posts?cat=${slug}`} passHref={true}

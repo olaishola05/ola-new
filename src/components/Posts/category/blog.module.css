@@ -1,7 +1,8 @@
 .title {
-  padding: 5px 10px;
+  padding: 8px 10px;
   text-align: center;
   text-transform: capitalize;
+  font-size: 34px;
 }
 
 .title.style {
