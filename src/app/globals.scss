@@ -28,7 +28,6 @@ body {
   width: 100vw;
   overflow-x: hidden;
   background-color: var(--bg);
-  border: 1px solid red;
 
   @media screen and (max-width: 768px) {
     background-color: var(--bg);
@@ -63,10 +62,9 @@ body {
 }
 
 .wrapper {
-  max-width: 1536px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 50px;
-  // border: 1px solid red;
 }
 
 .light {
@@ -193,29 +191,42 @@ body {
 }
 
 @media screen and (max-width: 1280px) {
+  .container {
+    max-width: 100%;
+  }
+
   .wrapper {
-    max-width: 1200px;
+    max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    // border: 1px solid red;
   }
 }
 
 @media screen and (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    // border: 1px solid red;
+  }
+
   .wrapper {
-    max-width: 768px;
-    padding-left: 20px;
+    max-width: 100%;
+    padding-left: 10px;
     padding-right: 10px;
-    // border: 1px solid dodgerblue;
+    border: 1px solid dodgerblue;
   }
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    border: 1px solid black;
+  }
+
   .wrapper {
     max-width: 700px;
     padding-left: 0px;
     padding-right: 0px;
-    // border: 1px solid green;
+    border: 1px solid green;
   }
 
   .contents {
@@ -265,10 +276,14 @@ body {
 }
 
 @media screen and (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    border: 1px solid teal;
+  }
   .wrapper {
     max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    // border: 1px solid yellow;
+    border: 1px solid yellow;
   }
 }
