@@ -1,6 +1,5 @@
 import Menu from '@/components/Menu/Menu'
 import PostCardLists from '@/components/Posts/PostCardLists/PostCardLists'
-import CategoryPage from '@/components/Posts/category/CategoryPage'
 import CategoryList from '@/components/Posts/category/catLists/CategoryList'
 import Featured from '@/components/Posts/feature/Featured'
 import React from 'react'
