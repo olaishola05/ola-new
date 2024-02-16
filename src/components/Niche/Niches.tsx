@@ -18,10 +18,10 @@ export default function Niches() {
         </div>
 
         <div className='flex flex-col gap-20 lg:gap-32'>
-          <div className="max-w-screen-xl mx-auto md:px-0 md:py-14">
+          <div className="max-w-screen-2xl mx-auto md:px-0 md:py-14">
             <div className="items-center gap-x-12 sm:px-0 md:px-0 lg:flex">
               <div className="flex-1 sm:hidden lg:block">
-                <Image width={512} height={383.66} src="https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D" className="md:max-w-lg rounded-lg" alt="coding screen" />
+                <Image width={640} height={383.66} src="https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D" className="md:max-w-2xl rounded-lg" alt="coding screen" />
               </div>
               <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="hidden md:block w-10 h-10 mx-auto">
@@ -47,10 +47,10 @@ export default function Niches() {
             </div>
           </div>
 
-          <div className="max-w-screen-xl mx-auto md:px-0 md:py-14">
+          <div className="max-w-screen-2xl mx-auto md:px-0 md:py-14">
             <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex lg:flex-row-reverse">
               <div className="flex-1 sm:hidden lg:block">
-                <Image width={512} height={383.66} src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dGVjaG5pY2FsJTIwd3JpdGVyfGVufDB8fDB8fHww" className="md:max-w-lg rounded-lg" alt="content writing" />
+                <Image width={640} height={383.66} src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dGVjaG5pY2FsJTIwd3JpdGVyfGVufDB8fDB8fHww" className="md:max-w-2xl rounded-lg" alt="content writing" />
               </div>
               <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="hidden md:block w-10 h-10 mx-auto">
@@ -76,10 +76,10 @@ export default function Niches() {
             </div>
           </div>
 
-          <div className="max-w-screen-xl mx-auto md:px-0 md:py-14">
+          <div className="max-w-screen-2xl mx-auto md:px-0 md:py-14">
             <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex">
               <div className="flex-1 sm:hidden lg:block">
-                <Image width={512} height={383.66} src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHdlYnNpdGV8ZW58MHx8MHx8fDA%3D" className="md:max-w-lg rounded-lg" alt="coding instructor" />
+                <Image width={640} height={383.66} src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHdlYnNpdGV8ZW58MHx8MHx8fDA%3D" className="md:max-w-2xl rounded-lg" alt="coding instructor" />
               </div>
               <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="hidden md:block w-10 h-10 mx-auto">

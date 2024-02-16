@@ -9,7 +9,7 @@ import { Icons } from '..';
 const Hero = () => {
   return (
     <main
-      className='flex p-2 w-full h-full my-[10px] mx-auto gap-10 relative md:flex-row md:py-0 md:px-5 md:my-12 md:h-[50vh] lg:h-[70vh] lg:flex-col lg:my-12 lg:mx-auto md:w-[90%] lg:w-[100%] md:gap-8 mb-10'
+      className='flex p-2 w-full h-full mt-8 mx-auto gap-10 relative md:flex-row md:py-0 md:px-5 md:h-[50vh] lg:h-[70vh] lg:flex-col lg:mt-20 lg:mb-0 lg:mx-auto md:w-[90%] lg:w-[100%] md:gap-8 mb-10'
       data-aos="fade-up"
       data-aos-duration="3000"
     >
