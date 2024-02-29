@@ -2,6 +2,7 @@ import AuthProvider from '@/app/providers/AuthProvider'
 import { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import 'src/app/globals.scss'
+import 'src/app/prosemirror.css'
 import AnimationProvider from '@/app/providers/AnimationProvider';
 import AppThemeProvider from '@/app/providers/AppThemeProvider';
 import App from '@/components/app/App'
