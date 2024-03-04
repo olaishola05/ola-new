@@ -14,7 +14,7 @@ export default function LoginPage() {
   return (
     <main className='w-full h-full overflow-hidden'>
       <div>
-        <section className='bg-[#F2F6FF] my-16 mx-auto h-full w-full py-10 px-2 gap-8 flex flex-col items-center md:my-15 md:h-4/5 rounded-lg md:gap-10 md:py-20'>
+        <section className='my-16 mx-auto h-full w-full py-10 px-2 gap-8 flex flex-col items-center md:my-15 md:h-4/5 rounded-lg md:gap-10 md:py-20'>
           <h1 className='text-2xl font-bold text-blue-500 md:text-4xl'>OlaDev</h1>
           <div className='w-full bg-white px-2 py-5 rounded-sm md:w-[450px] md:px-5 md:py-7 md:rounded-md'>
             <h2 className='text-center text-lg text-[#36537F] font-semibold mb-1 md:text-2xl'>Welcome Back</h2>
