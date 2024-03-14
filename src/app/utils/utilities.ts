@@ -201,3 +201,12 @@ export const readTimeInfo = (content: any) => {
   const stats = readingTime(content);
   return stats.text;
 }
+
+export const slugify = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
