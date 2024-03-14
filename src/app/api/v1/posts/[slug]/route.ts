@@ -36,7 +36,6 @@ export const GET = async (req: NextRequest, { params }: { params: { slug: string
 export const PATCH = async (req: NextRequest, { params }: { params: { slug: string } }) => {
   const { slug } = params;
   const session = await getAuthSession()
-  console.log(slug)
   try {
 
     const post = await prisma.post.findUnique({
