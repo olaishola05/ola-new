@@ -1,0 +1,107 @@
+.container {
+  @apply w-8/12
+  mx-auto
+  mt-20;
+  height: 100%;
+}
+
+.editor {
+  display: flex;
+  gap: 20px;
+  height: 1200px;
+  position: relative;
+}
+
+.button,
+.addButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid var(--textColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.addButton {
+  border-color: var(--cta);
+}
+
+.postImage {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.postImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add {
+  display: flex;
+  gap: 20px;
+  background-color: var(--bg);
+  position: absolute;
+  z-index: 999;
+  /* width: 100%; */
+  top: 300px;
+  right: 400px;
+}
+
+.input {
+  padding: 20px;
+  font-size: 64px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--textColor);
+  width: 100%;
+}
+
+.input::placeholder {
+  color: #b3b3b1;
+}
+
+.textArea {
+  width: 100%;
+  background-color: inherit;
+  color: var(--textColor);
+}
+
+.textArea::placeholder {
+  color: #b3b3b1;
+  font-style: italic;
+}
+
+.textArea img {
+  width: 800px;
+  height: 500px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.publish,
+.preview {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.publish {
+  background-color: #1a8917;
+  color: white;
+}
+
+.preview {
+  background: white;
+  color: black;
+  border: 1px solid var(--cta);
+}

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import styles from './createpost.module.css'
@@ -24,12 +23,7 @@ export default function CreatePost() {
   const [autoSave, setAutoSave] = React.useState(false)
   const [autoSaveMessage, setAutoSaveMessage] = React.useState('')
 
-  // const { status, data } = useSession()
   const router = useRouter()
-
-  // if (status === 'unauthenticated') {
-  //   router.push('/auths/signin')
-  // }
 
   useEffect(() => {
     if (file) {
@@ -82,36 +76,84 @@ export default function CreatePost() {
     }
   }
 
+  const safeDraft = React.useCallback(async () => {
+    const data = {
+      title,
+      desc: htmlValue,
+      rawPost: value,
+      img: media,
+      slug: slugify(title),
+      catSlug: "coding",
+      updatedAt: new Date()
+    }
+    const res = await fetch('/api/v1/posts', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    if (res.ok) {
+      setAutoSave(!autoSave);
+      setAutoSaveMessage('Draft saved')
+      setTimeout(() => {
+        setAutoSave(!autoSave);
+        setAutoSaveMessage('');
+      }, 3000);
+    }
+  }, [value, title, htmlValue, media, autoSave]);
+
+
+  const handleAutoSave = React.useCallback(async () => {
+    if (value) {
+      try {
+        const slug = slugify(title)
+        const response = await fetch(`/api/v1/posts/${slug}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            title,
+            desc: htmlValue,
+            rawPost: value,
+            img: media,
+            slug: slug,
+            catSlug: "coding", //for temp, will be set when publishing
+          }),
+        });
+        if (response.ok) {
+          setAutoSave(!autoSave);
+          setAutoSaveMessage('Auto saved');
+          setTimeout(() => {
+            setAutoSave(!autoSave);
+            setAutoSaveMessage('');
+          }, 3000);
+        } else {
+          console.error('Error while saving data:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('An error occurred during the API request:', error);
+      }
+    }
+  }, [value, title, htmlValue, media, autoSave]);
+
+
   useEffect(() => {
-    const interval = setInterval(() => {
+    const initialSave = async () => {
+      if (value && title) {
+        await safeDraft()
+      }
+    }
+    initialSave()
+    return () => {
+      window.removeEventListener('beforeunload', safeDraft)
+    }
+  }
+    , [value])
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
       if (value) {
-        fetch('/api/v1/posts', {
-          method: 'POST',
-          body: JSON.stringify(
-            {
-              title,
-              desc: htmlValue,
-              rawPost: value,
-              img: media,
-              slug: slugify(title),
-              catSlug: "coding",
-              updatedAt: new Date()
-            })
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            setAutoSave(!autoSave)
-            setAutoSaveMessage('Auto saved')
-            setTimeout(() => {
-              setAutoSave(!autoSave)
-              setAutoSaveMessage('')
-            }, 3000)
-          })
+        await handleAutoSave()
       }
     }, 300000)
     return () => clearInterval(interval)
-  })
+  }, [value, handleAutoSave])
 
   const handlePreview = () => {
     setOpenPreview(!openPreview)
