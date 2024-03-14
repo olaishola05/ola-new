@@ -6,7 +6,6 @@ import { getAuthSession } from "@/app/utils/auth";
 
 export const GET = async (req: NextRequest, { params }: { params: { slug: string } }) => {
   const { slug } = params
-  console.log(slug)
   try {
     const checkPost = await prisma.post.findUnique({
       where: { slug }
@@ -36,8 +35,8 @@ export const GET = async (req: NextRequest, { params }: { params: { slug: string
 
 export const PATCH = async (req: NextRequest, { params }: { params: { slug: string } }) => {
   const { slug } = params;
-  // const session = await getAuthSession()
-  // console.log(slug, session?.user.email)
+  const session = await getAuthSession()
+  console.log(slug)
   try {
 
     const post = await prisma.post.findUnique({
@@ -48,9 +47,9 @@ export const PATCH = async (req: NextRequest, { params }: { params: { slug: stri
       return errorResponse(404, "Post not found");
     }
 
-    // if (session?.user?.email !== post.userEmail) {
-    //   return errorResponse(401, 'forbidden')
-    // }
+    if (session?.user?.email !== post.userEmail) {
+      return errorResponse(401, 'forbidden')
+    }
     const updateBody = await req.json();
     const updatedPost = await prisma.post.update({
       where: { slug },
@@ -70,20 +69,23 @@ export const DELETE = async (req: NextRequest, { params }: { params: { slug: str
   const session = await getAuthSession()
 
   try {
+    const user = await prisma.user.findUnique({
+      where: { id: session?.user?.userId }
+    })
+
+    if (!user) {
+      return errorResponse(401, 'Unauthorized')
+    }
 
     const post = await prisma.post.findUnique({
       where: { slug }
-    })
-
-    const user = await prisma.user.findUnique({
-      where: { id: session?.user.idToken }
     })
 
     if (!post) {
       return errorResponse(404, "Post not found");
     }
 
-    if (session?.user?.email !== post.userEmail || user!.role.includes('admin')) {
+    if (session?.user?.email !== post.userEmail || user.role.includes('admin')) {
       return errorResponse(401, 'forbidden')
     }
 

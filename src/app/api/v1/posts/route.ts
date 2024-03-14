@@ -34,16 +34,28 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   const session = await getAuthSession()
 
-  if (!session) {
-    return errorResponse(401, "Unauthorized!")
-  }
-
-  if (!session?.user?.role.includes('admin') && !session.user.role.includes('author')) {
-    return errorResponse(401, "Unauthorized!")
-  }
-
   try {
     const body = await req.json();
+    if (!session?.user.email) {
+      return errorResponse(401, "Unauthorized!")
+    }
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email }
+    })
+
+    if (user?.role.includes('admin') && user.role.includes('author')) {
+      return errorResponse(401, "Unauthorized!")
+    }
+
+    const findPost = await prisma.post.findUnique({
+      where: {
+        slug: body.slug
+      }
+    });
+
+    if (findPost) {
+      return errorResponse(400, "Post already exist!")
+    }
     const post = await prisma.post.create({
       data: { ...body, userEmail: session.user.email },
     })
