@@ -137,10 +137,12 @@ model Category {
 model Post {
   id        String    @id @default(cuid()) @map("_id")
   slug      String    @unique
-  title     String
+  title     String    @unique
   desc      String
+  rawPost   Json
   img       String?
-  category  Category  @relation(fields: [catSlug], references: [slug])
+  published Boolean   @default(false)
+  category  Category?  @relation(fields: [catSlug], references: [slug]) //remove optional once category model is created
   catSlug   String
   user      User      @relation(fields: [userEmail], references: [email])
   userEmail String
