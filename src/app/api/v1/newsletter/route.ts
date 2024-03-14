@@ -27,11 +27,11 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const email = await req.json()
+    const { email } = await req.json()
     if (!email) {
       return errorResponse(401, 'Bad request, email not provided')
     }
-    const subscriber = await prisma.subscriber.findUnique({ where: { email } })
+    const subscriber = await prisma.subscriber.findUnique({ where: { email: email } })
 
     if (subscriber) {
       return errorResponse(401, `Subscriber with ${email} already exist!`)
