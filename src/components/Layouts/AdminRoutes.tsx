@@ -3,7 +3,10 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-import { navItems } from '@/app/utils';
+import { navItems, blogLinks } from '@/app/utils';
+import { AuthRoutes } from './AuthRoutes';
+import { usePathname } from 'next/navigation';
+import { ConditionalRoutes } from './ConditionalRoutes';
 
 interface AdminRoutesProps {
   isActive: (pathname: string) => boolean
@@ -12,19 +15,18 @@ interface AdminRoutesProps {
 export default function AdminRoutes({ isActive }: AdminRoutesProps) {
   const [open, setOpen] = useState(false)
   const { data: session, status } = useSession()
+  const pathname = usePathname()
 
   const handleLogout = async () => {
     await signOut({ redirect: true, callbackUrl: '/' })
   }
 
+
   return (
     <>{!session ? (
       <Link href='/auth/signin' className='cursor-pointer hidden'>Login</Link>
     ) : (
-      <React.Fragment>
-        <Link href='/admin/dashboard' className='text-lg capitalize'>Dashboard</Link>
-        <span className='cursor-pointer text-lg capitalize' onClick={handleLogout}>Logout</span>
-      </React.Fragment>
+      <AuthRoutes session={session} handleLogout={handleLogout} />
     )}
 
       <div
@@ -37,7 +39,7 @@ export default function AdminRoutes({ isActive }: AdminRoutesProps) {
 
       {open && (
         <div className='absolute top-[80px] left-0 w-full bg-[var(--bg)] flex flex-col items-center justify-start gap-12 text-xl h-[100vh] py-4'>
-          {navItems.map(({ path, title, id }) => (
+          {/* {navItems.map(({ path, title, id }) => (
             <Link href={path}
               className={`md:hidden text-lg capitalize ${hoverStyles} ${isActive(path) && 'text-[var(--primary)] font-medium'}`}
               key={id}
@@ -45,15 +47,12 @@ export default function AdminRoutes({ isActive }: AdminRoutesProps) {
             >
               {title}
             </Link>
-          ))}
-
+          ))} */}
+          <ConditionalRoutes routePath={pathname} pathname='/blog' pathLinks={blogLinks} navLinks={navItems} isActive={isActive} />
           {!session ? (
             <Link href='/auth/signin' className={`hidden ${hoverStyles}`}>Login</Link>
           ) : (
-            <React.Fragment>
-              <Link href='/projects' className={`${hoverStyles}`}>Dashboard</Link>
-              <span onClick={handleLogout} className={`${hoverStyles}`}>Logout</span>
-            </React.Fragment>
+            <AuthRoutes session={session} handleLogout={handleLogout} />
           )}
         </div>
       )}
