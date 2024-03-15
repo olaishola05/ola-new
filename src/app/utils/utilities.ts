@@ -93,6 +93,12 @@ export const socialLinks: SocialLinks = [
   },
 ];
 
+export const blogLinks: NavItems = [
+  { id: 1, title: 'home', path: '/', },
+  { id: 4, title: 'blog', path: '/blog' },
+  { id: 2, title: 'about', path: '/about', },
+]
+
 export const tabs: TabArray = [
   {
     label: 'All Projects',

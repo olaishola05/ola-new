@@ -1,4 +1,4 @@
-import { navItems, socialLinks, randomItemFromArray, tabs, sendDataToBackend, publishProject, deleteProject, updateProject, projectsFilter, resumeTabs, updateAboutInfo, readTimeInfo } from './utilities';
+import { navItems, socialLinks, randomItemFromArray, tabs, sendDataToBackend, publishProject, deleteProject, updateProject, projectsFilter, resumeTabs, updateAboutInfo, readTimeInfo, blogLinks } from './utilities';
 import { contactSchema, TestimonialSchema } from './validations';
 import {
   educationItems,
@@ -7,5 +7,5 @@ import {
 
 
 export {
-  navItems, socialLinks, randomItemFromArray, contactSchema, tabs, sendDataToBackend, publishProject, deleteProject, updateProject, projectsFilter, resumeTabs, updateAboutInfo, educationItems, workExpItems, readTimeInfo, TestimonialSchema
+  navItems, socialLinks, randomItemFromArray, contactSchema, tabs, sendDataToBackend, publishProject, deleteProject, updateProject, projectsFilter, resumeTabs, updateAboutInfo, educationItems, workExpItems, readTimeInfo, TestimonialSchema, blogLinks
 };
