@@ -38,7 +38,7 @@ export default function TopNav() {
           navLinks={navItems}
           isActive={isActive}
         />
-        <AdminRoutes isActive={isActive} />
+        <AdminRoutes isActive={isActive} pathname={routePath} />
       </div>
     </div>
   )
