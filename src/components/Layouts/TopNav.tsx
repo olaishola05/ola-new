@@ -1,13 +1,14 @@
 'use client';
 
 import React from 'react';
-import { navItems, socialLinks } from '@/app/utils';
+import { navItems, socialLinks, blogLinks } from '@/app/utils';
 import Logo from './Logo';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import Link from 'next/link'
 import AdminRoutes from './AdminRoutes';
 import CustomIcon from '../IconsComponent/CustomIcon';
+import { ConditionalRoutes } from './ConditionalRoutes';
 
 export default function TopNav() {
   const routePath = usePathname();
@@ -30,13 +31,13 @@ export default function TopNav() {
       </div>
       <div className='flex md:flex-1 gap-4 items-center text-base'>
         <ThemeToggle />
-        {navItems.map(({ path, title, id }) => (
-          <Link href={path}
-            className={`hidden md:block text-lg capitalize ${isActive(path) && 'text-[var(--primary)] font-medium'}`}
-            key={id}>
-            {title}
-          </Link>
-        ))}
+        <ConditionalRoutes
+          routePath={routePath}
+          pathname='/blog'
+          pathLinks={blogLinks}
+          navLinks={navItems}
+          isActive={isActive}
+        />
         <AdminRoutes isActive={isActive} />
       </div>
     </div>
