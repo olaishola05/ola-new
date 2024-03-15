@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 const Circle = (isActive: (pathname: string) => boolean, pathname: string) => (
   <div className={`w-2 h-2 rounded-full ${isActive(pathname) && 'bg-blue-400'}`}></div>
@@ -11,6 +12,11 @@ const Circle = (isActive: (pathname: string) => boolean, pathname: string) => (
 export default function DashBoardSidebar() {
   const pathname = usePathname();
   const isActive = (path: string) => path === pathname;
+
+  const handleLogout = async () => {
+    await signOut({ redirect: true, callbackUrl: '/' })
+  }
+
   return (
     <div className='flex flex-col gap-5 mt-5 mx-auto'>
       <div className='flex gap-2 items-center'>
@@ -29,6 +35,10 @@ export default function DashBoardSidebar() {
         {Circle(isActive, '/admin/dashboard/posts')}
         <Link href="/admin/dashboard/posts" className='text-base text-[var(--textColor)]'>Posts</Link>
       </div>
+      <div className='flex gap-2 items-center'>
+        {Circle(isActive, '/admin/dashboard/write')}
+      </div>
+      <span className='cursor-pointer text-lg capitalize' onClick={handleLogout}>Logout</span>
     </div>
   )
 }
