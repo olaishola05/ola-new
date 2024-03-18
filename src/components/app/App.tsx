@@ -13,6 +13,8 @@ interface Props {
 export default function App({ children }: Props) {
   const pathname = usePathname()
   const { status } = useSession()
+  const excludePaths = ['/auth', '/admin']
+  const isStartWith = excludePaths.some((path) => pathname.startsWith(path))
 
   if (status === 'loading') {
     return <Loader loading={status} />
@@ -20,7 +22,7 @@ export default function App({ children }: Props) {
 
   return (
     <>
-      {pathname.includes('auths') ? (
+      {isStartWith ? (
         <>{children}</>
       ) : (
         <Layout>
