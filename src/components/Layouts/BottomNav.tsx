@@ -13,18 +13,19 @@ import BlogFooter from './BlogFooter/BlogFooter';
 
 const BottomNav = () => {
   const pathname = usePathname()
-  const excludePaths = ['/admin', '/contact', '/testimonial']
+  const excludePaths = ['/admin', '/contact', '/testimonial', '/blog']
+  const isStartsWith = excludePaths.some((path) => pathname.startsWith(path))
   return (
     <React.Fragment>
       {pathname.startsWith('/blog') && (<BlogFooter />)}
       <main data-aos="fade-up" className='w-full h-full'>
-        {excludePaths.includes(pathname) || pathname.startsWith('/blog') ? '' : (
+        {isStartsWith ? '' : (
           <>
             <Quotes />
           </>
         )}
         {pathname === '/' && (<Testimonials />)}
-        {excludePaths.includes(pathname) || pathname.startsWith('/blog') ? '' : (
+        {isStartsWith ? '' : (
           <>
             <div data-aos="fade-up" className='w-full h-full my-5 md:w-[85%] md:flex md:flex-col md:items-center md:mx-auto md:my-20 lg:mx-0 lg:w-full'>
 
