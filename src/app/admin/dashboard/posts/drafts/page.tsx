@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   description: 'Edit post page',
 }
 
-export default function EditPost() {
+export default function DraftPosts() {
   return (
     <div>
-      <h1>Edit Post</h1>
+      <h1>Draft Posts</h1>
       <p>Some posts someday</p>
     </div>
   )
