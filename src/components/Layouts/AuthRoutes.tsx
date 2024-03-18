@@ -10,7 +10,7 @@ interface AuthRoutesProps {
 export const AuthRoutes = ({ session, handleLogout }: AuthRoutesProps) => {
   return (
     <React.Fragment>
-      {!session?.user?.role.includes('admin') ? <span className='cursor-pointer text-lg capitalize hidden md:inline' onClick={handleLogout}>Logout</span> :
+      {!session?.user?.role.includes('admin') && !session?.user?.role.includes('author') ? <span className='cursor-pointer text-lg capitalize ' onClick={handleLogout}>Logout</span> :
         (<>
           <Link href='/blog/write' className='text-lg capitalize hidden md:inline'>Write</Link>
           <Link href='/admin/dashboard' className='text-lg capitalize hidden md:inline'>Dashboard</Link>
