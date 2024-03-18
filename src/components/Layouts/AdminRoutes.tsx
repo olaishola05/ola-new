@@ -14,6 +14,11 @@ interface MobileRoutesProps extends AdminRoutesProps {
   setOpen: (open: boolean) => void
 }
 
+interface MobileAdminRoutesProps {
+  session: any
+  logout: () => void
+}
+
 const MobileConditionalRoutes = ({ isActive, pathname, setOpen }: MobileRoutesProps) => {
   return (<>
     {pathname.startsWith('/blog') && (<>
@@ -41,7 +46,7 @@ const MobileConditionalRoutes = ({ isActive, pathname, setOpen }: MobileRoutesPr
   </>)
 }
 
-const MobileAdminRoutes = ({ session, logout }: any) => {
+const MobileAdminRoutes = ({ session, logout }: MobileAdminRoutesProps) => {
   const privileges = session?.user?.role.includes('admin') || session?.user.role.includes('author')
   return (
     <>
