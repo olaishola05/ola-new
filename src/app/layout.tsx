@@ -82,7 +82,6 @@ export default function RootLayout({
           <AnimationProvider>
             <AppThemeProvider>
               <main className='container'>
-                {/* <div className='wrapper'> */}
                 <ConditionalWrapper>
                   <App>
                     {children}
@@ -93,7 +92,6 @@ export default function RootLayout({
                     )}
                   </App>
                 </ConditionalWrapper>
-                {/* </div> */}
               </main>
             </AppThemeProvider>
           </AnimationProvider>
