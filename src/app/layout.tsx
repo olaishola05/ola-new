@@ -9,6 +9,7 @@ import App from '@/components/app/App'
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from '@/components/Analytic/GoogleAnalytics';
+import ConditionalWrapper from '@/components/Wrapper/ConditionalWrapper'
 
 const monserrat = Montserrat({ subsets: ['latin'] })
 
@@ -81,7 +82,8 @@ export default function RootLayout({
           <AnimationProvider>
             <AppThemeProvider>
               <main className='container'>
-                <div className='wrapper'>
+                {/* <div className='wrapper'> */}
+                <ConditionalWrapper>
                   <App>
                     {children}
                     <Toaster />
@@ -90,7 +92,8 @@ export default function RootLayout({
                       <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
                     )}
                   </App>
-                </div>
+                </ConditionalWrapper>
+                {/* </div> */}
               </main>
             </AppThemeProvider>
           </AnimationProvider>
