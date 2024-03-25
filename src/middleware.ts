@@ -7,22 +7,26 @@ const getCookieBasedOnEnv = (req: NextRequest) => {
   return cookie;
 }
 
-export default function middleware(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
   const isLoggedIn = getCookieBasedOnEnv(req);
   const isOnAdminPage = req.nextUrl?.pathname.startsWith('/admin');
-  if (isOnAdminPage) {
-    if (isLoggedIn) return NextResponse.next()
-    return NextResponse.redirect(new URL('/auths/signin', req?.nextUrl.origin))
-  } else if (isLoggedIn) {
-    console.log('redirect to admin')
-    return NextResponse.redirect(new URL('/admin/dashboard', req.nextUrl.origin))
-  }
-  return NextResponse.next()
-}
+  const isOnBlogWritePage = req.nextUrl?.pathname.startsWith('/blog/write');
+  const isOnBlogEditPage = req.nextUrl?.pathname.startsWith('/blog/edit');
 
+  if ((isOnAdminPage || isOnBlogWritePage || isOnBlogEditPage) && !isLoggedIn) {
+    const loginUrl = new URL('/auths/signin', req?.nextUrl.origin);
+    loginUrl.searchParams.set('from', req.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: ['/admin/:path*',]
+  matcher: [
+    '/admin/:path*',
+    '/blog/write',
+    '/blog/edit/:id(.*)'
+  ]
 }
 
-// req.cookies?.getAll()?.some(cookie => cookie.name === 'next-auth.session-token') ?? false;
