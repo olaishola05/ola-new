@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   description: 'Sign In page',
 }
 
-export default function LoginPage() {
+export default function LoginPage({ searchParams }: { searchParams: { from: string } }) {
+  const from = searchParams?.from;
   return (
     <main className='w-full h-full overflow-hidden'>
       <div>
@@ -41,7 +42,7 @@ export default function LoginPage() {
               <span className='md:text-lg'>or</span>
               <hr className='w-34 text-[#D6DDEC] md:w-36' />
             </div>
-            <LoginButton />
+            <LoginButton from={from} />
             <p className='text-center text-gray-500 text-sm md:text-base'>{"Don't"} have an account? <Link href="/auths/register" className='text-blue-500 pl-2'>Sign Up</Link></p>
           </div>
         </section>

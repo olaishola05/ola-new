@@ -4,11 +4,11 @@ import React from 'react'
 import { signIn } from 'next-auth/react'
 import { BsGithub } from 'react-icons/bs'
 
-export default function LoginButton() {
+export default function LoginButton({ from }: { from: string }) {
   const handleLogin = async (provider: string) => {
     try {
       const res = await signIn(provider, {
-        callbackUrl: '/admin/dashboard',
+        callbackUrl: from || '/',
       });
       if (res?.error) {
         console.log(res.error);
