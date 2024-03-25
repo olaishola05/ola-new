@@ -1,7 +1,20 @@
 import React from 'react'
 import Image from 'next/image'
 
-export default function Comment({ key, item }: { key: string, item: any }) {
+interface Item {
+  user: {
+    image: string;
+    name: string;
+  };
+  createdAt: string;
+  desc: string;
+}
+interface CommentProps {
+  key: string;
+  item: Item;
+}
+
+export default function Comment({ key, item }: CommentProps) {
   return (
     <div className='mt-[50px]' key={key}>
       <div className='mb-[50px]'>
