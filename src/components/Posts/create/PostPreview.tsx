@@ -3,6 +3,7 @@ import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import styles from './preview.module.css'
 import { NodeHtmlMarkdown } from 'node-html-markdown'
+import { getItemFromStorage } from './utils'
 
 
 export default function PostPreview() {
@@ -11,16 +12,15 @@ export default function PostPreview() {
   const [img, setImg] = React.useState('')
 
   React.useEffect(() => {
-    const content = window.localStorage.getItem('content')
-    const postTitle = window.localStorage.getItem('postTitle')
-    const postImg = window.localStorage.getItem('img')
+    const content = getItemFromStorage('content')
+    const postTitle = getItemFromStorage('postTitle')
+    const postImg = getItemFromStorage('img')
     if (content && postTitle && postImg) {
       setValue(JSON.parse(content).html)
       setTitle(JSON.parse(postTitle).title)
       setImg(JSON.parse(postImg).img)
     }
   }, [])
-
   const markdown = NodeHtmlMarkdown.translate(value);
   return (
     <div className={styles.container}>
