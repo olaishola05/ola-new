@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import { BiTimeFive as AccessTimeSharpIcon } from 'react-icons/bi';
+import React from "react";
+import Image from "next/image";
+import { BiTimeFive as AccessTimeSharpIcon } from "react-icons/bi";
 
 interface CustomCardProps {
   image: string;
@@ -19,20 +19,34 @@ const CardContainer = ({ children }: React.PropsWithChildren<{}>) => (
 );
 
 const CardMediaContainer = ({ image }: { image: string }) => (
-  <div className="relative w-full h-[170px] md:h-[200px] lg:h-[200px] rounded-lg transform m-auto">
-    <Image src={image} alt={image} fill className="object-cover rounded-lg w-full h-full" sizes='100' />
+  <div className="relative w-full h-[170px] md:h-[250px] lg:h-[250px] rounded-lg transform m-auto">
+    <Image
+      src={image}
+      alt={image}
+      fill
+      className="object-cover rounded-lg w-full h-full"
+      sizes="100"
+    />
   </div>
 );
 
 const CardContentContainer = ({ children }: React.PropsWithChildren<{}>) => (
-  <div className="flex flex-col gap-2 py-0 px-2 md:p-0">
-    {children}
-  </div>
+  <div className="flex flex-col gap-2 py-0 px-2 md:p-0">{children}</div>
 );
 
-const CardMediaTop = ({ name, role, duration }: { name: string; role?: string; duration?: string }) => (
+const CardMediaTop = ({
+  name,
+  role,
+  duration,
+}: {
+  name: string;
+  role?: string;
+  duration?: string;
+}) => (
   <div className="flex flex-row items-center justify-between mb-3">
-    <h6 className="text-[var(--textColor)] font-semibold text-base md:text-lg py-1 px-0 md:p-0 capitalize">{name}</h6>
+    <h6 className="text-[var(--textColor)] font-semibold text-base md:text-lg py-1 px-0 md:p-0 capitalize">
+      {name}
+    </h6>
     <div className="text-[var(--textColor)]">
       {duration ? (
         <div className="flex items-center gap-2">
@@ -40,13 +54,18 @@ const CardMediaTop = ({ name, role, duration }: { name: string; role?: string; d
           <span>{duration}</span>
         </div>
       ) : (
-        <span className='text-base font-medium capitalize'>{role ? role[0].toUpperCase() + role.slice(1) : ''}</span>
+        <span className="text-base font-medium capitalize">
+          {role ? role[0].toUpperCase() + role.slice(1) : ""}
+        </span>
       )}
     </div>
   </div>
 );
 
-const OverlayDiv = ({ onClick, overlayText }: React.PropsWithChildren<{ onClick?: () => void; overlayText?: string }>) => (
+const OverlayDiv = ({
+  onClick,
+  overlayText,
+}: React.PropsWithChildren<{ onClick?: () => void; overlayText?: string }>) => (
   <div className="absolute top-0 bottom-0 left-0 right-0 opacity-0 hover:opacity-100 transition duration-300 hover:bg-[var(--softBg)] hover:transform hover:rounded-lg">
     <button
       onClick={onClick}
@@ -57,15 +76,21 @@ const OverlayDiv = ({ onClick, overlayText }: React.PropsWithChildren<{ onClick?
   </div>
 );
 
-const CustomCard = ({ image, name, description, role, duration, overlayText, onClick }: CustomCardProps) => {
+const CustomCard = ({
+  image,
+  name,
+  description,
+  role,
+  duration,
+  overlayText,
+  onClick,
+}: CustomCardProps) => {
   return (
     <CardContainer>
       <CardMediaContainer image={image} />
       <CardContentContainer>
         <CardMediaTop name={name} role={role} duration={duration} />
-        <p className="text-dark text-left">
-          {description.slice(0, 200)}...
-        </p>
+        <p className="text-dark text-left">{description.slice(0, 200)}...</p>
       </CardContentContainer>
       <OverlayDiv onClick={onClick} overlayText={overlayText} />
     </CardContainer>
