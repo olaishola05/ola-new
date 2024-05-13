@@ -23,7 +23,7 @@ const ProjectSection = ({ data }: props) => {
   const [project, setProject] = useState({});
 
   const handleOpenModal = (id: string) => {
-    setOpenModal(true);
+    setOpenModal(!openModal);
     const project = data?.find((item) => item.id === id);
     setProject(project || {});
   };
