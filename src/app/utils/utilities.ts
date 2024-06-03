@@ -220,3 +220,14 @@ export const slugify = (str: string) =>
     .replace(/^-+/, "")
     .replace(/-+$/, "");
 
+export class Storage {
+  static setToStorage(key: string, value: any) {
+    localStorage && localStorage.setItem(key as string, JSON.stringify(value));
+  }
+
+  static getStorageItem(key: string) {
+    return (
+      localStorage && JSON.parse(localStorage.getItem(key as string) as string)
+    );
+  }
+}
