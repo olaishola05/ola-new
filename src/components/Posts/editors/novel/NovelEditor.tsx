@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   EditorContent,
   EditorRoot,
@@ -10,18 +10,21 @@ import {
   EditorCommandItem,
   EditorCommandEmpty,
   type JSONContent,
-  defaultEditorProps,
-} from 'novel';
-import { useDebouncedCallback } from 'use-debounce';
+  // defaultEditorProps,
+} from "novel";
+import { useDebouncedCallback } from "use-debounce";
 import { ImageResizer } from "novel/extensions";
-import { defaultExtensions } from './extension';
-import { slashCommand, suggestionItems } from './slash-commands';
-import { defaultEditorContent } from './content';
-import { ColorSelector } from './selectors/color-selector';
-import { LinkSelector } from './selectors/link-selector';
-import { NodeSelector } from './selectors/node-selector';
-import { TextButtons } from './selectors/text-button';
-import { Separator } from './ui/separator';
+import { defaultExtensions } from "./extension";
+import { slashCommand, suggestionItems } from "./slash-commands";
+import { defaultEditorContent } from "./content";
+import { ColorSelector } from "./selectors/color-selector";
+import { LinkSelector } from "./selectors/link-selector";
+import { NodeSelector } from "./selectors/node-selector";
+import { TextButtons } from "./selectors/text-button";
+import { Separator } from "./ui/separator";
+import { handleImageDrop, handleImagePaste } from "novel/plugins";
+import { uploadFn } from "./image-upload";
+import { Storage } from "@/app/utils/utilities";
 
 interface NovelEditorProps {
   value: JSONContent | null;
@@ -43,18 +46,18 @@ const NovelEditor: React.FC<NovelEditorProps> = ({ value, setValue, html }) => {
       const htmlVal = editor.getHTML();
       html(htmlVal);
       setValue(json);
-      const content = { json: json, html: htmlVal }
-      window.localStorage.setItem("content", JSON.stringify(content));
+      const content = { json: json, html: htmlVal };
+      Storage.setToStorage("content", content);
       setSaveStatus("Saved");
     },
     500,
   );
 
   React.useEffect(() => {
-    const content = window.localStorage.getItem("content");
-    if (content) setValue(JSON.parse(content).json);
+    const content = Storage.getStorageItem("content");
+    if (content) setValue(content.json);
     else setValue(defaultEditorContent);
-  }, []);
+  }, [setValue]);
 
   if (!value) return null;
   return (
@@ -73,10 +76,14 @@ const NovelEditor: React.FC<NovelEditorProps> = ({ value, setValue, html }) => {
           className="relative min-h-[1200px] w-full max-w-screen-lg bg-bg sm:mb-[calc(20vh)] sm:rounded-lg overflow-auto"
           slotAfter={<ImageResizer />}
           editorProps={{
-            ...defaultEditorProps,
+            // ...defaultEditorProps,
             attributes: {
               class: `prose-lg prose-stone dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
             },
+            handlePaste: (view, event) =>
+              handleImagePaste(view, event, uploadFn),
+            handleDrop: (view, event, _slice, moved) =>
+              handleImageDrop(view, event, moved, uploadFn),
           }}
         >
           <EditorCommand className="z-50 h-auto max-h-[330px] w-72 overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
@@ -125,4 +132,3 @@ const NovelEditor: React.FC<NovelEditorProps> = ({ value, setValue, html }) => {
 };
 
 export default NovelEditor;
-
