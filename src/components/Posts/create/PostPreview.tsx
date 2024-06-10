@@ -6,21 +6,18 @@ import { NodeHtmlMarkdown } from "node-html-markdown";
 import { Storage } from "@/app/utils/utilities";
 
 export default function PostPreview() {
-  const [value, setValue] = React.useState("");
-  const [title, setTitle] = React.useState("");
-  const [img, setImg] = React.useState("");
+  const [value, _setValue] = React.useState(
+    Storage.getStorageItem("content").html || "",
+  );
+  const [title, _setTitle] = React.useState(
+    Storage.getStorageItem("postTitle").title || "",
+  );
+  const [img, _setImg] = React.useState(
+    Storage.getStorageItem("postImg").img || "",
+  );
 
-  React.useEffect(() => {
-    const content = Storage.getStorageItem("content");
-    const postTitle = Storage.getStorageItem("postTitle");
-    const postImg = Storage.getStorageItem("img");
-    if (content && postTitle && postImg) {
-      setValue(content.html);
-      setTitle(postTitle.title);
-      setImg(postImg.img);
-    }
-  }, []);
   const markdown = NodeHtmlMarkdown.translate(value);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{title}</h1>
