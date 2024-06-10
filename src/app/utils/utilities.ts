@@ -230,4 +230,12 @@ export class Storage {
       localStorage && JSON.parse(localStorage.getItem(key as string) as string)
     );
   }
+
+  static clearStorage() {
+    localStorage && localStorage.clear();
+  }
+
+  static removeFromStorage(key: string) {
+    localStorage && localStorage.removeItem(key);
+  }
 }
