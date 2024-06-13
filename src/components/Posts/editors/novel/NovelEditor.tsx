@@ -35,10 +35,10 @@ interface NovelEditorProps {
 const extensions = [...defaultExtensions, slashCommand];
 
 const NovelEditor: React.FC<NovelEditorProps> = ({ value, setValue, html }) => {
-  const [saveStatus, setSaveStatus] = React.useState("Saved");
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
+  const storagePost = Storage.getStorageItem("post") || {};
 
   const debouncedUpdates = useDebouncedCallback(
     async (editor: EditorInstance) => {
@@ -46,34 +46,32 @@ const NovelEditor: React.FC<NovelEditorProps> = ({ value, setValue, html }) => {
       const htmlVal = editor.getHTML();
       html(htmlVal);
       setValue(json);
-      const content = { json: json, html: htmlVal };
-      Storage.setToStorage("content", content);
-      setSaveStatus("Saved");
+      const updatePost = {
+        ...storagePost,
+        content: { json: json, html: htmlVal },
+      };
+      Storage.setToStorage("post", updatePost);
     },
     500,
   );
 
   React.useEffect(() => {
-    const content = Storage.getStorageItem("content");
-    if (content) setValue(content.json);
+    const contents = Storage.getStorageItem("post");
+    if (contents.content) setValue(contents.content.json);
     else setValue(defaultEditorContent);
   }, [setValue]);
 
   if (!value) return null;
   return (
-    <div className={`relative w-full max-w-screen-lg`}>
-      <div className="absolute right-5 top-5 z-10 mb-5 rounded-lg bg-accent px-2 py-1 text-sm text-muted-foreground">
-        {saveStatus}
-      </div>
+    <div className={`relative w-full max-w-screen-lg text-textColor`}>
       <EditorRoot>
         <EditorContent
           initialContent={value}
           extensions={extensions}
           onUpdate={({ editor }) => {
             debouncedUpdates(editor);
-            setSaveStatus("Unsaved");
           }}
-          className="relative min-h-[1200px] w-full max-w-screen-lg bg-bg sm:mb-[calc(20vh)] sm:rounded-lg overflow-auto"
+          className="relative min-h-[1200px] w-full max-w-screen-lg bg-bg text-textColor sm:mb-[calc(20vh)] sm:rounded-lg overflow-auto"
           slotAfter={<ImageResizer />}
           editorProps={{
             // ...defaultEditorProps,
