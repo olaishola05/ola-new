@@ -13,13 +13,17 @@ const getCookieBasedOnEnv = (req: NextRequest) => {
   return cookie;
 };
 
+const protectedRoutes = ["/admin", "/blog/write"];
+
 export default async function middleware(req: NextRequest) {
   const isLoggedIn = getCookieBasedOnEnv(req);
-  const isOnAdminPage = req.nextUrl?.pathname.startsWith("/admin");
-  const isOnBlogWritePage = req.nextUrl?.pathname.startsWith("/blog/write");
-  const isOnBlogEditPage = req.nextUrl?.pathname.startsWith("/blog/edit");
+  const { pathname } = req.nextUrl;
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    pathname.startsWith(route),
+  );
+  const isOnBlogEditPage = pathname.match(/^\/blog\/([^/]+)\/edit$/);
 
-  if ((isOnAdminPage || isOnBlogWritePage || isOnBlogEditPage) && !isLoggedIn) {
+  if ((isProtectedRoute || isOnBlogEditPage) && !isLoggedIn) {
     const loginUrl = new URL("/auths/signin", req?.nextUrl.origin);
     loginUrl.searchParams.set("from", req.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
@@ -29,5 +33,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/blog/write", "/blog/edit/:id(.*)"],
+  matcher: ["/admin/:path*", "/blog/write", "/blog/:id*/edit"],
 };
