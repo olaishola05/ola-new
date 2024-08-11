@@ -17,7 +17,7 @@ import { contactSchema, TestimonialSchema } from "./validations";
 import { educationItems, workExpItems } from "./data";
 
 export { greetings } from "./utilities";
-
+export { registerSchema, loginSchema } from "./auth.validation"
 export {
   navItems,
   socialLinks,
