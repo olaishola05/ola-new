@@ -56,7 +56,7 @@ export const socialLinks: SocialLinks = [
   {
     id: 2,
     title: "linkedin",
-    path: "https://www.linkedin.com/in/ola-ishola/",
+    path: "https://www.linkedin.com/in/olaishola05",
     icon: FaLinkedinIn,
   },
 
@@ -236,6 +236,7 @@ export class Storage {
   }
 
   static removeFromStorage(key: string) {
+    console.log(key);
     localStorage && localStorage.removeItem(key);
   }
 }
