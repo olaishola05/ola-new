@@ -121,6 +121,11 @@ class AuthService {
     const isMatch = await bcrypt.compare(password, savedPassword);
     return isMatch;
   }
+
+  static async findUserById(id: string) {
+    const user = await prisma.user.findUnique({ where: { id } });
+    return user;
+  }
 }
 
 export default AuthService;
