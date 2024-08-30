@@ -86,10 +86,17 @@ enum Role {
   author
 }
 
+enum Providers {
+  credentials
+  github
+}
+
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
+  password      String
+  provider      Providers @default(credentials)
   image         String?
   role          Role      @default(user)
   emailVerified DateTime? @map(name: "email_verified")
@@ -101,6 +108,7 @@ model User {
   about         About[]
   posts         Post[]
   comments      Comment[]
+  otp           Otp[]
 
   @@map(name: "users")
 }
@@ -136,14 +144,15 @@ model Category {
 
 model Post {
   id        String    @id @default(cuid()) @map("_id")
-  slug      String    @unique
-  title     String    @unique
-  desc      String
-  rawPost   Json
+  slug      String?   @unique
+  title     String?   @unique
+  desc      String?
+  content   String?
+  rawPost   Json?
   img       String?
   published Boolean   @default(false)
-  category  Category?  @relation(fields: [catSlug], references: [slug]) //remove optional once category model is created
-  catSlug   String
+  category  Category? @relation(fields: [catSlug], references: [slug]) //remove optional once category model is created
+  catSlug   String?
   user      User      @relation(fields: [userEmail], references: [email])
   userEmail String
   createdAt DateTime  @default(now())
@@ -166,4 +175,13 @@ model Comment {
 model Subscriber {
   id    String @id @default(cuid()) @map("_id")
   email String @unique
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @db.ObjectId
+  otp       String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
 }
