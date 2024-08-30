@@ -30,7 +30,7 @@ export default async function VerifyAccountOtp({ searchParams }: VerifyAccountOt
   }
 
   return (
-    <Suspense fallback={<div className='text-center text-2xl font-semibold'>Loading...</div>}>
+    <Suspense fallback={<div className='text-center text-2xl font-medium my-10'>Loading...</div>}>
       <VerifyAccount data={data} />
     </Suspense>
   )

@@ -91,7 +91,7 @@ export default function VerifyAccount({ data }: VerifyAccountProps) {
       {formState.success === false && <div className='text-center text-lg font-semibold text-red-500'>{formState.message}</div>}
       <h2 className='text-center text-2xl md:text-5xl mb-4 text-textColor'>Verify Your Account</h2>
       {formState.success && <div className='text-center text-2xl text-green-500'>{formState.message}</div>}
-      {formState.success === false && <p className='text-center text-textColor'>We emailed you the six digit code to {email} <br /> Enter the code below to confirm your email address.</p>}
+      {formState.success === false && <p className='text-center text-textColor'>We emailed you the six digit code to <span className='font-semibold'>{email}</span> <br /> Enter the code below to confirm your email address.</p>}
       <form className="code-container" action={action}>
         <div className='flex w-full items-center justify-center'>
           {otp.map((digit, index) => (
