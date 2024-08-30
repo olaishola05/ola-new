@@ -4,6 +4,7 @@ import EmailTemplate from '@/components/Email/email-template';
 import ThankYouEmail from "@/components/Email/ThankYouEmail";
 import TestimonialNotification from "@/components/Email/Notification";
 import SendOptEmail from "@/components/Email/SendOptEmail";
+import WelcomeEmail from "@/components/Email/WelcomeEmail";
 
 export const responseReturn =
   (status: number, message: any, statusText: string, data?: any, error?: any) => {
@@ -113,5 +114,16 @@ export async function sendOtpMessage({ name, email, otp }: { name: string, email
     react: SendOptEmail({ name, otp })
   }
   const { data, error } = await resend.emails.send(opts)
+  return { data, error }
+}
+
+export async function sendWelcomeEmail({ name, email }: { name: string, email: string }) {
+  const options = {
+    from: fromEmail,
+    to: email,
+    subject: 'Welcome to Tech With Ola',
+    react: WelcomeEmail({ name })
+  }
+  const { data, error } = await resend.emails.send(options)
   return { data, error }
 }
