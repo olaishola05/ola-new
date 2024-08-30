@@ -44,7 +44,10 @@ export async function register(formState: FormState, formData: FormData): Promis
       return { errors: { _form: [response.errors.message] } }
     }
     userId = response.data?.id ?? '';
-    // await sendOtpMessage({ name, email, otp })
+    const { data, error } = await sendOtpMessage({ name, email, otp: response?.data?.otp ?? '' })
+    if (error) {
+      return { errors: { _form: [error.message] } }
+    }
   } catch (error: any) {
     return { errors: { _form: [error.message] } };
   }
