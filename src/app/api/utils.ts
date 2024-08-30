@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import EmailTemplate from '@/components/Email/email-template';
 import ThankYouEmail from "@/components/Email/ThankYouEmail";
 import TestimonialNotification from "@/components/Email/Notification";
+import SendOptEmail from "@/components/Email/SendOptEmail";
 
 export const responseReturn =
   (status: number, message: any, statusText: string, data?: any, error?: any) => {
@@ -63,11 +64,13 @@ export interface IEmailThankYou {
   message: string;
 }
 
+const fromEmail = process.env.RESEND_FROM_EMAIL!;
+const publicEmail = process.env.NEXT_PUBLIC_EMAIL!
 export async function sendEmail({ name, email, number, subject, message }: Contact) {
 
   const options = {
-    from: process.env.RESEND_FROM_EMAIL!,
-    to: process.env.NEXT_PUBLIC_EMAIL!,
+    from: fromEmail,
+    to: publicEmail,
     subject: `New message from ${name} via your website`,
     react: EmailTemplate({ name, email, number, subject, message }),
   };
@@ -79,8 +82,8 @@ export async function sendEmail({ name, email, number, subject, message }: Conta
 export async function sendTestimonialNotificationEmail({ name, email, message, jobTitle }: IEmailNotification) {
 
   const options = {
-    from: process.env.RESEND_FROM_EMAIL!,
-    to: process.env.NEXT_PUBLIC_EMAIL!,
+    from: fromEmail,
+    to: publicEmail,
     subject: `New message from ${name} via your website`,
     react: TestimonialNotification({ name, email, message, jobTitle })
   };
@@ -92,7 +95,7 @@ export async function sendTestimonialNotificationEmail({ name, email, message, j
 export async function sendTestimonialThankYouEmail({ name, email }: IEmailThankYou) {
 
   const options = {
-    from: process.env.RESEND_FROM_EMAIL!,
+    from: fromEmail,
     to: email,
     subject: `Thank You for Your Testimonial ${name.split(' ')[0]}`,
     react: ThankYouEmail({ name })
@@ -100,4 +103,15 @@ export async function sendTestimonialThankYouEmail({ name, email }: IEmailThankY
   const { data, error } = await resend.emails.send(options);
 
   return { data, error };
+}
+
+export async function sendOtpMessage({ name, email, otp }: { name: string, email: string, otp: string }) {
+  const opts = {
+    from: fromEmail,
+    to: email,
+    subject: 'Complete Your Registration',
+    react: SendOptEmail({ name, otp })
+  }
+  const { data, error } = await resend.emails.send(opts)
+  return { data, error }
 }
