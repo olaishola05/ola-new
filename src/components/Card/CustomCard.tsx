@@ -18,17 +18,19 @@ const CardContainer = ({ children }: React.PropsWithChildren<{}>) => (
   </div>
 );
 
-const CardMediaContainer = ({ image }: { image: string }) => (
-  <div className="relative w-full h-[170px] md:h-[250px] lg:h-[250px] rounded-lg transform m-auto">
-    <Image
-      src={image}
-      alt={image}
-      fill
-      className="object-cover rounded-lg w-full h-full"
-      sizes="100"
-    />
-  </div>
-);
+function CardMediaContainer({ image }: { image: string }) {
+  return (
+    <div className="relative w-full h-[170px] md:h-[250px] lg:h-[250px] rounded-lg transform m-auto">
+      <Image
+        src={image || ''}
+        alt={image || ''}
+        fill
+        className="object-cover rounded-lg w-full h-full"
+        sizes="100"
+      />
+    </div>
+  )
+}
 
 const CardContentContainer = ({ children }: React.PropsWithChildren<{}>) => (
   <div className="flex flex-col gap-2 py-0 px-2 md:p-0">{children}</div>
