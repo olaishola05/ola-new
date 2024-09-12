@@ -1,14 +1,26 @@
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import prisma from "@/app/lib/prisma";
 import OtpService from './otp.service';
-const JWT_SECRET = process.env.JWT_SECRET as string;
+import { User } from '@prisma/client';
 
 interface RegisterResult {
   data?: {
     otp: string;
     id: string;
   };
+  errors?: {
+    message: string;
+  };
+}
+
+interface LoginError {
+  errors: {
+    message: string;
+  };
+}
+
+interface ILoginData {
+  user?: User
   errors?: {
     message: string;
   };
@@ -47,6 +59,7 @@ class AuthService {
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred during registration';
+      console.log(errorMessage)
       return {
         errors: {
           message: errorMessage
@@ -55,23 +68,38 @@ class AuthService {
     }
   }
 
-  static async login(email: string, password: string): Promise<string> {
-    const user = await prisma.user.findUnique({
-      where: { email }
-    });
+  static async login(email: string, password: string): Promise<ILoginData> {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { email }
+      });
 
-    if (!user) {
-      throw new Error('User not found');
+      if (!user) {
+        return {
+          errors: {
+            message: 'Account not found'
+          }
+        }
+      }
+
+      const isPasswordMatch = await this.comparePasswords(password, user.password!);
+
+      if (!isPasswordMatch) {
+        return {
+          errors: {
+            message: 'Invalid password'
+          }
+        }
+      }
+      return { user }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred during login';
+      return {
+        errors: {
+          message: errorMessage
+        }
+      };
     }
-
-    const isPasswordValid = await this.comparePasswords(password, user.password);
-
-    if (!isPasswordValid) {
-      throw new Error('Invalid password');
-    }
-
-    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
-    return token;
   }
 
   static async requestPasswordReset(email: string): Promise<void> {
@@ -106,15 +134,6 @@ class AuthService {
       where: { id: user.id },
       data: { password: hashedPassword },
     });
-  }
-
-  static async authenticate(token: string): Promise<string> {
-    try {
-      const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
-      return decoded.userId;
-    } catch (err) {
-      throw new Error('Invalid token');
-    }
   }
 
   static async comparePasswords(password: string, savedPassword: string): Promise<boolean> {
