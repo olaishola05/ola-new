@@ -30,6 +30,6 @@ export const loginSchema = z.object({
   password: z.string({ required_error: 'Password is required', invalid_type_error: 'Password should be a string' })
     .min(8, { message: "Password should be at least 8 characters long" })
     .refine((data) => data.match(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])/), {
-      message: "Password should contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      message: "Password must include uppercase, lowercase, number, and special character",
     }),
 });
