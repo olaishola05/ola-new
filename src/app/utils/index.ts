@@ -37,4 +37,5 @@ export {
   TestimonialSchema,
   blogLinks,
 };
+export { savePostToFile } from './savePostToFile';
 
