@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
   useCreateBlockNote,
   GridSuggestionMenuController,
@@ -32,7 +32,7 @@ async function saveToStorage(jsonBlocks: Block[]) {
 }
 
 interface EditorProps {
-  onChange: (content: PartialBlock[]) => void;
+  onChange: (content: PartialBlock[], markdown: string) => void;
   initialContent?: PartialBlock[] | undefined | "loading"
 }
 
@@ -41,7 +41,8 @@ export default function Editor({ onChange, initialContent }: EditorProps) {
   const debouncedUpdates = useDebouncedCallback(
     async (editor: any) => {
       await saveToStorage(editor.document);
-      onChange(editor.document)
+      const markdown = await editor.blocksToMarkdownLossy(editor.document);
+      onChange(editor.document, markdown)
     },
     500,
   );
