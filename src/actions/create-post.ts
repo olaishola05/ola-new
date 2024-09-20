@@ -2,66 +2,70 @@
 
 import prisma from "@/app/lib/prisma";
 import { getAuthSession } from "@/app/utils/auth";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { JSONContent } from "novel";
+import fs from 'fs';
+import { savePostToFile } from "@/app/utils";
 
 interface CreatePost {
   title: string;
-  desc: string;
   slug: string;
-  rawPost: JSONContent;
-  img?: string;
-  catSlug: string;
+  postImg?: string;
+  markdown: string
 }
 
-interface AutoSaveState {
+interface CreateState {
   success?: boolean;
   error?: string;
+  postId?: string;
 }
 
-export async function autoSavePost(data: CreatePost): Promise<AutoSaveState> {
+export async function createPost(data: CreatePost): Promise<CreateState> {
   const session = await getAuthSession();
+
+  if (!session?.user.email) {
+    return {
+      error: "Unauthorized!",
+    };
+  }
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email },
+  });
+
+  if (user?.role.includes("admin") && user.role.includes("author")) {
+    return {
+      error: "Unauthorized!",
+    };
+  }
+
+  const { title, slug, postImg } = data
+  const { markdownContent, relativePath, filePath } = await savePostToFile(data)
+
+  let post: any = null;
   try {
-    if (!session?.user.email) {
-      return {
-        error: "Unauthorized!",
-      };
-    }
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
+    const postExist = await prisma.post.findFirst({
+      where: { slug: data.slug },
     });
-
-    if (user?.role.includes("admin") && user.role.includes("author")) {
-      return {
-        error: "Unauthorized!",
-      };
-    }
-
-    const post = await prisma.post.findFirst({ where: { slug: data.slug } });
-    if (!post) {
-      await prisma.post.create({
+    if (!postExist) {
+      post = await prisma.post.create({
         data: {
-          ...data,
+          title,
+          slug,
+          postImg,
+          initSlug: slug,
+          filePath: `/${relativePath}`,
           userEmail: session.user.email,
         },
       });
-    } else {
-      await prisma.post.update({
-        where: { slug: data.slug },
-        data: {
-          ...data,
-          userEmail: session.user.email,
-          updatedAt: new Date(),
-        },
-      });
+
+      fs.writeFileSync(filePath, markdownContent);
     }
   } catch (error: any) {
+    console.log(error.message)
     return {
       error: error.message || "Error occurred while saving post",
     };
   }
   return {
     success: true,
+    postId: post?.id,
   };
 }
