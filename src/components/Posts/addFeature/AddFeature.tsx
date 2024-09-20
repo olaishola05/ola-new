@@ -6,7 +6,7 @@ export default function AddImageFeature({ setFile, styles }: any) {
 
   React.useEffect(() => {
     const handleKeyPress = (e: any) => {
-      if (e.key === "Enter" || e.key === "keydown" || e.key === "click") {
+      if (e.key === "keydown" || e.key === "click") {
         setOpen(!open);
       }
     };
@@ -41,6 +41,7 @@ export default function AddImageFeature({ setFile, styles }: any) {
                 width={16}
                 height={16}
                 alt="plus"
+                className="cursor-pointer"
               />
             </label>
           </button>
