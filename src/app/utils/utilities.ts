@@ -1,11 +1,8 @@
 import { NavItems, SocialLinks, TabArray, Project, About } from "@/app/types";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { Linkedin, Github, Instagram, Twitter } from "lucide-react";
 import { FaMediumM } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
 import { FaHashnode } from "react-icons/fa6";
 import { FaThreads } from "react-icons/fa6";
-import { BsGithub } from "react-icons/bs";
 import axios from "axios";
 // import { animateScroll as scroll, scroller } from 'react-scroll';
 const readingTime = require("reading-time/lib/reading-time");
@@ -51,20 +48,20 @@ export const socialLinks: SocialLinks = [
     id: 1,
     title: "github",
     path: "https://github.com/olaishola05",
-    icon: BsGithub,
+    icon: Github,
   },
   {
     id: 2,
     title: "linkedin",
     path: "https://www.linkedin.com/in/olaishola05",
-    icon: FaLinkedinIn,
+    icon: Linkedin,
   },
 
   {
     id: 3,
     title: "twitter",
     path: "https://twitter.com/olaishola05",
-    icon: FaXTwitter,
+    icon: Twitter,
   },
   {
     id: 4,
@@ -77,7 +74,7 @@ export const socialLinks: SocialLinks = [
     id: 6,
     title: "Instagram",
     path: "https://www.instagram.com/olaishola05/",
-    icon: FaInstagram,
+    icon: Instagram,
   },
   {
     id: 7,
