@@ -5,7 +5,7 @@ import { Storage } from "@/app/utils/utilities";
 
 const usePostTitle = (initialValue: string) => {
   const storagePost = Storage.getStorageItem("post") || {};
-  const [title, setTitle] = useState(storagePost?.title || initialValue);
+  const [title, setTitle] = useState(initialValue);
 
   const handleTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const updateTitle = e.target?.value;

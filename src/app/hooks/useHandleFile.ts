@@ -9,9 +9,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const useHandleFile = (intialValue: initialMedia) => {
   const [file, setFile] = useState<File | null>(null);
-  const [media, setMedia] = useState(
-    Storage.getStorageItem("post")?.img || intialValue,
-  );
+  const [media, setMedia] = useState(intialValue);
 
   useEffect(() => {
     if (file) {
