@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import { PlusIcon, LucideImage } from "lucide-react";
 
 export default function AddImageFeature({ setFile, styles }: any) {
   const [open, setOpen] = React.useState(false);
@@ -23,7 +23,7 @@ export default function AddImageFeature({ setFile, styles }: any) {
   return (
     <div className="mb-8 relative">
       <button type="button" className={styles.button} onClick={handleOpen}>
-        <Image src="/images/plus.png" width={16} height={16} alt="plus" />
+        <PlusIcon />
       </button>
       {open && (
         <div className={styles.add}>
@@ -35,15 +35,7 @@ export default function AddImageFeature({ setFile, styles }: any) {
             onChange={(e: any) => setFile(e.target?.files[0])}
           />
           <button type="button" className={styles.addButton}>
-            <label htmlFor="image">
-              <Image
-                src="/images/image.png"
-                width={16}
-                height={16}
-                alt="plus"
-                className="cursor-pointer"
-              />
-            </label>
+            <LucideImage />
           </button>
         </div>
       )}
