@@ -4,14 +4,25 @@ interface FileProps {
   title: string;
   slug: string;
   postImg?: string;
-  markdown: string
+  markdown: string;
+  existingFilePath?: string;
 }
 
-export async function savePostToFile({ title, slug, postImg, markdown }: FileProps) {
-  const fileSlug = title.toLowerCase().replace(/ /g, '-');
-  const fileName = `${fileSlug}.md`;
-  const filePath = path.join(process.cwd(), 'posts', fileName);
-  const relativePath = path.relative(process.cwd(), filePath);
+export function savePostToFile({ title, slug, postImg, markdown, existingFilePath }: FileProps) {
+  const postsDirectory = 'posts';
+
+  let filePath: string;
+  let fileSlug: string;
+
+  if (existingFilePath) {
+    filePath = existingFilePath;
+    fileSlug = path.basename(filePath, '.md');
+  } else {
+    fileSlug = title.toLowerCase().replace(/ /g, '-');
+    const fileName = `${fileSlug}.md`;
+    filePath = path.join(postsDirectory, fileName);
+  }
+
   const markdownContent = `---
 
   title: "${title}"
@@ -23,5 +34,5 @@ export async function savePostToFile({ title, slug, postImg, markdown }: FilePro
   ${markdown}
   `
 
-  return { relativePath, markdownContent, filePath, fileSlug }
+  return { markdownContent, filePath, fileSlug }
 }
