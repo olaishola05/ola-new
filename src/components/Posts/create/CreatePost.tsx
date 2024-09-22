@@ -29,7 +29,8 @@ export default function CreatePost() {
         title,
         postImg: media,
         slug: slugify(title),
-        markdown
+        markdown,
+        content: initialContent
       };
 
       const response = await actions.createPost(data);
@@ -43,7 +44,7 @@ export default function CreatePost() {
     } catch (error: any) {
       setError(error);
     }
-  }, [title, media, markdown, autoSave, navigate]);
+  }, [title, media, markdown, initialContent, autoSave, navigate]);
 
   useEffect(() => {
     const interval = setTimeout(async () => {

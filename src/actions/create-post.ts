@@ -9,6 +9,7 @@ interface CreatePost {
   title: string;
   slug: string;
   postImg?: string;
+  content?: any
   markdown: string
 }
 
@@ -36,7 +37,7 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
     };
   }
 
-  const { title, slug, postImg } = data
+  const { title, slug, postImg, content } = data
   const { markdownContent, filePath } = savePostToFile(data)
 
   let post: any = null;
@@ -51,6 +52,7 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
           slug,
           postImg,
           initSlug: slug,
+          content,
           filePath,
           userEmail: session.user.email,
         },
