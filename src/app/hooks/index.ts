@@ -1,4 +1,3 @@
-import { useShiki } from './useShiki';
 import useNavigation from "./useNavigation";
 import useToggle from "./useToggle";
 import useFetch from "./useFetch";
@@ -14,6 +13,5 @@ export {
   useMediaQuery,
   useHandleFile,
   usePostTitle,
-  useShiki,
 };
 
