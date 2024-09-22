@@ -37,7 +37,7 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
   }
 
   const { title, slug, postImg } = data
-  const { markdownContent, relativePath, filePath } = await savePostToFile(data)
+  const { markdownContent, filePath } = savePostToFile(data)
 
   let post: any = null;
   try {
@@ -51,7 +51,7 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
           slug,
           postImg,
           initSlug: slug,
-          filePath: `/${relativePath}`,
+          filePath,
           userEmail: session.user.email,
         },
       });
