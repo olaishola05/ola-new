@@ -23,7 +23,7 @@ export default function AddImageFeature({ setFile, styles }: any) {
   return (
     <div className="mb-8 relative">
       <button type="button" className={styles.button} onClick={handleOpen}>
-        <PlusIcon />
+        <PlusIcon className="cursor-pointer h-5 w-5" />
       </button>
       {open && (
         <div className={styles.add}>
@@ -35,7 +35,9 @@ export default function AddImageFeature({ setFile, styles }: any) {
             onChange={(e: any) => setFile(e.target?.files[0])}
           />
           <button type="button" className={styles.addButton}>
-            <LucideImage />
+            <label htmlFor="image">
+              <LucideImage className="cursor-pointer h-5 w-5" />
+            </label>
           </button>
         </div>
       )}
