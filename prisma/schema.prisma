@@ -147,7 +147,6 @@ model Post {
   desc          String?
   postImg       String?
   filePath      String
-  initSlug      String
   content       Json?
   publishedDate DateTime  @updatedAt
   published     Boolean   @default(false)
