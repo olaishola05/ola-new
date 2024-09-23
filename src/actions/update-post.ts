@@ -67,7 +67,6 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
         console.warn(`Old file not found: ${oldFilePath}. Creating a new file.`);
       }
     }
-    console.log(content)
     fs.writeFileSync(path.join(process.cwd(), finalFilePath), markdownContent);
 
     const updatedPost = await prisma.post.update({
@@ -86,7 +85,6 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
     revalidatePath("/dashboard/posts");
     return { success: true, postId: updatedPost.id };
   } catch (error: any) {
-    console.error('Error in autoSavePost:', error);
     return { error: error.message || "Error occurred while saving post" };
   }
 }
