@@ -51,7 +51,6 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
           title,
           slug,
           postImg,
-          initSlug: slug,
           content,
           filePath,
           userEmail: session.user.email,

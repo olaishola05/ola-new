@@ -6,9 +6,11 @@ interface FileProps {
   postImg?: string;
   markdown: string;
   existingFilePath?: string;
+  published?: boolean
+  publishedDate?: Date
 }
 
-export function savePostToFile({ title, slug, postImg, markdown, existingFilePath }: FileProps) {
+export function savePostToFile({ title, slug, postImg, markdown, published, publishedDate, existingFilePath }: FileProps) {
   const postsDirectory = 'posts';
 
   let filePath: string;
@@ -28,6 +30,8 @@ export function savePostToFile({ title, slug, postImg, markdown, existingFilePat
   title: "${title}"
   slug: "${slug}"
   postImg: "${postImg}"
+  published: "${published}"
+  date: "${publishedDate}"
 
 ---
 

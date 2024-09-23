@@ -18,14 +18,10 @@ export default function PostEdit({ post }: { post: any }) {
   const { title, handleTitle } = usePostTitle(post?.title);
   const { setFile, media, setMedia } = useHandleFile(post?.postImg);
   const [markdown, setMarkdown] = React.useState("")
-  const storageContent = Storage.getStorageItem("editorContent");
-  storageContent
-    ? storageContent as PartialBlock[]
-    : undefined;
   const [initialContent, setInitialContent] = React.useState<
     PartialBlock[] | undefined | "loading"
-  >(storageContent);
-
+  >(post?.content);
+  console.log(post?.content)
   const publishPost = async () => {
     const data = {
       title,
@@ -51,7 +47,10 @@ export default function PostEdit({ post }: { post: any }) {
         const data = {
           title,
           postImg: media,
+          content: initialContent,
           markdown,
+          published: post?.published,
+          publishedDate: post?.publishedDate,
           slug: slugify(title),
           id: post?.id
         };
@@ -66,7 +65,7 @@ export default function PostEdit({ post }: { post: any }) {
         setError("");
       }
     }
-  }, [title, media, markdown, post?.id]);
+  }, [title, media, initialContent, markdown, post?.published, post?.publishedDate, post?.id]);
 
   useEffect(() => {
     const interval = setInterval(async () => {

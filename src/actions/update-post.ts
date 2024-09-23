@@ -18,6 +18,7 @@ interface UpdatePostProps {
   title: string;
   slug: string;
   postImg?: string;
+  content: any
   markdown: string
 }
 
@@ -42,7 +43,7 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
       return { error: "Post not found!" };
     }
 
-    const { title, slug, postImg } = data;
+    const { title, slug, postImg, content } = data;
 
     const { markdownContent, filePath: newFilePath } = savePostToFile({
       ...data,
@@ -61,12 +62,12 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
 
       if (fs.existsSync(oldFilePath)) {
         fs.renameSync(oldFilePath, newAbsoluteFilePath);
-        finalFilePath = newFilePath; // Update the file path to the new one
+        finalFilePath = newFilePath;
       } else {
         console.warn(`Old file not found: ${oldFilePath}. Creating a new file.`);
       }
     }
-
+    console.log(content)
     fs.writeFileSync(path.join(process.cwd(), finalFilePath), markdownContent);
 
     const updatedPost = await prisma.post.update({
@@ -75,7 +76,8 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
         title,
         slug,
         postImg,
-        filePath: finalFilePath, // Use the potentially updated file path
+        content,
+        filePath: finalFilePath,
         userEmail: session.user.email,
         updatedAt: new Date(),
       },
