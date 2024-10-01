@@ -1,10 +1,14 @@
+// import removeImports from 'next-remove-imports'
+
 /** @type {import('next').NextConfig} */
-const removeImports = require('next-remove-imports')();
+// const removeImports = require('next-remove-imports')();
 const nextConfig = {
   reactStrictMode: true,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
     domains: ['localhost'],
     remotePatterns: [
+
       {
         protocol: 'https',
         hostname: 'cdn-images-1.medium.com',
@@ -61,4 +65,4 @@ const nextConfig = {
   },
 }
 
-module.exports = removeImports(nextConfig);
+export default nextConfig

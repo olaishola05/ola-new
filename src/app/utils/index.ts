@@ -15,6 +15,7 @@ import {
 } from "./utilities";
 import { contactSchema, TestimonialSchema } from "./validations";
 import { educationItems, workExpItems } from "./data";
+// import tags from "./categories";
 
 export { greetings } from "./utilities";
 export { registerSchema, loginSchema } from "./auth.validation"
@@ -38,4 +39,6 @@ export {
   blogLinks,
 };
 export { savePostToFile } from './savePostToFile';
+export { tags } from './categories';
+export type { Tag } from './categories';
 
