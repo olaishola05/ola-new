@@ -38,7 +38,7 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
   }
 
   const { title, slug, postImg, content } = data
-  const { markdownContent, filePath } = savePostToFile(data)
+  const { markdownContent, filePath } = savePostToFile({ ...data, author: user?.name })
 
   let post: any = null;
   try {

@@ -47,6 +47,8 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
 
     const { markdownContent, filePath: newFilePath } = savePostToFile({
       ...data,
+      author: user?.name,
+      description: existingPost.desc,
       existingFilePath: existingPost.filePath,
     });
 
