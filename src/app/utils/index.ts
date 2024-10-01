@@ -12,10 +12,10 @@ import {
   updateAboutInfo,
   readTimeInfo,
   blogLinks,
+  formatDate
 } from "./utilities";
 import { contactSchema, TestimonialSchema } from "./validations";
 import { educationItems, workExpItems } from "./data";
-// import tags from "./categories";
 
 export { greetings } from "./utilities";
 export { registerSchema, loginSchema } from "./auth.validation"
@@ -37,6 +37,7 @@ export {
   readTimeInfo,
   TestimonialSchema,
   blogLinks,
+  formatDate
 };
 export { savePostToFile } from './savePostToFile';
 export { tags } from './categories';

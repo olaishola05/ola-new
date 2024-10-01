@@ -27,6 +27,17 @@ export const getFormattedDateFromISOWithTime = (iso: string) => {
   return `${getFormattedDate(date)} ${date.getHours()}:${date.getMinutes()}`;
 };
 
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  };
+  const formattedDate = date.toLocaleDateString('en-US', options);
+  return formattedDate;
+}
+
 export const randomItemFromArray = (arr: any[], n: number) => {
   return arr[Math.floor(Math.random() * n)];
 };
