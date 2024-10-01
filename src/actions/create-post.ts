@@ -21,7 +21,6 @@ interface CreateState {
 
 export async function createPost(data: CreatePost): Promise<CreateState> {
   const session = await getAuthSession();
-
   if (!session?.user.email) {
     return {
       error: "Unauthorized!",
