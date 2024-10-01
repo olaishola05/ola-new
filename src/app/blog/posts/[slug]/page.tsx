@@ -4,66 +4,84 @@ import Menu from '@/components/Menu/Menu'
 import styles from './slug.module.css'
 import Comments from '@/components/Comments/Comments'
 import Subscribe from '@/components/Subscribe/Subscribe'
+import { notFound } from 'next/navigation'
+import { getPost } from '@/app/lib'
+import PostBody from '@/components/MDX/post-body'
+import { formatDate, readTimeInfo } from '@/app/utils'
 
-const getPost = async (slug: string) => {
-  const res = await fetch(`http://localhost:3000/api/v1/posts/${slug}`, {
-    cache: 'no-store',
-  })
-
-  if (!res.ok) {
-    console.log(res)
-    // throw new Error(res.statusText)
-  }
-
-  return res.json()
+const fetchPost = async (slug: string) => {
+  const post = await getPost(slug)
+  return post
 }
 
 export default async function SinglePost({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  // const post = await getPost(slug);
-  // const { title, desc, img, user } = post?.data;
-  const post = {
-    title: 'Something incredible',
-    desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, quo porro. In cumque aperiam, voluptatum quaerat tempora quia. Unde laudantium voluptas maiores quam soluta, obcaecati alias iusto ipsum perferendis a.',
-    img: '/images/contact1.png',
-    user: {
-      image: '/images/contact1.png',
-      name: 'John Doe'
-    }
+  const post = await fetchPost(slug);
+
+  if (!post) {
+    return notFound()
   }
 
-  const { title, desc, img, user } = post;
+  const user = {
+    image: '',
+    name: 'John Doe'
+  }
 
+  const { data, body } = post;
+  const { title, postImg, author, date, categories } = data
   return (
-    <div className={styles.container}>
-      <div className={styles.infoContainer}>
-        <div className={styles.textContainer}>
-          <h1 className={styles.title}>{title}</h1>
-          <div className={styles.user}>
-            {user?.image && (
-              <div className={styles.userImgContainer}>
-                <Image src={user?.image} alt="user" fill className={styles.avatar} />
+    <div className=' w-full md:w-7/12 mt-20 mx-auto flex gap-10 relative'>
+      <div className='w-full md:w-11/12'>
+        <div className='flex flex-col-reverse gap-5'>
+          <div className='flex flex-col gap-3'>
+            <h1 className='text-3xl md:text-5xl text-textColor w-full font-semibold'>{title}</h1>
+            <div className='flex gap-2'>
+              {user?.image ? (
+                <div className={styles.userImgContainer}>
+                  <Image src={user?.image} alt="user" fill className={styles.avatar} />
+                </div>
+              ) : (
+                <div className='rounded-full p-3 h-[50px] w-[50px] object-cover border border-gray-600 flex items-center justify-center'>
+                  <p className='font-bold text-xl'>{author.split(' ')
+                    .map(word => word[0].toUpperCase())
+                    .join('')}
+                  </p>
+                </div>
+              )}
+              <div className='flex flex-col gap-0'>
+                <span className={styles.username}>{author}</span>
+                <span className={styles.date}>{readTimeInfo(body)} - {formatDate(date)}</span>
               </div>
-            )}
-            <div className={styles.userTextContainer}>
-              <span className={styles.username}>{user?.name}</span>
-              <span className={styles.date}>01.10.2024</span>
+            </div>
+          </div>
+          {postImg && postImg.startsWith('/' && 'http') && (
+            <div className='relative w-full h-[250px] md:h-[500px]'>
+              <Image src={postImg || ''} alt={postImg} className='object-cover rounded-lg' fill />
+            </div>
+          )}
+        </div>
+        <div className={styles.content}>
+          <div className={styles.post}>
+            <div className={styles.description}>
+              <PostBody>
+                {body}
+              </PostBody>
+              <div className='flex gap-2 items-center flex-wrap mt-20'>
+                {Array.isArray(categories) && categories.length > 0 && categories?.map((cat: string, index: number) => (
+                  <span key={index} className='bg-softBg text-softText text-lg rounded-lg px-3 py-2 capitalize'>
+                    {cat}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className={styles.comments}>
+              <Subscribe />
+              <Comments postSlug={slug} />
             </div>
           </div>
         </div>
-        {img && (<div className={styles.imgContainer}>
-          <Image src={img} alt="blog image" className={styles.image} fill />
-        </div>)}
       </div>
-      <div className={styles.content}>
-        <div className={styles.post}>
-          <div className={styles.description}
-            dangerouslySetInnerHTML={{ __html: desc }} />
-          <div className={styles.comments}>
-            <Subscribe />
-            <Comments postSlug={slug} />
-          </div>
-        </div>
+      <div className='w-2/6 fixed -right-[200px] top-20'>
         <Menu />
       </div>
     </div>
