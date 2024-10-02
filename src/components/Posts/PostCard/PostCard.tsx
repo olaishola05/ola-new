@@ -2,35 +2,41 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+interface ItemData {
+  data: {
+    title: string,
+    description: string,
+    date: string,
+    postImg: string,
+    slug: string,
+  },
+}
 interface PostCardProps {
-  title: string,
-  desc: string,
-  createdAt: string,
-  catSlug: string,
-  img: string,
-  slug: string,
+  item: ItemData
+  catSlug: string | undefined
 }
 
-export default function PostCard({ item }: { item: PostCardProps }) {
-  const { title, desc, createdAt, catSlug, img, slug } = item
+export default function PostCard({ item, catSlug }: PostCardProps) {
+  const { title, description, date, postImg, slug } = item.data
+  const imageTrue = postImg !== 'undefined' || undefined
   return (
-    <div className='mb-[50px] flex items-center gap-[50px]'>
-      {img && (
-        <div className='flex-1 h-[350px] relative md:hidden'>
-          <Image src={img} alt={img} fill className='object-cover' />
+    <div className={`${imageTrue ? 'flex flex-col md:flex-row items-center gap-[50px]' : 'w-1/2'} mb-[50px]`}>
+      {imageTrue && (
+        <div className='flex-1 h-[350px] relative'>
+          <Image src={postImg} alt={postImg} fill className='object-cover rounded-lg' />
         </div>
       )}
 
       <div className='flex-1 flex flex-col gap-[30px]'>
         <div className=''>
-          <span className='text-gray-400'>{createdAt.substring(0, 10)} - </span>
-          <span className='text-red-700 font-medium uppercase'>{catSlug}</span>
+          <span className='text-gray-400'>{date.substring(0, 15)} </span>
+          {catSlug && <span className='text-red-700 font-medium uppercase'> - {catSlug}</span>}
         </div>
-        <Link href={`/posts/${slug}`} className=''>
-          <h1>{title}</h1>
+        <Link href={`/blog/posts/${slug}`} className='hover:text-indigo-700'>
+          <h1 className='text-2xl md:text-3xl font-semibold'>{title}</h1>
         </Link>
-        <p className='text-lg font-light text-softText'>{desc.substring(0, 60)}</p>
-        <Link href={`/posts/${slug}`} className='border-b border-red-700 py-[2px] px-0 max-w-max'>Read More</Link>
+        <p className='text-lg font-light text-softText'>{description.substring(0, 150)}</p>
+        <Link href={`/blog/posts/${slug}`} className='border-b border-red-700 py-[2px] px-0 max-w-max hover:text-indigo-600'>Read More</Link>
       </div>
     </div >
   )

@@ -2,33 +2,31 @@ import React from 'react'
 import PostCard from '../PostCard/PostCard'
 import styles from './postcardlists.module.css'
 import Pagination from '../pagination/Pagination'
+import { getPostsByCats } from '@/app/lib'
 
-const getPosts = async (page: number, cat: string) => {
-  const res = await fetch(`http://localhost:3000/api/v1/posts?page=${page}&cat=${cat || ''}`, {
-    cache: 'no-store',
-  })
-
-  if (!res.ok) {
-    console.log(res)
-    // throw new Error(res.statusText)
-  }
-
-  return res.json()
+const getPosts = async (page: number, cat: string, POST_PER_PAGE: number) => {
+  const result = await getPostsByCats(page, cat!, POST_PER_PAGE)
+  return result
 }
 
 export default async function PostCardLists({ page, cat }: { page: number, cat?: string }) {
-  const { data, count } = await getPosts(page, cat!)
   const POST_PER_PAGE = 4
+  const result = await getPosts(page, cat!, POST_PER_PAGE)
+
+  if (!result) {
+    return "Error occured while fetching posts"
+  }
+  const { data, count } = result
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
   return (
-    <div className='flex-3'>
+    <div className='flex-4'>
       {count > 0 ? (
         <React.Fragment>
-          <h1 className={styles.title}>Recent Posts</h1>
+          <h1 className={`${styles.title} text-2xl md:text-4xl`}>{cat ? `Recent posts in ${cat}` : 'Recent Posts'}</h1>
           <div className="posts">
-            {data.posts?.map((item: any) => (
-              <PostCard key={item.id} item={item} />
+            {data.map((post: any, index: number) => (
+              <PostCard key={index} item={post} catSlug={cat} />
             ))}
           </div>
           <Pagination page={page} hasNext={hasNext} hasPrev={hasPrev} />
