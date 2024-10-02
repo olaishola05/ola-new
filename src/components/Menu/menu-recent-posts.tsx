@@ -1,0 +1,22 @@
+import Link from "next/link"
+import styles from './menu.module.css'
+
+export default function MenuRecentPosts({ data, catSlug }: { data: any[], catSlug: string | undefined }) {
+  return (
+    <div className='flex flex-col gap-1 mb-[30px]'>
+      <h2 className='text-gray-500 text-base font-normal'>{"What's hot"}</h2>
+      <h1 className='text-3xl'>Most Recents</h1>
+      {data.slice(0, 5)?.map((post, index: number) => (
+        <Link href={`/blog/posts/${post.data.slug}`} className='flex items-center gap-5' key={index}>
+          <div className='flex-4 flex flex-col gap-[5px]'>
+            <span className={`text-[12px] rounded-[10px] py-[3px] px-2 text-white max-w-max capitalize ${styles[catSlug!]}`}>{catSlug}</span>
+            <h3 className='text-lg font-medium text-softText max-w-[300px] whitespace-normal'>{post.data.title}</h3>
+            <div className='text-base'>
+              <span className='text-gray-500'> Published - {post.data.date.substring(0, 15)}</span>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
+  )
+}
