@@ -91,7 +91,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
           </div>
         </div>
       </div>
-      <div className='w-2/6 fixed -right-[200px] top-20'>
+      <div className='w-2/6 absolute -right-[350px] top-0'>
         <Menu />
       </div>
     </div>
