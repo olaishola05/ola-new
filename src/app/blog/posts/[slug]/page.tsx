@@ -8,9 +8,19 @@ import { notFound } from 'next/navigation'
 import { getPost } from '@/app/lib'
 import PostBody from '@/components/MDX/post-body'
 import { formatDate, readTimeInfo } from '@/app/utils'
+import prisma from '@/app/lib/prisma'
 
 const fetchPost = async (slug: string) => {
   const post = await getPost(slug)
+  await prisma.post.update({
+    where: {
+      slug: slug
+    }, data: {
+      views: {
+        increment: 1
+      }
+    }
+  })
   return post
 }
 
