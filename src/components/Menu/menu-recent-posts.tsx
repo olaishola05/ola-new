@@ -1,9 +1,15 @@
+'use client';
+
 import Link from "next/link"
 import styles from './menu.module.css'
+import { usePathname } from "next/navigation";
 
 export default function MenuRecentPosts({ data, catSlug }: { data: any[], catSlug: string | undefined }) {
-  const filteredData = data.filter(post => post !== null)
+  const pathname = usePathname()
+  const filteredData = data.filter(post => post !== null && pathname ? !pathname.includes(post.data.slug) : '')
+
   if (filteredData.length <= 0) return null
+
   return (
     <div className='flex flex-col gap-1 mb-[30px]'>
       <h2 className='text-gray-500 text-base font-normal'>{"What's hot"}</h2>
