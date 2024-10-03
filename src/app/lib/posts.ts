@@ -29,9 +29,9 @@ export const getPosts = cache(async () => {
         const postContent = await fs.readFile(filePath, 'utf-8')
         const { data, content } = matter(postContent)
 
-        // if (data.published === false) {
-        //   return null
-        // }
+        if (data.published === 'false') {
+          return null;
+        }
 
         return { data: { ...data }, body: content } as Posts
       })
@@ -39,34 +39,54 @@ export const getPosts = cache(async () => {
   )
 })
 
-export async function getPost(slug: string) {
+async function fetchPosts() {
   const posts = await getPosts()
+  if (posts.length === 0) return null;
+  return posts
+}
+
+export async function getPost(slug: string) {
+  const posts = await fetchPosts() as Posts[]
   return posts.find((post) => post.data.slug === slug)
 }
 
+function sortPosts(posts: Posts[]) {
+  return posts
+    .sort((a, b) => new Date(b?.data.date).getTime() - new Date(a?.data.date).getTime())
+}
+
+function filterPostsByCat(cat: string, posts: Posts[]) {
+  return cat ? posts.filter(post => post?.data.categories.includes(cat)) : posts;
+}
+
 export async function latestPost() {
-  const posts = await getPosts()
-  if (posts.length === 0) return null;
-  return posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())[0];
+  const posts = await fetchPosts() as Posts[]
+  return sortPosts(posts)[0];
 }
 
 export async function getLatestPosts(count: number) {
-  const posts = await getPosts()
-  if (posts.length === 0) return null;
-
-  return posts
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-    .slice(0, count);
+  const posts = await fetchPosts() as Posts[]
+  return sortPosts(posts).slice(0, count);
 }
 
-
 export async function getPostsByCats(page: number, cat: string, postsPerPage: number): Promise<{ data: Posts[], count: number } | null> {
-  const posts = await getPosts()
-  if (posts.length === 0) return null;
-
-  const filteredPosts = cat ? posts.filter(post => post.data.categories.includes(cat)) : posts;
-  const sortedPosts = filteredPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  const posts = await fetchPosts() as Posts[]
+  const filteredPosts = filterPostsByCat(cat, posts)
+  const sortedPosts = sortPosts(filteredPosts)
   const startIndex = (page - 1) * postsPerPage;
   const paginatedPosts = sortedPosts.slice(startIndex, startIndex + postsPerPage);
   return { data: paginatedPosts, count: filteredPosts.length };
 }
+
+export async function getRecentPostsByCategory(page: number, cat: string): Promise<{ data: Posts[] }> {
+  const posts = await fetchPosts() as Posts[]
+  const filteredPosts = filterPostsByCat(cat, posts)
+  const sortedPosts = sortPosts(filteredPosts)
+  const postsPerPage = 4;
+  const startIndex = (page - 1) * postsPerPage;
+  const paginatedPosts = sortedPosts.slice(startIndex, startIndex + postsPerPage);
+  return { data: paginatedPosts };
+}
+
+
+

@@ -17,15 +17,17 @@ export default async function PostCardLists({ page, cat }: { page: number, cat?:
     return "Error occured while fetching posts"
   }
   const { data, count } = result
+  const filteredData = data.filter(post => post !== null)
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
+
   return (
     <div className='flex-4'>
-      {count > 0 ? (
+      {count > 0 && filteredData.length > 0 ? (
         <React.Fragment>
           <h1 className={`${styles.title} text-2xl md:text-4xl`}>{cat ? `Recent posts in ${cat}` : 'Recent Posts'}</h1>
           <div className="posts">
-            {data.map((post: any, index: number) => (
+            {data.slice(1, 6).map((post: any, index: number) => (
               <PostCard key={index} item={post} catSlug={cat} />
             ))}
           </div>
@@ -33,7 +35,7 @@ export default async function PostCardLists({ page, cat }: { page: number, cat?:
         </React.Fragment>
       ) : (
         <h1 className={!cat ? 'mt-16 text-3xl text-center' : 'mt-8 text-center text-2xl'}>
-          {cat ? `No posts found on ${cat} category` : 'No Posts Found'}</h1>
+          {cat ? <p>No posts found on <span className='font-bold'>{cat}</span> category</p> : 'No Posts Found'}</h1>
       )}
     </div>
   )
