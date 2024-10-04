@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import dynamic from "next/dynamic";
-import { PartialBlock } from '@blocknote/core';
+import { BlockNoteEditor, PartialBlock } from '@blocknote/core';
 
 interface EditorProps {
   initialContent: PartialBlock[] | undefined | "loading"
@@ -11,8 +11,9 @@ interface EditorProps {
 export default function CustomEditor({ initialContent, setInitialContent, setMarkdown }: EditorProps) {
   const BlockNoteEditor = useMemo(() => dynamic(() => import("./block-note-editor"), { ssr: false }), [])
 
-  const handleEditorContent = (content: PartialBlock[], markdown: string) => {
-    setInitialContent(content)
+  const handleEditorContent = async (editor: BlockNoteEditor) => {
+    setInitialContent(editor.document)
+    const markdown = await editor.blocksToMarkdownLossy(editor.document);
     setMarkdown(markdown)
   }
 

@@ -16,6 +16,7 @@ import {
   filterSuggestionItems,
   PartialBlock,
   Block,
+  BlockNoteEditor,
 } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
@@ -32,7 +33,7 @@ async function saveToStorage(jsonBlocks: Block[]) {
 }
 
 interface EditorProps {
-  onChange: (content: PartialBlock[], markdown: string) => void;
+  onChange: (editor: BlockNoteEditor) => void;
   initialContent?: PartialBlock[] | undefined | "loading"
 }
 
@@ -41,8 +42,7 @@ export default function Editor({ onChange, initialContent }: EditorProps) {
   const debouncedUpdates = useDebouncedCallback(
     async (editor: any) => {
       await saveToStorage(editor.document);
-      const markdown = await editor.blocksToMarkdownLossy(editor.document);
-      onChange(editor.document, markdown)
+      onChange(editor)
     },
     500,
   );
