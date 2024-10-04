@@ -29,7 +29,7 @@ export const getPosts = cache(async (published: boolean) => {
         const postContent = await fs.readFile(filePath, 'utf-8')
         const { data, content } = matter(postContent)
 
-        if (Boolean(data.published) === published) {
+        if (data.published === published) {
           return null;
         }
 
@@ -40,7 +40,7 @@ export const getPosts = cache(async (published: boolean) => {
 })
 
 async function fetchPosts() {
-  const posts = await getPosts(false)
+  const posts = await getPosts(true)
   if (posts.length === 0) return null;
   return posts
 }

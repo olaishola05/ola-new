@@ -22,23 +22,25 @@ export function savePostToFile(
 
   if (existingFilePath) {
     filePath = existingFilePath;
-    fileSlug = path.basename(filePath, '.md');
+    fileSlug = path.basename(filePath, '.mdx');
   } else {
     fileSlug = title.toLowerCase().replace(/ /g, '-');
-    const fileName = `${fileSlug}.md`;
+    const fileName = `${fileSlug}.mdx`;
     filePath = path.join(postsDirectory, fileName);
   }
 
+  const formattedCategories = categories ? `[${categories.map(cat => `"${cat}"`).join(', ')}]` : '[]';
+
   const markdownContent = `---
 
-  title: "${title}"
-  slug: "${slug}"
-  description: "${description}"
-  author: "${author}"
-  postImg: "${postImg}"
-  categories: "${categories}"
-  published: "${published}"
-  date: "${publishedDate}"
+  title: "${title || ''}"
+  slug: "${slug || ''}"
+  description: "${description || ''}"
+  author: "${author || ''}"
+  postImg: "${postImg || ''}"
+  categories: ${formattedCategories}
+  published: ${published || false}
+  date: "${publishedDate || ''}"
 
 ---
 
