@@ -19,7 +19,7 @@ interface Posts {
   data: Data
 }
 
-export const getPosts = cache(async () => {
+export const getPosts = cache(async (published: boolean) => {
   const posts = await fs.readdir('./posts/')
   return Promise.all(
     posts
@@ -29,7 +29,7 @@ export const getPosts = cache(async () => {
         const postContent = await fs.readFile(filePath, 'utf-8')
         const { data, content } = matter(postContent)
 
-        if (data.published === 'false') {
+        if (Boolean(data.published) === published) {
           return null;
         }
 
@@ -40,7 +40,7 @@ export const getPosts = cache(async () => {
 })
 
 async function fetchPosts() {
-  const posts = await getPosts()
+  const posts = await getPosts(false)
   if (posts.length === 0) return null;
   return posts
 }
@@ -72,7 +72,7 @@ export async function getLatestPosts(count: number) {
 export async function getPostsByCats(page: number, cat: string, postsPerPage: number): Promise<{ data: Posts[], count: number } | null> {
   const posts = await fetchPosts() as Posts[]
   const filteredPosts = filterPostsByCat(cat, posts)
-  const sortedPosts = sortPosts(filteredPosts)
+  const sortedPosts = filteredPosts.sort((a, b) => new Date(a?.data.date).getTime() - new Date(b?.data.date).getTime())
   const startIndex = (page - 1) * postsPerPage;
   const paginatedPosts = sortedPosts.slice(startIndex, startIndex + postsPerPage);
   return { data: paginatedPosts, count: filteredPosts.length };
