@@ -133,11 +133,12 @@ model Testimonial {
 }
 
 model Category {
-  id    String  @id @default(cuid()) @map("_id")
-  slug  String  @unique
-  title String
-  img   String?
-  posts Post[]
+  id     String  @id @default(cuid()) @map("_id")
+  slug   String  @unique
+  title  String
+  postId String  @unique
+  img    String?
+  posts  Post[]
 }
 
 model Post {
