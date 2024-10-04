@@ -27,7 +27,7 @@ export default async function PostCardLists({ page, cat }: { page: number, cat?:
         <React.Fragment>
           <h1 className={`${styles.title} text-2xl md:text-4xl`}>{cat ? `Recent posts in ${cat}` : 'Recent Posts'}</h1>
           <div className="posts">
-            {data.slice(1, 6).map((post: any, index: number) => (
+            {data.map((post: any, index: number) => (
               <PostCard key={index} item={post} catSlug={cat} />
             ))}
           </div>

@@ -7,10 +7,11 @@ interface ItemData {
     title: string,
     description: string,
     date: string,
-    postImg: string,
+    postImg?: string,
     slug: string,
   },
 }
+
 interface PostCardProps {
   item: ItemData
   catSlug: string | undefined
@@ -18,12 +19,17 @@ interface PostCardProps {
 
 export default function PostCard({ item, catSlug }: PostCardProps) {
   const { title, description, date, postImg, slug } = item?.data || {}
-  const imageTrue = postImg !== 'undefined' && postImg !== ''
+
+  const fallbackImage = '/images/blogs/placeholder.jpeg'
+  const imageSrc = postImg && postImg !== 'undefined' && postImg.trim() !== ''
+    ? postImg
+    : fallbackImage
+
   return (
-    <div className={`${imageTrue ? 'flex flex-col md:flex-row items-center gap-[50px]' : 'w-1/2'} mb-[50px]`}>
-      {imageTrue && (
+    <div className='flex flex-col md:flex-row items-center gap-[50px] mb-[50px]'>
+      {imageSrc && (
         <div className='flex-1 h-[350px] relative'>
-          <Image src={postImg} alt={postImg} fill className='object-cover rounded-lg' />
+          <Image src={imageSrc} alt={title || 'Post Image'} fill className='object-cover rounded-lg' />
         </div>
       )}
 
@@ -36,8 +42,10 @@ export default function PostCard({ item, catSlug }: PostCardProps) {
           <h1 className='text-2xl md:text-3xl font-semibold'>{title}</h1>
         </Link>
         <p className='text-lg font-light text-softText'>{description?.substring(0, 150)}</p>
-        <Link href={`/blog/posts/${slug}`} className='border-b border-red-700 py-[2px] px-0 max-w-max hover:text-indigo-600'>Read More</Link>
+        <Link href={`/blog/posts/${slug}`} className='border-b border-red-700 py-[2px] px-0 max-w-max hover:text-indigo-600'>
+          Read More
+        </Link>
       </div>
-    </div >
+    </div>
   )
 }

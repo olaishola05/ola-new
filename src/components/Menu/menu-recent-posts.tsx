@@ -14,7 +14,7 @@ export default function MenuRecentPosts({ data, catSlug }: { data: any[], catSlu
     <div className='flex flex-col gap-1 mb-[30px]'>
       <h2 className='text-gray-500 text-base font-normal'>{"What's hot"}</h2>
       <h1 className='text-3xl'>Most Recents</h1>
-      {filteredData.slice(1, 6)?.map((post, index: number) => (
+      {filteredData.slice(0, 5)?.map((post, index: number) => (
         <Link href={`/blog/posts/${post.data.slug}`} className='flex items-center gap-5' key={index}>
           <div className='flex-4 flex flex-col gap-[5px]'>
             <span className={`text-[12px] rounded-[10px] py-[3px] px-2 text-white max-w-max capitalize ${styles[catSlug!]}`}>{catSlug}</span>

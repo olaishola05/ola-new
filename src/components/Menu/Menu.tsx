@@ -1,13 +1,11 @@
-import { Post } from '@prisma/client'
 import React from 'react'
 import MenuPostsMostVisits from './MenuPosts'
 import MenuCategories from './MenuCategories'
-import { getPostsByCats } from '@/app/lib'
+import { getRecentPostsByCategory } from '@/app/lib'
 import MenuRecentPosts from './menu-recent-posts'
 
 const getPosts = async (page: number, cat: string) => {
-  // const postsWithViews = await prisma.post.findMany({ where: { views: { gt: 100 } } })
-  const recentPosts = await getPostsByCats(page, cat, 4)
+  const recentPosts = await getRecentPostsByCategory(page, cat)
   return { recents: recentPosts }
 }
 
