@@ -19,8 +19,8 @@ export default function Cats({ categories }: { categories: Category[] }) {
       <h2 className='text-gray-500 text-base font-normal'>Discover by topic</h2>
       <h1 className='text-3xl'>Categories</h1>
       <div className={styles.categoryList}>
-        {categories?.map(({ id, slug, title }) => (
-          <Link href={`/blog/posts?cat=${slug}`} key={id} className={`${styles.categoryItem} ${styles[slug]}`}>
+        {categories?.map(({ id, title }) => (
+          <Link href={`/blog/posts?cat=${title}`} key={id} className={`${styles.categoryItem} ${styles[title]}`}>
             {title}
           </Link>
         ))}
