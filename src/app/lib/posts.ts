@@ -51,12 +51,13 @@ export async function getPost(slug: string) {
 }
 
 function sortPosts(posts: Posts[]) {
-  return posts
-    .sort((a, b) => new Date(b?.data.date).getTime() - new Date(a?.data.date).getTime())
+
+  if (posts === null) return [];
+  return posts?.sort((a, b) => new Date(b?.data.date).getTime() - new Date(a?.data.date).getTime())
 }
 
 function filterPostsByCat(cat: string, posts: Posts[]) {
-  return cat ? posts.filter(post => post?.data.categories.includes(cat)) : posts;
+  return cat ? posts?.filter(post => post?.data.categories.includes(cat)) : posts;
 }
 
 export async function latestPost() {
@@ -72,10 +73,10 @@ export async function getLatestPosts(count: number) {
 export async function getPostsByCats(page: number, cat: string, postsPerPage: number): Promise<{ data: Posts[], count: number } | null> {
   const posts = await fetchPosts() as Posts[]
   const filteredPosts = filterPostsByCat(cat, posts)
-  const sortedPosts = filteredPosts.sort((a, b) => new Date(a?.data.date).getTime() - new Date(b?.data.date).getTime())
+  const sortedPosts = filteredPosts?.sort((a, b) => new Date(a?.data.date).getTime() - new Date(b?.data.date).getTime())
   const startIndex = (page - 1) * postsPerPage;
-  const paginatedPosts = sortedPosts.slice(startIndex, startIndex + postsPerPage);
-  return { data: paginatedPosts, count: filteredPosts.length };
+  const paginatedPosts = sortedPosts?.slice(startIndex, startIndex + postsPerPage);
+  return { data: paginatedPosts, count: filteredPosts?.length };
 }
 
 export async function getRecentPostsByCategory(page: number, cat: string): Promise<{ data: Posts[] }> {
@@ -84,7 +85,7 @@ export async function getRecentPostsByCategory(page: number, cat: string): Promi
   const sortedPosts = sortPosts(filteredPosts)
   const postsPerPage = 4;
   const startIndex = (page - 1) * postsPerPage;
-  const paginatedPosts = sortedPosts.slice(startIndex, startIndex + postsPerPage);
+  const paginatedPosts = sortedPosts?.slice(startIndex, startIndex + postsPerPage);
   return { data: paginatedPosts };
 }
 

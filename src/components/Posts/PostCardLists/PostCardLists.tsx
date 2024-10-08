@@ -17,7 +17,7 @@ export default async function PostCardLists({ page, cat }: { page: number, cat?:
     return "Error occured while fetching posts"
   }
   const { data, count } = result
-  const filteredData = data.filter(post => post !== null)
+  const filteredData = data?.filter(post => post !== null)
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
 
