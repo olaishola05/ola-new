@@ -8,19 +8,12 @@ import { notFound } from 'next/navigation'
 import { getPost } from '@/app/lib'
 import PostBody from '@/components/MDX/post-body'
 import { formatDate, readTimeInfo } from '@/app/utils'
-import prisma from '@/app/lib/prisma'
+import ReadTracker from '@/components/Posts/post-tracker/read-tracker'
+import { headers } from 'next/headers';
+import { trackEvent } from '@/actions'
 
 const fetchPost = async (slug: string) => {
   const post = await getPost(slug)
-  await prisma.post.update({
-    where: {
-      slug: slug
-    }, data: {
-      views: {
-        increment: 1
-      }
-    }
-  })
   return post
 }
 
@@ -32,12 +25,13 @@ export default async function SinglePost({ params }: { params: { slug: string } 
     return notFound()
   }
 
-  const user = {
-    image: '',
-    name: 'John Doe'
-  }
-
   const { data, body } = post;
+
+  const headersList = headers();
+  const referrer = headersList.get('referer') || null;
+
+  await trackEvent({ slug: slug, eventType: 'view', referrer });
+
   const { title, postImg, author, date, categories } = data
   return (
     <div className=' w-full md:w-7/12 mt-20 mx-auto flex gap-10 relative'>
@@ -46,18 +40,12 @@ export default async function SinglePost({ params }: { params: { slug: string } 
           <div className='flex flex-col gap-3'>
             <h1 className='text-3xl md:text-5xl text-textColor w-full font-semibold'>{title}</h1>
             <div className='flex gap-2'>
-              {user?.image ? (
-                <div className={styles.userImgContainer}>
-                  <Image src={user?.image} alt="user" fill className={styles.avatar} />
-                </div>
-              ) : (
-                <div className='rounded-full p-3 h-[50px] w-[50px] object-cover border border-gray-600 flex items-center justify-center'>
-                  <p className='font-bold text-xl'>{author.split(' ')
-                    .map(word => word[0].toUpperCase())
-                    .join('')}
-                  </p>
-                </div>
-              )}
+              <div className='rounded-full p-3 h-[50px] w-[50px] object-cover border border-gray-600 flex items-center justify-center'>
+                <p className='font-bold text-xl'>{author.split(' ')
+                  .map(word => word[0].toUpperCase())
+                  .join('')}
+                </p>
+              </div>
               <div className='flex flex-col gap-0'>
                 <span className={styles.username}>{author}</span>
                 <span className={styles.date}>{readTimeInfo(body)} - {formatDate(date)}</span>
@@ -72,7 +60,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
         </div>
         <div className={styles.content}>
           <div className={styles.post}>
-            <div className={styles.description}>
+            <div className={styles.description} id='post-content'>
               <PostBody>
                 {body}
               </PostBody>
@@ -94,6 +82,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
       <div className='w-2/6 absolute -right-[350px] top-0'>
         <Menu />
       </div>
+      <ReadTracker slug={slug} />
     </div>
   )
 }
