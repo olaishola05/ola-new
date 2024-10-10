@@ -33,7 +33,7 @@ export default async function Featured() {
           </div>
           <div className='flex-1 flex flex-col gap-5'>
             <h1 className='text-5xl'>{data.title} </h1>
-            <p className='text-xl font-light text-softText'>{data.description}</p>
+            <p className='text-lg font-light text-softText'>{data.description}</p>
             <Link href={`/blog/posts/${data.slug}`} className='py-4 px-5 rounded-md border border-black max-w-max'>Read More</Link>
           </div>
         </div>
