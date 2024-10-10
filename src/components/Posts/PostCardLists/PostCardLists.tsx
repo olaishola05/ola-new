@@ -20,14 +20,14 @@ export default async function PostCardLists({ page, cat }: { page: number, cat?:
   const filteredData = data?.filter(post => post !== null)
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
-
+  console.log(filteredData)
   return (
     <div className='flex-4'>
       {count > 0 && filteredData.length > 0 ? (
         <React.Fragment>
           <h1 className={`${styles.title} text-2xl md:text-4xl`}>{cat ? `Recent posts in ${cat}` : 'Recent Posts'}</h1>
           <div className="posts">
-            {data.map((post: any, index: number) => (
+            {filteredData.map((post: any, index: number) => (
               <PostCard key={index} item={post} catSlug={cat} />
             ))}
           </div>
