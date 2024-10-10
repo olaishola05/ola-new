@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { BlockNoteEditor, PartialBlock } from '@blocknote/core';
 
 interface EditorProps {
-  initialContent: PartialBlock[] | undefined | "loading"
+  initialContent: PartialBlock[]
   setInitialContent: (content: PartialBlock[]) => void
   setMarkdown: (markdown: string) => void
 }
@@ -13,7 +13,7 @@ export default function CustomEditor({ initialContent, setInitialContent, setMar
 
   const handleEditorContent = async (editor: BlockNoteEditor) => {
     setInitialContent(editor.document)
-    const markdown = await editor.blocksToMarkdownLossy(editor.document);
+    const markdown = await editor.blocksToMarkdownLossy(initialContent);
     setMarkdown(markdown)
   }
 
