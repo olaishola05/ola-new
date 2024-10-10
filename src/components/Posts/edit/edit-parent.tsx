@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import PostEdit from "./post-edit";
 import prisma from "@/app/lib/prisma";
 
@@ -15,5 +16,9 @@ export default async function EditParent({
 }) {
   const postId = params.id;
   const post = await getPost(postId);
+
+  if (!post) {
+    return notFound()
+  }
   return <PostEdit post={post} />;
 }

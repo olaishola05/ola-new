@@ -64,6 +64,7 @@
   background-color: transparent;
   color: var(--textColor);
   width: 100%;
+  resize: none;
 }
 
 .input::placeholder {

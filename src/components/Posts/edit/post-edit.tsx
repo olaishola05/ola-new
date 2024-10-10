@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Storage, slugify } from "@/app/utils/utilities";
 import * as actions from "@/actions";
 import Image from "next/image";
@@ -9,38 +9,35 @@ import AddImageFeature from "../addFeature/AddFeature";
 import { useHandleFile, usePostTitle } from "@/app/hooks";
 import CustomEditor from "../editors/block-note-editor/Editor";
 import { PartialBlock } from "@blocknote/core";
+import SearchTagsModal from "./desc-modal";
 
 export default function PostEdit({ post }: { post: any }) {
   const storagePost = Storage.getStorageItem("post") || {};
-  const [openPreview, setOpenPreview] = React.useState(false);
-  const [isSaving, setIsSaving] = React.useState(false);
-  const [error, setError] = React.useState("");
+  const [openPreview, setOpenPreview] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState("");
   const { title, handleTitle } = usePostTitle(post?.title);
   const { setFile, media, setMedia } = useHandleFile(post?.postImg);
-  const [markdown, setMarkdown] = React.useState("")
-  const [initialContent, setInitialContent] = React.useState<
-    PartialBlock[] | undefined | "loading"
+  const [markdown, setMarkdown] = useState("")
+  const [openDescModal, setOpenDescModal] = useState<boolean>(false)
+  const [initialContent, setInitialContent] = useState<
+    PartialBlock[]
   >(post?.content);
-  console.log(post?.content)
+
   const publishPost = async () => {
-    const data = {
-      title,
-      postImg: media,
-      slug: slugify(title),
-      catSlug: "coding",
-      markdown,
-      desc: '',
-    };
-    const response = await actions.publishPost(data);
-    if (response.error) {
-      setError(response.error);
-    } else {
-      setIsSaving(!isSaving);
-      Storage.removeFromStorage("post");
-    }
+    setOpenDescModal(!openDescModal)
   };
 
-  const handleAutoSave = React.useCallback(async () => {
+  const modalData = {
+    title,
+    postImg: media,
+    slug: slugify(title),
+    markdown,
+    desc: post?.desc,
+    id: post?.id
+  };
+
+  const handleAutoSave = useCallback(async () => {
     if (title) {
       setIsSaving(true);
       try {
@@ -70,7 +67,7 @@ export default function PostEdit({ post }: { post: any }) {
   useEffect(() => {
     const interval = setInterval(async () => {
       await handleAutoSave();
-    }, 30000);
+    }, 180000); //3 mins
     return () => clearInterval(interval);
   }, [handleAutoSave]);
 
@@ -91,13 +88,14 @@ export default function PostEdit({ post }: { post: any }) {
 
   return (
     <div className={`${styles.container} relative`}>
+      <SearchTagsModal open={openDescModal} closeModal={setOpenDescModal} data={modalData} />
       {error && <p>{error}</p>}
       {isSaving && !error && (
         <p className="absolute top-0 left-96 w-max mx-auto text-base text-softText">
           Saving....
         </p>
       )}
-      <React.Fragment>
+      <>
         <label className="w-full flex gap-2 items-center">
           <textarea
             name="title"
@@ -130,7 +128,7 @@ export default function PostEdit({ post }: { post: any }) {
           setInitialContent={setInitialContent}
           setMarkdown={setMarkdown}
         />
-      </React.Fragment>
+      </>
       <div className="flex gap-4 absolute top-0 -right-40">
         <button
           type="button"
@@ -140,7 +138,7 @@ export default function PostEdit({ post }: { post: any }) {
           {openPreview ? "Edit" : "Preview"}
         </button>
         <button type="button" className={styles.publish} onClick={publishPost}>
-          Publish
+          {post?.published ? 'Republish' : 'Publish'}
         </button>
       </div>
     </div>
