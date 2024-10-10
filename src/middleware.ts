@@ -4,11 +4,11 @@ const getCookieBasedOnEnv = (req: NextRequest) => {
   const isProduction = process.env.NODE_ENV === "production";
   const cookie = isProduction
     ? req?.cookies
-        ?.getAll()
-        ?.find((cookie) => cookie.name === "__Secure-next-auth.session-token")
+      ?.getAll()
+      ?.find((cookie) => cookie.name === "__Secure-next-auth.session-token")
     : req?.cookies
-        ?.getAll()
-        ?.find((cookie) => cookie.name === "next-auth.session-token") ?? false;
+      ?.getAll()
+      ?.find((cookie) => cookie.name === "next-auth.session-token") ?? false;
 
   return cookie;
 };
