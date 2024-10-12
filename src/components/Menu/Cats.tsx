@@ -14,12 +14,16 @@ export default function Cats({ categories }: { categories: Category[] }) {
     return null
   }
 
+  const filteredData = categories.filter((value, index, self) =>
+    self.findIndex(v => v.title === value.title) === index
+  );
+
   return (
     <>
       <h2 className='text-gray-500 text-base font-normal'>Discover by topic</h2>
       <h1 className='text-3xl'>Categories</h1>
       <div className={styles.categoryList}>
-        {categories?.map(({ id, title }) => (
+        {filteredData?.map(({ id, title }) => (
           <Link href={`/blog/posts?cat=${title}`} key={id} className={`${styles.categoryItem} ${styles[title]}`}>
             {title}
           </Link>
