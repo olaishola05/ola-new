@@ -22,9 +22,9 @@ export default function Cats({ categories }: { categories: Category[] }) {
     <>
       <h2 className='text-gray-500 text-base font-normal'>Discover by topic</h2>
       <h1 className='text-3xl'>Categories</h1>
-      <div className={styles.categoryList}>
+      <div className='grid grid-cols-2 gap-2 mt-3'>
         {filteredData?.map(({ id, title }) => (
-          <Link href={`/blog/posts?cat=${title}`} key={id} className={`${styles.categoryItem} ${styles[title]}`}>
+          <Link href={`/blog/posts?cat=${title}`} key={id} >
             {title}
           </Link>
         ))}

@@ -20,7 +20,7 @@
   text-transform: capitalize;
 }
 
-.category.style {
+/* .category.style {
   background-color: #57c4ff31;
 }
 
@@ -45,7 +45,7 @@
 }
 .image {
   border-radius: 50%;
-}
+} */
 
 @media screen and (max-width: 1200px) {
   .category {

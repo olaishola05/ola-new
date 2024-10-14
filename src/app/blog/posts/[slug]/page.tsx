@@ -54,7 +54,12 @@ export default async function SinglePost({ params }: { params: { slug: string } 
           </div>
           {postImg && postImg.startsWith('/' && 'http') && (
             <div className='relative w-full h-[250px] md:h-[500px]'>
-              <Image src={postImg || ''} alt={postImg} className='object-cover rounded-lg' fill />
+              <Image
+                src={postImg || ''} alt={postImg}
+                className='object-cover rounded-lg'
+                fill
+                loading='lazy'
+              />
             </div>
           )}
         </div>
