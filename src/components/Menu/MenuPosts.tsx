@@ -55,7 +55,6 @@ const getPosts = async (page: number | undefined, cat: string | undefined) => {
 
 export default async function MenuPostsMostVisits({ page, catSlug }: Visits) {
   const { data } = await getPosts(page, catSlug)
-  console.log(data)
   return (
     <>
       {data.length > 0 && <div className='flex flex-col gap-1'>
