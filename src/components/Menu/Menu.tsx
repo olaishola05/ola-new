@@ -23,7 +23,7 @@ export default async function Menu({ searchParams, cat, page }: IMenu) {
     <div className='hidden md:flex md:flex-col mt-[60px] flex-1'>
       <MenuRecentPosts data={recents!.data} catSlug={cat} />
       <MenuCategories />
-      <MenuPostsMostVisits />
+      <MenuPostsMostVisits page={page} catSlug={cat} />
     </div>
   )
 }
