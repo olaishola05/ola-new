@@ -13,28 +13,30 @@ import SearchTagsModal from "./desc-modal";
 
 export default function PostEdit({ post }: { post: any }) {
   const storagePost = Storage.getStorageItem("post") || {};
+  const { desc, id, published, publishedDate, content, postImg } = post
   const [openPreview, setOpenPreview] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
-  const { title, handleTitle } = usePostTitle(post?.title);
-  const { setFile, media, setMedia } = useHandleFile(post?.postImg);
+  const { title, handleTitle } = usePostTitle(post?.title || storagePost?.title);
+  const { setFile, media, setMedia } = useHandleFile(postImg);
   const [markdown, setMarkdown] = useState("")
   const [openDescModal, setOpenDescModal] = useState<boolean>(false)
   const [initialContent, setInitialContent] = useState<
     PartialBlock[]
-  >(post?.content);
+  >(content);
 
   const publishPost = async () => {
     setOpenDescModal(!openDescModal)
   };
 
+  const slug = slugify(title)
   const modalData = {
     title,
     postImg: media,
-    slug: slugify(title),
+    slug: slug,
     markdown,
-    desc: post?.desc,
-    id: post?.id
+    desc: desc,
+    id: id
   };
 
   const handleAutoSave = useCallback(async () => {
@@ -46,10 +48,10 @@ export default function PostEdit({ post }: { post: any }) {
           postImg: media,
           content: initialContent,
           markdown,
-          published: post?.published,
-          publishedDate: post?.publishedDate,
-          slug: slugify(title),
-          id: post?.id
+          published: published,
+          publishedDate: publishedDate,
+          slug: slug,
+          id: id
         };
         const response = await actions.autoSavePost(data);
         if (!response.success) {
@@ -62,12 +64,12 @@ export default function PostEdit({ post }: { post: any }) {
         setError("");
       }
     }
-  }, [title, media, initialContent, markdown, post?.published, post?.publishedDate, post?.id]);
+  }, [title, media, initialContent, markdown, published, publishedDate, id, slug]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
       await handleAutoSave();
-    }, 180000); //3 mins
+    }, 180000); //auto updates every 3 mins
     return () => clearInterval(interval);
   }, [handleAutoSave]);
 
@@ -138,7 +140,7 @@ export default function PostEdit({ post }: { post: any }) {
           {openPreview ? "Edit" : "Preview"}
         </button>
         <button type="button" className={styles.publish} onClick={publishPost}>
-          {post?.published ? 'Republish' : 'Publish'}
+          {published ? 'Republish' : 'Publish'}
         </button>
       </div>
     </div>
