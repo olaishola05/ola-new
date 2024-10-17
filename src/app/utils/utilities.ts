@@ -220,8 +220,7 @@ export const readTimeInfo = (content: any) => {
 };
 
 export const slugify = (str: string) =>
-  str
-    .toLowerCase()
+  str?.toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-")
