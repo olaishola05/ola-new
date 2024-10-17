@@ -4,6 +4,7 @@ import prisma from "@/app/lib/prisma";
 import { getAuthSession } from "@/app/utils/auth";
 import fs from 'fs';
 import { savePostToFile } from "@/app/utils";
+import { redirect } from "next/navigation";
 
 interface CreatePost {
   title: string;
@@ -39,7 +40,7 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
   const { title, slug, postImg, content } = data
   const { markdownContent, filePath } = savePostToFile({ ...data, author: user?.name })
 
-  let post: any = null;
+  let post;
   try {
     const postExist = await prisma.post.findFirst({
       where: { slug: data.slug },
@@ -59,13 +60,9 @@ export async function createPost(data: CreatePost): Promise<CreateState> {
       fs.writeFileSync(filePath, markdownContent);
     }
   } catch (error: any) {
-    console.log(error.message)
     return {
       error: error.message || "Error occurred while saving post",
     };
   }
-  return {
-    success: true,
-    postId: post?.id,
-  };
+  redirect(`/blog/${post?.id}/edit`)
 }
