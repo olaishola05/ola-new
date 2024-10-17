@@ -85,6 +85,9 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
     });
 
     revalidatePath("/dashboard/posts");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/posts/${updatedPost.slug}`);
+    revalidatePath(`/blog/posts?cat=${updatedPost.catSlug}`)
     return { success: true, postId: updatedPost.id };
   } catch (error: any) {
     return { error: error.message || "Error occurred while saving post" };
