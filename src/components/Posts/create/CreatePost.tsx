@@ -6,7 +6,7 @@ import styles from "./createpost.module.css";
 import AddImageFeature from "../addFeature/AddFeature";
 import { Storage, slugify } from "@/app/utils/utilities";
 import * as actions from "@/actions";
-import { useHandleFile, usePostTitle, useNavigation } from "@/app/hooks";
+import { useHandleFile, usePostTitle } from "@/app/hooks";
 import CustomEditor from "../editors/block-note-editor/Editor";
 import { PartialBlock } from "@blocknote/core";
 
@@ -17,7 +17,6 @@ export default function CreatePost() {
   const { setFile, media, setMedia } = useHandleFile("");
   const { title, handleTitle } = usePostTitle("");
   const [markdown, setMarkdown] = React.useState("")
-  const { navigate } = useNavigation();
 
   const [initialContent, setInitialContent] = React.useState<
     PartialBlock[] | undefined | "loading"
@@ -34,17 +33,16 @@ export default function CreatePost() {
       };
 
       const response = await actions.createPost(data);
-      if (response?.success) {
+      if (response?.error) {
+        setError(response.error);
+      } else {
         setAutoSave(!autoSave);
         Storage.removeFromStorage('post')
-        navigate(`/blog/${response.postId}/edit`);
-      } else {
-        setError(response.error);
       }
     } catch (error: any) {
       setError(error);
     }
-  }, [title, media, markdown, initialContent, autoSave, navigate]);
+  }, [title, media, markdown, initialContent, autoSave]);
 
   useEffect(() => {
     const interval = setTimeout(async () => {
