@@ -113,7 +113,7 @@ export async function publishPost(data: PublishProps): Promise<PublishedState> {
     fs.writeFileSync(path.join(process.cwd(), finalFilePath), markdownContent);
 
     revalidatePath("/dashboard/posts");
-    revalidatePath("/blog/posts");
+    revalidatePath("/blog");
     revalidatePath(`/blog/posts/${data.slug}`);
     revalidatePath(`/blog/posts?cat=${data.catSlug}`);
   } catch (error: any) {
