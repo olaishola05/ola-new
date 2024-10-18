@@ -5,12 +5,17 @@ import styles from './slug.module.css'
 import Comments from '@/components/Comments/Comments'
 import Subscribe from '@/components/Subscribe/Subscribe'
 import { notFound } from 'next/navigation'
-import { getPost } from '@/app/lib'
+import { fetchPublishedPosts, getPost } from '@/app/lib'
 import PostBody from '@/components/MDX/post-body'
 import { formatDate, readTimeInfo } from '@/app/utils'
 import ReadTracker from '@/components/Posts/post-tracker/read-tracker'
 import { headers } from 'next/headers';
 import { trackEvent } from '@/actions'
+
+export async function generateStaticParams() {
+  const posts = await fetchPublishedPosts()
+  return posts?.map((post) => ({ slug: post?.data.slug }))
+}
 
 const fetchPost = async (slug: string) => {
   const post = await getPost(slug)
