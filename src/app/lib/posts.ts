@@ -38,7 +38,7 @@ export const getPosts = cache(async (published: boolean) => {
   )
 })
 
-async function fetchPublishedPosts() {
+export async function fetchPublishedPosts() {
   const posts = await getPosts(true)
   if (posts.length === 0) return null;
   return posts
