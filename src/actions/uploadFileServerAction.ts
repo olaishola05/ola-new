@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -14,7 +14,7 @@ const saveFile = async (file: File): Promise<string> => {
     fs.mkdirSync(uploadDir, { recursive: true });
   }
 
-  const fileName = `${uuid()}-${Date.now()}-${file.name}`;
+  const fileName = `${uuidv4()}-${Date.now()}-${file.name}`;
   const filePath = path.join(uploadDir, fileName);
 
   fs.writeFileSync(filePath, Buffer.from(data));

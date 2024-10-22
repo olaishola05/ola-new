@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 export const saveFile = async (fileBase64: string, fileName: string): Promise<string> => {
   const data = Buffer.from(fileBase64, 'base64');
@@ -12,7 +12,7 @@ export const saveFile = async (fileBase64: string, fileName: string): Promise<st
     fs.mkdirSync(uploadDir, { recursive: true });
   }
 
-  const uniqueFileName = `${uuid()}-${Date.now()}-${fileName}`;
+  const uniqueFileName = `${uuidv4()}-${Date.now()}-${fileName}`;
   const filePath = path.join(uploadDir, uniqueFileName);
 
   fs.writeFileSync(filePath, data);
