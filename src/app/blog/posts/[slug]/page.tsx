@@ -56,6 +56,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                 <span className={styles.date}>{readTimeInfo(body)} - {formatDate(date)}</span>
               </div>
             </div>
+            <hr className='' />
           </div>
           {postImg && postImg.startsWith('/' && 'http') && (
             <div className='relative w-full h-[250px] md:h-[500px]'>

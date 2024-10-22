@@ -56,7 +56,7 @@
 }
 
 .description p {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 @media screen and (max-width: 1536px) {
