@@ -17,7 +17,7 @@ export default function MenuRecentPosts({ data, catSlug }: { data: any[], catSlu
         <Link href={`/blog/posts/${post.data.slug}`} className='flex items-center gap-5' key={index}>
           <div className='flex-4 flex flex-col gap-[5px]'>
             <span className={`text-[12px] rounded-[10px] py-[3px] px-2 text-textColor font-light max-w-max capitalize ${catSlug ? 'border border-cta' : ''}`}>{catSlug}</span>
-            <h3 className='text-lg font-medium text-softText max-w-[300px] whitespace-normal'>{post.data.title}</h3>
+            <h3 className='text-lg font-light text-textColor max-w-fit whitespace-normal'>{post.data.title}</h3>
             <div className='text-base'>
               <span className='text-gray-500'> Published - {post.data.date?.substring(0, 15)}</span>
             </div>
