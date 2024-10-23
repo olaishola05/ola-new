@@ -71,13 +71,13 @@ export default async function SinglePost({ params }: { params: { slug: string } 
         </div>
         <div className={styles.content}>
           <div className={styles.post}>
-            <div className={styles.description} id='post-content'>
+            <div id='post-content'>
               <PostBody>
                 {body}
               </PostBody>
               <div className='flex gap-2 items-center flex-wrap mt-20'>
                 {Array.isArray(categories) && categories.length > 0 && categories?.map((cat: string, index: number) => (
-                  <span key={index} className='bg-softBg text-softText text-lg rounded-lg px-3 py-2 capitalize'>
+                  <span key={index} className='bg-softBg text-softText md:text-lg rounded-lg px-2 py-1 md:px-3 md:py-2 capitalize text-base'>
                     {cat}
                   </span>
                 ))}
@@ -90,7 +90,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
           </div>
         </div>
       </div>
-      <div className='w-2/6 absolute -right-[350px] top-0'>
+      <div className='w-2/6 absolute -right-[300px]'>
         <Menu />
       </div>
       <ReadTracker slug={slug} />
