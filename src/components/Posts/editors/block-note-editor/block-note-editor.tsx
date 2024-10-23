@@ -26,7 +26,7 @@ import './editor.css'
 import { uploadFileServerAction } from '@/actions';
 import { Storage } from '@/app/utils/utilities';
 import { useDebouncedCallback } from "use-debounce";
-import { schema, insertCodeBlockItem } from './blocks/add-blockItems';
+import { schema, insertCodeBlockItem, insertCallout } from './blocks/add-blockItems';
 
 async function saveToStorage(jsonBlocks: Block[]) {
   Storage.setToStorage("editorContent", jsonBlocks);
@@ -97,7 +97,11 @@ export default function Editor({ onChange, initialContent }: EditorProps) {
         triggerCharacter={"/"}
         getItems={async (query) =>
           filterSuggestionItems(
-            [...getDefaultReactSlashMenuItems(editor), insertCodeBlockItem(editor)], query)
+            [
+              ...getDefaultReactSlashMenuItems(editor),
+              insertCodeBlockItem(editor),
+              insertCallout(editor)
+            ], query)
         }
       />
     </BlockNoteView>
