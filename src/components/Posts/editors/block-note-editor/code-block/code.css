@@ -1,0 +1,173 @@
+.code-block-wrapper {
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin: 8px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #1e1e1e;
+}
+
+.code-block-header {
+  padding: 8px 16px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #3d3d3d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid #3d3d3d;
+  color: #d4d4d4;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.language-selector:hover {
+  background-color: #3d3d3d;
+}
+
+.code-block {
+  margin: 0;
+  padding: 16px;
+  background-color: #1e1e1e;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  tab-size: 2;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: inherit;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: #d4d4d4;
+}
+
+/* Customize Prism.js theme colors */
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: #6a9955;
+}
+
+.code-block .token.punctuation {
+  color: #d4d4d4;
+}
+
+.code-block .token.property,
+.code-block .token.keyword,
+.code-block .token.tag {
+  color: #569cd6;
+}
+
+.code-block .token.string {
+  color: #ce9178;
+}
+
+.code-block .token.operator,
+.code-block .token.entity,
+.code-block .token.url {
+  color: #d4d4d4;
+}
+
+.code-block .token.function {
+  color: #dcdcaa;
+}
+
+.code-block .token.number {
+  color: #b5cea8;
+}
+
+.code-block .token.class-name {
+  color: #4ec9b0;
+}
+
+
+/* .code-block-wrapper {
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin: 8px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 400px;
+  transition: background-color 0.2s ease;
+}
+
+.code-block-header {
+  padding: 8px 16px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code-block-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  color: inherit;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.control-button:hover {
+  background-color: rgba(127, 127, 127, 0.1);
+}
+
+.code-block {
+  margin: 0;
+  padding: 16px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  tab-size: 2;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: inherit;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Theme-specific styles */
+/* .code-block-wrapper[data-theme="default"] {
+  color: #383838;
+}
+
+.code-block-wrapper[data-theme="dark"],
+.code-block-wrapper[data-theme="okaidia"],
+.code-block-wrapper[data-theme="twilight"],
+.code-block-wrapper[data-theme="tomorrow"] {
+  color: #d4d4d4;
+}
+
+.code-block-wrapper[data-theme="solarizedlight"] {
+  color: #657b83;
+}  */
