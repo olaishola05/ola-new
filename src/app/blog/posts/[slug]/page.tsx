@@ -39,21 +39,21 @@ export default async function SinglePost({ params }: { params: { slug: string } 
 
   const { title, postImg, author, date, categories } = data
   return (
-    <div className=' w-full md:w-7/12 mt-20 mx-auto flex gap-10 relative'>
+    <div className=' w-full md:w-7/12 mt-4 md:mt-20 mx-auto flex gap-10 relative'>
       <div className='w-full md:w-11/12'>
         <div className='flex flex-col-reverse gap-5'>
           <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-5xl text-textColor w-full font-semibold'>{title}</h1>
-            <div className='flex gap-2'>
-              <div className='rounded-full p-3 h-[50px] w-[50px] object-cover border border-gray-600 flex items-center justify-center'>
-                <p className='font-bold text-xl'>{author.split(' ')
+            <h1 className='text-2xl md:text-5xl text-textColor w-full font-semibold'>{title}</h1>
+            <div className='flex gap-2 items-center'>
+              <div className='rounded-full p-3 w-8 h-8 md:h-[50px] md:w-[50px] object-cover border border-gray-600 flex items-center justify-center'>
+                <p className='font-bold text-lg md:text-xl'>{author.split(' ')
                   .map(word => word[0].toUpperCase())
                   .join('')}
                 </p>
               </div>
               <div className='flex flex-col gap-0'>
-                <span className={styles.username}>{author}</span>
-                <span className={styles.date}>{readTimeInfo(body)} - {formatDate(date)}</span>
+                <span className='text-lg md:text-xl'>{author}</span>
+                <span className='text-base md:text-lg font-light'>{readTimeInfo(body)} - {formatDate(date)}</span>
               </div>
             </div>
             <hr className='' />
