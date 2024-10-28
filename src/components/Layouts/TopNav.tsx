@@ -20,7 +20,7 @@ export default function TopNav() {
           {isBlogPath ? (
               <h1 className="md:hidden text-2xl font-bold text-[var(--primary)]">Code 'n' Beyond</h1>
           ) : <Logo/>}
-        <Link href='/'>
+        <Link href={isBlogPath ? '/blog' : '/'}>
           <h1 className='hidden md:block text-2xl font-bold text-[var(--primary)]'>
               {isBlogPath ? "Code 'n' Beyond":'Oladipupo Ishola'}
           </h1>
