@@ -25,7 +25,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  --primary: 222.2 47.4% 11.2%;
+  //--primary: 222.2 47.4% 11.2%;
   --primary-foreground: 210 40% 98%;
 
   --secondary: 210 40% 96.1%;
@@ -93,7 +93,7 @@
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
 
-  --primary: 210 40% 98%;
+  //--primary: 210 40% 98%;
   --primary-foreground: 222.2 47.4% 11.2%;
 
   --secondary: 217.2 32.6% 17.5%;
@@ -129,21 +129,15 @@
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   background-color: var(--bg);
 
   @media screen and (max-width: 768px) {
     background-color: var(--bg);
     height: 100vh;
-    width: 100vw;
+    width: 100%;
   }
-}
-
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  height: 0;
 }
 
 .progressbar {
@@ -159,14 +153,14 @@ body {
 }
 
 .container {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--textColor);
 }
 
 .wrapper {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 0 50px;
 }
@@ -223,40 +217,7 @@ body {
   }
 }
 
-@for $i from 1 through 30 {
-  @keyframes particle-animation-#{$i} {
-    100% {
-      transform: translate3d(
-        (random(90) * 1vw),
-        (random(90) * 1vh),
-        (random(100) * 1px)
-      );
-    }
-  }
-
-  .particle:nth-child(#{$i}) {
-    animation: particle-animation-#{$i} 60s infinite;
-    $size: random(5) + 5 + px;
-    opacity: random(100) / 100;
-    height: $size;
-    width: $size;
-    animation-delay: -$i * 0.2s;
-    transform: translate3d(
-      (random(90) * 1vw),
-      (random(90) * 1vh),
-      (random(100) * 1px)
-    );
-    background: hsl(random(360), 70%, 50%);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .particle {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 1536px) {
+@media screen and (max-width: 1536px) {
   .container {
     max-width: 100%;
   }
@@ -280,28 +241,24 @@ body {
 @media screen and (max-width: 1024px) {
   .container {
     max-width: 100%;
-    // border: 1px solid red;
   }
 
   .wrapper {
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    // border: 1px solid dodgerblue;
   }
 }
 
 @media screen and (max-width: 768px) {
   .container {
     max-width: 100%;
-    // border: 1px solid black;
   }
 
   .wrapper {
     max-width: 700px;
-    padding-left: 0px;
-    padding-right: 0px;
-    // border: 1px solid green;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .contents {
@@ -375,12 +332,10 @@ body .w-md-editor-textArea {
 @media screen and (max-width: 640px) {
   .container {
     max-width: 100%;
-    // border: 1px solid teal;
   }
   .wrapper {
     max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    // border: 1px solid yellow;
   }
 }
