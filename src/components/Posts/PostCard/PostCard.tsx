@@ -29,12 +29,10 @@ export default function PostCard({ item, catSlug }: PostCardProps) {
     <>
       {imageSrc && (
         <Link href={`/blog/posts/${slug}`} className='flex flex-col md:flex-row items-center gap-[50px] mb-[50px]'>
-          <div className='flex-1 h-[350px] relative'>
+          <div className='w-full md:flex-1 h-[300px] md:h-[350px] relative'>
             <Image src={imageSrc} alt={title || 'Post Image'} fill className='object-cover rounded-lg' />
           </div>
-
-
-          <div className='flex-1 flex flex-col gap-[30px]'>
+          <div className='w-full md:flex-1 flex flex-col gap-[30px]'>
             <div className=''>
               <span className='text-gray-400'>{date?.substring(0, 15)} </span>
               {catSlug && <span className='text-red-700 font-medium uppercase'> - {catSlug}</span>}
