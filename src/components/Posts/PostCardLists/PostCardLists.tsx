@@ -4,8 +4,7 @@ import Pagination from '../pagination/Pagination'
 import {getPostsByCats} from '@/app/lib'
 
 const getPosts = async (page: number, cat: string, POST_PER_PAGE: number) => {
-  const result = await getPostsByCats(page, cat!, POST_PER_PAGE)
-  return result
+  return  await getPostsByCats(page, cat!, POST_PER_PAGE)
 }
 
 export default async function PostCardLists({ page, cat }: { page: number, cat?: string }) {
