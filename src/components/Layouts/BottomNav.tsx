@@ -1,15 +1,14 @@
 'use client';
 
 import React from 'react'
-import { socialLinks } from '@/app/utils'
-import { Copyright, ContactForm, Icons } from '@/components'
+import {socialLinks} from '@/app/utils'
+import {ContactForm, Copyright, Icons} from '@/components'
 import Image from 'next/image'
 import ContactImage from '../../../public/images/contact1.png'
-import { usePathname } from 'next/navigation'
+import {usePathname} from 'next/navigation'
 import Link from 'next/link'
 import Quotes from '../Quotes/Quotes';
 import Testimonials from '../testimonial/Testimonials';
-import BlogFooter from './BlogFooter/BlogFooter';
 
 const BottomNav = () => {
   const pathname = usePathname()
@@ -17,7 +16,7 @@ const BottomNav = () => {
   const isStartsWith = excludePaths.some((path) => pathname.startsWith(path))
   return (
     <React.Fragment>
-      {pathname.startsWith('/blog') && (<BlogFooter />)}
+      {/*{pathname.startsWith('/blog') && (<BlogFooter />)}*/}
       <main data-aos="fade-up" className='w-full h-full'>
         {isStartsWith ? '' : (
           <>

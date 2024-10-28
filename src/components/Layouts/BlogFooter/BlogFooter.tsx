@@ -11,7 +11,6 @@ export default function BlogFooter() {
       <div className={styles.container}>
         <div className={styles.info}>
           <div className={styles.logo}>
-            {/*<Logo/>*/}
             <h1 className="text-2xl font-bold text-[var(--primary)]">Code 'n' Beyond</h1>
           </div>
           <p className={styles.desc}>
