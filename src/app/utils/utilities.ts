@@ -1,8 +1,7 @@
-import { NavItems, SocialLinks, TabArray, Project, About } from "@/app/types";
-import { Linkedin, Github, Instagram, Twitter } from "lucide-react";
-import { FaMediumM } from "react-icons/fa";
-import { FaHashnode } from "react-icons/fa6";
-import { FaThreads } from "react-icons/fa6";
+import {About, NavItems, Project, SocialLinks, TabArray} from "@/app/types";
+import {Github, Instagram, Linkedin, Twitter} from "lucide-react";
+import {FaMediumM} from "react-icons/fa";
+import {FaHashnode, FaThreads} from "react-icons/fa6";
 import axios from "axios";
 // import { animateScroll as scroll, scroller } from 'react-scroll';
 const readingTime = require("reading-time/lib/reading-time");
@@ -243,7 +242,6 @@ export class Storage {
   }
 
   static removeFromStorage(key: string) {
-    console.log(key);
     localStorage && localStorage.removeItem(key);
   }
 }
