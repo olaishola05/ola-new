@@ -15,7 +15,6 @@ interface PostCardProps {
 
 export default function SuggestedPost({post}: PostCardProps) {
     const {title, date, postImg, slug} = post || {}
-    console.log(post, 'post')
 
     const fallbackImage = '/images/blogs/placeholder.jpeg'
     const imageSrc = postImg && postImg !== 'undefined' && postImg.trim() !== ''
@@ -26,7 +25,7 @@ export default function SuggestedPost({post}: PostCardProps) {
         <>
             {imageSrc && (
                 <Link href={`/blog/posts/${slug}`}
-                      className='flex flex-col gap-4' key={slug}>
+                      className='flex flex-col' key={slug}>
                     <div className='relative h-[250px]'>
                         <Image
                             src={imageSrc}
