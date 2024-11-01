@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --bg: #fff;
   --textColor: #404756;
@@ -25,7 +31,6 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  //--primary: 222.2 47.4% 11.2%;
   --primary-foreground: 210 40% 98%;
 
   --secondary: 210 40% 96.1%;
@@ -93,7 +98,6 @@
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
 
-  //--primary: 210 40% 98%;
   --primary-foreground: 222.2 47.4% 11.2%;
 
   --secondary: 217.2 32.6% 17.5%;
@@ -122,19 +126,8 @@
   --novel-highlight-gray: #3a3a3a;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  width: 100%;
-  overflow-x: hidden;
-  background-color: var(--bg);
-
   @media screen and (max-width: 768px) {
-    background-color: var(--bg);
     height: 100vh;
     width: 100%;
   }
@@ -154,9 +147,9 @@ body {
 
 .container {
   width: 100%;
-  min-height: 100vh;
   background-color: var(--bg);
   color: var(--textColor);
+  min-height: 100vh;
 }
 
 .wrapper {
@@ -226,15 +219,13 @@ body {
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .container {
     max-width: 100%;
   }
 
   .wrapper {
     max-width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }
 
