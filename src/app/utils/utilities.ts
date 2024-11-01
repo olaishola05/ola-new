@@ -233,7 +233,7 @@ export class Storage {
 
   static getStorageItem(key: string) {
     return (
-      localStorage && JSON.parse(localStorage.getItem(key as string) as string)
+      localStorage && JSON?.parse(localStorage.getItem(key as string) as string)
     );
   }
 
@@ -258,3 +258,17 @@ export const passwordTips: PasswordTip[] = [
   { text: "At least 1 number", key: "number" },
   { text: "At least 1 special character", key: "specialChar" },
 ];
+
+export const languages =
+{
+    js: 'JavaScript',
+    css: 'CSS',
+    txt: 'text',
+    tsx: 'TypeScript',
+    python: 'Python',
+    html: 'HTML',
+    yaml: 'YAML',
+    nginx: 'Nginx',
+    json: 'JSON',
+    dockerFile: 'Docker',
+}

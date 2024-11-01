@@ -1,23 +1,23 @@
 import {
-  navItems,
-  socialLinks,
-  randomItemFromArray,
-  tabs,
-  sendDataToBackend,
-  publishProject,
-  deleteProject,
-  updateProject,
-  projectsFilter,
-  resumeTabs,
-  updateAboutInfo,
-  readTimeInfo,
   blogLinks,
-  formatDate
+  deleteProject,
+  formatDate,
+  navItems,
+  projectsFilter,
+  publishProject,
+  randomItemFromArray,
+  readTimeInfo,
+  resumeTabs,
+  sendDataToBackend,
+  socialLinks,
+  tabs,
+  updateAboutInfo,
+  updateProject
 } from "./utilities";
-import { contactSchema, TestimonialSchema } from "./validations";
-import { educationItems, workExpItems } from "./data";
+import {contactSchema, TestimonialSchema} from "./validations";
+import {educationItems, workExpItems} from "./data";
 
-export { greetings } from "./utilities";
+export { greetings, languages } from "./utilities";
 export { registerSchema, loginSchema } from "./auth.validation"
 export {
   navItems,
@@ -42,4 +42,5 @@ export {
 export { savePostToFile } from './savePostToFile';
 export { tags } from './categories';
 export type { Tag } from './categories';
+
 
