@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -23,22 +23,13 @@ const saveFile = async (file: File): Promise<string> => {
 
 export async function uploadFileServerAction(formData: FormData) {
   try {
-    const file = formData.get('fileUpload') as File
+    const file = formData.get('image') as File
     if (!formData) {
-      return {
-        errors: {
-          message: 'No file uploaded'
-        }
-      }
+      return "No file uploaded";
     }
     const fileUrl = await saveFile(file)
-    const url = `${baseUrl}${fileUrl}`
-    return url
+    return `${baseUrl}${fileUrl}`
   } catch (error: any) {
-    return {
-      errors: {
-        message: error.message
-      }
-    }
+    return error.message
   }
 }
