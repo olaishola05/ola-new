@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
+    "@mdxeditor/editor": "^3.14.0",
     "@next/mdx": "^14.2.13",
     "@prisma/client": "^5.6.0",
     "@radix-ui/react-dialog": "^1.1.1",
