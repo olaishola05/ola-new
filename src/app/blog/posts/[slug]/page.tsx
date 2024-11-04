@@ -10,11 +10,10 @@ import PostBody from '@/components/MDX/post-body'
 import ReadTracker from '@/components/Posts/post-tracker/read-tracker'
 import {headers} from 'next/headers';
 import {trackEvent} from '@/actions'
-import Link from 'next/link'
-import {ArrowLeftCircle} from 'lucide-react'
 import PostsTags from "@/components/Posts/post-tags/posts-tags";
 import PostMetaData from "@/components/Posts/post-meta/post-metatdata";
 import RelatedPosts from "@/components/Posts/suggest posts/related-post";
+import PreviousPage from "@/components/Posts/previousPage/PreviousPage";
 
 export async function generateStaticParams() {
     const posts = await fetchPublishedPosts()
@@ -39,6 +38,7 @@ export default async function SinglePost({params}: { params: { slug: string } })
     const referrer = headersList.get('referer') || null;
     await trackEvent({slug: slug, eventType: 'view', referrer});
     const {title, postImg, author, date, categories} = data
+
     return (
         <div className=' w-full md:w-7/12 mt-4 md:mt-20 mx-auto flex gap-10 relative'>
             <div className='w-full md:w-11/12'>
@@ -48,12 +48,14 @@ export default async function SinglePost({params}: { params: { slug: string } })
                         <PostMetaData author={author} body={body} date={date} />
                     </div>
                     {postImg && postImg.startsWith('http') && (
-                        <div className='relative w-full h-[250px] md:h-[500px]'>
+                        <div className='relative w-full h-[250px] md:h-[400px]'>
                             <Image
+                                sizes="100vw"
                                 src={postImg || ''} alt={postImg}
                                 className='object-cover rounded-lg'
                                 fill
                                 loading='lazy'
+                                style={{width:'100%',height:'100%'}}
                             />
                         </div>
                     )}
@@ -66,13 +68,7 @@ export default async function SinglePost({params}: { params: { slug: string } })
                             </PostBody>
                             <PostsTags categories={categories} />
                         </div>
-                        <Link
-                            href={referrer?.
-                                includes('posts') ? `/blog/posts/${referrer?.split('/')[5]}` : '/blog'}
-                            className='my-10 flex items-center gap-2 cursor-pointer w-max'
-                        >
-                           <ArrowLeftCircle className='text-textColor'/> Previous page
-                        </Link>
+                        <PreviousPage referrer={referrer} />
                         <RelatedPosts slug={slug} />
                         <div className={styles.comments}>
                             <Subscribe/>
