@@ -148,7 +148,7 @@ model Post {
   desc          String?
   postImg       String?
   filePath      String
-  content       Json?
+  content       String?
   publishedDate DateTime        @updatedAt
   published     Boolean         @default(false)
   category      Category?       @relation(fields: [catSlug], references: [slug]) //remove optional once category model is created
