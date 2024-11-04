@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import type { MDXComponents } from 'mdx/types.js'
-import Image, { ImageProps } from 'next/image'
-import { Code } from './code'
+import type {MDXComponents} from 'mdx/types.js'
+import Image, {ImageProps} from 'next/image'
 import React from 'react';
 
 
@@ -68,7 +67,7 @@ export const mdxComponents: MDXComponents = {
     const { src, alt, width, height, ...rest } = props
     return <Image
       sizes="100vw"
-      style={{ width: '100%', height: '450px', borderRadius: '8px' }}
+      style={{ width: '100%', borderRadius: '8px' }}
       {...(props as ImageProps)}
       width={500}
       height={500}
