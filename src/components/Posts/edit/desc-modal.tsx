@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import * as Dialog from '@radix-ui/react-dialog';
-import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { tags, Tag } from '@/app/utils'
-import { Storage } from '@/app/utils/utilities';
+import {Cross2Icon, MagnifyingGlassIcon} from '@radix-ui/react-icons';
+import {Tag, tags} from '@/app/utils'
+import {Storage} from '@/app/utils/utilities';
 import toast from 'react-hot-toast';
 import * as actions from "@/actions";
 
@@ -79,6 +79,7 @@ const SearchTagsModal = ({ open, closeModal, data }: ModalProps) => {
       })
     } else {
       Storage.removeFromStorage("post");
+      Storage.removeFromStorage('markdown')
       setIsPublishing(!isPublishing)
       closeModal(!open)
     }
