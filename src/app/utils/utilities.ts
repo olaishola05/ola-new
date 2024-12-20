@@ -1,7 +1,7 @@
-import {About, NavItems, Project, SocialLinks, TabArray} from "@/app/types";
-import {Github, Instagram, Linkedin, Twitter} from "lucide-react";
-import {FaMediumM} from "react-icons/fa";
-import {FaHashnode, FaThreads} from "react-icons/fa6";
+import { About, NavItems, Project, SocialLinks, TabArray } from "@/app/types";
+import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { FaMediumM } from "react-icons/fa";
+import { FaHashnode, FaThreads } from "react-icons/fa6";
 import axios from "axios";
 // import { animateScroll as scroll, scroller } from 'react-scroll';
 const readingTime = require("reading-time/lib/reading-time");
@@ -261,14 +261,25 @@ export const passwordTips: PasswordTip[] = [
 
 export const languages =
 {
-    js: 'JavaScript',
-    css: 'CSS',
-    txt: 'text',
-    tsx: 'TypeScript',
-    python: 'Python',
-    html: 'HTML',
-    yaml: 'YAML',
-    nginx: 'Nginx',
-    json: 'JSON',
-    dockerFile: 'Docker',
+  js: 'js',
+  jsx: 'jsx',
+  css: 'css',
+  txt: 'text',
+  tsx: 'tsx',
+  ts: 'ts',
+  python: 'Python',
+  html: 'html',
+  yaml: 'yaml',
+  nginx: 'nginx',
+  json: 'json',
+  dockerFile: 'docker',
+  go: 'go',
+  ruby: 'ruby',
+  md: 'markdown',
+  shell: 'shell',
+}
+
+export const codeMap = new Map<string, string>();
+for (const [key, value] of Object.entries(languages)) {
+  codeMap.set(key, value);
 }
