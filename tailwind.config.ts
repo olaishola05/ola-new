@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type {Config} from 'tailwindcss'
 
 const config: Config = {
   content: [
@@ -22,6 +22,8 @@ const config: Config = {
         btnMode: 'var(--btnMode)',
         contact: 'var(--contact)',
         contactText: 'var(--contactText)',
+        editorBg: 'var(--editorBg)',
+        editorTop: 'var(--editorTop)',
 
         // Editor colors
         border: "hsl(var(--border))",
