@@ -7,7 +7,6 @@ import {
     BoldItalicUnderlineToggles,
     codeBlockPlugin,
     codeMirrorPlugin,
-    CodeToggle,
     CreateLink,
     diffSourcePlugin,
     DiffSourceToggleWrapper,
@@ -88,7 +87,7 @@ export default function MDXEditorInstance({editorRef, ...props}: { editorRef: Fo
                        <UndoRedo />
                         <BoldItalicUnderlineToggles />
                       <BlockTypeSelect />
-                       <CodeToggle />
+                       {/*<CodeToggle />*/}
                       <ListsToggle />
                       <InsertCodeBlock />
                        <CreateLink />
