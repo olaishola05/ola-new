@@ -1,4 +1,4 @@
-import { cache } from 'react'
+import {cache} from 'react'
 import path from 'path'
 import fs from 'fs/promises'
 import matter from 'gray-matter'
@@ -72,7 +72,7 @@ export async function getLatestPosts(count: number) {
 export async function getPostsByCats(page: number, cat: string, postsPerPage: number): Promise<{ data: Posts[], count: number } | null> {
   const posts = await fetchPublishedPosts() as Posts[]
   const filteredPosts = filterPostsByCat(cat, posts)
-  const sortedPosts = filteredPosts?.sort((a, b) => new Date(a?.data.date).getTime() - new Date(b?.data.date).getTime())
+  const sortedPosts = filteredPosts?.sort((a, b) => new Date(b?.data.date).getTime() - new Date(a?.data.date).getTime())
   const startIndex = (page - 1) * postsPerPage;
   const paginatedPosts = sortedPosts?.slice(startIndex, startIndex + postsPerPage);
   return { data: paginatedPosts, count: filteredPosts?.length };
