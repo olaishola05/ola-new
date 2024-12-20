@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import type {MDXComponents} from 'mdx/types.js'
-import Image, {ImageProps} from 'next/image'
+import type { MDXComponents } from 'mdx/types.js'
+import Image, { ImageProps } from 'next/image'
 import React from 'react';
-
+import CopyCodeButton from "@/components/MDX/copy-code-button";
+import { codeMap } from "@/app/utils/utilities";
 
 const OrderedList: React.FC<React.HTMLAttributes<HTMLOListElement>> = ({ children, className, ...props }) => (
   <ol className={`list-decimal list-inside pl-4 my-4 ${className || ''}`} {...props}>
@@ -67,18 +68,28 @@ export const mdxComponents: MDXComponents = {
     const { src, alt, width, height, ...rest } = props
     return <Image
       sizes="100vw"
-      style={{ width: '100%', borderRadius: '8px' }}
+      style={{ width: '100%', borderRadius: '8px', margin: '30px 0' }}
       {...(props as ImageProps)}
       width={500}
       height={500}
       alt={alt!}
     />
   },
-  code: ({ children, ...props }) => {
+  pre: ({ children, ...props }) => {
+    // @ts-ignore
+    const lang: string = props["data-language"] || 'shell';
     return (
-      <code {...props} className='px-5 py-6 font-light text-sm md:text-base'>
-        {children}
-      </code>
+      <div className="relative shadow">
+        <div className="p-5 bg-editorTop rounded-t-md">
+          <span className='absolute top-2 z-10 left-2 text-textColor text-base'>{codeMap.get(lang)}</span>
+          <div className="absolute right-2 top-2 z-10">
+            <CopyCodeButton>{children}</CopyCodeButton>
+          </div>
+        </div>
+        <pre {...props} className='px-1 py-6 font-light text-sm md:text-base rounded-b-md'>
+          {children}
+        </pre>
+      </div>
     )
   },
   ol: OrderedList,
