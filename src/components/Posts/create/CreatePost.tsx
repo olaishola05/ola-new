@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, {Suspense, useEffect} from "react";
 import Image from "next/image";
 import styles from "./createpost.module.css";
 import AddImageFeature from "../addFeature/AddFeature";
-import { Storage, slugify } from "@/app/utils/utilities";
+import {slugify, Storage} from "@/app/utils/utilities";
 import * as actions from "@/actions";
-import { useHandleFile, usePostTitle } from "@/app/hooks";
-import CustomEditor from "../editors/block-note-editor/Editor";
-import { PartialBlock } from "@blocknote/core";
+import {useHandleFile, usePostTitle} from "@/app/hooks";
+import {CustomEditor} from "../editors/mdx-editor/editor";
+import {MDXEditorMethods} from "@mdxeditor/editor";
 
 export default function CreatePost() {
   const storagePost = Storage.getStorageItem("post") || {};
@@ -16,11 +16,10 @@ export default function CreatePost() {
   const [error, setError] = React.useState<string | undefined>("");
   const { setFile, media, setMedia } = useHandleFile("");
   const { title, handleTitle } = usePostTitle("");
-  const [markdown, setMarkdown] = React.useState("")
+  const markdown = Storage.getStorageItem('markdown') || `The world is at your **oysters**`
+  const ref = React.useRef<MDXEditorMethods>(null)
 
-  const [initialContent, setInitialContent] = React.useState<
-    PartialBlock[] | undefined | "loading"
-  >(undefined);
+  const editorMarkdown = ref.current?.getMarkdown() as string;
 
   const autoCreatePost = React.useCallback(async () => {
     try {
@@ -28,8 +27,8 @@ export default function CreatePost() {
         title,
         postImg: media,
         slug: slugify(title),
-        markdown,
-        content: initialContent
+        markdown: editorMarkdown,
+        content: editorMarkdown,
       };
 
       const response = await actions.createPost(data);
@@ -37,12 +36,12 @@ export default function CreatePost() {
         setError(response.error);
       } else {
         setAutoSave(!autoSave);
-        Storage.removeFromStorage('post')
+        Storage.removeFromStorage('markdown')
       }
     } catch (error: any) {
       setError(error);
     }
-  }, [title, media, markdown, initialContent, autoSave]);
+  }, [title, media, editorMarkdown, autoSave]);
 
   useEffect(() => {
     const interval = setTimeout(async () => {
@@ -93,7 +92,9 @@ export default function CreatePost() {
         )}
 
         {!media && <AddImageFeature setFile={setFile} styles={styles} />}
-        <CustomEditor initialContent={initialContent} setInitialContent={setInitialContent} setMarkdown={setMarkdown} />
+        <Suspense fallback={'loading....'}>
+        <CustomEditor ref={ref} markdown={markdown}/>
+        </Suspense>
       </React.Fragment>
       <div className="flex gap-4 mt-0 absolute top-0 -right-20">
         <button

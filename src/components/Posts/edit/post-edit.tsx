@@ -1,29 +1,39 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import { Storage, slugify } from "@/app/utils/utilities";
-import * as actions from "@/actions";
+import React, {useCallback, useEffect, useState} from "react";
+import {slugify, Storage} from "@/app/utils/utilities";
 import Image from "next/image";
+import * as actions from "@/actions";
 import styles from "../create/createpost.module.css";
 import AddImageFeature from "../addFeature/AddFeature";
-import { useHandleFile, usePostTitle } from "@/app/hooks";
-import CustomEditor from "../editors/block-note-editor/Editor";
-import { PartialBlock } from "@blocknote/core";
+import {useHandleFile, usePostTitle} from "@/app/hooks";
+import {CustomEditor} from "../editors/mdx-editor/editor";
 import SearchTagsModal from "./desc-modal";
+import {MDXEditorMethods} from "@mdxeditor/editor";
 
 export default function PostEdit({ post }: { post: any }) {
-  const storagePost = Storage.getStorageItem("post") || {};
   const { desc, id, published, publishedDate, content, postImg } = post
+  const storagePost = Storage.getStorageItem("post") || {};
   const [openPreview, setOpenPreview] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
   const { title, handleTitle } = usePostTitle(post?.title || storagePost?.title);
   const { setFile, media, setMedia } = useHandleFile(postImg);
-  const [markdown, setMarkdown] = useState("")
   const [openDescModal, setOpenDescModal] = useState<boolean>(false)
-  const [initialContent, setInitialContent] = useState<
-    PartialBlock[]
-  >(content);
+  const ref = React.useRef<MDXEditorMethods>(null)
+  const markdown = content || 'Edit your story here';
+  const [lastEditSession, setLastEditSession] = useState<{
+    timestamp: string;
+    postId: string;
+  } | null>(null);
+
+  const editorMarkdown = ref.current?.getMarkdown() as string;
+  const isPageReload = useCallback(() => {
+    return window.performance
+        .getEntriesByType('navigation')
+        .map((nav) => (nav as any).type)
+        .includes('reload');
+  }, []);
 
   const publishPost = async () => {
     setOpenDescModal(!openDescModal)
@@ -34,42 +44,42 @@ export default function PostEdit({ post }: { post: any }) {
     title,
     postImg: media,
     slug: slug,
-    markdown,
+    markdown: editorMarkdown,
     desc: desc,
     id: id
   };
 
   const handleAutoSave = useCallback(async () => {
-    if (title) {
-      setIsSaving(true);
-      try {
-        const data = {
-          title,
-          postImg: media,
-          content: initialContent,
-          markdown,
-          published: published,
-          publishedDate: publishedDate,
-          slug: slug,
-          id: id
-        };
-        const response = await actions.autoSavePost(data);
-        if (!response.success) {
-          setError(response.error!);
-        }
-      } catch (error: any) {
-        setError(error.message || "An error occurred during auto-save");
-      } finally {
-        setIsSaving(false);
-        setError("");
+    if (!title) return;
+
+    setIsSaving(true);
+    try {
+      const data = {
+        title,
+        postImg: media,
+        content: editorMarkdown,
+        markdown: editorMarkdown,
+        published,
+        publishedDate,
+        slug,
+        id
+      };
+      const response = await actions.autoSavePost(data);
+      if (!response.success) {
+        setError(response.error!);
       }
+    } catch (error: any) {
+      setError(error.message || "An error occurred during auto-save");
+    } finally {
+      setIsSaving(false);
+      setError("");
     }
-  }, [title, media, initialContent, markdown, published, publishedDate, id, slug]);
+  }, [title, media,editorMarkdown, published, publishedDate, id, slug]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
       await handleAutoSave();
-    }, 180000); //auto updates every 3 mins
+    }, 180000); //auto updates every 3 minutes
     return () => clearInterval(interval);
   }, [handleAutoSave]);
 
@@ -83,6 +93,70 @@ export default function PostEdit({ post }: { post: any }) {
     };
     syncWithStorage();
   }, [handleTitle, setMedia]);
+
+  useEffect(() => {
+    let lastVisibleTime = Date.now();
+    const handleVisibilityChange = async () => {
+      const currentTime = Date.now();
+
+      if (document.hidden) {
+        if (currentTime - lastVisibleTime > 1000) { // 1 second debounce
+          await handleAutoSave();
+        }
+      } else {
+        lastVisibleTime = currentTime;
+      }
+
+      if (document.hidden) {
+        await handleAutoSave();
+        console.log("Auto save called")
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [handleAutoSave]);
+
+  useEffect(() => {
+    const handleBeforeUnload = async (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = '';
+      if (!isPageReload()) {
+        await handleAutoSave();
+        setLastEditSession({
+          timestamp: new Date().toISOString(),
+          postId: id
+        });
+      }
+    };
+
+    const handleUnload = async () => {
+      if (!isPageReload()) {
+        Storage.removeFromStorage('markdown')
+        Storage.removeFromStorage('post')
+        if (lastEditSession) {
+          Storage.setToStorage("lastEditSession", lastEditSession);
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('unload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('unload', handleUnload);
+    };
+  }, [handleAutoSave, id, isPageReload]);
+
+  useEffect(() => {
+    const lastSession = Storage.getStorageItem("lastEditSession");
+    if (lastSession) {
+      setLastEditSession(lastSession);
+    }
+  }, []);
 
   const handlePreview = () => {
     setOpenPreview(!openPreview);
@@ -110,7 +184,7 @@ export default function PostEdit({ post }: { post: any }) {
         </label>
         {media && (
           <div className={styles.postImage}>
-            <Image src={media} alt="image" fill />
+            <Image src={media} alt="image" fill priority/>
             {!openPreview && <button
               onClick={() => {
                 setMedia("");
@@ -125,11 +199,7 @@ export default function PostEdit({ post }: { post: any }) {
         )}
 
         {!media && <AddImageFeature setFile={setFile} styles={styles} />}
-        <CustomEditor
-          initialContent={initialContent}
-          setInitialContent={setInitialContent}
-          setMarkdown={setMarkdown}
-        />
+        <CustomEditor ref={ref} markdown={markdown} />
       </>
       <div className="flex gap-4 absolute top-0 -right-40">
         <button
