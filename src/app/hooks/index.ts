@@ -15,3 +15,5 @@ export {
   usePostTitle,
 };
 
+export { useHighlighted } from './useHighlighted'
+
