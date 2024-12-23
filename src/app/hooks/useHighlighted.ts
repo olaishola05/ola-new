@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from "react";
 
 export function useHighlighted(id: string) {
@@ -26,5 +28,5 @@ export function useHighlighted(id: string) {
     };
   }, []);
   const highlighted = activeId === id;
-  return [highlighted, setActiveId];
+  return { highlighted, setActiveId };
 }
