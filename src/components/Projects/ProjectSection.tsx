@@ -61,7 +61,7 @@ const ProjectSection = ({ data }: props) => {
 
   return (
     <div
-      id="portfolio"
+      id="my-works"
       data-aos="fade-up"
       data-aos-anchor-placement="top-center"
       className="md:px-2 pb-9 w-full mb-10"
