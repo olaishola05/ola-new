@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import {blogLinks, navItems, socialLinks} from '@/app/utils';
+import { blogLinks, navItems, socialLinks } from '@/app/utils';
 import Logo from './Logo';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import Link from 'next/link'
 import AdminRoutes from './AdminRoutes';
 import CustomIcon from '../IconsComponent/CustomIcon';
-import {ConditionalRoutes} from './ConditionalRoutes';
+import { ConditionalRoutes } from './ConditionalRoutes';
 
 export default function TopNav() {
   const routePath = usePathname();
@@ -17,12 +17,12 @@ export default function TopNav() {
   return (
     <div className='flex items-center justify-between h-[80px] sticky top-0 z-10 bg-[var(--bg)]'>
       <div className='flex gap-1 flex-1 items-center'>
-          {isBlogPath ? (
-              <h1 className="md:hidden text-2xl font-bold text-[var(--primary)]">Code 'n' Beyond</h1>
-          ) : <Logo/>}
+        {isBlogPath ? (
+          <h1 className="md:hidden text-2xl font-bold text-[var(--primary)]">{"Code 'n' Beyond"}</h1>
+        ) : <Logo />}
         <Link href={isBlogPath ? '/blog' : '/'}>
           <h1 className='hidden md:block text-2xl font-bold text-[var(--primary)]'>
-              {isBlogPath ? "Code 'n' Beyond":'Oladipupo Ishola'}
+            {isBlogPath ? "Code 'n' Beyond" : 'Oladipupo Ishola'}
           </h1>
         </Link>
       </div>
