@@ -47,7 +47,7 @@ export const navItems: NavItems = [
     title: "home",
     path: "/",
   },
-  { id: 3, title: "portfolios", path: "/#portfolio" },
+  { id: 3, title: "my works", path: "#my-works" },
   { id: 4, title: "blog", path: "/blog" },
   { id: 2, title: "about", path: "/about" },
   { id: 5, title: "contact", path: "/contact" },
