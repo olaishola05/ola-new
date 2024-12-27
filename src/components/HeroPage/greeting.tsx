@@ -17,8 +17,8 @@ export default function HeroTitleAnimation() {
   }, []);
 
   return (
-    <h1 className="text-4xl md:text-7xl md:mt-12 lg:text-9xl">
-      {greeting || "Hello"}! {}
+    <h1 className="text-4xl md:text-7xl md:mt-12">
+      {greeting || "Hello"}! { }
       {"I'm"} <span className="text-[var(--primary)] font-semibold">Ola</span>,
       <br />
       <TypeAnimation
@@ -34,7 +34,7 @@ export default function HeroTitleAnimation() {
           500,
         ]}
         repeat={Infinity}
-        className="text-2xl md:text-5xl lg:text-8xl font-bold"
+        className="text-2xl md:text-5xl font-bold"
       />
     </h1>
   );
