@@ -51,7 +51,7 @@ export default function HeroSection() {
         {/* <Companies /> */}
       </div>
       <div className="w-full md:flex-1">
-        <Image src="/images/ola.jpeg" alt="Hero Image" width={1024} height={1024} loading="lazy" className="h-[36rem] w-full md:w-11/12 rounded-xl object-cover" />
+        <Image src="/images/ola.png" alt="Hero Image" width={1024} height={1024} loading="lazy" className="h-[36rem] w-full md:w-11/12 rounded-xl object-cover" />
       </div>
     </main>
   );
