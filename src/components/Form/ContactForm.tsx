@@ -60,10 +60,7 @@ const ContactForm = () => {
 
 
   return (
-    <main data-aos="fade-up" className='w-full h-full flex flex-col items-center justify-center md:h-full lg:h-full'>
-      <h2 className='hidden lg:block lg:self-start text-3xl font-medium'>
-        Contact Me:
-      </h2>
+    <main data-aos="fade-up" className='w-full flex-2 h-full flex flex-col items-center justify-center md:h-full lg:h-full'>
       <form
         className='m-1 w-full flex flex-col gap-3'
         onSubmit={handleSubmit(onSubmit)}
