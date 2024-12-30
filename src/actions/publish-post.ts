@@ -84,7 +84,7 @@ export async function publishPost(data: PublishProps): Promise<PublishedState> {
         postId: updatePost.id
       }
     });
-    const { markdownContent, filePath: newFilePath } = savePostToFile(
+    const { markdownContent, filePath } = savePostToFile(
       {
         ...data,
         description: updatePost.desc,
@@ -99,13 +99,13 @@ export async function publishPost(data: PublishProps): Promise<PublishedState> {
     }
 
     let finalFilePath = updatePost.filePath;
-    if (data.title !== updatePost.title) {
+    if (updatePost.filePath !== filePath) {
       const oldFilePath = path.join(process.cwd(), updatePost.filePath);
-      const newAbsoluteFilePath = path.join(process.cwd(), newFilePath);
+      const newAbsoluteFilePath = path.join(process.cwd(), filePath);
 
       if (fs.existsSync(oldFilePath)) {
         fs.renameSync(oldFilePath, newAbsoluteFilePath);
-        finalFilePath = newFilePath;
+        finalFilePath = filePath;
       } else {
         console.warn(`Old file not found: ${oldFilePath}. Creating a new file.`);
       }

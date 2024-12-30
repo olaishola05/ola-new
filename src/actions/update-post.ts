@@ -45,7 +45,7 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
 
     const { title, slug, postImg, content } = data;
 
-    const { markdownContent, filePath: newFilePath } = savePostToFile({
+    const { markdownContent, filePath, } = savePostToFile({
       ...data,
       author: user?.name,
       description: existingPost.desc,
@@ -57,19 +57,7 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
       fs.mkdirSync(postsDirectory, { recursive: true });
     }
 
-    let finalFilePath = existingPost.filePath;
-    if (title !== existingPost.title) {
-      const oldFilePath = path.join(process.cwd(), existingPost.filePath);
-      const newAbsoluteFilePath = path.join(process.cwd(), newFilePath);
-
-      if (fs.existsSync(oldFilePath)) {
-        fs.renameSync(oldFilePath, newAbsoluteFilePath);
-        finalFilePath = newFilePath;
-      } else {
-        console.warn(`Old file not found: ${oldFilePath}. Creating a new file.`);
-      }
-    }
-    fs.writeFileSync(path.join(process.cwd(), finalFilePath), markdownContent);
+    fs.writeFileSync(path.join(process.cwd(), filePath), markdownContent);
 
     const updatedPost = await prisma.post.update({
       where: { id: data.id },
@@ -78,11 +66,12 @@ export async function autoSavePost(data: UpdatePostProps): Promise<AutoSaveState
         slug,
         postImg,
         content,
-        filePath: finalFilePath,
+        filePath: filePath,
         userEmail: session.user.email,
         updatedAt: new Date(),
       },
     });
+    console.log("Post updated successfully");
 
     revalidatePath("/dashboard/posts");
     revalidatePath("/blog");
