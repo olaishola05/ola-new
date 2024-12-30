@@ -38,7 +38,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
   const headersList = headers();
   const referrer = headersList.get('referer') || null;
   await trackEvent({ slug: slug, eventType: 'view', referrer });
-  const { title, postImg, author, date, categories } = data
+  const { title, postImg, author, date, categories, postId } = data
 
   return (
     <div className='w-full md:w-10/12 flex gap-10 mt-4 md:mt-20 mx-auto relative'>
@@ -72,7 +72,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
               <RelatedPosts slug={slug} />
               <div className={styles.comments}>
                 <Subscribe />
-                <Comments postSlug={slug} />
+                {/* <Comments postSlug={slug} /> */}
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
         </div>
       </div>
       <div className='hidden md:block w-[25%] md:fixed right-36'>
-        <Toc title={title} />
+        <Toc postId={postId} />
         <Menu />
       </div>
     </div>
