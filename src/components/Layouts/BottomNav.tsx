@@ -49,7 +49,7 @@ const BottomNav = () => {
                       </p>
                     </div>
 
-                    <div>
+                    <div className='flex flex-col gap-2'>
                       <p className='text-base font-semibold flex gap-3'>
                         <PhoneCallIcon /> (+234) 8110837448</p>
 
