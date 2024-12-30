@@ -4,13 +4,13 @@ import path from "path";
 import fs from "fs/promises";
 import { headingTree } from "./toc";
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(postId: string) {
   const posts = await fs.readdir('./posts/');
   const filteredPosts = posts.filter(post => ['.md', '.mdx'].includes(path.extname(post)));
-  const postFile = filteredPosts.find(post => post.replace(/\.mdx?$/, '') === slug);
+  const postFile = filteredPosts.find(post => post.replace(/\.mdx?$/, '') === postId);
 
   if (!postFile) {
-    throw new Error(`Post with slug ${slug} not found`);
+    throw new Error(`Post with id: ${postId} not found`);
   }
 
   const fullPath = path.join('./posts/', postFile);

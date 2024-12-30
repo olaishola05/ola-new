@@ -57,7 +57,7 @@ export default function TableOfContents({ nodes }: TableOfContentsProps) {
   }
   return (
     <div className='hidden md:block w-full'>
-      <h3 className='text-3xl mb-3'>Table of contents</h3>
+      <h3 className='text-3xl mb-3'>{nodes.lenght && "Table of contents"}</h3>
       {renderNodes(nodes)}
     </div>
   )
