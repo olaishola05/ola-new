@@ -1,4 +1,4 @@
-import {cache} from 'react'
+import { cache } from 'react'
 import path from 'path'
 import fs from 'fs/promises'
 import matter from 'gray-matter'
@@ -12,6 +12,7 @@ type Data = {
   categories: string[],
   author: string,
   description: string
+  postId: string
 }
 
 interface Posts {
