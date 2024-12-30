@@ -1,4 +1,5 @@
 import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 interface FileProps {
   title: string;
@@ -19,14 +20,16 @@ export function savePostToFile(
 
   let filePath: string;
   let fileSlug: string;
+  let postId: string;
 
   if (existingFilePath) {
     filePath = existingFilePath;
     fileSlug = path.basename(filePath, '.mdx');
+    postId = fileSlug
   } else {
-    fileSlug = title.toLowerCase().replace(/ /g, '-');
-    const fileName = `${fileSlug}.mdx`;
-    filePath = path.join(postsDirectory, fileName);
+    const fileId = `${uuidv4()}-${Date.now()}.mdx`;
+    filePath = path.join(postsDirectory, fileId);
+    postId = fileId.split('.')[0];
   }
 
   const formattedCategories = categories ? `[${categories.map(cat => `"${cat}"`).join(', ')}]` : '[]';
@@ -38,6 +41,7 @@ export function savePostToFile(
   description: "${description || ''}"
   author: "${author || ''}"
   postImg: "${postImg || ''}"
+  postId: "${postId}"
   categories: ${formattedCategories}
   published: ${published || false}
   date: "${publishedDate || ''}"
@@ -47,5 +51,5 @@ export function savePostToFile(
   ${markdown}
   `
 
-  return { markdownContent, filePath, fileSlug }
+  return { markdownContent, filePath };
 }
