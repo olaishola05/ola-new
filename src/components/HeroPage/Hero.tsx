@@ -26,7 +26,7 @@ export default function HeroSection() {
         </p>
         <div className="self-center md:self-start flex justify-center md:justify-start gap-5 w-full mt-6">
           <Link
-            href="/#portfolio"
+            href="/#my-works"
             className="w-[200px] h-[45px] px-3 py-5 rounded-full leading-4 tracking-tighter shadow-lg flex items-center justify-center gap-10 text-base md:text-lg text-[var(--cta)] bg-inherit border border-[var(--primary)] hover:bg-[var(--cta)] hover:text-[var(--ctaText)] hover:border hover:border-[var(--cta)]"
           >
             My works
