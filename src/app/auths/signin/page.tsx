@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Metadata } from 'next'
-import Signin from '@/components/auths/signin'
+import Signin from './../../../components/auths/signin'
 
 
 
