@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Companies from "./Companies";
-import { socialLinks } from "@/app/utils";
-import { Icons } from "..";
 import HeroTitleAnimation from "./greeting";
 import Image from "next/image";
+import HeroSocialIcons from "./hero-social";
 
 export default function HeroSection() {
   return (
@@ -41,13 +40,7 @@ export default function HeroSection() {
           </Link>
         </div>
 
-        <div className="flex md:hidden items-center justify-center mt-5">
-          {socialLinks.map((link) => (
-            <div key={link.id} data-aos="zoom-in-up" data-aos-duration="8000">
-              <Icons link={link} />
-            </div>
-          ))}
-        </div>
+        <HeroSocialIcons />
         {/* <Companies /> */}
       </div>
       <div className="w-full md:flex-1">
