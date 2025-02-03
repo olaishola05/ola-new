@@ -26,7 +26,7 @@ import './editor.css'
 import { uploadFileServerAction } from '@/actions';
 import { Storage } from '@/app/utils/utilities';
 import { useDebouncedCallback } from "use-debounce";
-import { schema, insertCodeBlockItem, insertCallout } from './blocks/add-blockItems';
+import { schema, insertCallout } from './blocks/add-blockItems';
 
 async function saveToStorage(jsonBlocks: Block[]) {
   Storage.setToStorage("editorContent", jsonBlocks);
@@ -99,7 +99,6 @@ export default function Editor({ onChange, initialContent }: EditorProps) {
           filterSuggestionItems(
             [
               ...getDefaultReactSlashMenuItems(editor),
-              insertCodeBlockItem(editor),
               insertCallout(editor)
             ], query)
         }

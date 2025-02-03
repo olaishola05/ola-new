@@ -19,6 +19,7 @@ interface CategoryPost {
   categories: string[];
   author: string;
   description: string;
+  postId: string
 }
 
 type PostData = CategoryPost | Post;

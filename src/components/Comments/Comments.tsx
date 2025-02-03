@@ -81,9 +81,9 @@ export default function Comments({ postSlug }: { postSlug: string }) {
         <Link href={loginUrl}>Login to write a comment</Link>
       )}
 
-      {isLoading ? (<div>loading</div>) : data?.data?.map((item: Item) => (
+      {/* {isLoading ? (<div>loading</div>) : data?.data?.map((item: Item) => (
         <Comment key={item.id} item={item} />
-      ))}
+      ))} */}
 
     </div>
   )

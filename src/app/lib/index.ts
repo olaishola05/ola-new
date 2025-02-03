@@ -1,4 +1,4 @@
-import {uploadToCloudinary} from './upload';
+import { uploadToCloudinary } from './upload';
 
 export { uploadToCloudinary };
 export {

@@ -1,3 +1,5 @@
+'use client';
+
 import { About, NavItems, Project, SocialLinks, TabArray } from "@/app/types";
 import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
 import { FaMediumM } from "react-icons/fa";
@@ -171,7 +173,7 @@ export async function updateProject(id: string, data: Project, url: string) {
   }
 }
 
-export const projectsFilter = (projects: Project[], tag: string) => {
+export const projectsFilter = (projects: any[], tag: string) => {
   return projects?.filter((project) => project.tag === tag);
 };
 

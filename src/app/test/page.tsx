@@ -1,6 +1,8 @@
 import TestimonialNotification from '@/components/Email/Notification'
 import ThankYouEmail from '@/components/Email/ThankYouEmail'
 import React from 'react'
+import SendOptEmail from '@/components/Email/SendOptEmail'
+import WelcomeEmail from '@/components/Email/WelcomeEmail'
 
 export default function page() {
   const data = {
@@ -14,7 +16,9 @@ export default function page() {
   return (
     <div>page
       {/* <TestimonialNotification {...data} /> */}
-      <ThankYouEmail name='Adrian Moses' />
+      {/* <SendOptEmail name='Adrian Moses' otp='123456' /> */}
+      <WelcomeEmail name='Adrian Moses' />
+
     </div>
   )
 }

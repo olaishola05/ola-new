@@ -21,7 +21,7 @@ export default function VerifyAccount({ data }: VerifyAccountProps) {
   const { email, id } = data;
   const [formState, action] = useFormState(actions.verifyOtp.bind(null, id, otp), {
     success: false,
-    message: '' || undefined
+    message: ''
   })
 
   const handleChange = (element: any, index: number) => {
@@ -109,7 +109,9 @@ export default function VerifyAccount({ data }: VerifyAccountProps) {
               onChange={(e) => handleChange(e.target, index)}
               onFocus={(e) => e.target.select()}
               onPaste={handlePaste}
-              ref={(el) => (inputRefs.current[index] = el)}
+              ref={(el) => {
+                inputRefs.current[index] = el;
+              }}
               required
               autoFocus={index === 0}
             />

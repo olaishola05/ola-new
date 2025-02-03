@@ -11,10 +11,20 @@ import {
   ProjectModal,
 } from "@/components";
 import { tabs } from "@/app/utils";
-import { Project } from "@/app/types";
 
 type props = {
-  data: Project[];
+  data: {
+    id: string;
+    name: string;
+    description: string | null;
+    githubUrl: string | null;
+    liveUrl: string | null;
+    coverImgUrl: string | null;
+    stacks: string[];
+    modalImgUrl: string | null;
+    tag: string | null;
+    authorId: string | null;
+  }[]
 };
 
 const ProjectSection = ({ data }: props) => {

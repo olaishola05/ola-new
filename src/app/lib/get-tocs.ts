@@ -1,3 +1,5 @@
+'use server';
+
 import matter from "gray-matter";
 import { remark } from "remark";
 import path from "path";

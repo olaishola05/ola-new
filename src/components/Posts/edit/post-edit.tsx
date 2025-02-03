@@ -1,15 +1,15 @@
 "use client";
 
-import React, {useCallback, useEffect, useState} from "react";
-import {slugify, Storage} from "@/app/utils/utilities";
+import React, { useCallback, useEffect, useState } from "react";
+import { slugify, Storage } from "@/app/utils/utilities";
 import Image from "next/image";
 import * as actions from "@/actions";
 import styles from "../create/createpost.module.css";
 import AddImageFeature from "../addFeature/AddFeature";
-import {useHandleFile, usePostTitle} from "@/app/hooks";
-import {CustomEditor} from "../editors/mdx-editor/editor";
+import { useHandleFile, usePostTitle } from "@/app/hooks";
+import { CustomEditor } from "../editors/mdx-editor/editor";
 import SearchTagsModal from "./desc-modal";
-import {MDXEditorMethods} from "@mdxeditor/editor";
+import { MDXEditorMethods } from "@mdxeditor/editor";
 
 export default function PostEdit({ post }: { post: any }) {
   const { desc, id, published, publishedDate, content, postImg } = post
@@ -21,18 +21,26 @@ export default function PostEdit({ post }: { post: any }) {
   const { setFile, media, setMedia } = useHandleFile(postImg);
   const [openDescModal, setOpenDescModal] = useState<boolean>(false)
   const ref = React.useRef<MDXEditorMethods>(null)
+  const [storageContent, setStorageContent] = useState(content);
   const markdown = content || 'Edit your story here';
   const [lastEditSession, setLastEditSession] = useState<{
     timestamp: string;
     postId: string;
   } | null>(null);
 
+  useEffect(() => {
+    if (storageContent) {
+      console.log(storageContent, 'storageContent');
+      ref.current?.setMarkdown(storageContent);
+    }
+  }, [storageContent]);
+
   const editorMarkdown = ref.current?.getMarkdown() as string;
   const isPageReload = useCallback(() => {
     return window.performance
-        .getEntriesByType('navigation')
-        .map((nav) => (nav as any).type)
-        .includes('reload');
+      .getEntriesByType('navigation')
+      .map((nav) => (nav as any).type)
+      .includes('reload');
   }, []);
 
   const publishPost = async () => {
@@ -74,12 +82,12 @@ export default function PostEdit({ post }: { post: any }) {
       setIsSaving(false);
       setError("");
     }
-  }, [title, media,editorMarkdown, published, publishedDate, id, slug]);
+  }, [title, media, editorMarkdown, published, publishedDate, id, slug]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
       await handleAutoSave();
-    }, 180000); //auto updates every 3 minutes
+    }, 18000); //auto updates every 3 minutes 180000
     return () => clearInterval(interval);
   }, [handleAutoSave]);
 
@@ -149,7 +157,7 @@ export default function PostEdit({ post }: { post: any }) {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('unload', handleUnload);
     };
-  }, [handleAutoSave, id, isPageReload]);
+  }, [handleAutoSave, id, isPageReload, lastEditSession]);
 
   useEffect(() => {
     const lastSession = Storage.getStorageItem("lastEditSession");
@@ -184,7 +192,7 @@ export default function PostEdit({ post }: { post: any }) {
         </label>
         {media && (
           <div className={styles.postImage}>
-            <Image src={media} alt="image" fill priority/>
+            <Image src={media} alt="image" fill priority />
             {!openPreview && <button
               onClick={() => {
                 setMedia("");
@@ -199,7 +207,7 @@ export default function PostEdit({ post }: { post: any }) {
         )}
 
         {!media && <AddImageFeature setFile={setFile} styles={styles} />}
-        <CustomEditor ref={ref} markdown={markdown} />
+        <CustomEditor ref={ref} markdown={storageContent} />
       </>
       <div className="flex gap-4 absolute top-0 -right-40">
         <button

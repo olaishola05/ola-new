@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react'
 
 interface TableOfContentsProps {
-  nodes: Node[];
+  nodes: any;
 }
 
 interface Node {
@@ -16,6 +16,7 @@ interface Node {
     };
   };
   value: string;
+  children: any[]
 }
 
 const TOCLink = ({ node }: { node: Node }) => {
@@ -38,7 +39,7 @@ const TOCLink = ({ node }: { node: Node }) => {
   );
 };
 
-function renderNodes(nodes: any[]) {
+function renderNodes(nodes: Node[]) {
   return (
     <ul className='pl-4'>
       {nodes.map((node) => (

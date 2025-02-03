@@ -1,4 +1,3 @@
-import { CodeBlock } from '../code-block/Code';
 import { Code2Icon, Lightbulb } from 'lucide-react';
 import {
   BlockNoteSchema,
@@ -10,7 +9,6 @@ import { Callout } from '../callout/callout';
 export const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
-    code_block: CodeBlock,
     callout: Callout
   },
 });
@@ -28,15 +26,15 @@ export const insertCallout = (editor: typeof schema.BlockNoteEditor) => ({
   subtext: "Insert a Note for Supplementary info.",
 })
 
-export const insertCodeBlockItem = (editor: typeof schema.BlockNoteEditor) => ({
-  title: "Insert Code Block",
-  onItemClick: () => {
-    insertOrUpdateBlock(editor, {
-      type: "code_block"
-    })
-  },
-  aliases: ["codeblock", "cb"],
-  group: "Development",
-  icon: <Code2Icon size={18} />,
-  subtext: "Insert a block of code with syntax highlighting.",
-});
+// export const insertCodeBlockItem = (editor: typeof schema.BlockNoteEditor) => ({
+//   title: "Insert Code Block",
+//   onItemClick: () => {
+//     insertOrUpdateBlock(editor, {
+//       type: "code_block"
+//     })
+//   },
+//   aliases: ["codeblock", "cb"],
+//   group: "Development",
+//   icon: <Code2Icon size={18} />,
+//   subtext: "Insert a block of code with syntax highlighting.",
+// });

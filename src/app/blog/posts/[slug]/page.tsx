@@ -16,9 +16,15 @@ import PreviousPage from "@/components/Posts/previousPage/PreviousPage";
 import Menu from '@/components/Menu/Menu'
 import Toc from '@/components/MDX/Toc'
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = await fetchPublishedPosts()
-  return posts?.map((post) => ({ slug: post?.data.slug }))
+  if (!posts) return []
+
+  return posts
+    .filter(post => post?.data?.slug) // Filter out any posts with undefined slugs
+    .map((post) => ({
+      slug: post?.data.slug as string
+    }))
 }
 
 const fetchPost = async (slug: string) => {
