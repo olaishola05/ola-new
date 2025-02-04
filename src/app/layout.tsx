@@ -2,12 +2,14 @@ import AuthProvider from '@/app/providers/AuthProvider'
 import { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import 'src/app/globals.scss'
+import 'src/app/prosemirror.css'
 import AnimationProvider from '@/app/providers/AnimationProvider';
 import AppThemeProvider from '@/app/providers/AppThemeProvider';
 import App from '@/components/app/App'
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from '@/components/Analytic/GoogleAnalytics';
+import ConditionalWrapper from '@/components/Wrapper/ConditionalWrapper'
 
 const monserrat = Montserrat({ subsets: ['latin'] })
 
@@ -17,14 +19,17 @@ export const metadata: Metadata = {
   description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
   icons: [
     {
-      url: '/images/icon.svg',
-      sizes: '32x32',
-      type: 'image/svg+xml',
+      media: '(prefers-color-scheme: light)',
+      url: '/images/brand-purple.png',
+      href: '/images/brand-purple.png',
+      type: 'image/png',
+
     },
     {
-      url: '/images/portrait-me.jpeg',
-      sizes: '192x192',
-      type: 'image/jpeg',
+      media: '(prefers-color-scheme: dark)',
+      url: '/images/brand-dark.png',
+      href: '/images/brand-dark.png',
+      type: 'image/png',
     },
   ],
   openGraph: {
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
         url: '/images/portrait-me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Ola Ishola - Fullstack Developer',
+        alt: 'Oladipupo Ishola - Fullstack Developer',
       },
     ],
   },
@@ -52,10 +57,16 @@ export const metadata: Metadata = {
         url: '/images/portrait-me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Ola Ishola - Fullstack Developer',
+        alt: 'Oladipupo Ishola - Fullstack Developer',
       },
     ],
   },
+  verification: {
+    other: {
+      'p:domain_verify':
+        '861620612d1417f5d3f0043781c79dd0'
+    },
+  }
 }
 
 export default function RootLayout({
@@ -71,7 +82,7 @@ export default function RootLayout({
           <AnimationProvider>
             <AppThemeProvider>
               <main className='container'>
-                <div className='wrapper'>
+                <ConditionalWrapper>
                   <App>
                     {children}
                     <Toaster />
@@ -80,7 +91,7 @@ export default function RootLayout({
                       <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
                     )}
                   </App>
-                </div>
+                </ConditionalWrapper>
               </main>
             </AppThemeProvider>
           </AnimationProvider>

@@ -12,9 +12,9 @@ export default function Loader({ loading }: { loading: any }) {
   };
 
   return (
-    <div className="absolute top-[50%] left-[50%]">
+    <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none w-auto">
       <GridLoader
-        color={theme === "dark" ? '#fff' : "#087ea4"}
+        color={theme === "dark" ? '#fff' : "#392467"}
         loading={loading}
         size={20}
         aria-label="Loading Spinner"

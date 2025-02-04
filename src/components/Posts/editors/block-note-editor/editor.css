@@ -1,0 +1,3 @@
+.bn-container[data-brand-theming] .bn-editor{
+  @apply relative min-h-[1200px] w-full max-w-screen-lg bg-transparent text-textColor sm:mb-[calc(20vh)] sm:rounded-lg overflow-auto text-lg
+}

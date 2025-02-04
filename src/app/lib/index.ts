@@ -1,3 +1,12 @@
-import { connectToDatabase } from "./mongodb";
+import { uploadToCloudinary } from './upload';
 
-export default connectToDatabase;
+export { uploadToCloudinary };
+export {
+  getPosts,
+  getPost,
+  latestPost,
+  getLatestPosts,
+  getPostsByCats,
+  getRecentPostsByCategory,
+  fetchPublishedPosts
+} from './posts'

@@ -1,0 +1,89 @@
+.container {
+  margin-top: 80px;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.textContainer {
+  /* flex: 1; */
+}
+
+.userImgContainer {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.userTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--softTextColor);
+}
+
+.content {
+  display: flex;
+  gap: 50px;
+}
+
+.post {
+  /* flex: 5; */
+  width: 100%;
+  margin-top: 40px;
+}
+
+.description p {
+  /* margin-bottom: 20px; */
+}
+
+@media screen and (max-width: 1536px) {
+  .title {
+    font-size: 54px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .title {
+    font-size: 48px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .imgContainer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .description p {
+    font-size: 18px;
+  }
+}

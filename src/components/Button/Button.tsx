@@ -21,7 +21,7 @@ export default function CustomButton(props: ButtonProps) {
   md:text-lg
   text-[var(--ctaText)]
   ${variant === 'contained' ? `bg-[var(--cta)]` : 'bg-transparent'}
-  ${variant === 'outlined' ? `border border-[var(--primary)] text-[var(--primary)]` : 'border-none'} hover:border border-[var(--cta)]'
+  ${variant === 'outlined' ? `border border-[var(--primary)] text-[var(--primary)]` : 'border-none'} hover:bg-inherit hover:text-[var(--cta)] hover:border hover:border-[var(--ctaText)]'
 `;
   return <button
     color={color}

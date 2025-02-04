@@ -80,11 +80,24 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Role {
+  admin
+  user
+  author
+}
+
+enum Providers {
+  credentials
+  github
+}
+
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
+  password      String?
   image         String?
+  role          Role      @default(user)
   emailVerified DateTime? @map(name: "email_verified")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
@@ -92,6 +105,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   about         About[]
+  posts         Post[]
+  comments      Comment[]
 
   @@map(name: "users")
 }
@@ -103,4 +118,82 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Testimonial {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  jobTitle  String
+  message   String
+  photo     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+}
+
+model Category {
+  id     String  @id @default(cuid()) @map("_id")
+  slug   String  @unique
+  title  String
+  postId String  @unique
+  img    String?
+  posts  Post[]
+}
+
+model Post {
+  id            String          @id @default(cuid()) @map("_id")
+  slug          String?         @unique
+  title         String?         @unique
+  desc          String?
+  postImg       String?
+  filePath      String
+  content       String?
+  publishedDate DateTime        @updatedAt
+  published     Boolean         @default(false)
+  category      Category?       @relation(fields: [catSlug], references: [slug]) //remove optional once category model is created
+  catSlug       String?
+  user          User            @relation(fields: [userEmail], references: [email])
+  userEmail     String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  comments      Comment[]
+  postAnalytics PostAnalytics[]
+}
+
+model PostAnalytics {
+  id        String   @id @default(uuid()) @map("_id")
+  postId    String   @unique
+  slug      String   @unique
+  views     Int      @default(0)
+  reads     Int      @default(0)
+  country   String?
+  referrer  String?
+  timestamp DateTime @default(now())
+
+  post Post @relation(fields: [postId], references: [id])
+}
+
+model Comment {
+  id        String   @id @default(cuid()) @map("_id")
+  desc      String
+  user      User     @relation(fields: [userEmail], references: [email])
+  userEmail String
+  post      Post     @relation(fields: [postSlug], references: [slug])
+  postSlug  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subscriber {
+  id    String @id @default(cuid()) @map("_id")
+  email String @unique
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  otp       String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
 }

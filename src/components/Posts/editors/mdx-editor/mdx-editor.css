@@ -1,0 +1,50 @@
+.mdxeditor {
+    @apply min-h-[1200px] w-full max-w-screen-lg rounded-lg text-textColor text-lg bg-bg mt-4 overflow-auto
+}
+
+.mdxeditor-root-contenteditable{
+    @apply
+    prose-headings:font-semibold prose-headings:text-textColor prose-h1:text-2xl
+    prose-h1:md:text-5xl prose-h2:text-2xl prose-h2:md:text-4xl prose-h3:text-xl
+    prose-h3:md:text-3xl prose-h4:text-lg prose-h4:md:text-xl prose-p:text-textColor
+    prose-p:text-base prose-p:md:text-lg prose-headings:mb-3 prose-p:mb-3
+}
+
+.mdxeditor-toolbar {
+    @apply bg-bg
+}
+
+
+.mdxeditor-diff-source-wrapper .cm-scroller{
+    @apply bg-bg text-textColor;
+}
+
+.mdxeditor-diff-source-wrapper .cm-line {
+    @apply text-textColor text-base;
+}
+
+ol {
+    @apply list-decimal list-inside text-lg font-semibold;
+}
+
+ul {
+    list-style: circle;
+    @apply list-inside text-lg font-semibold;
+}
+
+ul li[role="checkbox"] {
+    margin-left: 0.1rem;
+}
+
+code span {
+    @apply rounded-md
+}
+
+button[role="combobox"]{
+    @apply bg-bg text-textColor mt-1;
+}
+
+.cm-gutters {
+    @apply bg-bg text-textColor;
+}
+

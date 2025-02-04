@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import Link from 'next/link';
 import { socialLinks } from '@/app/utils';
@@ -13,7 +15,7 @@ export default function Copyright() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Ola Ishola
+          Oladipupo Ishola
         </Link>{' '}
         {new Date().getFullYear()}
       </p>

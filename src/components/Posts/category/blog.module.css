@@ -1,0 +1,30 @@
+.title {
+  padding: 8px 10px;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 34px;
+}
+
+.title.style {
+  background-color: #57c4ff31;
+}
+
+.title.fashion {
+  background-color: #da85c731;
+}
+
+.title.food {
+  background-color: #7fb88133;
+}
+
+.title.travel {
+  background-color: #ff795736;
+}
+
+.title.culture {
+  background-color: #ffb04f45;
+}
+
+.title.coding {
+  background-color: #5e4fff31;
+}

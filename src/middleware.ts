@@ -1,28 +1,37 @@
-import { NextResponse, NextRequest } from "next/server"
+import { NextResponse, NextRequest } from "next/server";
 
 const getCookieBasedOnEnv = (req: NextRequest) => {
-  const isProduction = process.env.NODE_ENV === 'production';
-  const cookie = isProduction ? req?.cookies?.getAll()?.find(cookie => cookie.name === '__Secure-next-auth.session-token') : req?.cookies?.getAll()?.find(cookie => cookie.name === 'next-auth.session-token') ?? false;
+  const isProduction = process.env.NODE_ENV === "production";
+  const cookie = isProduction
+    ? req?.cookies
+      ?.getAll()
+      ?.find((cookie) => cookie.name === "__Secure-next-auth.session-token")
+    : req?.cookies
+      ?.getAll()
+      ?.find((cookie) => cookie.name === "next-auth.session-token") ?? false;
 
   return cookie;
-}
+};
 
-export default function middleware(req: NextRequest) {
+const protectedRoutes = ["/admin", "/blog/write"];
+
+export default async function middleware(req: NextRequest) {
   const isLoggedIn = getCookieBasedOnEnv(req);
-  const isOnAdminPage = req.nextUrl?.pathname.startsWith('/admin');
-  if (isOnAdminPage) {
-    if (isLoggedIn) return NextResponse.next()
-    return NextResponse.redirect(new URL('/auths/signin', req?.nextUrl.origin))
-  } else if (isLoggedIn) {
-    console.log('redirect to admin')
-    return NextResponse.redirect(new URL('/admin/dashboard', req.nextUrl.origin))
-  }
-  return NextResponse.next()
-}
+  const { pathname } = req.nextUrl;
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    pathname.startsWith(route),
+  );
+  const isOnBlogEditPage = pathname.match(/^\/blog\/([^/]+)\/edit$/);
 
+  if ((isProtectedRoute || isOnBlogEditPage) && !isLoggedIn) {
+    const loginUrl = new URL("/auths/signin", req?.nextUrl.origin);
+    loginUrl.searchParams.set("from", req.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: ['/admin/:path*',]
-}
-
-// req.cookies?.getAll()?.some(cookie => cookie.name === 'next-auth.session-token') ?? false;
+  matcher: ["/admin/:path*", "/blog/write", "/blog/:id*/edit"],
+};

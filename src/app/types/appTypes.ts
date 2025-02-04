@@ -88,7 +88,18 @@ export type AdminRoutesProps = {
 }
 
 export type ProjectProps = {
-  projects: Project[]
+  projects: {
+    id: string;
+    name: string;
+    description: string | null;
+    githubUrl: string | null;
+    liveUrl: string | null;
+    coverImgUrl: string | null;
+    stacks: string[];
+    modalImgUrl: string | null;
+    tag: string | null;
+    authorId: string | null;
+  }[]
   handleOpenModal: (id: string) => void
 }
 
@@ -115,4 +126,21 @@ export type About = {
     email: string,
     image: string,
   }
+}
+
+type Data = {
+  title: string,
+  slug: string,
+  postImg: string,
+  published: boolean,
+  date: string,
+  categories: string[],
+  author: string,
+  description: string
+  postId: string
+}
+
+export interface Posts {
+  body: string
+  data: Data
 }
