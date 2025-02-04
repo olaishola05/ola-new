@@ -12,8 +12,8 @@ const ArticleComingSoon = () => {
   return (
     <div className='w-full flex flex-col gap-16 mt-16 justify-center items-center'>
       <div className='flex flex-col gap-1'>
-        <h2 className='text-3xl'>Sorry no post found! We are hard at work</h2>
-        <p className='text-base md:text-lg text-textColor'>As you may rightly know that writing is an art and to create a masterpiece takes sometime.</p></div>
+        <h2 className='text-3xl text-center'>Sorry no post found! We are hard at work</h2>
+        <p className='text-base md:text-lg text-textColor'>As you may rightly know that writing is an art and to create a masterpiece takes some time.</p></div>
       <div>
         <Image src='/images/content-creator.svg' alt='content-creator' width={500} height={500} />
       </div>
