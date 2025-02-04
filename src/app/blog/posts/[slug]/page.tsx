@@ -21,7 +21,7 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   if (!posts) return []
 
   return posts
-    .filter(post => post?.data?.slug) // Filter out any posts with undefined slugs
+    .filter(post => post?.data?.slug)
     .map((post) => ({
       slug: post?.data.slug as string
     }))

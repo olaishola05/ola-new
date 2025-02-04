@@ -127,3 +127,20 @@ export type About = {
     image: string,
   }
 }
+
+type Data = {
+  title: string,
+  slug: string,
+  postImg: string,
+  published: boolean,
+  date: string,
+  categories: string[],
+  author: string,
+  description: string
+  postId: string
+}
+
+export interface Posts {
+  body: string
+  data: Data
+}
