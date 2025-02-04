@@ -1,5 +1,5 @@
 import { fetchPublishedPosts } from "@/app/lib";
-import SuggestedPost from "@/components/Posts/suggest posts/suggested-post";
+import SuggestedPosts from "./SuggestedPosts";
 
 const getPosts = async () => {
   const posts = await fetchPublishedPosts()
@@ -22,11 +22,7 @@ export default async function RelatedPosts({ slug }: { slug: string }) {
   return (
     <div>
       <h2 className='mb-2 text-2xl md:text-3xl text-softText'>Related Posts</h2>
-      <div className="flex flex-col md:flex-row gap-5 mb-[30px]">
-        {data.map((post, index) => (
-          <SuggestedPost key={index} post={post?.data} />
-        ))}
-      </div>
+      <SuggestedPosts data={data} />
     </div>
   )
 }

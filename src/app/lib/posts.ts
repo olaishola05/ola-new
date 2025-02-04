@@ -4,23 +4,7 @@ import { cache } from 'react'
 import path from 'path'
 import fs from 'fs/promises'
 import matter from 'gray-matter'
-
-type Data = {
-  title: string,
-  slug: string,
-  postImg: string,
-  published: boolean,
-  date: string,
-  categories: string[],
-  author: string,
-  description: string
-  postId: string
-}
-
-interface Posts {
-  body: string
-  data: Data
-}
+import { Posts } from '@/app/types/appTypes'
 
 export const getPosts = cache(async (published: boolean) => {
   const posts = await fs.readdir('./posts/')
