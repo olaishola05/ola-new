@@ -12,12 +12,19 @@ export default function page() {
     jobTitle: 'Developer'
   }
 
+  const { name, email, message, jobTitle } = data
 
   return (
-    <div>page
+    <div>
       {/* <TestimonialNotification {...data} /> */}
       {/* <SendOptEmail name='Adrian Moses' otp='123456' /> */}
-      <WelcomeEmail name='Adrian Moses' />
+      {/* <WelcomeEmail name='Adrian Moses' /> */}
+      <ul>
+        <li>{name}</li>
+        <li>{email}</li>
+        <li>{message}</li>
+        <li>{jobTitle}</li>
+      </ul>
 
     </div>
   )
