@@ -9,11 +9,17 @@ import Link from 'next/link'
 import AdminRoutes from './AdminRoutes';
 import CustomIcon from '../IconsComponent/CustomIcon';
 import { ConditionalRoutes } from './ConditionalRoutes';
+import { useSession } from 'next-auth/react';
 
 export default function TopNav() {
+  const { status }: any = useSession()
   const routePath = usePathname();
   const isActive = (pathname: string) => routePath === pathname;
   const isBlogPath = routePath.startsWith('/blog');
+
+  const userLoggedIn = status === 'authenticated';
+  console.log(userLoggedIn);
+
   return (
     <div className='flex items-center justify-between h-[80px] sticky top-0 z-10 bg-[var(--bg)]'>
       <div className='flex gap-1 flex-1 items-center'>
@@ -26,14 +32,16 @@ export default function TopNav() {
           </h1>
         </Link>
       </div>
-      <div className='hidden lg:flex gap-3 flex-1'>
-        {socialLinks.map(({ id, path, icon }) => (
-          <Link href={path} target='_blank'
-            rel='noopener noreferrer' key={id}>
-            <CustomIcon icon={icon} className='h-6 w-6 text-[var(--primary)]' />
-          </Link>
-        ))}
-      </div>
+      {!userLoggedIn && (
+        <div className='hidden lg:flex gap-3 flex-1'>
+          {socialLinks.map(({ id, path, icon }) => (
+            <Link href={path} target='_blank'
+              rel='noopener noreferrer' key={id}>
+              <CustomIcon icon={icon} className='h-6 w-6 text-[var(--primary)]' />
+            </Link>
+          ))}
+        </div>
+      )}
       <div className='flex md:flex-1 gap-4 items-center text-base'>
         <ThemeToggle />
         <ConditionalRoutes
