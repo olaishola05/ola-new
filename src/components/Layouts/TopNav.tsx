@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { blogLinks, navItems, socialLinks } from '@/app/utils';
+import { blogLinks, removeMyWorksWhenNotOnHome, socialLinks } from '@/app/utils';
 import Logo from './Logo';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
@@ -18,7 +18,9 @@ export default function TopNav() {
   const isBlogPath = routePath.startsWith('/blog');
 
   const userLoggedIn = status === 'authenticated';
-  console.log(userLoggedIn);
+  // console.log(userLoggedIn);
+
+  const navItems = removeMyWorksWhenNotOnHome(routePath);
 
   return (
     <div className='flex items-center justify-between h-[80px] sticky top-0 z-10 bg-[var(--bg)]'>
