@@ -1,13 +1,15 @@
 export const educationItems = [
   {
-    title: "Apr 2023 - Present",
-    cardTitle: "DevOps Engineer Training",
-    cardSubtitle: "School of Self-Education (April 2023 - September 2023)",
-    cardDetailedText: "Currently learning Docker, Kubernetes, Jenkins, AWS, Terraform, Ansible, and more",
-    items: [
-      { cardTitle: "Docker", cardSubtitle: 'Apr 2023', cardDetailedText: "Currently learning Docker, docker-compose, containers, docker images, taging, docker hub and more" },
-      { cardTitle: "Kubernetes", cardSubtitle: 'May 2023', cardDetailedText: "Container orchastration with kubernetes, minikube, kubectl, pods, services, deployment, secret, Node, cluster etc." },
-    ]
+    title: "Mar 2025 - Oct 2025",
+    cardTitle: "ProDev Back-End Developer",
+    cardSubtitle: "ALX Africa (March 2025 - October 2025)",
+    cardDetailedText: ["Advanced SQL and Python, mastering project planning and database design, and ensuring code quality with rigorous testing techniques.", "Streamlining development workflows with advanced shell commands, automated CI/CD pipelines, and scalable microservices architecture.", "Building secure and high-performing applications, covering crucial security best practices, authentication methods, and performance optimisation techniques.", "Advanced bug reporting and network traffic analysis, ensuring the highest quality of code and user experience."],
+  },
+  {
+    title: "Nov 2024 - Nov 2025",
+    cardTitle: "Data Engineering",
+    cardSubtitle: "AltSchool Africa (Nov 2024 - Nov 2025)",
+    cardDetailedText: ["Handling and processing binary large objects (BLOBs) and files efficiently.", "Mastering advanced SQL querying to interact with relational databases effectively", "Understanding the principles and functionalities of relational databases", "Learning to design and manage data warehouses and data lakes for efficient data storage and retrieval", "Building data pipelines for both batch and real-time streaming data processing", "Job scheduling and orchestration to manage data workflows efficiently.", "Explore Apache Beam for unified batch and streaming data processing", "DBT for data transformation and modeling."],
   },
   {
     title: "Nov 2021 - June 2022",
@@ -37,10 +39,10 @@ export const educationItems = [
 
 export const workExpItems = [
   {
-    title: "Oct 2022–Present",
+    title: "Oct 2022 – Dec 2024",
     cardTitle: "Full Stack Developer",
     cardSubtitle: "AUTOMATION AFFAIRS LIMITED",
-    cardDetailedText: "Developing in a team of six, a web application called JoHunter a resume builder specifically tailored for the African job market. The application is built with NextJS, and Tailwindcss on the frontend and Node.js, Express, and MongoDB on the backend.",
+    cardDetailedText: "Collaborated in a team of six, a web application called JoHunter a resume builder specifically tailored for the African job market. The application is built with NextJS, and Tailwindcss on the frontend and Node.js, Express, and MongoDB on the backend.",
   },
   {
     title: "Jan 2022 - Jul 2022",
