@@ -39,7 +39,7 @@ export default function TopNav() {
           {socialLinks.map(({ id, path, icon }) => (
             <Link href={path} target='_blank'
               rel='noopener noreferrer' key={id}>
-              <CustomIcon icon={icon} className='h-6 w-6 text-[var(--primary)]' />
+              <CustomIcon icon={icon} className='h-5 w-5 text-[var(--primary)]' />
             </Link>
           ))}
         </div>
