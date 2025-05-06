@@ -5,12 +5,14 @@ import Niches from "../Niche/Niches";
 import { getMediumPosts } from "@/queries/queries";
 import { Projects } from "../Projects/Projects";
 import SocialIcons from "./social-icons";
+import AboutParentComponent from "../About-Inline/about-parent";
 
 export default function Homepage() {
   return (
     <div className="relative">
       <Hero />
       <Niches />
+      <AboutParentComponent />
       <Suspense fallback={<div>Loading...</div>}>
         <Projects />
       </Suspense>
