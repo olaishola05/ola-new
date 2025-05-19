@@ -289,3 +289,208 @@ export const codeMap = new Map<string, string>();
 for (const [key, value] of Object.entries(languages)) {
   codeMap.set(key, value);
 }
+
+export const skillCategories = [
+  {
+    name: "Frontend",
+    skills: [
+      {
+        name: "React",
+        icon: "📱",
+        description: "Component-based JavaScript library for building user interfaces, especially single-page applications.",
+        experience: "4+ years of experience building complex React applications with Redux, React Query, and various UI libraries."
+      },
+      {
+        name: "Next.js",
+        icon: "⚡",
+        description: "React framework that enables server-side rendering, static site generation, and other performance optimizations.",
+        experience: "3+ years building production-grade applications with Next.js, utilizing both SSR and SSG approaches."
+      },
+      {
+        name: "TypeScript",
+        icon: "🔷",
+        description: "Strongly typed programming language that builds on JavaScript, adding static type definitions.",
+        experience: "Implemented TypeScript in multiple projects, creating robust type definitions and interfaces."
+      },
+      {
+        name: "Tailwind CSS",
+        icon: "🎨",
+        description: "Utility-first CSS framework for rapidly building custom user interfaces.",
+        experience: "Expert in creating responsive, custom designs using Tailwind's utility classes and configuration."
+      },
+      {
+        name: "JavaScript",
+        icon: "📜",
+        description: "High-level, interpreted programming language that conforms to the ECMAScript specification.",
+        experience: "5+ years of writing clean, maintainable JavaScript code using modern ES6+ features."
+      }, {
+        name: "Material UI",
+        icon: "📦",
+        description: "React UI framework that implements Google's Material Design.",
+        experience: "Built responsive, accessible components using Material UI, ensuring a consistent design language."
+      },
+
+      {
+        name: "React Email",
+        icon: "📧",
+        description: "Library for building responsive HTML emails using React components.",
+        experience: "Created dynamic, responsive email templates using React Email, ensuring compatibility across email clients."
+      },
+
+      {
+        name: "Next-Auth",
+        icon: "🔐",
+        description: "Authentication library for Next.js applications, providing easy integration with various providers.",
+        experience: "Implemented secure authentication flows using Next-Auth, integrating with OAuth providers and custom databases."
+      },
+      {
+        name: "React Query",
+        icon: "🔄",
+        description: "Data-fetching library for React applications, simplifying server state management.",
+        experience: "Utilized React Query for efficient data fetching, caching, and synchronization in applications."
+      },
+      {
+        name: "Redux",
+        icon: "📦",
+        description: "State management library for JavaScript applications, providing a predictable state container.",
+        experience: "Managed global application state using Redux, ensuring predictable state transitions and side effects."
+      },
+
+      {
+        name: "React Hook Form",
+        icon: "📋",
+        description: "Library for managing form state and validation in React applications.",
+        experience: "Implemented complex forms with validation and error handling using React Hook Form."
+      },
+      {
+        name: "Formik",
+        icon: "📋",
+        description: "Library for building forms in React, providing state management and validation.",
+        experience: "Built and managed forms with complex validation logic using Formik."
+      },
+      {
+        name: "Zod",
+        icon: "🎞️",
+        description: "TypeScript-first schema declaration and validation library.",
+        experience: "Used Zod for runtime validation of data structures, ensuring type safety and correctness."
+      },
+      {
+        name: "Yup",
+        icon: "🎞️",
+        description: "JavaScript schema builder for value parsing and validation.",
+        experience: "Implemented Yup for form validation, ensuring data integrity and user feedback."
+      },
+      {
+        name: "React Testing Library",
+        icon: "🧪",
+        description: "Testing utility for React that encourages good testing practices.",
+        experience: "Wrote unit and integration tests for React components using React Testing Library."
+      },
+      {
+        name: "Jest",
+        icon: "🧪",
+        description: "JavaScript testing framework with a focus on simplicity.",
+        experience: "Implemented unit tests and snapshot testing using Jest."
+      }
+    ]
+  },
+  {
+    name: "Backend",
+    skills: [
+      {
+        name: "Node.js",
+        icon: "🟢",
+        description: "JavaScript runtime built on Chrome's V8 JavaScript engine for building scalable network applications.",
+        experience: "Built and deployed numerous REST APIs and microservices using Express and NestJS frameworks."
+      },
+      {
+        name: "NestJS",
+        icon: "🐦",
+        description: "Progressive Node.js framework for building efficient, reliable, and scalable server-side applications.",
+        experience: "Developed modular and maintainable applications using NestJS with TypeScript."
+      },
+      {
+        name: "Go",
+        icon: "🐹",
+        description: "Statically typed, compiled programming language designed for simplicity and efficiency.",
+        experience: "Built microservices and APIs using Go, focusing on performance and concurrency."
+      },
+      {
+        name: "Express",
+        icon: "🚂",
+        description: "Fast, unopinionated, minimalist web framework for Node.js.",
+        experience: "Created production-ready APIs with middleware, authentication, and database integration."
+      },
+      {
+        name: "MongoDB",
+        icon: "🍃",
+        description: "Cross-platform document-oriented NoSQL database program using JSON-like documents.",
+        experience: "Designed schemas, indexes, and aggregation pipelines for optimal performance."
+      },
+      {
+        name: "PostgreSQL",
+        icon: "🐘",
+        description: "Powerful, open source object-relational database system with SQL compliance.",
+        experience: "Implemented complex data models with relationships, constraints, and optimized queries."
+      },
+      {
+        name: "GraphQL",
+        icon: "⚛️",
+        description: "Query language for APIs and a runtime for executing those queries with your existing data.",
+        experience: "Developed GraphQL APIs with Apollo Server, handling resolvers, mutations, and subscriptions."
+      },
+    ]
+  },
+  {
+    name: "ORMs",
+    skills: [
+      {
+        name: "Prisma",
+        icon: "🔗",
+        description: "Next-generation ORM for Node.js and TypeScript that simplifies database access.",
+        experience: "Designed and implemented complex data models with Prisma, ensuring type safety."
+      },
+      {
+        name: "Sequelize",
+        icon: "🔗",
+        description: "Promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite, and Microsoft SQL Server.",
+        experience: "Built and maintained applications using Sequelize for relational database management."
+      },
+    ]
+  },
+  {
+    name: "DevOps",
+    skills: [
+      {
+        name: "Docker",
+        icon: "🐳",
+        description: "Platform for developing, shipping, and running applications in containers.",
+        experience: "Containerized applications and created multi-stage build pipelines for optimized images."
+      },
+      {
+        name: "AWS",
+        icon: "☁️",
+        description: "Comprehensive, evolving cloud computing platform provided by Amazon.",
+        experience: "Deployed and managed applications using EC2, S3, Lambda, and other AWS services."
+      },
+      {
+        name: "Git",
+        icon: "🔄",
+        description: "Distributed version control system for tracking changes in source code during software development.",
+        experience: "Expert in Git workflows, branching strategies, and collaborative development."
+      },
+      {
+        name: "CI/CD",
+        icon: "🔄",
+        description: "Practices of continuous integration and continuous delivery/deployment.",
+        experience: "Set up automated testing and deployment pipelines using GitHub Actions and Jenkins."
+      },
+      {
+        name: "Kubernetes",
+        icon: "⚙️",
+        description: "Open-source container orchestration system for automating application deployment and scaling.",
+        experience: "Deployed applications to K8s clusters, configuring services, deployments, and ingress."
+      },
+    ]
+  },
+];

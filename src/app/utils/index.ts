@@ -40,6 +40,6 @@ export {
 export { savePostToFile } from './savePostToFile';
 export { tags } from './categories';
 export type { Tag } from './categories';
-export { removeMyWorksWhenNotOnHome } from './utilities'
+export { removeMyWorksWhenNotOnHome, skillCategories } from './utilities'
 
 

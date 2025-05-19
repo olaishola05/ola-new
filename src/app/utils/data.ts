@@ -39,6 +39,12 @@ export const educationItems = [
 
 export const workExpItems = [
   {
+    title: "Sept 2023 – Dec 2024",
+    cardTitle: "Co-Founder & Software Developer",
+    cardSubtitle: "Techverse Academy",
+    cardDetailedText: "Collaborate with a team of 4 to build an LMS, landing page, and other pages for an online EdTech school using NextJS for fast dynamic pages and Tailwind CSS for a consistent and modern feel. Designed and implemented RESTful APIs using NestJS and PostgreSQL, facilitating seamless integration with the frontend and third-party systems."
+  },
+  {
     title: "Oct 2022 – Dec 2024",
     cardTitle: "Full Stack Developer",
     cardSubtitle: "AUTOMATION AFFAIRS LIMITED",
