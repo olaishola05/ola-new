@@ -1,29 +1,30 @@
 import React from 'react'
 import { Server, Code, Monitor, Briefcase } from "lucide-react";
+import iconMap from '@/lib/icon-map';
 
 export default function MiniExperienceTimeline() {
 
   const workExperience = [
     {
-      title: "Senior Full Stack Developer",
-      company: "Tech Innovations Inc.",
-      period: "2021 - Present",
-      description: "Led development of enterprise SaaS platform, managing a team of 5 developers and implementing CI/CD workflows.",
-      icon: <Server className="w-5 h-5 text-emerald-600" />
+      title: "Software Developer",
+      company: "Techverse Academy",
+      period: "2023 - 2025",
+      description: "Collaborate in a team of 5 to build an EdTech platform, using NextJS, TailwindCSS, NestJS, and PostgreSQL. Implemented RESTful APIs and optimized database queries.",
+      iconKey: "server",
     },
     {
-      title: "Web Developer",
-      company: "Digital Solutions LLC",
-      period: "2018 - 2021",
-      description: "Developed responsive web applications using React, Node.js, and MongoDB, improving site performance by 40%.",
-      icon: <Code className="w-5 h-5 text-blue-600" />
+      title: "Full Stack Developer",
+      company: "Automated Affairs",
+      period: "2022 - 2024",
+      description: "Developed an AI resume and application material builder for the African job market, implementing over 20 RESTful APIs and enhancing user experience through responsive design.",
+      iconKey: "code",
     },
     {
-      title: "Frontend Developer Intern",
-      company: "Web Creators Co.",
-      period: "2017 - 2018",
-      description: "Assisted in building UI components and implementing designs using HTML, CSS, and JavaScript.",
-      icon: <Monitor className="w-5 h-5 text-indigo-600" />
+      title: "Student Mentor",
+      company: "Microverse Inc.",
+      period: "Jan 2022 - July 2022",
+      description: "Mentored junior developers in a full-stack program, focusing on JavaScript, React, and Ruby on Rails. Assisted students in achieving top 10% performance in their cohort.",
+      iconKey: "monitor",
     }
   ];
   return (
@@ -39,7 +40,7 @@ export default function MiniExperienceTimeline() {
             <div className="absolute top-0 bottom-0 left-0 w-0.5 bg-gray-200" />
             <div className="relative pl-8">
               <div className="absolute left-0 top-1 w-8 h-8 flex items-center justify-center rounded-full bg-bg shadow-md border border-gray-200">
-                {job.icon}
+                {iconMap[job.iconKey]}
               </div>
               <h4 className="text-xl font-semibold">{job.title}</h4>
               <div className="flex justify-between text-softText mb-2">
