@@ -3,6 +3,11 @@ import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AboutMe() {
+  const about = [
+    "Oladipupo Ishola is a Software Developer passionate about building human-centered, scalable web applications that solve real-world problems across Africa and beyond. Currently contributing to EdTech innovation at Techverse Academy, he collaborates with cross-functional teams to build dynamic learning platforms using Next.js, NestJS, and PostgreSQL. His goal is to leverage his growing expertise to lead the development of impactful, AI-powered tools that bridge digital access gaps in emerging markets.",
+    "Previously, Ola worked as a Full Stack Developer at Automated Affairs, where he co-built an AI resume builder tailored for the African job market, implementing over 20 high-accuracy RESTful APIs. He also served as a mentor at Microverse Inc., helping junior developers succeed in a rigorous full-stack program, with many finishing in the top 10% of their cohort.",
+    "With an MSc in Computer Networking from the University of Bedfordshire, UK and over three years of experience in full-stack development, Ola is committed to continuous learning and using technology as a force for good."
+  ]
   return (
     <div>
       <h2
@@ -17,18 +22,20 @@ export default function AboutMe() {
         data-aos-anchor-placement="top-center"
       />
 
-      <div className="w-full md:w-10/12 md:px-5">
-        <p className="text-lg text-textColor mb-6">
-          I&apos;m a software developer specializing in creating elegant, user-friendly web applications.
-          With expertise in modern frameworks and a strong foundation in software engineering principles,
-          I transform complex problems into simple, beautiful solutions.
-        </p>
+      <div className="w-full md:w-10/12 md:px-0"
+        data-aos="zoom-in-up"
+        data-aos-duration="3000"
+        data-aos-anchor-placement="top-center"
+      >
+        {about.map((text, index) => (
+          <p
+            key={index}
+            className="text-lg text-textColor mb-6"
+          >
+            {text}
+          </p>
+        ))}
 
-        <p className="text-lg text-textColor mb-6">
-          I thrive on challenges and am always eager to learn new technologies and improve my skills.
-          My goal is to build applications that not only meet user needs but also provide a delightful experience.
-          I believe in the power of collaboration and enjoy working with cross-functional teams to bring ideas to life.
-        </p>
         <div className="flex gap-4">
           <Link
             href="/about"

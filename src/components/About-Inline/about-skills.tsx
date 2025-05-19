@@ -4,9 +4,9 @@ import Skills from './skills'
 
 export default function AboutSkills() {
   return (
-    <div>
+    <div className='w-full md:w-10/12 md:ml-14'>
       <h2
-        className='text-2xl md:text-4xl font-semibold text-primary'
+        className='text-2xl md:text-4xl font-semibold text-primary mt-5'
         data-aos="zoom-in-right"
         data-aos-duration="3000"
         data-aos-anchor-placement="top-center"

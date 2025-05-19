@@ -1,6 +1,7 @@
 import React from 'react'
 import AboutMe from './about-me'
 import AboutSkills from './about-skills'
+import ElevatorPitch from './elevator-pitch'
 
 export default function AboutParentComponent() {
   return (
@@ -20,10 +21,11 @@ export default function AboutParentComponent() {
         Get to know me better and my skills
       </p>
       <h1 className="text-2xl md:text-6xl text-center">Me & My Tools</h1>
-      <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 py-10'>
+      <div className='w-full md:w-11/12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 py-10 mx-auto'>
         <AboutMe />
-        <AboutSkills />
+        <ElevatorPitch />
       </div>
+      <AboutSkills />
     </section>
   )
 }
