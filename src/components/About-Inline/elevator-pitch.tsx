@@ -9,7 +9,7 @@ export default function ElevatorPitch() {
         data-aos-duration="3000"
         data-aos-anchor-placement="top-center"
       >
-        <YouTubeVideo videoId='v=2Xj0g1m4k6A' title='Elevator Pitch' autoplay />
+        <YouTubeVideo videoId='_gteW3cwepc' title='Elevator Pitch' />
       </div>
     </div>
   )
