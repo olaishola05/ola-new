@@ -5,27 +5,28 @@ import iconMap from '@/lib/icon-map';
 export default function MiniEducationTimeline() {
   const education = [
     {
-      degree: "Master's in Computer Science",
-      institution: "Tech University",
-      period: "2019 - 2021",
-      description: "Specialized in Web Technologies and Software Engineering. Thesis on scalable architecture for web applications.",
+      degree: "Full Stack Web Development",
+      institution: "Microverse Inc.",
+      period: "2021 - 2022",
+      description: "Spent 1300+ hours mastering algorithms, data structures, and full-stack development while simultaneously developing projects with Ruby on Rails, JavaScript, React, Redux, collaboration, remote working, peer programming, and Git & GitHub.",
+      iconKey: "graduation",
+    },
+    {
+      degree: "Master's in Computer Computer Networking",
+      institution: "University of Bedfordshire",
+      period: "2013 - 2015",
+      description: "A thesis evaluating open-source cloud computing platforms' security model using OpenStack and Eucalyptus cloud platforms.",
       iconKey: "award",
     },
     {
-      degree: "Bachelor's in Software Engineering",
-      institution: "State University",
-      period: "2015 - 2019",
-      description: "Graduated with honors. Led student projects in web development and participated in coding competitions.",
+      degree: "Bachelor's in Computer Networking",
+      institution: "University of Bedfordshire",
+      period: "2010 - 2013",
+      description: "A thesis on the performance evaluation of virtualization in computing environments.",
       iconKey: "book",
     },
-    {
-      degree: "Web Development Bootcamp",
-      institution: "Code Academy",
-      period: "2017",
-      description: "Intensive 12-week program focusing on modern JavaScript frameworks and backend technologies.",
-      iconKey: "clock",
-    }
   ];
+
   return (
     <div className='md:p-5 w-full md:w-11/12'>
       <div className="flex items-center mb-6">
