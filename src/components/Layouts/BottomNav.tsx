@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react'
-import { socialLinks } from '@/app/utils'
 import { ContactForm, Copyright, Icons } from '@/components'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -9,6 +8,7 @@ import Quotes from '../Quotes/Quotes';
 import Testimonials from '../testimonial/Testimonials';
 import { PhoneCallIcon } from 'lucide-react';
 import { MailIcon } from 'lucide-react';
+import { FaWhatsapp } from "react-icons/fa";
 
 const BottomNav = () => {
   const pathname = usePathname()
@@ -52,20 +52,12 @@ const BottomNav = () => {
                     <div className='flex flex-col gap-2'>
                       <p className='text-base font-semibold flex gap-3'>
                         <PhoneCallIcon /> (+234) 8110837448</p>
-
-                      <Link href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className='flex gap-3 font-semibold text-base'><MailIcon /> Click here.</Link>
-
+                      <Link href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className='flex gap-3 font-semibold text-base'><MailIcon /> Email</Link>
+                      <Link href={`https://wa.me/8110837448`} className='flex gap-3 font-semibold text-base' target='_blank' rel='noopener noreferrer'>
+                        <FaWhatsapp className='w-7 h-7' /> WhatsApp
+                      </Link>
                     </div>
                   </div>
-                  {/* <div className='flex gap-1.5 md:items-end md:gap-2 pt-5'>
-                    {socialLinks.map((link) => (
-                      <div key={link.id}
-                        className='flex items-center justify-center'
-                      >
-                        <Icons link={link} key={link.id} />
-                      </div>
-                    ))}
-                  </div> */}
                 </div>
               </div>
             </div>

@@ -51,6 +51,44 @@ model About {
   authorId      String?       @db.ObjectId
 }
 
+type Skills {
+  name        String
+  icon        String?
+  description String
+  experience  String
+}
+
+type SkillsCategory {
+  name   String
+  skills Skills[]
+}
+
+type Experience {
+  title       String
+  company     String
+  period      String
+  description String
+  iconKey     String // e.g., 'server', 'code', etc.
+}
+
+type Education {
+  institution String
+  degree      String
+  description String
+  period      String
+  iconKey     String // e.g., 'graduation' or 'school'
+}
+
+model MiniAbout {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String           @db.ObjectId
+  about          String[]
+  skillsCategory SkillsCategory[]
+  experiences    Experience[]
+  educations     Education[]
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Account {
   id                 String  @id @default(auto()) @map("_id") @db.ObjectId
   userId             String  @db.ObjectId
@@ -92,21 +130,22 @@ enum Providers {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   password      String?
   image         String?
-  role          Role      @default(user)
-  emailVerified DateTime? @map(name: "email_verified")
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  role          Role        @default(user)
+  emailVerified DateTime?   @map(name: "email_verified")
+  createdAt     DateTime    @default(now()) @map(name: "created_at")
+  updatedAt     DateTime    @updatedAt @map(name: "updated_at")
   projects      Project[]
   accounts      Account[]
   sessions      Session[]
   about         About[]
   posts         Post[]
   comments      Comment[]
+  MiniAbout     MiniAbout[]
 
   @@map(name: "users")
 }

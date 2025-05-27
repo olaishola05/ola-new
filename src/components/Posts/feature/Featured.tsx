@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { latestPost } from '@/app/lib'
+import BlogUnderConstruction from '@/components/blog-coming-soon/coming-soon'
 
 const getFeaturedPost = async () => {
   return await latestPost()
@@ -41,8 +42,8 @@ export default async function Featured() {
   const { data } = post
   return (
     <>
-      <BlogHeader />
-      {Object.keys(data).length > 0 ? (
+      {/* <BlogHeader /> */}
+      {/* {Object.keys(data).length > 0 ? (
         <div className='mt-[60px] flex flex-col md:flex-row items-center gap-[50px]'>
           <div className='w-full md:flex-1 h-[300px] md:h-[500px] relative'>
             <Image src={data.postImg} alt="post" fill className='object-cover rounded-lg' />
@@ -54,7 +55,8 @@ export default async function Featured() {
               More</Link>
           </div>
         </div>
-      ) : null}
+      ) : null} */}
+      <BlogUnderConstruction />
     </>
   )
 }

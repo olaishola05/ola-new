@@ -2,7 +2,6 @@ import {
   blogLinks,
   deleteProject,
   formatDate,
-  navItems,
   projectsFilter,
   publishProject,
   randomItemFromArray,
@@ -14,13 +13,12 @@ import {
   updateAboutInfo,
   updateProject
 } from "./utilities";
-import {contactSchema, TestimonialSchema} from "./validations";
-import {educationItems, workExpItems} from "./data";
+import { contactSchema, TestimonialSchema } from "./validations";
+import { educationItems, workExpItems } from "./data";
 
 export { greetings, languages } from "./utilities";
 export { registerSchema, loginSchema } from "./auth.validation"
 export {
-  navItems,
   socialLinks,
   randomItemFromArray,
   contactSchema,
@@ -42,5 +40,6 @@ export {
 export { savePostToFile } from './savePostToFile';
 export { tags } from './categories';
 export type { Tag } from './categories';
+export { removeMyWorksWhenNotOnHome, skillCategories } from './utilities'
 
 

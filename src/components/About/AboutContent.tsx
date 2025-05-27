@@ -6,29 +6,32 @@ interface Props {
 }
 
 const AboutContent = ({ content }: Props) => {
-  const { intro, title, transitionOne, transitionTwo, focused, hobbies } = content
+  const { intro, transitionOne, transitionTwo, focused, hobbies } = content
   return (
-    <main className='w-full'>
-      <h2 className='font-bold text-3xl md:text-6xl my-4 text-center mb-8'>{title}</h2>
-      <p className='text-justify text-base mb-4'>
-        {intro}
-      </p>
+    <main className='w-full md:w-[60%] p-5'>
+      <h2 className='text-2xl md:text-5xl font-semibold text-textColor'>About Me</h2>
+      <hr className='border-textColor w-1/4 my-2 mb-6' />
+      <div>
+        <p className='text-base md:text-lg mb-4 data-aos="zoom-in-up"'>
+          {intro}
+        </p>
 
-      <p className='text-justify text-base mb-4'>
-        {focused}
-      </p>
+        <p className='text-base md:text-lg mb-4 data-aos="zoom-in-up"'>
+          {focused}
+        </p>
 
-      <p className='text-justify text-base mb-4'>
-        {transitionOne}
-      </p>
+        <p className='text-base md:text-lg mb-4 data-aos="zoom-in-up"'>
+          {transitionOne}
+        </p>
 
-      <p className='text-justify text-base mb-4' data-aos="zoom-in-up">
-        {transitionTwo}
-      </p>
+        <p className='text-base md:text-lg mb-4' data-aos="zoom-in-up">
+          {transitionTwo}
+        </p>
 
-      <p className='text-justify text-base mb-4' data-aos="zoom-in-up">
-        {hobbies}
-      </p>
+        <p className='text-base md:text-lg mb-4' data-aos="zoom-in-up">
+          {hobbies}
+        </p>
+      </div>
 
     </main>
   )

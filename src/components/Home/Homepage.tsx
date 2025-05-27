@@ -5,6 +5,8 @@ import Niches from "../Niche/Niches";
 import { getMediumPosts } from "@/queries/queries";
 import { Projects } from "../Projects/Projects";
 import SocialIcons from "./social-icons";
+import AboutParentComponent from "../About-Inline/about-parent";
+import ResumeTimeline from "../resume-timelines/resume-timeline";
 
 export default function Homepage() {
   return (
@@ -12,7 +14,13 @@ export default function Homepage() {
       <Hero />
       <Niches />
       <Suspense fallback={<div>Loading...</div>}>
+        <AboutParentComponent />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <Projects />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ResumeTimeline />
       </Suspense>
       <Suspense fallback={<div>Loading...</div>}>
         <Blogs fetchData={getMediumPosts} />

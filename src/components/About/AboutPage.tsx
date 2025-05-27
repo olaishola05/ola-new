@@ -29,23 +29,22 @@ const AboutPage = ({ data }: AboutPageProps) => {
 
   return (
     <main data-aos="fade-up" data-aos-duration="3000"
-      className='w-full flex flex-col md:mt-10'
+      className='w-full flex flex-col md:mt-20'
     >
-      <h1 className='text-center my-4 font-bold text-7xl md:text-8xl text-[var(--textColor)] md:mb-10' data-aos="zoom-in-up">{"I'm Ola."}</h1>
       {isEditable && userLoggedIn ? (
         <>
           <EditAboutForm about={data} toggleEdit={toggleEditable} />
         </>
       ) : (
         <>
-          <div className='w-[95%] flex flex-col gap-8 md:w-[100%] md:flex-row md:items-center md:gap-20' data-aos="fade-up">
-            {isMobile ? <Image src={aboutData?.profileImgUrl} alt='Ola' width={300} height={400} className='profile w-[150px] h-[150px] rounded-full object-cover shadow-xl self-center' /> : <AboutImage photo={aboutData?.profileImgUrl} />}
-            <div className='about'>
-              <AboutContent content={data} />
-            </div>
+          <div className='w-[95%] flex flex-col gap-8 md:w-[92%] md:flex-row md:items-center md:mx-auto' data-aos="fade-up">
+            <AboutContent content={data} />
+            {isMobile ?
+              <Image src={aboutData?.profileImgUrl} alt='Ola' width={300} height={400} className='w-[150px] h-[150px] rounded-full object-cover shadow-xl self-center' /> :
+              <AboutImage photo={aboutData?.profileImgUrl} />}
           </div>
           <div className='current w-[95%] my-8 mx-auto flex flex-col justify-between items-center md:w-[90%] md:my-12' data-aos="fade-up">
-            <h2 className='text-center my-8 mx-auto text-2xl md:text-5xl'>Currently working on</h2>
+            <h2 className='text-center my-8 mx-auto text-2xl md:text-5xl'>Work History</h2>
             {aboutData?.currentWorks?.map((work, idx) => (
               <CurrentWork
                 key={idx}
@@ -67,7 +66,7 @@ const AboutPage = ({ data }: AboutPageProps) => {
       )}
 
       <div className='resume flex my-8 mx-auto md:mx-0 md:my-20 flex-col' data-aos="fade-up">
-        <h2 className='sub-header text-center my-6 mx-auto text-2xl md:text-5xl font-semibold' data-aos="fade-up">My Resume</h2>
+        <h2 className='sub-header text-center my-6 mx-auto text-2xl md:text-5xl font-semibold' data-aos="fade-up" id='resume'>My Resume</h2>
         <ResumeTabs />
       </div>
     </main>

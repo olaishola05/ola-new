@@ -4,6 +4,7 @@ import Companies from "./Companies";
 import HeroTitleAnimation from "./greeting";
 import Image from "next/image";
 import HeroSocialIcons from "./hero-social";
+import ResumeModal from "../Modal/resume-modal";
 
 export default function HeroSection() {
   return (
@@ -30,21 +31,14 @@ export default function HeroSection() {
           >
             My works
           </Link>
-          <Link
-            href={`${process.env.NEXT_PUBLIC_RESUME_URL}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[200px] h-[45px] px-3 py-5 rounded-full leading-4 tracking-tighter shadow-lg flex items-center justify-center gap-10 text-base md:text-lg text-[var(--ctaText)] bg-[var(--cta)] border border-[var(--primary)] hover:bg-inherit hover:text-[var(--cta)] hover:border hover:border-[var(--cta)]"
-          >
-            Hire me
-          </Link>
+          <ResumeModal />
         </div>
 
         <HeroSocialIcons />
         {/* <Companies /> */}
       </div>
-      <div className="w-full md:flex-1">
-        <Image src="/images/ola.png" alt="Hero Image" width={1024} height={1024} loading="lazy" className="h-[36rem] w-full md:w-11/12 rounded-xl object-cover" />
+      <div className="w-full md:flex-1 rounded-full [clip-path:circle(50%_at_50%_50%)]">
+        <Image src="/images/ola.png" alt="Hero Image" width={1024} height={1024} loading="lazy" className="h-[36rem] w-full md:w-11/12 object-cover" />
       </div>
     </main>
   );

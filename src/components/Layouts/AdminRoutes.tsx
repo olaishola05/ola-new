@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-import { navItems, blogLinks } from '@/app/utils';
+import { removeMyWorksWhenNotOnHome, blogLinks } from '@/app/utils';
 import { AuthRoutes } from './AuthRoutes';
 
 interface AdminRoutesProps {
@@ -20,6 +20,7 @@ interface MobileAdminRoutesProps {
 }
 
 const MobileConditionalRoutes = ({ isActive, pathname, setOpen }: MobileRoutesProps) => {
+  const navItems = removeMyWorksWhenNotOnHome(pathname)
   return (<>
     {pathname.startsWith('/blog') && (<>
       {blogLinks.map(({ path, title, id }) => (

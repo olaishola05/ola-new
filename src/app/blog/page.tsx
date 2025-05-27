@@ -9,11 +9,11 @@ export default function Home({ searchParams }: { searchParams: { page: string, c
   return (
     <div className='container'>
       <Featured />
-      <CategoryList />
+      {/* <CategoryList />
       <div className='flex gap-[50px]'>
         <PostCardLists page={page} />
         <Menu />
-      </div>
+      </div> */}
     </div>
   )
 }

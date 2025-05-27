@@ -34,7 +34,6 @@ const EditAboutForm: React.FC<AboutPageProps> = (props) => {
     }
     const res = await updateAboutInfo(props?.about?.id, updateData)
     if (res?.status === 200 || res?.status === 'success') {
-      console.log(res)
       setSuccess(!success)
       tailwindToast('success', 'About updated successfully')
     } else {
@@ -53,12 +52,6 @@ const EditAboutForm: React.FC<AboutPageProps> = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}
         className='flex w-full justify-center items-center md:w-2/3 md:my-0 md:mx-auto md:flex-col md:justify-between md:items-center md:gap-8'
       >
-        <ControllInput
-          name="title"
-          control={control}
-          inputprops={register('title')}
-          width={'100%'}
-        />
         <ControllInput
           name="intro"
           control={control}

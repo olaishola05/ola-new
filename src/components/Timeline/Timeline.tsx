@@ -1,7 +1,8 @@
 'use client'
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Chrono } from 'react-chrono';
+import { ThemeContext } from '@/app/config/ThemeContext';
 
 interface TimelineItem {
   title?: string;
@@ -18,6 +19,7 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ items, mode }) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <div className='w-full md:w-[90%] my-0 md:mx-auto'>
       <Chrono
@@ -38,15 +40,15 @@ const Timeline: React.FC<TimelineProps> = ({ items, mode }) => {
         verticalBreakPoint={400}
         hideControls={true}
         theme={{
-          primary: 'var(--primary)',
-          secondary: 'var(--bg)',
-          cardBgColor: 'var(--contactBg)',
-          cardSubtitleColor: 'var(--primary)',
-          cardTitleColor: 'var(--primary)',
-          titleColor: 'var(--primary)',
-          titleColorActive: 'var(--primary)',
-          nestedCardBgColor: 'var(--contactBg)',
-          detailsColor: 'var(--textColor)',
+          primary: `${theme === 'dark' ? 'black' : 'var(--primary)'}`,
+          secondary: `${theme === 'dark' ? 'black' : 'var(--primary)'}`,
+          cardBgColor: `${theme === 'dark' ? 'white' : 'var(--bg)'}`,
+          cardSubtitleColor: `${theme === 'dark' ? 'black' : 'var(--primary)'}`,
+          cardTitleColor: `${theme === 'dark' ? 'black' : 'var(--primary)'}`,
+          titleColor: `${theme === 'dark' ? 'black' : 'var(--primary)'}`,
+          titleColorActive: `${theme === 'dark' ? 'black' : 'var(--primary)'}`,
+          nestedCardBgColor: `${theme === 'dark' ? 'white' : 'var(--bg)'}`,
+          detailsColor: `${theme === 'dark' ? 'white' : 'black'}`,
         }}
         cardWidth={700}
         useReadMore={true}
@@ -54,7 +56,7 @@ const Timeline: React.FC<TimelineProps> = ({ items, mode }) => {
         activeItemIndex={0}
         nestedCardHeight={200}
         fontSizes={{
-          cardSubtitle: '0.9rem',
+          cardSubtitle: '1rem',
           cardText: '1rem',
           cardTitle: '1.1rem',
           title: '1rem',
