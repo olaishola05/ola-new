@@ -416,6 +416,12 @@ export const skillCategories = [
         experience: "Built microservices and APIs using Go, focusing on performance and concurrency."
       },
       {
+        name: "Python",
+        icon: "🐍",
+        description: "High-level, interpreted programming language known for its readability and versatility.",
+        experience: "Developed backend services and scripts using Python, leveraging frameworks like Flask and FastAPI."
+      },
+      {
         name: "Express",
         icon: "🚂",
         description: "Fast, unopinionated, minimalist web framework for Node.js.",
@@ -433,12 +439,12 @@ export const skillCategories = [
         description: "Powerful, open source object-relational database system with SQL compliance.",
         experience: "Implemented complex data models with relationships, constraints, and optimized queries."
       },
-      {
-        name: "GraphQL",
-        icon: "⚛️",
-        description: "Query language for APIs and a runtime for executing those queries with your existing data.",
-        experience: "Developed GraphQL APIs with Apollo Server, handling resolvers, mutations, and subscriptions."
-      },
+      // {
+      //   name: "GraphQL",
+      //   icon: "⚛️",
+      //   description: "Query language for APIs and a runtime for executing those queries with your existing data.",
+      //   experience: "Developed GraphQL APIs with Apollo Server, handling resolvers, mutations, and subscriptions."
+      // },
     ]
   },
   {
@@ -456,6 +462,18 @@ export const skillCategories = [
         description: "Promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite, and Microsoft SQL Server.",
         experience: "Built and maintained applications using Sequelize for relational database management."
       },
+      {
+        name: "Mongoose",
+        icon: '🐍',
+        description: "MongoDB object modeling tool designed to work in an asynchronous environment.",
+        experience: "Created schemas and models for MongoDB collections using Mongoose, implementing validation and middleware."
+      },
+      {
+        name: "Gorm",
+        icon: "🐹",
+        description: "ORM for Go, providing a simple and powerful way to interact with databases.",
+        experience: "Developed applications using Gorm for database interactions, leveraging its features for migrations and associations."
+      }
     ]
   },
   {
@@ -467,12 +485,12 @@ export const skillCategories = [
         description: "Platform for developing, shipping, and running applications in containers.",
         experience: "Containerized applications and created multi-stage build pipelines for optimized images."
       },
-      {
-        name: "AWS",
-        icon: "☁️",
-        description: "Comprehensive, evolving cloud computing platform provided by Amazon.",
-        experience: "Deployed and managed applications using EC2, S3, Lambda, and other AWS services."
-      },
+      // {
+      //   name: "AWS",
+      //   icon: "☁️",
+      //   description: "Comprehensive, evolving cloud computing platform provided by Amazon.",
+      //   experience: "Deployed and managed applications using EC2, S3, Lambda, and other AWS services."
+      // },
       {
         name: "Git",
         icon: "🔄",
@@ -485,12 +503,12 @@ export const skillCategories = [
         description: "Practices of continuous integration and continuous delivery/deployment.",
         experience: "Set up automated testing and deployment pipelines using GitHub Actions and Jenkins."
       },
-      {
-        name: "Kubernetes",
-        icon: "⚙️",
-        description: "Open-source container orchestration system for automating application deployment and scaling.",
-        experience: "Deployed applications to K8s clusters, configuring services, deployments, and ingress."
-      },
+      // {
+      //   name: "Kubernetes",
+      //   icon: "⚙️",
+      //   description: "Open-source container orchestration system for automating application deployment and scaling.",
+      //   experience: "Deployed applications to K8s clusters, configuring services, deployments, and ingress."
+      // },
     ]
   },
 ];
