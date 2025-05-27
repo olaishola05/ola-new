@@ -49,10 +49,14 @@ const BlogSection = ({ data }: BlogSectionProps) => {
         <div className="md:mt-10">
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8">
             {data?.items &&
-              data.items.slice(0, 3).map((item: any) => {
+              data.items.slice(0, 6).map((item: any) => {
                 const tags = item?.categories
                   ? randomItemFromArray(item.categories, 5)
                   : "";
+                const img = item.description
+                  ? item.description.match(/<img[^>]+src="([^">]+)"/)?.[1]
+                  : item.thumbnail;
+                item.thumbnail = img || item.thumbnail;
                 return (
                   <CustomCard
                     key={item.guid}
