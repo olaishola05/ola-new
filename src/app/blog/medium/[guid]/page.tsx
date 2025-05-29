@@ -3,17 +3,20 @@ import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 
+export const dynamic = 'force-dynamic'
+
 const slugTitle = (title: string) => {
   return title.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
 }
 
-export async function generateStaticParams(): Promise<{ title: string }[]> {
+export async function generateStaticParams(): Promise<{ guid: string }[]> {
   const response = await fetch(`${process.env.MEDIUM_API_URL}`);
   const data = await response.json();
   if (!data || !data.items) return [];
-  return data.items.map((item: any) => ({
-    title: item.title
-  }));
+  return data.items.filter((item: any) => item.guid)
+    .map((item: any) => ({
+      guid: item.guid.split('/').pop() // Extract the last part of the GUID
+    }));
 }
 
 const fetchPost = async (guid: string) => {
@@ -53,7 +56,7 @@ const fetchPost = async (guid: string) => {
 }
 
 export default async function MediumPost({ searchParams }: { searchParams: { guid: string } }) {
-  const guid = searchParams.guid
+  const { guid } = searchParams;
   if (!guid) {
     return <div>Post not found</div>;
   }
@@ -69,8 +72,8 @@ export default async function MediumPost({ searchParams }: { searchParams: { gui
 
   const { post, posts } = result;
   const item = post.items[0];
-  const { title, content, pubDate, author } = item;
-  const titleSlug = slugTitle(title);
+  const { title: postTitle, content, pubDate, author } = item;
+  const titleSlug = slugTitle(postTitle);
   const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -107,7 +110,7 @@ export default async function MediumPost({ searchParams }: { searchParams: { gui
         )}
       </div>
       <div className='w-full md:max-w-3xl mx-auto p-1 md:p-4 relative mt-14'>
-        <h1 className=" text-2xl md:text-4xl font-bold mb-4 text-textColor">{title}</h1>
+        <h1 className=" text-2xl md:text-4xl font-bold mb-4 text-textColor">{postTitle}</h1>
         <p className="text-textColor mb-2">
           <span className="text-base text-softText">By {authorName}</span>
           <span className="text-base text-softText mx-2">|</span>
