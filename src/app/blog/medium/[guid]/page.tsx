@@ -57,7 +57,8 @@ export default async function MediumPost({ searchParams }: { searchParams: { gui
   if (!guid) {
     return <div>Post not found</div>;
   }
-  const result = await fetchPost(guid);
+  const fullGuid = `https://medium.com/p/${guid}`;
+  const result = await fetchPost(fullGuid);
   if (!result || !result.post || !result.post.items || result.post.items.length === 0) {
     return <div>Post not found</div>;
   }
@@ -79,7 +80,7 @@ export default async function MediumPost({ searchParams }: { searchParams: { gui
   const authorName = author || 'Unknown Author';
   const contentWithoutTitle = content.replace(/<h3>.*?<\/h3>/, '');
 
-  const postsIndex = posts.findIndex((post: any) => post.guid === guid);
+  const postsIndex = posts.findIndex((post: any) => post.guid === fullGuid);
   const nextPost = postsIndex + 1 < posts.length ? posts[postsIndex + 1] : null;
   const postslug = nextPost ? slugTitle(nextPost.title) : '';
   const prevPost = postsIndex - 1 >= 0 ? posts[postsIndex - 1] : null;
@@ -87,19 +88,19 @@ export default async function MediumPost({ searchParams }: { searchParams: { gui
 
   return (
     <>
-      <Link href="/" className="flex gap-1 fixed top-24 left-2 md:left-8 text-cta font-semibold text-base hover:text-primary transition-colors">
+      <Link href="/" className="flex gap-1 absolute top-24 left-2 md:left-8 text-cta font-semibold text-base hover:text-primary transition-colors">
         <ChevronLeft className="w-6 h-6" />Back to Home
       </Link>
 
-      <div className="hidden md:flex flex-col gap-3 justify-between max-w-sm mx-auto p-4 fixed top-32 right-2">
+      <div className="hidden md:flex flex-col gap-3 justify-between max-w-sm mx-auto p-4 absolute top-32 right-2">
         {prevPost && (
-          <Link href={`/blog/medium/${prevPostSlug}?guid=${prevPost.guid}`} className="text-cta hover:text-primary transition-colors flex flex-col gap-1">
+          <Link href={`/blog/medium/${prevPostSlug}?guid=${prevPost?.guid.split('/').pop()}`} className="text-cta hover:text-primary transition-colors flex flex-col gap-1">
             <span className='font-bold'>Previous Post:</span>
             {prevPost.title}
           </Link>
         )}
         {nextPost && (
-          <Link href={`/blog/medium/${postslug}?guid=${nextPost.guid}`} className="text-cta hover:text-primary transition-colors flex flex-col gap-1">
+          <Link href={`/blog/medium/${postslug}?guid=${nextPost.guid.split('/').pop()}`} className="text-cta hover:text-primary transition-colors flex flex-col gap-1">
             <span className='font-bold'>Next Post:</span>
             {nextPost.title}
           </Link>
@@ -120,9 +121,9 @@ export default async function MediumPost({ searchParams }: { searchParams: { gui
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4 text-textColor">Other Articles</h2>
           <ul className="list-disc pl-5">
-            {posts.filter((post: any) => (post.guid !== guid)).map((post: any) => (
+            {posts.filter((post: any) => (post.guid !== fullGuid)).map((post: any) => (
               <li key={post.guid} className="mb-2">
-                <Link href={`/blog/medium/${titleSlug}?guid=${post.guid}`} className="text-blue-600 hover:underline">
+                <Link href={`/blog/medium/${titleSlug}?guid=${post.guid.split('/').pop()}`} className="text-blue-600 hover:underline">
                   {post.title}
                 </Link>
               </li>

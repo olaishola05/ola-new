@@ -38,7 +38,6 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                   ? item.description.match(/<img[^>]+src="([^">]+)"/)?.[1]
                   : item.thumbnail;
                 item.thumbnail = img || item.thumbnail;
-                const sluggedTitle = slugify(item.title);
                 return (
                   <CustomCard
                     key={item.guid}
@@ -47,7 +46,7 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                     name={tags || "No tags"}
                     duration={readTimeInfo(item.content)}
                     description={item.title}
-                    url={`/blog/medium/${sluggedTitle}?guid=${item.guid}`}
+                    url={`/blog/medium/${slugify(item.title)}?guid=${item.guid.split("/").pop()}`}
                   />
                 );
               })}
@@ -70,7 +69,7 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                     name={tags || "No tags"}
                     duration={readTimeInfo(item.content)}
                     description={item.title}
-                    url={`/blog/medium/${slugify(item.title)}?guid=${item.guid}`}
+                    url={`/blog/medium/${slugify(item.title)}?guid=${item.guid.split("/").pop()}`}
                   />
                 );
               })}
