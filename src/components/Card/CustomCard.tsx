@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { BiTimeFive as AccessTimeSharpIcon } from "react-icons/bi";
+import Link from "next/link";
 
 interface CustomCardProps {
   image: string;
@@ -10,6 +11,7 @@ interface CustomCardProps {
   duration?: string;
   overlayText?: string;
   onClick?: () => void;
+  url?: string;
 }
 
 const CardContainer = ({ children }: React.PropsWithChildren<{}>) => (
@@ -65,16 +67,16 @@ const CardMediaTop = ({
 );
 
 const OverlayDiv = ({
-  onClick,
+  url,
   overlayText,
-}: React.PropsWithChildren<{ onClick?: () => void; overlayText?: string }>) => (
+}: React.PropsWithChildren<{ url?: string; overlayText?: string }>) => (
   <div className="absolute top-0 bottom-0 left-0 right-0 opacity-0 hover:opacity-100 transition duration-300 hover:bg-[var(--softBg)] hover:transform hover:rounded-lg">
-    <button
-      onClick={onClick}
+    <Link
+      href={url || "#"}
       className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 text-base cursor-pointer rounded-md text-center transition duration-300 hover:border hover:border-[var(--primary)] shadow-lg"
     >
       {overlayText}
-    </button>
+    </Link>
   </div>
 );
 
@@ -85,7 +87,7 @@ const CustomCard = ({
   role,
   duration,
   overlayText,
-  onClick,
+  url,
 }: CustomCardProps) => {
   return (
     <CardContainer>
@@ -94,7 +96,7 @@ const CustomCard = ({
         <CardMediaTop name={name} role={role} duration={duration} />
         <p className="text-dark text-left">{description.slice(0, 200)}...</p>
       </CardContentContainer>
-      <OverlayDiv onClick={onClick} overlayText={overlayText} />
+      <OverlayDiv url={url} overlayText={overlayText} />
     </CardContainer>
   );
 };
