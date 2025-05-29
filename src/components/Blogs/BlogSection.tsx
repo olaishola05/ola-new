@@ -4,38 +4,19 @@ import React from "react";
 import Link from "next/link";
 import { randomItemFromArray, readTimeInfo } from "@/app/utils";
 import { CustomCard } from "@/components";
-import { useToggle } from "@/app/hooks";
-import { BlogModal } from "@/components";
+import { slugify } from "@/app/utils/utilities";
 
 interface BlogSectionProps {
   data: any;
 }
 
 const BlogSection = ({ data }: BlogSectionProps) => {
-  const { isOpen: openBlogModal, toggleOpen: setOpenBlogModal } =
-    useToggle(false);
-  const [blog, setBlog] = React.useState({});
-
-  const handleOpenBlogModal = (guid: string) => {
-    setOpenBlogModal();
-    const item = data?.items?.find((item: any) => item.guid === guid);
-    setBlog(item);
-  };
-
   return (
     <div
       data-aos="fade-up"
       data-aos-duration="3000"
       className="md:px-2 pb-9 w-full mb-10 lg:px-10"
     >
-      {openBlogModal && (
-        <BlogModal
-          blogItem={blog}
-          open={openBlogModal}
-          handleClose={handleOpenBlogModal}
-        />
-      )}
-
       <div className="w-full flex flex-col gap-2">
         <p
           data-aos="fade-up"
@@ -57,6 +38,7 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                   ? item.description.match(/<img[^>]+src="([^">]+)"/)?.[1]
                   : item.thumbnail;
                 item.thumbnail = img || item.thumbnail;
+                const sluggedTitle = slugify(item.title);
                 return (
                   <CustomCard
                     key={item.guid}
@@ -65,7 +47,7 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                     name={tags || "No tags"}
                     duration={readTimeInfo(item.content)}
                     description={item.title}
-                    onClick={() => handleOpenBlogModal(item.guid)}
+                    url={`/blog/medium/${sluggedTitle}?guid=${item.guid}`}
                   />
                 );
               })}
@@ -76,6 +58,10 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                 const tags = item?.categories
                   ? randomItemFromArray(item.categories, 5)
                   : "";
+                const img = item.description
+                  ? item.description.match(/<img[^>]+src="([^">]+)"/)?.[1]
+                  : item.thumbnail;
+                item.thumbnail = img || item.thumbnail;
                 return (
                   <CustomCard
                     key={item.guid}
@@ -84,7 +70,7 @@ const BlogSection = ({ data }: BlogSectionProps) => {
                     name={tags || "No tags"}
                     duration={readTimeInfo(item.content)}
                     description={item.title}
-                    onClick={() => handleOpenBlogModal(item.guid)}
+                    url={`/blog/medium/${slugify(item.title)}?guid=${item.guid}`}
                   />
                 );
               })}
