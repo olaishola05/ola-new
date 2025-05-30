@@ -3,19 +3,20 @@ import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
 
 const slugTitle = (title: string) => {
   return title.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
 }
 
-export async function generateStaticParams(): Promise<{ guid: string }[]> {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const response = await fetch(`${process.env.MEDIUM_API_URL}`);
   const data = await response.json();
   if (!data || !data.items) return [];
-  return data.items.filter((item: any) => item.guid)
+  return data.items.filter((item: any) => item.title && item.guid)
     .map((item: any) => ({
-      guid: item.guid.split('/').pop() // Extract the last part of the GUID
+      slug: slugTitle(item.title),
     }));
 }
 
@@ -32,7 +33,7 @@ const fetchPost = async (guid: string) => {
   }
 
   if (!data.items.some((item: any) => item.guid === guid)) {
-    console.error(`Post with title ${guid} does not exist in the data`);
+    console.error(`Post with guid ${guid} does not exist in the data`);
     return null;
   }
 
@@ -55,13 +56,16 @@ const fetchPost = async (guid: string) => {
   };
 }
 
-export default async function MediumPost({ searchParams }: { searchParams: { guid: string } }) {
+export default async function MediumPost({ params, searchParams }: { params: { slug: string }, searchParams: { guid?: string } }) {
   const { guid } = searchParams;
+
   if (!guid) {
     return <div>Post not found</div>;
   }
+
   const fullGuid = `https://medium.com/p/${guid}`;
   const result = await fetchPost(fullGuid);
+
   if (!result || !result.post || !result.post.items || result.post.items.length === 0) {
     return <div>Post not found</div>;
   }
