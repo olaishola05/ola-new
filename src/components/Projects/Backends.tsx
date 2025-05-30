@@ -4,8 +4,9 @@ import { projectsFilter } from '@/app/utils'
 import { CustomCard } from '@/components'
 import ProjectsContainer from './ProjectsContainer'
 import EmptyProject from './EmptyProject'
+import { slugify } from '@/app/utils/utilities'
 
-const BackendProjects: React.FC<ProjectProps> = ({ projects, handleOpenModal }) => {
+const BackendProjects: React.FC<ProjectProps> = ({ projects }) => {
   const backendProjects = projectsFilter(projects, 'backend')
 
   if (backendProjects.length === 0) {
@@ -22,7 +23,7 @@ const BackendProjects: React.FC<ProjectProps> = ({ projects, handleOpenModal }) 
           name={item.name}
           role={item.tag}
           description={item.description}
-          onClick={() => handleOpenModal(item.id)}
+          url={`/projects/${slugify(item.name)}`}
         />
       ))}
     </ProjectsContainer>

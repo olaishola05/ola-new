@@ -100,7 +100,7 @@ export type ProjectProps = {
     tag: string | null;
     authorId: string | null;
   }[]
-  handleOpenModal: (id: string) => void
+  handleOpenModal?: (id: string) => void
 }
 
 export type currentWork = {

@@ -4,8 +4,9 @@ import { ProjectProps } from '@/app/types'
 import { projectsFilter } from '@/app/utils'
 import ProjectsContainer from './ProjectsContainer'
 import EmptyProject from './EmptyProject'
+import { slugify } from '@/app/utils/utilities'
 
-const FrontendProjects = ({ projects, handleOpenModal }: ProjectProps) => {
+const FrontendProjects = ({ projects }: ProjectProps) => {
   const frontendProjects = projectsFilter(projects, 'frontend')
 
   if (frontendProjects.length === 0) {
@@ -22,7 +23,7 @@ const FrontendProjects = ({ projects, handleOpenModal }: ProjectProps) => {
           name={item.name}
           role={item.tag}
           description={item.description}
-          onClick={() => handleOpenModal(item.id)}
+          url={`/projects/${slugify(item.name)}`}
         />
       ))}
     </ProjectsContainer>
