@@ -69,9 +69,8 @@ export default function ProjectCarousel<TData extends any[]>({ data }: { data: T
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-
       <div className="text-muted-foreground py-2 text-center text-sm">
-        Slide {current} of {count}
+        Image {current} of {count}
       </div>
     </div>
   )
