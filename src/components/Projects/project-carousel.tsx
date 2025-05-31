@@ -46,8 +46,8 @@ export default function ProjectCarousel<TData extends any[]>({ data }: { data: T
           {data.map((image, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
-                <Card className="w-full h-full">
-                  <CardContent className="p-0 flex aspect-video items-center justify-center relative hover:aspect-square transition-all duration-300">
+                <Card className="w-full h-full border-none">
+                  <CardContent className="p-0 flex aspect-video relative hover:scale-150 transition-all duration-300">
                     <Image
                       src={image}
                       alt={`Project image ${index + 1}`}
