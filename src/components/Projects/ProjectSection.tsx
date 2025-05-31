@@ -87,7 +87,7 @@ const ProjectSection = ({ data }: props) => {
               overlayText="View Project"
               name={project.name}
               role={project.tag}
-              description={project.description}
+              description={project.description[0]}
               url={`/projects/${slugify(project.name)}`}
             />
           ))}

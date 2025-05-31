@@ -22,7 +22,7 @@ const BackendProjects: React.FC<ProjectProps> = ({ projects }) => {
           overlayText='View Project'
           name={item.name}
           role={item.tag}
-          description={item.description}
+          description={item.description[0]}
           url={`/projects/${slugify(item.name)}`}
         />
       ))}
