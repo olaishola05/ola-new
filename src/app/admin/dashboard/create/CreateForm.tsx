@@ -6,12 +6,24 @@ import { useForm } from "react-hook-form";
 import { ControllInput } from "@/components";
 import { Project } from "@/app/types";
 import { tailwindToast } from "@/components/Toast/Toast";
+import InputFile from "@/components/Form/file-input";
+import UploadImages from "./upload-images";
 
 const InputBoxStyles = ({ children }: { children: ReactNode }) => (
   <div className="flex gap-3">{children}</div>
 );
 
+function textToParagraphArray(inputText: string): string[] {
+  if (!inputText) return [];
+  return inputText
+    .split(/\n\s*\n/)
+    .map(paragraph => paragraph.trim())
+    .filter(paragraph => paragraph.length > 0);
+}
+
 export default function CreateForm() {
+  const [coverImg, setCoverImg] = useState<string>('')
+  const [images, setImages] = useState<string[]>([])
   const [responseOk, setResponseOk] = useState<boolean>(false);
   const {
     register,
@@ -23,12 +35,12 @@ export default function CreateForm() {
     mode: "onBlur",
     defaultValues: {
       name: "",
-      description: "",
+      description: [],
       githubUrl: "",
       liveUrl: "",
       stacks: [],
       coverImgUrl: "",
-      modalImgUrl: "",
+      images: [],
       tag: "",
     },
   });
@@ -36,16 +48,22 @@ export default function CreateForm() {
   const handleReset = useCallback(() => {
     tailwindToast("info", "Resetting form...", "", "");
     reset();
+    setCoverImg("");
+    setImages([]);
   }, [reset]);
 
   const onSubmit = async (data: Project) => {
     const newData: Project = {
       ...data,
+      description: textToParagraphArray(data.description.toString()),
+      coverImgUrl: coverImg,
+      images: images.map((img: string) => img.trim()),
       stacks: data?.stacks
         ?.toString()
         .split(",")
         .map((item: string) => item.trim()),
     };
+
     const res = await sendDataToBackend(
       newData,
       `${process.env.NEXT_PUBLIC_API_URL}`,
@@ -108,22 +126,18 @@ export default function CreateForm() {
         </InputBoxStyles>
 
         <InputBoxStyles>
-          <ControllInput
-            control={control}
-            name="coverImgUrl"
-            placeholder="cover image url"
-            size="small"
-            width={"100%"}
-            inputprops={register("coverImgUrl")}
+          <InputFile
+            label="Cover Image"
+            name="coverImg"
+            setCoverImg={setCoverImg}
+            isMultiple={false}
           />
-
-          <ControllInput
-            control={control}
-            name="modalImgUrl"
-            placeholder="modal image url"
-            size="small"
-            width={"100%"}
-            inputprops={register("modalImgUrl")}
+          <InputFile
+            label="Other Images"
+            name="otherImages"
+            setImages={setImages}
+            isMultiple={true}
+            currentImages={images}
           />
         </InputBoxStyles>
         <ControllInput
@@ -142,6 +156,7 @@ export default function CreateForm() {
           type="textarea"
         />
 
+        <UploadImages coverImg={coverImg} images={images} setImages={setImages} />
         <div className="w-full flex gap-4 justify-center mt-3">
           <button
             type="submit"
