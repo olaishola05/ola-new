@@ -16,4 +16,5 @@ export {
 };
 
 export { useHighlighted } from './useHighlighted'
+export { useUploadToCloudinary } from './useUploadToCloudinary'
 
