@@ -2,7 +2,15 @@
 
 ## Description
 
-A fullstack app built with NextJS/TS, Prisma, MongoDB, Material UI, Next API, Next Authentication with features to add projects, edit, delete, toggle projects on & off and filter projects based on tech stacks.
+A full-stack web application built with Next.js (App Router) and TypeScript, designed to showcase technical projects and publish personal blogs. The app features dynamic project management (create/edit/delete/toggle visibility), secure NextAuth credentials-based login, and a markdown-based blogging system optimized for performance and SEO.
+
+- Backend: Built with Next.js API routes, Prisma, and MongoDB, supporting relational data for projects and tech stacks.
+- Frontend: UI built using Material UI and TailwindCSS for a responsive, branded interface.
+- Forms: Managed via React Hook Form and Yup, with real-time validation and error handling.
+- Performance: Uses SSG and ISR for fast load times and optimized indexing.
+- Email Integration: Email notifications via Resend and React-Email for communication features.
+
+💡 Designed with scalability and real-world use in mind, this project demonstrates my ability to independently deliver a secure, performant, and maintainable full-stack application from the ground up.
 
 ## This project is bootstrapped with Fullstack Nextjs Boilerplate
 
@@ -33,7 +41,7 @@ A fullstack app built with NextJS/TS, Prisma, MongoDB, Material UI, Next API, Ne
 - **TypeScript** - Static Typing
 - **Prisma** - ORM
 - **MongoDB** - Database
-- **Material UI** - UI Library
+- **TailwindCSS & Shadcn UI** - UI Library
 - **Next API** - API Routes
 - **Next Authentication** - Authentication
 - **Next Image** - Image Optimization
