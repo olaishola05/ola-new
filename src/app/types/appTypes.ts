@@ -4,11 +4,11 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 export type Project = {
   [x: string]: any;
   name: string,
-  description: string,
+  description: string[],
   stacks: string[],
   githubUrl: string,
   liveUrl: string,
-  modalImgUrl: string,
+  images: string[],
   coverImgUrl: string,
   tag: string,
   createdAt: string,
