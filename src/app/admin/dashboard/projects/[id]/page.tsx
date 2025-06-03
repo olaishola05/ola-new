@@ -69,8 +69,8 @@ const ProjectPage = async ({ params }: Props) => {
       <div className="w-[85%] h-full grid grid-cols-1 md:grid-cols-1 gap-1 p-5 my-[100px] mx-auto bg-[var(--contactBg)] rounded-lg">
         <div className="relative h-[408px] p-4 md:p-0">
           <Image
-            src={project?.modalImgUrl!}
-            alt={project?.modalImgUrl!}
+            src={project?.coverImgUrl || project?.images[0]}
+            alt={project?.coverImgUrl || project?.images[0]}
             fill
             className="w-full absolute object-cover rounded-lg"
           />
@@ -82,7 +82,14 @@ const ProjectPage = async ({ params }: Props) => {
             </h6>
             <ConditionalHeader project={project} />
           </div>
-          <p className="text-lg font-normal mb-4">{project?.description}</p>
+          {project?.description.map((text: string, index: number) => (
+            <p
+              key={index}
+              className="text-textColor text-lg font-normal mb-4"
+            >
+              {text}
+            </p>
+          ))}
           <ul className="flex flex-wrap gap-2">
             Tech Stacks:{" "}
             {project?.stacks.map((stack: string, idx: number) => (
