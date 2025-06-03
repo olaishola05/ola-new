@@ -72,7 +72,6 @@ export default async function ProjectDetailsPage({ params }: { params: { name: s
   const projectIdx = projects.findIndex((project) => project.name === title)
   const nextProject = projectIdx + 1 < projects.length ? projects[projectIdx + 1] : null;
   const prevProject = projectIdx - 1 >= 0 ? projects[projectIdx - 1] : null;
-  console.log('Project:', project.images);
 
   return (
     <div className='mt-36 mb-10'>
