@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
           githubUrl: true,
           liveUrl: true,
           coverImgUrl: true,
-          modalImgUrl: true,
+          images: true,
           tag: true,
           published: true,
           createdAt: true,
@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
           githubUrl: true,
           liveUrl: true,
           coverImgUrl: true,
-          modalImgUrl: true,
+          images: true,
           tag: true,
           published: true,
           createdAt: true,
@@ -102,7 +102,7 @@ export async function GET(req: NextRequest) {
           githubUrl: true,
           liveUrl: true,
           coverImgUrl: true,
-          modalImgUrl: true,
+          images: true,
           tag: true,
           published: true,
           createdAt: true,
@@ -125,9 +125,9 @@ export async function POST(
   const session = await getAuthSession();
 
   try {
-    const { name, description, stacks, githubUrl, liveUrl, coverImgUrl, modalImgUrl, tag }: Project = await req.json();
+    const { name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag }: Project = await req.json();
     const project = {
-      name, description, stacks, githubUrl, liveUrl, coverImgUrl, modalImgUrl, tag,
+      name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag,
     };
 
     if (!session?.user?.email) {
