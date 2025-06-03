@@ -1,27 +1,87 @@
+import prisma from '@/app/lib/prisma';
 import React from 'react'
+import Link from 'next/link';
+import { ArrowBigLeft } from 'lucide-react';
+import ProjectDetails from '@/components/Projects/project-details';
+import ProjectsNavigations from '@/components/Projects/projects-navigation';
 
-export default function ProjectDetails({ params }: { params: { name: string } }) {
+const slugTitle = (title: string) => {
+  return title.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+}
+
+export async function generateStaticParams(): Promise<{ title: string }[]> {
+  const projects = await prisma.project.findMany({
+    where: {
+      published: true,
+    },
+    select: {
+      name: true,
+    },
+  });
+
+  if (projects && projects.length > 0) {
+    return projects.map((project) => ({
+      title: slugTitle(project.name),
+    }));
+  }
+  return [];
+}
+
+const fetchProject = async (name: string) => {
+  const project = prisma.project.findUnique({
+    where: {
+      name: name
+    },
+  });
+  return project;
+}
+
+const fetchProjects = async () => {
+  const projects = await prisma.project.findMany({
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+  return projects;
+}
+
+export default async function ProjectDetailsPage({ params }: { params: { name: string } }) {
   const { name } = params;
   if (!name) {
     return <div>Project not found</div>;
   }
+
+  const title = name.replace(/-/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+  const projectData = fetchProject(title);
+  const projectsData = fetchProjects();
+
+  const [project, projects] = await Promise.all([projectData, projectsData]);
+
+  if (!project) {
+    return <div>{`Project with name ${title} not found`}</div>;
+  }
+
+  if (!projects || projects.length === 0) {
+    return <div>No projects available</div>;
+  }
+
+  const projectIdx = projects.findIndex((project) => project.name === title)
+  const nextProject = projectIdx + 1 < projects.length ? projects[projectIdx + 1] : null;
+  const prevProject = projectIdx - 1 >= 0 ? projects[projectIdx - 1] : null;
+  console.log('Project:', project.images);
+
   return (
-    <div>
-      <h1>Project Details for: {name}</h1>
-      {/* Here you can add more details about the project */}
-      <p>This is a placeholder for the project details page.</p>
-      <p>More information about the project will be displayed here.</p>
-      <p>Project name: {name}</p>
-      <p>Additional project information can be fetched from an API or database.</p>
-      <p>Consider adding components to display project images, descriptions, and links.</p>
-      <p>Use this page to showcase the project&apos;s features and functionalities.</p>
-      <p>Make sure to handle any errors or loading states appropriately.</p>
-      <p>Consider adding a back button to navigate to the projects list.</p>
-      <p>Enhance the user experience by providing clear navigation options.</p>
-      <p>Use this space to highlight the project&apos;s unique aspects and achievements.</p>
-      <p>Consider integrating with a CMS or database for dynamic content.</p>
-      <p>Ensure the page is responsive and accessible for all users.</p>
-      <p>Use SEO best practices to optimize the page for search engines.</p>
+    <div className='mt-36 mb-10'>
+      <Link href='/' className='flex gap-1 absolute top-28 left-2 md:left-8 text-cta font-semibold text-base hover:text-primary transition-colors'>
+        <ArrowBigLeft className='w-6 h-6' />Back to Home
+      </Link>
+      <h1 className='text-2xl md:text-4xl text-center text-pry font-semibold mb-5'>{title}</h1>
+      <ProjectDetails data={project.images} project={project} />
+      <ProjectsNavigations prevProject={prevProject} nextProject={nextProject} />
     </div>
   )
 }
