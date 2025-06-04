@@ -66,7 +66,7 @@ const ProjectPage = async ({ params }: Props) => {
 
   return (
     <>
-      <div className="w-[85%] h-full grid grid-cols-1 md:grid-cols-1 gap-1 p-5 my-[100px] mx-auto bg-[var(--contactBg)] rounded-lg">
+      <div className="w-[85%] max-h-[calc(100vh-250px)] overflow-y-auto grid grid-cols-1 md:grid-cols-1 gap-1 p-5 my-[100px] mx-auto bg-[var(--contactBg)] rounded-lg">
         <div className="relative h-[408px] p-4 md:p-0">
           <Image
             src={project?.coverImgUrl || project?.images[0]}
