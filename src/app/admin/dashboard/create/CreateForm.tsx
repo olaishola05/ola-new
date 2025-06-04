@@ -55,7 +55,7 @@ export default function CreateForm() {
   const onSubmit = async (data: Project) => {
     const newData: Project = {
       ...data,
-      description: textToParagraphArray(data.description.toString()),
+      description: textToParagraphArray((data.description ?? "").toString()),
       coverImgUrl: coverImg,
       images: images.map((img: string) => img.trim()),
       stacks: data?.stacks
