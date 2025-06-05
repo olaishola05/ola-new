@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 export type Project = {
   [x: string]: any;
   name: string,
-  description: string[],
+  description: string[] | string | undefined,
   stacks: string[],
   githubUrl: string,
   liveUrl: string,

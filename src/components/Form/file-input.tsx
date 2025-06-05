@@ -4,13 +4,17 @@ import { Label } from "@/components/ui/label"
 import { useUploadToCloudinary } from '@/app/hooks';
 import { tailwindToast } from '../Toast/Toast';
 
+interface ImageData {
+  url: string;
+  publicId: string;
+}
 interface InputFileProps {
   label?: string;
   name: string;
-  setCoverImg?: (imageUrl: string) => void;
-  setImages?: (images: string[]) => void;
+  setCoverImg?: (imageUrl: ImageData | null) => void;
+  setImages?: (images: ImageData[]) => void;
   isMultiple?: boolean;
-  currentImages?: string[];
+  currentImages?: ImageData[];
 }
 
 export default function InputFile({ label,
@@ -34,13 +38,12 @@ export default function InputFile({ label,
       if (isMultiple && setImages) {
         const uploadPromises = Array.from(files).map(file => uploadToCloudinary(file, 'projects'));
         const uploadedUrls = await Promise.all(uploadPromises);
-        setImages([...currentImages, ...uploadedUrls]);
+        setImages(uploadedUrls.map(res => ({ url: res.url, publicId: res.publicId })));
       } else if (!isMultiple && setCoverImg) {
         const uploadedUrl = await uploadToCloudinary(files[0], 'projects');
-        setCoverImg(uploadedUrl);
+        setCoverImg({ url: uploadedUrl.url, publicId: uploadedUrl.publicId });
       }
     } catch (error) {
-      console.error('Upload failed:', error);
       tailwindToast('error', 'Upload failed', '', '');
     } finally {
       setIsUploading(false);
