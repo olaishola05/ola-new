@@ -1,7 +1,11 @@
 'use client';
 
+interface ImageData {
+  url: string;
+  publicId: string;
+}
 
-export const useUploadToCloudinary = async (file: File, preset: string): Promise<string> => {
+export const useUploadToCloudinary = async (file: File, preset: string): Promise<ImageData> => {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('upload_preset', preset);
@@ -19,5 +23,8 @@ export const useUploadToCloudinary = async (file: File, preset: string): Promise
   }
 
   const data = await response.json();
-  return data.secure_url;
+  return {
+    url: data.secure_url,
+    publicId: data.public_id,
+  };
 };
