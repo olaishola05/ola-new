@@ -17,4 +17,5 @@ export {
 
 export { useHighlighted } from './useHighlighted'
 export { useUploadToCloudinary } from './useUploadToCloudinary'
+export { useDeleteUploadImg } from './useDeleteUploadImg'
 
