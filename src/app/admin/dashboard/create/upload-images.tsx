@@ -8,7 +8,7 @@ interface ImageData {
 type UploadImagesProps = {
   coverImg: ImageData | null;
   images: ImageData[];
-  onDeleteImage?: (publicId: string) => void;
+  onDeleteImage?: (publicId: string, isCover: boolean) => void;
   isDeleting: string | null;
 }
 
@@ -29,7 +29,7 @@ export default function UploadImages({ coverImg, images, onDeleteImage, isDeleti
             />
             <button
               type="button"
-              onClick={() => onDeleteImage?.(coverImg.publicId)}
+              onClick={() => onDeleteImage?.(coverImg.publicId, true)}
               disabled={isDeleting === coverImg.publicId}
               className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-xs hover:bg-red-600 disabled:opacity-50"
             >
@@ -56,7 +56,7 @@ export default function UploadImages({ coverImg, images, onDeleteImage, isDeleti
                 />
                 <button
                   type="button"
-                  onClick={() => onDeleteImage?.(img.publicId)}
+                  onClick={() => onDeleteImage?.(img.publicId, false)}
                   disabled={isDeleting === img.publicId}
                   className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-xs"
                 >
