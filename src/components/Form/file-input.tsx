@@ -38,7 +38,7 @@ export default function InputFile({ label,
       if (isMultiple && setImages) {
         const uploadPromises = Array.from(files).map(file => uploadToCloudinary(file, 'projects'));
         const uploadedUrls = await Promise.all(uploadPromises);
-        setImages(uploadedUrls.map(res => ({ url: res.url, publicId: res.publicId })));
+        setImages([...currentImages, ...uploadedUrls.map(res => ({ url: res.url, publicId: res.publicId }))]);
       } else if (!isMultiple && setCoverImg) {
         const uploadedUrl = await uploadToCloudinary(files[0], 'projects');
         setCoverImg({ url: uploadedUrl.url, publicId: uploadedUrl.publicId });
