@@ -1,19 +1,34 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ControllInput } from "@/components";
 import { Project } from "@/app/types";
-import { updateProject } from "@/app/utils";
+import { extractPublicId, updateProject, textToParagraphArray } from "@/app/utils";
 import { useRouter } from "next/navigation";
 import EditBottom from "../EditBottom";
 import { errorToast, successToast } from "@/components/Toast/Toast";
+import UploadImages from "../../../create/upload-images";
+import { useDeleteUploadImg } from "@/app/hooks";
+import InputFile from "@/components/Form/file-input";
 
+interface ImageData {
+  url: string;
+  publicId: string;
+}
 const InputBoxStyles = ({ children }: { children: ReactNode }) => (
   <div className="flex gap-3">{children}</div>
 );
 
 export default function EditForm({ project }: { project: Project }) {
+  const [coverImg, setCoverImg] = useState<ImageData | null>({ url: project?.coverImgUrl || "", publicId: extractPublicId(project?.coverImgUrl) || "" });
+  const [images, setImages] = useState<ImageData[]>(project?.images?.map((img: string) => {
+    const publicId = extractPublicId(img);
+    return { url: img, publicId: publicId };
+  }) || []);
+
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const deleteUploadedImage = useDeleteUploadImg();
   const {
     register,
     handleSubmit,
@@ -22,7 +37,12 @@ export default function EditForm({ project }: { project: Project }) {
     formState: { isSubmitting },
   } = useForm<Project>({
     mode: "onBlur",
-    defaultValues: project,
+    defaultValues: {
+      ...project,
+      description: Array.isArray(project?.description)
+        ? project.description.map((item: string) => item).join("\n\n")
+        : project?.description || ""
+    },
   });
   const router = useRouter();
 
@@ -33,6 +53,9 @@ export default function EditForm({ project }: { project: Project }) {
       .map((item) => item.trim());
     const updatedData: Project = {
       ...data,
+      description: textToParagraphArray((data.description ?? "").toString()),
+      coverImgUrl: coverImg?.url || "",
+      images: images.map((img: ImageData) => img.url.trim()),
       stacks: newStacks,
     };
     const res = await updateProject(
@@ -46,10 +69,33 @@ export default function EditForm({ project }: { project: Project }) {
         `${process.env.NEXT_PUBLIC_ADMIN_URL}/projects/${project.id}`,
       );
     } else {
-      console.log(res);
       errorToast(res?.message);
     }
   };
+
+  const handleDeleteImage = async (publicId: string, isCover = false) => {
+    setIsDeleting(publicId);
+
+    try {
+      const response = await deleteUploadedImage({ publicId, projectId: project.id, type: isCover ? "cover" : "image" });
+      if (response.ok) {
+        if (isCover) {
+          setCoverImg(null);
+          successToast("Cover image deleted successfully");
+        } else {
+          successToast("Image deleted successfully");
+          setImages(images.filter(img => img.publicId !== publicId));
+        }
+      } else {
+        errorToast('Failed to delete image');
+      }
+    } catch (error) {
+      errorToast('An error occurred while deleting the image');
+    } finally {
+      setIsDeleting(null);
+    }
+  };
+
   return (
     <>
       <form
@@ -93,26 +139,6 @@ export default function EditForm({ project }: { project: Project }) {
             inputprops={register("liveUrl")}
           />
         </InputBoxStyles>
-
-        <InputBoxStyles>
-          <ControllInput
-            control={control}
-            name="coverImgUrl"
-            placeholder="e.g https://images.unsplash.com/photo-1626120000000-0000"
-            size="small"
-            width={"100%"}
-            inputprops={register("coverImgUrl")}
-          />
-
-          <ControllInput
-            control={control}
-            name="modalImgUrl"
-            placeholder="e.g https://images.unsplash.com/photo-1626120000000-0000"
-            size="small"
-            width={"100%"}
-            inputprops={register("modalImgUrl")}
-          />
-        </InputBoxStyles>
         <ControllInput
           control={control}
           name="stacks"
@@ -120,7 +146,6 @@ export default function EditForm({ project }: { project: Project }) {
           size="small"
           inputprops={register("stacks")}
         />
-
         <ControllInput
           control={control}
           placeholder={`${project?.name} is an app for ...`}
@@ -128,7 +153,27 @@ export default function EditForm({ project }: { project: Project }) {
           name="description"
           type="textarea"
         />
-
+        {!coverImg && (<InputFile
+          name="coverImg"
+          label="Add Cover Image"
+          setCoverImg={setCoverImg}
+          isMultiple={false}
+        />)}
+        {images.length > 1 && (
+          <InputFile
+            name="otherImages"
+            label="Add Images"
+            setImages={setImages}
+            currentImages={images}
+            isMultiple={true}
+          />
+        )}
+        <UploadImages
+          coverImg={coverImg}
+          images={images}
+          onDeleteImage={handleDeleteImage}
+          isDeleting={isDeleting}
+        />
         <EditBottom
           project={project}
           reset={reset}
