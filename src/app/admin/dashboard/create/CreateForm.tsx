@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode, useCallback, useState } from "react";
-import { sendDataToBackend } from "@/app/utils";
+import { sendDataToBackend, textToParagraphArray } from "@/app/utils";
 import { useForm } from "react-hook-form";
 import { ControllInput } from "@/components";
 import { Project } from "@/app/types";
@@ -19,20 +19,12 @@ const InputBoxStyles = ({ children }: { children: ReactNode }) => (
   <div className="flex gap-3">{children}</div>
 );
 
-function textToParagraphArray(inputText: string): string[] {
-  if (!inputText) return [];
-  return inputText
-    .split(/\n\s*\n/)
-    .map(paragraph => paragraph.trim())
-    .filter(paragraph => paragraph.length > 0);
-}
-
 export default function CreateForm() {
   const [coverImg, setCoverImg] = useState<ImageData | null>(null);
   const [images, setImages] = useState<ImageData[]>([]);
   const [responseOk, setResponseOk] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
-  const deleteUploadedImage = useDeleteUploadImg;
+  const deleteUploadedImage = useDeleteUploadImg();
 
   const {
     register,
@@ -95,7 +87,7 @@ export default function CreateForm() {
     setIsDeleting(publicId);
 
     try {
-      const response = await deleteUploadedImage(publicId);
+      const response = await deleteUploadedImage({ publicId });
       if (response.ok) {
         if (coverImg?.publicId === publicId) {
           setCoverImg(null);
