@@ -66,7 +66,8 @@ export default function Niches() {
                   business objectives.
                 </p>
                 <Link
-                  href={`${process.env.NEXT_PUBLIC_RESUME_URL}`}
+                  // href={`${process.env.NEXT_PUBLIC_RESUME_URL}`}
+                  href={`mailto:olaishola.dev@gmail.com`}
                   target="_blank"
                   className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium"
                 >
@@ -201,7 +202,7 @@ export default function Niches() {
                   to supportive communities of like-minded individuals.
                 </p>
                 <Link
-                  href="https://www.techverseacademy.com/"
+                  href="https://10nth-mnoht-brytebee.vercel.app"
                   target="_blank"
                   className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium"
                 >
