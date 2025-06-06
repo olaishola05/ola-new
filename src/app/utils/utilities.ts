@@ -51,12 +51,21 @@ export const navItems: NavItems = [
   },
   { id: 3, title: "my works", path: "#my-works" },
   { id: 4, title: "blog", path: "/blog" },
-  { id: 2, title: "about me", path: "/about" },
-  { id: 5, title: "contact", path: "/contact" },
+  { id: 2, title: "about me", path: "#about" },
+  { id: 5, title: "contact", path: "#contact" },
 ];
 
+const blogNavItems: NavItems = [
+  { id: 1, title: "home", path: "/" },
+  { id: 4, title: "blog", path: "/blog" },
+  { id: 2, title: "about me", path: "/about" },
+  { id: 3, title: "contact", path: "#contact" },
+];
+
+// navItems.filter((item) => item.title !== "my works");
+
 export function removeMyWorksWhenNotOnHome(pathname: string) {
-  return pathname === "/" ? navItems : navItems.filter((item) => item.title !== "my works");
+  return pathname === "/" ? navItems : blogNavItems;
 }
 
 export const socialLinks: SocialLinks = [
