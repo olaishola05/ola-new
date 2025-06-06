@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
-// import 'dotenv/config';
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -28,15 +28,10 @@ export async function DELETE(request: NextRequest) {
       );
     }
     const result = await cloudinary.uploader.destroy(publicId);
-
-    if (result.result === 'ok') {
-      return NextResponse.json({ success: true });
-    } else {
-      return NextResponse.json(
-        { error: 'Failed to delete image' },
-        { status: 500 }
-      );
+    if (result.result !== "ok") {
+      return NextResponse.json({ error: "Cloudinary deletion failed" }, { status: 500 });
     }
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Delete error:', error);
     return NextResponse.json(
