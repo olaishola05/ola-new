@@ -512,3 +512,24 @@ export const skillCategories = [
     ]
   },
 ];
+
+export const extractPublicId = (url: string | undefined): string => {
+  if (!url) return "";
+  const parts = url.split("/upload/");
+  if (parts.length < 2) return "";
+
+  const pathAfterUpload = parts[1].replace(/^v\d+\//, "");
+
+  const publicIdWithExt = pathAfterUpload.split("?")[0];
+  const publicId = publicIdWithExt.replace(/\.[^/.]+$/, "");
+
+  return publicId;
+};
+
+export function textToParagraphArray(inputText: string): string[] {
+  if (!inputText) return [];
+  return inputText
+    .split(/\n\s*\n/)
+    .map(paragraph => paragraph.trim())
+    .filter(paragraph => paragraph.length > 0);
+}
