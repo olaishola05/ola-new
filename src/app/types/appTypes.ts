@@ -4,11 +4,11 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 export type Project = {
   [x: string]: any;
   name: string,
-  description: string,
+  description: string[] | string | undefined,
   stacks: string[],
   githubUrl: string,
   liveUrl: string,
-  modalImgUrl: string,
+  images: string[],
   coverImgUrl: string,
   tag: string,
   createdAt: string,
@@ -91,16 +91,16 @@ export type ProjectProps = {
   projects: {
     id: string;
     name: string;
-    description: string | null;
+    description: string[] | null;
     githubUrl: string | null;
     liveUrl: string | null;
     coverImgUrl: string | null;
     stacks: string[];
-    modalImgUrl: string | null;
+    images: string[];
     tag: string | null;
     authorId: string | null;
   }[]
-  handleOpenModal: (id: string) => void
+  handleOpenModal?: (id: string) => void
 }
 
 export type currentWork = {

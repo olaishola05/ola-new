@@ -79,13 +79,13 @@ export async function PATCH(
       })
     }
 
-    const { name, description, stacks, githubUrl, liveUrl, coverImgUrl, modalImgUrl, tag } = await req.json()
+    const { name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag } = await req.json()
     const project = await prisma.project.update({
       where: {
         id: id as string
       },
       data: {
-        name, description, stacks, githubUrl, liveUrl, coverImgUrl, modalImgUrl, tag, updatedAt: new Date()
+        name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag, updatedAt: new Date()
       }
     })
 

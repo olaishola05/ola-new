@@ -3,13 +3,13 @@ import { CustomCard } from '..'
 import { Project } from '@/app/types'
 import ProjectsContainer from './ProjectsContainer'
 import EmptyProject from './EmptyProject';
+import { slugify } from '@/app/utils/utilities';
 
 type props = {
-  data: any;
-  handleOpenModal?: (id: string) => void;
+  data: any[];
 };
 
-const AllProjects = ({ data, handleOpenModal }: props) => {
+const AllProjects = ({ data }: props) => {
 
   if (data.length === 0) {
     return <EmptyProject />
@@ -24,8 +24,8 @@ const AllProjects = ({ data, handleOpenModal }: props) => {
             overlayText='View Project'
             name={item.name}
             role={item.tag}
-            description={item.description}
-            onClick={() => handleOpenModal && handleOpenModal(item.id)}
+            description={item.description?.[0] || ''}
+            url={`/projects/${slugify(item.name)}`}
           />
         ))}
       </ProjectsContainer>
