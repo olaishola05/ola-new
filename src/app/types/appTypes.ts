@@ -91,12 +91,12 @@ export type ProjectProps = {
   projects: {
     id: string;
     name: string;
-    description: string | null;
+    description: string[] | null;
     githubUrl: string | null;
     liveUrl: string | null;
     coverImgUrl: string | null;
     stacks: string[];
-    modalImgUrl: string | null;
+    images: string[];
     tag: string | null;
     authorId: string | null;
   }[]

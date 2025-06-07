@@ -125,7 +125,7 @@ export async function POST(
   const session = await getAuthSession();
 
   try {
-    const { name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag }: Project = await req.json();
+    const { name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag } = await req.json();
     const project = {
       name, description, stacks, githubUrl, liveUrl, coverImgUrl, images, tag,
     };

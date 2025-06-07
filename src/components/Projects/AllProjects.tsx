@@ -6,7 +6,7 @@ import EmptyProject from './EmptyProject';
 import { slugify } from '@/app/utils/utilities';
 
 type props = {
-  data: any;
+  data: any[];
 };
 
 const AllProjects = ({ data }: props) => {
@@ -24,7 +24,7 @@ const AllProjects = ({ data }: props) => {
             overlayText='View Project'
             name={item.name}
             role={item.tag}
-            description={item.description[0]}
+            description={item.description?.[0] || ''}
             url={`/projects/${slugify(item.name)}`}
           />
         ))}
