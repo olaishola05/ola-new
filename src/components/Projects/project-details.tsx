@@ -14,7 +14,7 @@ export default function ProjectDetails({ data, project }: { data: any; project: 
           {project.description.map((text: string, index: number) => (
             <p key={index} className='mb-4'>{text}</p>
           ))}
-          <p className='mb-4 italic text-textColor font-medium'>The project was powered using multiple technologies such as, {project.stacks.join(', ')}</p>
+          <p className='mb-4 italic text-textColor font-light'>Tech Stacks: {project.stacks.join(', ')}</p>
         </div>
         <div className="flex items-center justify-between w-full gap-5">
           <div className="flex gap-4 items-center my-5">
