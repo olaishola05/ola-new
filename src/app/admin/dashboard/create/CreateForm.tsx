@@ -1,18 +1,31 @@
 "use client";
 
 import React, { ReactNode, useCallback, useState } from "react";
-import { sendDataToBackend } from "@/app/utils";
+import { sendDataToBackend, textToParagraphArray } from "@/app/utils";
 import { useForm } from "react-hook-form";
 import { ControllInput } from "@/components";
 import { Project } from "@/app/types";
 import { tailwindToast } from "@/components/Toast/Toast";
+import InputFile from "@/components/Form/file-input";
+import UploadImages from "./upload-images";
+import { useDeleteUploadImg } from "@/app/hooks";
+
+interface ImageData {
+  url: string;
+  publicId: string;
+}
 
 const InputBoxStyles = ({ children }: { children: ReactNode }) => (
   <div className="flex gap-3">{children}</div>
 );
 
 export default function CreateForm() {
+  const [coverImg, setCoverImg] = useState<ImageData | null>(null);
+  const [images, setImages] = useState<ImageData[]>([]);
   const [responseOk, setResponseOk] = useState<boolean>(false);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const deleteUploadedImage = useDeleteUploadImg();
+
   const {
     register,
     handleSubmit,
@@ -23,12 +36,12 @@ export default function CreateForm() {
     mode: "onBlur",
     defaultValues: {
       name: "",
-      description: "",
+      description: [],
       githubUrl: "",
       liveUrl: "",
       stacks: [],
       coverImgUrl: "",
-      modalImgUrl: "",
+      images: [],
       tag: "",
     },
   });
@@ -36,16 +49,22 @@ export default function CreateForm() {
   const handleReset = useCallback(() => {
     tailwindToast("info", "Resetting form...", "", "");
     reset();
+    setCoverImg(null);
+    setImages([]);
   }, [reset]);
 
   const onSubmit = async (data: Project) => {
     const newData: Project = {
       ...data,
+      description: textToParagraphArray((data.description ?? "").toString()),
+      coverImgUrl: coverImg?.url || "",
+      images: images.map((img: ImageData) => img.url.trim()),
       stacks: data?.stacks
         ?.toString()
         .split(",")
         .map((item: string) => item.trim()),
     };
+
     const res = await sendDataToBackend(
       newData,
       `${process.env.NEXT_PUBLIC_API_URL}`,
@@ -63,6 +82,29 @@ export default function CreateForm() {
       handleReset();
     }
   }, [responseOk, reset, handleReset]);
+
+  const handleDeleteImage = async (publicId: string) => {
+    setIsDeleting(publicId);
+
+    try {
+      const response = await deleteUploadedImage({ publicId });
+      if (response.ok) {
+        if (coverImg?.publicId === publicId) {
+          setCoverImg(null);
+          tailwindToast("success", "Cover image deleted successfully", "", "");
+        } else {
+          tailwindToast("success", "Image deleted successfully", "", "");
+          setImages(images.filter(img => img.publicId !== publicId));
+        }
+      } else {
+        tailwindToast('error', 'Failed to delete image', '', '');
+      }
+    } catch (error) {
+      tailwindToast('error', 'An error occurred while deleting the image', '', '');
+    } finally {
+      setIsDeleting(null);
+    }
+  };
 
   return (
     <>
@@ -108,22 +150,18 @@ export default function CreateForm() {
         </InputBoxStyles>
 
         <InputBoxStyles>
-          <ControllInput
-            control={control}
-            name="coverImgUrl"
-            placeholder="cover image url"
-            size="small"
-            width={"100%"}
-            inputprops={register("coverImgUrl")}
+          <InputFile
+            label="Cover Image"
+            name="coverImg"
+            setCoverImg={setCoverImg}
+            isMultiple={false}
           />
-
-          <ControllInput
-            control={control}
-            name="modalImgUrl"
-            placeholder="modal image url"
-            size="small"
-            width={"100%"}
-            inputprops={register("modalImgUrl")}
+          <InputFile
+            label="Other Images"
+            name="otherImages"
+            setImages={setImages}
+            isMultiple={true}
+            currentImages={images}
           />
         </InputBoxStyles>
         <ControllInput
@@ -142,6 +180,12 @@ export default function CreateForm() {
           type="textarea"
         />
 
+        <UploadImages
+          coverImg={coverImg}
+          images={images}
+          onDeleteImage={handleDeleteImage}
+          isDeleting={isDeleting}
+        />
         <div className="w-full flex gap-4 justify-center mt-3">
           <button
             type="submit"

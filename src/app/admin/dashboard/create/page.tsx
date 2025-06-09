@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const CreateProjectPage = () => {
   return (
     <>
-      <main className='w-[85%] p-5 my-[60px] mx-auto bg-[var(--bg)] rounded-lg'>
+      <main className='w-[85%] max-h-[calc(100vh-100px)] overflow-y-auto p-5 my-[60px] mx-auto bg-[var(--bg)] rounded-lg'>
         <h1 className='text-center text-[var(--textColor)] text-5xl'>
           Create Project
         </h1>

@@ -29,11 +29,10 @@ const getProject = async (id: string) => {
 const EditProjectPage = async ({ params }: Params) => {
   const { id } = params
   const project = await getProject(id)
-  console.log(project)
   return (
-    <>
+    <div className='max-h-[calc(100vh-100px)] overflow-y-auto'>
       <EditForm project={project} />
-    </>
+    </div>
   );
 }
 

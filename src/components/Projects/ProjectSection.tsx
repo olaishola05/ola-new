@@ -8,20 +8,20 @@ import {
   FrontendProjects,
   FullstackProjects,
   CustomCard,
-  ProjectModal,
 } from "@/components";
 import { tabs } from "@/app/utils";
+import { slugify } from "@/app/utils/utilities";
 
 type props = {
   data: {
     id: string;
     name: string;
-    description: string | null;
+    description: string[] | null;
     githubUrl: string | null;
     liveUrl: string | null;
     coverImgUrl: string | null;
     stacks: string[];
-    modalImgUrl: string | null;
+    images: string[];
     tag: string | null;
     authorId: string | null;
   }[]
@@ -29,14 +29,6 @@ type props = {
 
 const ProjectSection = ({ data }: props) => {
   const [activeTab, setActiveTab] = useState(0);
-  const [openModal, setOpenModal] = useState(false);
-  const [project, setProject] = useState({});
-
-  const handleOpenModal = (id: string) => {
-    setOpenModal(!openModal);
-    const project = data?.find((item) => item.id === id);
-    setProject(project || {});
-  };
 
   const handleChange = (
     event: null,
@@ -48,21 +40,18 @@ const ProjectSection = ({ data }: props) => {
   const switchComponent = (value: string) => {
     switch (value) {
       case "all":
-        return <AllProjects data={data} handleOpenModal={handleOpenModal} />;
+        return <AllProjects data={data} />;
       case "frontend":
         return (
-          <FrontendProjects projects={data} handleOpenModal={handleOpenModal} />
+          <FrontendProjects projects={data} />
         );
       case "backend":
         return (
-          <BackendProjects projects={data} handleOpenModal={handleOpenModal} />
+          <BackendProjects projects={data} />
         );
       case "fullstack":
         return (
-          <FullstackProjects
-            projects={data}
-            handleOpenModal={handleOpenModal}
-          />
+          <FullstackProjects projects={data} />
         );
       default:
         return null;
@@ -76,14 +65,6 @@ const ProjectSection = ({ data }: props) => {
       data-aos-anchor-placement="top-center"
       className="md:px-2 pb-9 w-full mb-10"
     >
-      {openModal && (
-        <ProjectModal
-          open={openModal}
-          handleClose={handleOpenModal}
-          project={project}
-        />
-      )}
-
       <div className="w-full flex flex-col gap-2">
         <p
           className="info text-[var(--textColor)] text-center text-base md:text-xl font-light"
@@ -106,8 +87,8 @@ const ProjectSection = ({ data }: props) => {
               overlayText="View Project"
               name={project.name}
               role={project.tag}
-              description={project.description}
-              onClick={() => handleOpenModal(project.id)}
+              description={project.description[0]}
+              url={`/projects/${slugify(project.name)}`}
             />
           ))}
         </div>

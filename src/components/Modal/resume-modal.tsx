@@ -22,14 +22,14 @@ export default function ResumeModal() {
         <div className="flex flex-col gap-4">
           <div className="h-[700px] w-full overflow-hidden rounded-lg border border-border">
             <iframe
-              src="https://docs.google.com/document/d/1LxxQhG8J41dCOC_20RITrOtaDk9jQsE6W1A7dhMANsk/preview"
+              src="https://docs.google.com/document/d/1LBdENWcDAmdAgUdT1SfbAV5SiJ8VtM54NNn6LdIbowE/preview"
               className="h-full w-full"
               title="Resume Preview"
               frameBorder="0"
             ></iframe>
           </div>
           <a
-            href="https://docs.google.com/document/d/1LxxQhG8J41dCOC_20RITrOtaDk9jQsE6W1A7dhMANsk/export?format=pdf"
+            href="https://docs.google.com/document/d/1LBdENWcDAmdAgUdT1SfbAV5SiJ8VtM54NNn6LdIbowE/export?format=pdf"
             rel="noopener noreferrer"
             className="flex w-fit items-center gap-2 rounded-full bg-cta px-4 py-2 transition-colors duration-300 ease-in-out text-ctaText"
           >
