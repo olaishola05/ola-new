@@ -2,15 +2,24 @@
 
 ## Description
 
-A full-stack web application built with Next.js (App Router) and TypeScript, designed to showcase technical projects and publish personal blogs. The app features dynamic project management (create/edit/delete/toggle visibility), secure NextAuth credentials-based login, and a markdown-based blogging system optimized for performance and SEO.
+A full-stack web application built with Next.js (App Router) and TypeScript, designed to showcase technical projects and publish personal blogs.
 
-- Backend: Built with Next.js API routes, Prisma, and MongoDB, supporting relational data for projects and tech stacks.
-- Frontend: UI built using Material UI and TailwindCSS for a responsive, branded interface.
-- Forms: Managed via React Hook Form and Yup, with real-time validation and error handling.
-- Performance: Uses SSG and ISR for fast load times and optimized indexing.
-- Email Integration: Email notifications via Resend and React-Email for communication features.
+The app includes dynamic project management (create/edit/delete/toggle visibility), secure NextAuth credentials-based authentication, and a markdown-powered blogging system optimized for performance and SEO.
 
-💡 Designed with scalability and real-world use in mind, this project demonstrates my ability to independently deliver a secure, performant, and maintainable full-stack application from the ground up.
+## Why I built this
+
+I wanted a single platform that reflected both my technical work and my thought process, a space to demonstrate how I approach software design, architecture, and content creation.
+
+This project became an opportunity to:
+
+  - Strengthen my full-stack skills by handling everything from API design to deployment.
+  - Implement real-world practices like secure authentication, structured data modeling, and markdown-based content systems.
+  - Explore scalability patterns such as SSG and ISR for performance optimization.
+  - Integrate communication features using Resend and React-Email for future expansion possibilities.
+
+Every feature, from the admin dashboard to the blog editor, was built with scalability, maintainability, and real-world usability in mind.
+
+This project reflects how I approach engineering problems: start simple, build iteratively, and design with long-term growth in view.
 
 ## This project is bootstrapped with Fullstack Nextjs Boilerplate
 
@@ -30,10 +39,10 @@ A full-stack web application built with Next.js (App Router) and TypeScript, des
 
 ## Demo
 
-[Live Here.](https://www.olaishola.tech/)
+[Live Here.](https://portfolio-phi-seven-88.vercel.app/)
 </br>
 
-![demo-image](https://www.olaishola.tech/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fhebronhq%2Fimage%2Fupload%2Fv1699630270%2FPortfolio%2FScreenshot_2023-11-10_at_4.27.15_PM_stlgrn.png&w=2048&q=75)
+![demo-image](https://portfolio-phi-seven-88.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fhebronhq%2Fimage%2Fupload%2Fv1699630270%2FPortfolio%2FScreenshot_2023-11-10_at_4.27.15_PM_stlgrn.png&w=2048&q=75)
 
 ## Built With
 
@@ -52,7 +61,7 @@ A full-stack web application built with Next.js (App Router) and TypeScript, des
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [MongoDB](https://www.mongodb.com/) - MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era.
+- [MongoDB](https://www.mongodb.com/) - MongoDB is a general-purpose, document-based, distributed database built for modern application developers and for the cloud era.
 - [Prisma](https://www.prisma.io/) - Prisma is a next-generation ORM for Node.js and TypeScript.
 
 ### Installing
