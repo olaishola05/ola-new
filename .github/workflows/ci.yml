@@ -21,10 +21,12 @@ jobs:
 
       - name: Create .env.local from secret
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env.local
-      
+          cat << 'EOF' > .env.local
+          ${{ secrets.ENV_FILE }}
+          EOF
+
       - name: Debug env file
-        run: cat .env.local | sed 's/=.*/=***hidden***/'  
+        run: cat .env.local | sed 's/=.*/=***hidden***/'
 
       - name: Use Node.js
         uses: actions/setup-node@v4
