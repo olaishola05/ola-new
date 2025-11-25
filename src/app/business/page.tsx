@@ -11,6 +11,7 @@ import CaseStudies from "@/components/business/case-studies";
 import TechStack from "@/components/business/tech-stack";
 import Workflow from "@/components/business/workflow";
 import SocialProofs from "@/components/business/social-proofs";
+import FooterInfo from "@/components/business/footer-info";
 
 export default function BusinessPage() {
   const meetingLink = process.env.NEXT_PUBLIC_CALENDLY_URL!;
@@ -84,39 +85,7 @@ export default function BusinessPage() {
         </div>
       </section>
       <footer className="py-8 px-4 md:px-6 bg-bg border-t border-[var(--border)]">
-        <div className="w-full">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-softTextColor md:text-base">
-              © {new Date().getFullYear()} Oladipupo Ishola. All rights reserved.
-            </p>
-            <div className="flex space-x-6">
-              <Link
-                href="https://github.com/olaishola05"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-softTextColor hover:text-primary transition-colors"
-              >
-                GitHub
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/olaishola05/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-softTextColor hover:text-primary transition-colors"
-              >
-                LinkedIn
-              </Link>
-              <Link
-                href="https://twitter.com/olaishola05"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-softTextColor hover:text-primary transition-colors"
-              >
-                Twitter
-              </Link>
-            </div>
-          </div>
-        </div>
+        <FooterInfo />
       </footer>
     </div>
   );
