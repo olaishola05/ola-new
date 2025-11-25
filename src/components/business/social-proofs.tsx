@@ -1,14 +1,24 @@
-import React from 'react'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
-import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
-import { ChevronRight, CheckCircle2, Star } from 'lucide-react'
-import { socialProofs } from './business-utils'
+import React from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import { Star } from "lucide-react";
+import { socialProofs } from "./business-utils";
 
 export default function SocialProofs() {
   return (
-    <section id="testimonials" className="py-20 px-4 md:px-6 bg-[var(--softBg)]" style={{
-      scrollMarginTop: '80px'
-    }}>
+    <section
+      id="testimonials"
+      className="py-20 px-4 md:px-6 bg-[var(--softBg)]"
+      style={{
+        scrollMarginTop: "80px",
+      }}
+    >
       <div className="container mx-auto max-w-7xl rounded-sm pt-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">What Clients Say</h2>
@@ -48,5 +58,5 @@ export default function SocialProofs() {
         </div>
       </div>
     </section>
-  )
+  );
 }
