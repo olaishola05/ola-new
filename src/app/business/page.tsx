@@ -16,7 +16,7 @@ export default function BusinessPage() {
   const meetingLink = process.env.NEXT_PUBLIC_CALENDLY_URL!;
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--textColor)]">
-      {/*<Navbar />*/}
+      <Navbar />
       <BusinessHero />
       <div className="container mx-auto max-w-7xl flex flex-col gap-20 md:gap-60">
         <IdealClientsProfile />

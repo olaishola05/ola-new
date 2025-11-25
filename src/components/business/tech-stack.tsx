@@ -1,7 +1,9 @@
-import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { CheckCircle2 } from 'lucide-react'
-import { stacks } from './business-utils'
+"use client";
+
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle2 } from "lucide-react";
+import { stacks } from "./business-utils";
 
 export default function TechStack() {
   return (
@@ -15,7 +17,10 @@ export default function TechStack() {
         </div>
         <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto animate-stagger">
           {stacks.map((stack, idx) => (
-            <Card key={idx} className="bg-[var(--bg)] border hover:border-[var(--primary)] transition-all">
+            <Card
+              key={idx}
+              className="bg-[var(--bg)] border hover:border-[var(--primary)] transition-all"
+            >
               <CardHeader>
                 <CardTitle className="text-xl text-[var(--primary)]">{stack.category}</CardTitle>
               </CardHeader>
@@ -34,5 +39,5 @@ export default function TechStack() {
         </div>
       </div>
     </section>
-  )
+  );
 }

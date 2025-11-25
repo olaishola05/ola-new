@@ -10,9 +10,10 @@ import {
   Cloud,
   Code2,
   Database,
+  LucideIcon,
 } from "lucide-react";
 
-export const clients = [
+export const clients: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Rocket,
     title: "SaaS Founders",
@@ -45,7 +46,7 @@ export const clients = [
   },
 ];
 
-export const solutions = [
+export const solutions: { icon: LucideIcon; text: string }[] = [
   { icon: CheckCircle2, text: "Technical roadmaps that align with business goals" },
   { icon: CheckCircle2, text: "Architecture designed for scale from the start" },
   {
@@ -57,7 +58,7 @@ export const solutions = [
   { icon: CheckCircle2, text: "Responsive, intuitive frontends users love" },
 ];
 
-export const services = [
+export const services: { icon: LucideIcon; title: string; desc: string; tags: string[] }[] = [
   {
     icon: Database,
     title: "Backend Engineering",
@@ -131,7 +132,7 @@ export const caseStudies = [
   },
 ];
 
-export const stacks = [
+export const stacks: { category: string; tools: string[] }[] = [
   {
     category: "Frontend",
     tools: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
@@ -182,7 +183,7 @@ export const workflow = [
   },
 ];
 
-export const socialProofs = [
+export const socialProofs: { quote: string; author: string; role: string; rating: number }[] = [
   {
     quote:
       "The technical roadmap alone was worth the investment. We finally had clarity on how to turn our idea into a real product.The execution was flawless.",

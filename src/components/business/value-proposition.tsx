@@ -1,6 +1,8 @@
-import React from 'react'
-import { solutions } from './business-utils';
-import { Badge } from '@/components/ui/badge';
+"use client";
+
+import React from "react";
+import { solutions } from "./business-utils";
+import { Badge } from "@/components/ui/badge";
 
 export default function ValueProposition() {
   return (
@@ -16,18 +18,21 @@ export default function ValueProposition() {
             </h2>
             <p className="text-lg text-[var(--softTextColor)] mb-6 leading-relaxed">
               I help founders and small businesses turn ideas into scalable, production-ready web
-              applications — combining solid backend engineering with intuitive, responsive frontends.
-              From MVP development to DevOps automation, I deliver end-to-end solutions that grow with
-              your business.
+              applications — combining solid backend engineering with intuitive, responsive
+              frontends. From MVP development to DevOps automation, I deliver end-to-end solutions
+              that grow with your business.
             </p>
             <p className="text-lg text-[var(--softTextColor)] leading-relaxed">
-              My mission: turning complex ideas into simple, scalable, and impactful digital products
-              that drive real business value.
+              My mission: turning complex ideas into simple, scalable, and impactful digital
+              products that drive real business value.
             </p>
           </div>
           <div className="space-y-4">
             {solutions.map((item, idx) => (
-              <div key={idx} className="flex items-start space-x-3 p-4 rounded-lg bg-[var(--softBg)] hover:bg-[var(--primary)]/5 transition-colors">
+              <div
+                key={idx}
+                className="flex items-start space-x-3 p-4 rounded-lg bg-[var(--softBg)] hover:bg-[var(--primary)]/5 transition-colors"
+              >
                 <item.icon className="h-6 w-6 text-[var(--primary)] flex-shrink-0 mt-0.5" />
                 <p className="text-base">{item.text}</p>
               </div>
@@ -36,5 +41,5 @@ export default function ValueProposition() {
         </div>
       </div>
     </section>
-  )
+  );
 }
