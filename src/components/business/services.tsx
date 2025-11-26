@@ -3,7 +3,46 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { services } from "./business-utils";
+import { LucideIcon, Database, Layout, Code2, Cloud, Globe, FileText } from "lucide-react";
+
+const services: { icon: LucideIcon; title: string; desc: string; tags: string[] }[] = [
+  {
+    icon: Database,
+    title: "Backend Engineering",
+    desc: "Robust APIs and backend systems built with Node.js, Python, NestJS, and Django. Complete with CI / CD pipelines and Docker containerization.",
+    tags: ["Node.js", "Python", "NestJS", "Django", "REST APIs", "GraphQL"],
+  },
+  {
+    icon: Layout,
+    title: "Frontend Development",
+    desc: "Modern, responsive user interfaces using React, Next.js, and Tailwind CSS that provide exceptional user experiences.",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    icon: Code2,
+    title: "Full-Stack Web Apps",
+    desc: "End-to-end application development for SaaS platforms, dashboards, and MVPs with scalable architecture.",
+    tags: ["SaaS", "Dashboards", "MVPs", "Admin Panels"],
+  },
+  {
+    icon: Cloud,
+    title: "DevOps & Automation",
+    desc: "Streamlined deployment pipelines, CI/CD automation, and infrastructure as code for reliable, scalable systems.",
+    tags: ["Docker", "CI/CD", "AWS", "Deployment Automation"],
+  },
+  {
+    icon: Globe,
+    title: "API Integration",
+    desc: "Seamless third-party API integrations, webhook implementations, and custom API development.",
+    tags: ["REST APIs", "Webhooks", "OAuth", "Payment Gateways"],
+  },
+  {
+    icon: FileText,
+    title: "Technical Writing",
+    desc: "Clear, comprehensive documentation for your codebase, APIs, and internal processes.",
+    tags: ["API Docs", "Code Documentation", "Technical Guides"],
+  },
+];
 
 export default function Services() {
   return (

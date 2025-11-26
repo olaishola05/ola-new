@@ -1,8 +1,20 @@
 "use client";
 
 import React from "react";
-import { solutions } from "./business-utils";
 import { Badge } from "@/components/ui/badge";
+import { LucideIcon, CheckCircle2 } from "lucide-react";
+
+const solutions: { icon: LucideIcon; text: string }[] = [
+  { icon: CheckCircle2, text: "Technical roadmaps that align with business goals" },
+  { icon: CheckCircle2, text: "Architecture designed for scale from the start" },
+  {
+    icon: CheckCircle2,
+    text: "Clean, maintainable code with comprehensive documentation",
+  },
+  { icon: CheckCircle2, text: "Seamless API integrations and reliable backends" },
+  { icon: CheckCircle2, text: "DevOps automation for faster, safer deployments" },
+  { icon: CheckCircle2, text: "Responsive, intuitive frontends users love" },
+];
 
 export default function ValueProposition() {
   return (

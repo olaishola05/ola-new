@@ -2,7 +2,40 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { clients } from "./business-utils";
+import { Zap, Rocket, Users, Layout, Globe, Terminal, LucideIcon } from "lucide-react";
+
+const clients: { icon: LucideIcon; title: string; desc: string }[] = [
+  {
+    icon: Rocket,
+    title: "SaaS Founders",
+    desc: "Building subscription-based platforms that need to scale from day one",
+  },
+  {
+    icon: Zap,
+    title: "AI Tool Creators",
+    desc: "Developing intelligent applications with modern AI integrations",
+  },
+  {
+    icon: Users,
+    title: "Productivity Product Teams",
+    desc: "Creating tools that help teamwork smarter and faster",
+  },
+  {
+    icon: Layout,
+    title: "Dashboard Builders",
+    desc: "Building data-driven dashboards and analytics platforms",
+  },
+  {
+    icon: Globe,
+    title: "Edtech & Fintech Startups",
+    desc: "Launching secure, compliant platforms in regulated industries",
+  },
+  {
+    icon: Terminal,
+    title: "Internal Tool Developers",
+    desc: "Streamlining operations withcustom business applications",
+  },
+];
 
 export default function IdealClientsProfile() {
   return (
