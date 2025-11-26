@@ -3,7 +3,34 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
-import { stacks } from "./business-utils";
+
+const stacks = [
+  {
+    category: "Frontend",
+    tools: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+  },
+  {
+    category: "Backend",
+    tools: ["Node.js", "NestJS", "Python", "Django", "Express.js", "FastAPI"],
+  },
+  {
+    category: "Database",
+    tools: ["PostgreSQL", "MongoDB", "Redis", "Prisma", "TypeORM"],
+  },
+  {
+    category: "DevOps",
+    tools: [
+      "Docker",
+      "AWS",
+      "CI/CD",
+      "GitHub Actions",
+      "Vercel",
+      "DigitalOcean",
+      "Netlify",
+      "Render",
+    ],
+  },
+];
 
 export default function TechStack() {
   return (

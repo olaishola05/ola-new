@@ -3,9 +3,9 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LucideIcon, Database, Layout, Code2, Cloud, Globe, FileText } from "lucide-react";
+import { Database, Layout, Code2, Cloud, Globe, FileText } from "lucide-react";
 
-const services: { icon: LucideIcon; title: string; desc: string; tags: string[] }[] = [
+const services = [
   {
     icon: Database,
     title: "Backend Engineering",

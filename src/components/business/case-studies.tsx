@@ -4,7 +4,41 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star } from "lucide-react";
-import { caseStudies } from "./business-utils";
+
+const caseStudies = [
+  {
+    title: "AI-Powered Analytics Dashboard",
+    problem:
+      "Fintech startup needed real-time analytics dashboard to process millions of transactions with sub-second latency",
+    solution:
+      "Built scalable microservices architecture with React dashboard, Node.js backend, and Redis caching",
+    outcome:
+      "Reduced query time by 85%, handled 10M+ daily transactions, and improved user retention by 40%",
+    stack: ["React", "Node.js", "PostgreSQL", "Redis", "Docker"],
+    metric: "85% faster queries",
+  },
+  {
+    title: "EdTech Learning Platform",
+    problem:
+      "Education company struggled with slow course delivery and poor mobile experience affecting student engagement",
+    solution:
+      "Redesigned frontend with Next.js, optimized API endpoints, and implemented progressive web app features",
+    outcome:
+      "Achieved 95+ Lighthouse score, 3x faster load times, and 60% increase in mobile engagement",
+    stack: ["Next.js", "TypeScript", "Tailwind", "PWA", "Vercel"],
+    metric: "3x faster performance",
+  },
+  {
+    title: "SaaS Productivity Platform",
+    problem:
+      "Startup needed MVP built in 6 weeks to secure Series A funding with limited technical resources",
+    solution:
+      "Delivered full-stack SaaS platform with authentication, payment integration, and admin dashboard",
+    outcome: "Launched on time, secured $2M Series A, and onboarded 500+ users in first month",
+    stack: ["Next.js", "NestJS", "Stripe", "PostgreSQL", "AWS"],
+    metric: "6 weeks to Series A",
+  },
+];
 
 export default function CaseStudies() {
   return (

@@ -10,7 +10,30 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Star } from "lucide-react";
-import { socialProofs } from "./business-utils";
+
+const socialProofs = [
+  {
+    quote:
+      "The technical roadmap alone was worth the investment. We finally had clarity on how to turn our idea into a real product.The execution was flawless.",
+    author: "Sarah Chen",
+    role: "Founder, TechFlow SaaS",
+    rating: 5,
+  },
+  {
+    quote:
+      "Best engineering partner we've worked with. Fast, reliable, and always thinking ahead.Our platform scaled effortlessly from 100 to 10,000 users.",
+    author: "Marcus Williams",
+    role: "CTO, DataHub Analytics",
+    rating: 5,
+  },
+  {
+    quote:
+      "From messy prototype to production-ready app in 8 weeks. The documentation and code quality made it easy for our team to take over and iterate.",
+    author: "Priya Sharma",
+    role: "Product Lead, EduConnect",
+    rating: 5,
+  },
+];
 
 export default function SocialProofs() {
   return (

@@ -2,9 +2,9 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { LucideIcon, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
-const solutions: { icon: LucideIcon; text: string }[] = [
+const solutions = [
   { icon: CheckCircle2, text: "Technical roadmaps that align with business goals" },
   { icon: CheckCircle2, text: "Architecture designed for scale from the start" },
   {

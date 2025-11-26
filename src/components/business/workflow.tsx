@@ -2,7 +2,29 @@
 
 import React from "react";
 import { ChevronRight } from "lucide-react";
-import { workflow } from "./business-utils";
+
+const workflow = [
+  {
+    step: "01",
+    title: "Discovery Call",
+    desc: "We discuss your vision, goals, and technical requirements. I'll ask questions to understand your business context and success metrics.",
+  },
+  {
+    step: "02",
+    title: "Technical Roadmap",
+    desc: "I create a detailed project roadmap with milestones, tech stack recommendations, and timeline estimates aligned with your goals.",
+  },
+  {
+    step: "03",
+    title: "Agile Development",
+    desc: "I work in sprints with regular check-ins, code reviews, and demos. You'll have full visibility into progress via GitHub and project boards.",
+  },
+  {
+    step: "04",
+    title: "Launch & Support",
+    desc: "Smooth deployment with comprehensive documentation, testing, and post-launch support to ensure everything runs perfectly.",
+  },
+];
 
 export default function Workflow() {
   return (

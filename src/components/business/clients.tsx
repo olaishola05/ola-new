@@ -2,9 +2,9 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Rocket, Users, Layout, Globe, Terminal, LucideIcon } from "lucide-react";
+import { Zap, Rocket, Users, Layout, Globe, Terminal } from "lucide-react";
 
-const clients: { icon: LucideIcon; title: string; desc: string }[] = [
+const clients = [
   {
     icon: Rocket,
     title: "SaaS Founders",
