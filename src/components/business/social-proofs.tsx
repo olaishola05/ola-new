@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -36,6 +36,30 @@ const socialProofs = [
 ];
 
 export default function SocialProofs() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section id="testimonials" className="py-20 px-4 md:px-6 bg-[var(--softBg)]">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">What Clients Say</h2>
+            <p className="text-base md:text-lg text-[var(--softTextColor)] max-w-3xl mx-auto">
+              Trusted by founders who value quality and execution
+            </p>
+          </div>
+          <div className="max-w-5xl mx-auto px-4 min-h-[300px] flex items-center justify-center">
+            <p className="text-gray-500">Loading testimonials...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="testimonials"
@@ -52,7 +76,11 @@ export default function SocialProofs() {
           </p>
         </div>
         <div className="max-w-5xl mx-auto px-4">
-          <Carousel opts={{ align: "start", loop: true }} className="w-full">
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            className="w-full"
+            suppressHydrationWarning
+          >
             <CarouselContent className="-ml-4">
               {socialProofs.map((testimonial, idx) => (
                 <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3 pl-4">
