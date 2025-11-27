@@ -28,18 +28,6 @@ export default function BusinessPage() {
       <TechStack />
       <Workflow />
       <SocialProofs />
-      {/*<Navbar />
-      <BusinessHero />
-      <div className="container mx-auto max-w-7xl flex flex-col gap-20 md:gap-60">
-        <IdealClientsProfile />
-        <ValueProposition />
-      </div>
-      <Services />
-      <CaseStudies />
-      <TechStack />
-      <Workflow />
-      <SocialProofs />
-
       <section
         id="contact"
         className="py-20 px-4 md:px-6 bg-gradient-to-br from-[#392467] to-[#5a3a8f] text-white"
@@ -97,7 +85,7 @@ export default function BusinessPage() {
       </section>
       <footer className="py-8 px-4 md:px-6 bg-bg border-t border-[var(--border)]">
         <FooterInfo />
-      </footer>*/}
+      </footer>
     </div>
   );
 }
