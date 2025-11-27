@@ -33,6 +33,13 @@ const socialProofs = [
     role: "Product Lead, EduConnect",
     rating: 5,
   },
+  {
+    quote:
+      "The technical roadmap alone was worth the investment. We finally had clarity on how to turn our idea into a real product.The execution was flawless.",
+    author: "Samad Abass",
+    role: "Founder, TechX SaaS",
+    rating: 5,
+  },
 ];
 
 export default function SocialProofs() {

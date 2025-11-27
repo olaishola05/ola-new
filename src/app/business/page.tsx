@@ -27,6 +27,7 @@ export default function BusinessPage() {
       <CaseStudies />
       <TechStack />
       <Workflow />
+      <SocialProofs />
       {/*<Navbar />
       <BusinessHero />
       <div className="container mx-auto max-w-7xl flex flex-col gap-20 md:gap-60">
