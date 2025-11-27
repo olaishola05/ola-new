@@ -38,7 +38,7 @@ export default function Navbar() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
@@ -47,10 +47,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-[var(--bg)]/95 backdrop-blur-md shadow-lg border-b border-[var(--border)]"
-        : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-[var(--bg)]/95 backdrop-blur-md shadow-lg border-b border-[var(--border)]"
+          : "bg-transparent"
+      }`}
     >
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
@@ -80,7 +81,12 @@ export default function Navbar() {
               className="bg-[var(--cta)] text-[var(--ctaText)] hover:bg-[var(--cta)]/90 shadow-md hover:shadow-lg transition-all py-6 text-base"
               asChild
             >
-              <Link href={meetingLink} onClick={() => setIsMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={meetingLink}
+                onClick={() => setIsMobileMenuOpen(false)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Book a Call
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
