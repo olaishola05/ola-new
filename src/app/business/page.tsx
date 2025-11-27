@@ -23,6 +23,8 @@ export default function BusinessPage() {
         <IdealClientsProfile />
         <ValueProposition />
       </div>
+      <Services />
+      <CaseStudies />
       {/*<Navbar />
       <BusinessHero />
       <div className="container mx-auto max-w-7xl flex flex-col gap-20 md:gap-60">
