@@ -19,6 +19,10 @@ export default function BusinessPage() {
     <div className="min-h-screen bg-[var(--bg)] text-[var(--textColor)]">
       <Navbar />
       <BusinessHero />
+      <div className="container mx-auto max-w-7xl flex flex-col gap-20 md:gap-60">
+        <IdealClientsProfile />
+        <ValueProposition />
+      </div>
       {/*<Navbar />
       <BusinessHero />
       <div className="container mx-auto max-w-7xl flex flex-col gap-20 md:gap-60">
