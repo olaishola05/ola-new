@@ -34,8 +34,8 @@ const stacks = [
 
 export default function TechStack() {
   return (
-    <section className="py-20 px-4 md:px-6">
-      <div className="container mx-auto max-w-7xl">
+    <section className="py-20 md:pb-60 px-4 md:px-6">
+      <div className="containers mx-auto max-w-7xl">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Tech Stack & Tools</h2>
           <p className="text-lg text-[var(--softTextColor)] max-w-3xl mx-auto">

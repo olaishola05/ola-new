@@ -42,7 +42,7 @@ const caseStudies = [
 
 export default function CaseStudies() {
   return (
-    <section id="projects" className="py-20 px-4 md:px-6" style={{ scrollMarginTop: "80px" }}>
+    <section id="projects" className="px-4 md:px-6" style={{ scrollMarginTop: "80px" }}>
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Featured Projects</h2>

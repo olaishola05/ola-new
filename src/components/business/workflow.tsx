@@ -43,7 +43,7 @@ const comms = [
 
 export default function Workflow() {
   return (
-    <section id="process" className="py-20 px-4 md:px-6" style={{ scrollMarginTop: "80px" }}>
+    <section id="process" className="md:pb-20 px-4 md:px-6" style={{ scrollMarginTop: "80px" }}>
       <div className="containers mx-auto max-w-7xl">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">My Workflow & Communication</h2>

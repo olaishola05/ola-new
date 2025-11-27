@@ -75,7 +75,7 @@ export default function SocialProofs() {
         scrollMarginTop: "80px",
       }}
     >
-      <div className="container mx-auto max-w-7xl rounded-sm pt-6">
+      <div className="containers mx-auto max-w-7xl rounded-sm pt-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">What Clients Say</h2>
           <p className="text-base md:text-lg text-[var(--softTextColor)] max-w-3xl mx-auto">

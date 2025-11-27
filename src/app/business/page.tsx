@@ -15,6 +15,7 @@ import FooterInfo from "@/components/business/footer-info";
 
 export default function BusinessPage() {
   const meetingLink = process.env.NEXT_PUBLIC_CALENDLY_URL!;
+  const email = process.env.NEXT_PUBLIC_EMAIL;
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--textColor)]">
       <Navbar />
@@ -33,7 +34,7 @@ export default function BusinessPage() {
         className="py-20 px-4 md:px-6 bg-gradient-to-br from-[#392467] to-[#5a3a8f] text-white"
         style={{ scrollMarginTop: "80px" }}
       >
-        <div className="container mx-auto max-w-4xl text-center pt-6 rounded-sm">
+        <div className="mx-auto max-w-4xl text-center pt-6 rounded-sm">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Build Something Great?</h2>
           <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">
             Every project is value-based and scoped according to business goals. Book a free
@@ -55,10 +56,10 @@ export default function BusinessPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white text-whites hover:bg-white/10 text-base px-8 py-6 rounded-lg"
+              className="bg-transparent border-2 border-white text-whites hover:bg-white/10 text-base px-8 py-6 rounded-lg"
               asChild
             >
-              <Link href="mailto:your@email.com">Or Email Me Directly</Link>
+              <Link href={`mailto:${email}`}>Or Email Me Directly</Link>
             </Button>
           </div>
 
