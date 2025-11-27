@@ -26,6 +26,21 @@ const workflow = [
   },
 ];
 
+const comms = [
+  {
+    title: "Daily Updates",
+    desc: "Regular Slack/email updates on progress, blockers, and next steps",
+  },
+  {
+    title: "Code Transparency",
+    desc: "All code in GitHub with detailed commit messages and PR descriptions",
+  },
+  {
+    title: "Bi-weekly Demos",
+    desc: "Live demos every 2 weeks to review features and gather feedback",
+  },
+];
+
 export default function Workflow() {
   return (
     <section id="process" className="py-20 px-4 md:px-6" style={{ scrollMarginTop: "80px" }}>
@@ -53,20 +68,7 @@ export default function Workflow() {
         <div className="mt-16 p-8 bg-gradient-to-br from-[var(--primary)]/5 to-[var(--primary)]/10">
           <h3 className="text-2xl font-bold mb-4 text-center">Communication Principles</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {[
-              {
-                title: "Daily Updates",
-                desc: "Regular Slack/email updates on progress, blockers, and next steps",
-              },
-              {
-                title: "Code Transparency",
-                desc: "All code in GitHub with detailed commit messages and PR descriptions",
-              },
-              {
-                title: "Bi-weekly Demos",
-                desc: "Live demos every 2 weeks to review features and gather feedback",
-              },
-            ].map((principle, idx) => (
+            {comms.map((principle, idx) => (
               <div key={idx} className="text-center">
                 <h4 className="font-semibold text-lg mb-2">{principle.title}</h4>
                 <p className="text-sm text-[var(--softTextColor)]">{principle.desc}</p>
