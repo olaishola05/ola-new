@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { ITestimonial } from '@/app/api/utils';
-import Testimonial from './Testimonial';
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { ITestimonial } from "@/app/api/utils";
+import Testimonial from "./Testimonial";
 
 interface ICarouselProps {
   data: ITestimonial[];

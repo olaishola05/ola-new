@@ -18,17 +18,17 @@ export default function HeroTitleAnimation() {
 
   return (
     <h1 className="text-4xl md:text-7xl md:mt-12">
-      {greeting || "Hello"}! { }
+      {greeting || "Hello"}! {}
       {"I'm"} <span className="text-[var(--primary)] font-semibold">Ola</span>,
       <br />
       <TypeAnimation
         cursor={true}
         sequence={[
-          "Software Developer",
+          "Software Engineer",
           500,
-          "Frontend Developer",
+          "Frontend Engineer",
           500,
-          "Backend Developer",
+          "Backend Engineer",
           500,
           "Technical Writer.",
           500,
