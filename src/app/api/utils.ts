@@ -35,7 +35,14 @@ export const errorResponse = (status: number, message: string, error?: unknown) 
   }))
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const resend = new Resend(process.env.RESEND_API_KEY);
+
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error("RESEND_API_KEY is missing");
+  return new Resend(key);
+}
+
 export interface Contact {
   name: string;
   email: string;
@@ -68,7 +75,7 @@ export interface IEmailThankYou {
 const fromEmail = process.env.RESEND_FROM_EMAIL!;
 const publicEmail = process.env.NEXT_PUBLIC_EMAIL!
 export async function sendEmail({ name, email, number, subject, message }: Contact) {
-
+  const resend = getResend();
   const options = {
     from: fromEmail,
     to: publicEmail,
@@ -81,7 +88,7 @@ export async function sendEmail({ name, email, number, subject, message }: Conta
 }
 
 export async function sendTestimonialNotificationEmail({ name, email, message, jobTitle }: IEmailNotification) {
-
+  const resend = getResend();
   const options = {
     from: fromEmail,
     to: publicEmail,
@@ -94,7 +101,7 @@ export async function sendTestimonialNotificationEmail({ name, email, message, j
 }
 
 export async function sendTestimonialThankYouEmail({ name, email }: IEmailThankYou) {
-
+  const resend = getResend();
   const options = {
     from: fromEmail,
     to: email,
@@ -107,6 +114,7 @@ export async function sendTestimonialThankYouEmail({ name, email }: IEmailThankY
 }
 
 export async function sendOtpMessage({ name, email, otp }: { name: string, email: string, otp: string }) {
+  const resend = getResend();
   const opts = {
     from: fromEmail,
     to: email,
@@ -118,6 +126,7 @@ export async function sendOtpMessage({ name, email, otp }: { name: string, email
 }
 
 export async function sendWelcomeEmail({ name, email }: { name: string, email: string }) {
+  const resend = getResend();
   const options = {
     from: fromEmail,
     to: email,

@@ -431,6 +431,18 @@ export const skillCategories = [
         experience: "Developed backend services and scripts using Python, leveraging frameworks like Flask and FastAPI."
       },
       {
+        name: "Django",
+        icon: "🐍",
+        description: "High-level Python web framework that encourages rapid development and clean, pragmatic design.",
+        experience: "Built robust web applications using Django, implementing RESTful APIs and admin interfaces."
+      },
+      {
+        name: "Django REST Framework",
+        icon: "🌐",
+        description: "Powerful and flexible toolkit for building Web APIs in Django.",
+        experience: "Created RESTful APIs with authentication, serialization, and viewsets using DRF."
+      },
+      {
         name: "Express",
         icon: "🚂",
         description: "Fast, unopinionated, minimalist web framework for Node.js.",
@@ -448,12 +460,24 @@ export const skillCategories = [
         description: "Powerful, open source object-relational database system with SQL compliance.",
         experience: "Implemented complex data models with relationships, constraints, and optimized queries."
       },
-      // {
-      //   name: "GraphQL",
-      //   icon: "⚛️",
-      //   description: "Query language for APIs and a runtime for executing those queries with your existing data.",
-      //   experience: "Developed GraphQL APIs with Apollo Server, handling resolvers, mutations, and subscriptions."
-      // },
+      {
+        name: "MySQL",
+        icon: "🐬",
+        description: "Open-source relational database management system based on SQL.",
+        experience: "Managed and optimized MySQL databases, ensuring data integrity and performance."
+      },
+      {
+        name: "SQLite",
+        icon: "🗄️",
+        description: "Self-contained, high-reliability, embedded, full-featured SQL database engine.",
+        experience: "Utilized SQLite for lightweight applications and prototyping, managing local data storage."
+      },
+      {
+        name: "GraphQL",
+        icon: "⚛️",
+        description: "Query language for APIs and a runtime for executing those queries with your existing data.",
+        experience: "Developed GraphQL APIs with Apollo Server, handling resolvers, mutations, and subscriptions."
+      },
     ]
   },
   {
@@ -482,6 +506,12 @@ export const skillCategories = [
         icon: "🐹",
         description: "ORM for Go, providing a simple and powerful way to interact with databases.",
         experience: "Developed applications using Gorm for database interactions, leveraging its features for migrations and associations."
+      },
+      {
+        name: "Django ORM",
+        icon: "🐍",
+        description: "Built-in ORM for Django, allowing for easy database interactions using Python.",
+        experience: "Utilized Django ORM for defining models, querying the database, and managing migrations."
       }
     ]
   },
@@ -512,12 +542,30 @@ export const skillCategories = [
         description: "Practices of continuous integration and continuous delivery/deployment.",
         experience: "Set up automated testing and deployment pipelines using GitHub Actions and Jenkins."
       },
-      // {
-      //   name: "Kubernetes",
-      //   icon: "⚙️",
-      //   description: "Open-source container orchestration system for automating application deployment and scaling.",
-      //   experience: "Deployed applications to K8s clusters, configuring services, deployments, and ingress."
-      // },
+      {
+        name: "Kubernetes",
+        icon: "⚙️",
+        description: "Open-source container orchestration system for automating application deployment and scaling.",
+        experience: "Deployed applications to K8s clusters, configuring services, deployments, and ingress."
+      },
+      {
+        name: "Jenkins",
+        icon: "🧰",
+        description: "Open-source automation server for building, testing, and deploying code.",
+        experience: "Created and managed Jenkins pipelines for CI/CD workflows."
+      },
+      {
+        name: "GitHub Actions",
+        icon: "🛠️",
+        description: "CI/CD service provided by GitHub for automating workflows directly from the repository.",
+        experience: "Implemented GitHub Actions workflows for automated testing, building, and deployment."
+      },
+      {
+        name: "Shell/Bash Scripting",
+        icon: "💻",
+        description: "Writing scripts for automating tasks in Unix/Linux shell environments.",
+        experience: "Developed shell scripts for automation of routine tasks and deployment processes."
+      }
     ]
   },
 ];

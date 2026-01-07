@@ -1,13 +1,17 @@
 'use client';
 
 import React from 'react'
-import {usePathname} from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 export default function ConditionalWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+
+  // Exclude /business and /admin from wrapper
+  const excludeWrapper = pathname.startsWith('/admin') || pathname.startsWith('/business');
+
   return (
     <>
-      {pathname.startsWith('/admin') ? (
+      {excludeWrapper ? (
         <div>
           {children}
         </div>

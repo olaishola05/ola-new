@@ -6,6 +6,9 @@ export async function getProjects(state: boolean) {
     where: {
       published: state,
     },
+    orderBy: {
+      updatedAt: "desc",
+    },
   });
 }
 

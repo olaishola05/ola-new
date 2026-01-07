@@ -20,9 +20,8 @@ export default function HeroSection() {
           data-aos="zoom-in-up"
           data-aos-duration="8000"
         >
-          Hi there! {"I'm"} a software developer based in Nigeria. I help
-          businesses & startups to develop accessible, human-centered products
-          that meet their {"customers'"} needs.
+          Hi there! {"I'm"} a software engineer based in Nigeria. I help businesses & startups to
+          develop accessible, human-centered products that meet their {"customers'"} needs.
         </p>
         <div className="self-center md:self-start flex justify-center md:justify-start gap-5 w-full mt-6">
           <Link
@@ -37,10 +36,17 @@ export default function HeroSection() {
         <HeroSocialIcons />
         {/* <Companies /> */}
       </div>
-      <div className="w-full md:flex-1 rounded-full [clip-path:circle(50%_at_50%_50%)]">
-        <Image src="/images/ola.png" alt="Hero Image" width={1024} height={1024} loading="lazy" className="h-[36rem] w-full md:w-11/12 object-cover" />
+      <div className="w-full md:flex-1 rounded-full [clip-path:circle(50%_at_50%_30%)]">
+        <Image
+          // src="/images/ola.png"
+          src="https://avatars.githubusercontent.com/u/45001916?v=4"
+          alt="Hero Image"
+          width={1024}
+          height={1024}
+          loading="lazy"
+          className="h-[36rem] w-full md:w-11/12 object-cover"
+        />
       </div>
     </main>
   );
 }
-
