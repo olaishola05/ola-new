@@ -5,7 +5,7 @@ slug: "hello-world-is-the-beginner-initial-app"
 date: "2024-12-30"
 tags: ["nextjs"]
 coverImage: ""
-draft: false
+draft: true
 ---
 
 Gentlemen agreement

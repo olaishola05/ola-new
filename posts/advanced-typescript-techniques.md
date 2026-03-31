@@ -5,7 +5,7 @@ description: "Take your TypeScript skills to the next level with powerful utilit
 category: "Frontend"
 tags: ["TypeScript", "Programming", "Clean Code"]
 slug: "advanced-typescript-techniques"
-draft: false
+draft: true
 ---
 
 TypeScript provides a sophisticated type system that can model complex logic at the type level.

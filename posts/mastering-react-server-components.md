@@ -5,7 +5,7 @@ description: "A deep dive into the architecture and best practices of React Serv
 category: "Frontend"
 tags: ["React", "Next.js", "JavaScript"]
 slug: "mastering-react-server-components"
-draft: false
+draft: true
 ---
 
 <Callout type="tip">

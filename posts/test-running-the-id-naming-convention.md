@@ -5,7 +5,7 @@ slug: "test-running-the-id-naming-convention"
 date: "2024-12-30"
 tags: ["docker"]
 coverImage: ""
-draft: false
+draft: true
 ---
 
 The world is at your **oysters**

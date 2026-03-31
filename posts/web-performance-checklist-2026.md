@@ -5,7 +5,7 @@ description: "A comprehensive checklist to optimize your website for peak perfor
 category: "DevOps"
 tags: ["Performance", "SEO", "Web Dev"]
 slug: "web-performance-checklist-2026"
-draft: false
+draft: true
 ---
 
 Performance is not just a feature; it's a critical component of user experience and SEO.

@@ -5,7 +5,7 @@ description: "Key architectural patterns and components needed to scale modern w
 category: "General"
 tags: ["Architecture", "Scalability", "System Design"]
 slug: "system-design-essentials-scaling"
-draft: false
+draft: true
 ---
 
 Building a system that can handle millions of users requires careful planning and the right choice of architectural patterns.
