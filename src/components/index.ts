@@ -17,7 +17,7 @@ import FrontendProjects from "./Projects/Frontends";
 import FullstackProjects from "./Projects/Fullstacks";
 import AccessDenied from "./protected/Acessdenied";
 import ControllInput from "./Form/ControlInput";
-import Drafts from "./Drafts/Drafts";
+import ProjectDrafts from "./Projects/ProjectDrafts";
 import ScrollToView from "./ScrollToView/ScrollToView";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import AboutPage from "./About/AboutPage";
@@ -30,6 +30,6 @@ import ScrollProgress from "./Animations/ScrollProgress";
 export {
   Layout, CustomButton, Hero, ProjectSection, ContactForm, Copyright, Icons, CustomCard, CustomModal,
   ProjectModal, BlogSection, BlogModal, TabPanel, AllProjects, BackendProjects, FrontendProjects, FullstackProjects,
-  AccessDenied, ControllInput, Drafts, ScrollToView, ScrollToTop, AboutPage, Timeline, EditAboutForm,
+  AccessDenied, ControllInput, ProjectDrafts, ScrollToView, ScrollToTop, AboutPage, Timeline, EditAboutForm,
   ScrollProgress
 };

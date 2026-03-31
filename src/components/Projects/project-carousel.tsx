@@ -47,11 +47,11 @@ export default function ProjectCarousel<TData extends any[]>({ data }: { data: T
             <CarouselItem key={index}>
               <div className="p-1">
                 <Card className="w-full h-full border-none">
-                  <CardContent className="p-0 flex aspect-video relative hover:scale-150 transition-all duration-300">
+                  <CardContent className="p-0 flex aspect-video relative group overflow-hidden bg-softBg/50 rounded-lg shadow-sm border border-softBg/30">
                     <Image
                       src={image}
                       alt={`Project image ${index + 1}`}
-                      className="w-full h-full object-cover rounded-lg absolute"
+                      className="w-full h-full object-cover object-top rounded-lg absolute transition-transform duration-500 group-hover:scale-105"
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority

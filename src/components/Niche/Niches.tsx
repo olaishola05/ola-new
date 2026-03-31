@@ -10,13 +10,11 @@ export default function Niches() {
       data-aos-duration="3000"
     >
       <div className="w-full mx-auto px-4 text-gray-600 md:px-0">
-        <div className="max-w-2xl mx-auto flex flex-col gap-2 mb-8 lg:mb-5">
-          <p className="mt-3 info text-[var(--textColor)] text-center text-base md:text-xl font-light">
-            Below are some of the things I do
-          </p>
-          <h1 className="text-2xl md:text-6xl sm:text-4xl text-[var(--textColor)] text-center">
-            What I do
-          </h1>
+        <div className="flex flex-col items-center justify-center gap-3 mb-12 lg:mb-20">
+          <span className="text-xs font-bold uppercase tracking-widest text-cta">Specialized Services</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center">
+            What I Do
+          </h2>
         </div>
 
         <div
@@ -36,28 +34,13 @@ export default function Niches() {
                 />
               </div>
               <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="hidden md:block w-10 h-10 mx-auto"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"
-                  />
-                </svg>
-
-                <h3 className="text-[var(--cta)] font-semibold">
+                <span className="text-xs font-bold uppercase tracking-widest text-cta">
                   Software development
-                </h3>
-                <p className="text-[var(--textColor)] text-2xl md:text-3xl font-semibold sm:text-4xl">
+                </span>
+                <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
                   Build your App solution with help from an expert
-                </p>
-                <p className="mt-3 text-[var(--textColor)] text-lg">
+                </h3>
+                <p className="text-base md:text-lg text-softText leading-relaxed">
                   I excel in developing premium software solutions customized to
                   your unique requirements across various web platforms. I
                   leverage a range of cutting-edge technologies including React,
@@ -105,29 +88,14 @@ export default function Niches() {
                 />
               </div>
               <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="hidden md:block w-10 h-10 mx-auto"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                  />
-                </svg>
-
-                <h3 className="text-[var(--cta)] font-semibold">
+                <span className="text-xs font-bold uppercase tracking-widest text-cta">
                   Technical writing
-                </h3>
-                <p className="text-[var(--textColor)] text-2xl md:text-3xl font-semibold sm:text-4xl">
+                </span>
+                <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
                   Write technical articles and documentation for your software
                   projects
-                </p>
-                <p className="mt-3 text-[var(--textColor)] text-lg">
+                </h3>
+                <p className="text-base md:text-lg text-softText leading-relaxed">
                   I am adept at crafting insightful technical articles
                   encompassing web and software development, as well as offering
                   potential solutions to technical challenges and other
@@ -173,27 +141,13 @@ export default function Niches() {
                 />
               </div>
               <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="hidden md:block w-10 h-10 mx-auto"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
-                <h3 className="text-[var(--cta)] font-semibold">
+                <span className="text-xs font-bold uppercase tracking-widest text-cta">
                   Coding Instructor
-                </h3>
-                <p className="text-[var(--textColor)] text-2xl md:text-3xl font-semibold sm:text-4xl">
+                </span>
+                <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
                   Learn to code with help from an expert
-                </p>
-                <p className="mt-3 text-[var(--textColor)] text-lg">
+                </h3>
+                <p className="text-base md:text-lg text-softText leading-relaxed">
                   I specialize in providing personalized coding education
                   through a project-based approach, offering individualized
                   mentorship and guidance to aspiring developers. My focus is on

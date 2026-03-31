@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 import Companies from "./Companies";
@@ -5,48 +7,87 @@ import HeroTitleAnimation from "./greeting";
 import Image from "next/image";
 import HeroSocialIcons from "./hero-social";
 import ResumeModal from "../Modal/resume-modal";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <main
-      className="flex flex-col-reverse md:flex-row p-2 w-full h-full mt-8 mx-auto gap-10 relative md:py-0 md:px-5 md:h-[50vh] lg:h-[75vh] lg:mt-20 lg:mb-0 lg:mx-auto md:w-[90%] lg:w-[100%] md:gap-8 mb-10"
-      data-aos="fade-up"
-      data-aos-duration="3000"
-    >
-      <div className="w-full md:flex-1 flex flex-col gap-4 md:gap-6 lg:gap-7 md:py-20">
-        <HeroTitleAnimation />
-        <p
-          className="intro self-center md:self-start w-full text-justify md:text-left md:w-[700px] font-light text-base md:text-lg lg:text-xl text-[var(--textColor)]"
-          data-aos="zoom-in-up"
-          data-aos-duration="8000"
-        >
-          Hi there! {"I'm"} a software engineer based in Nigeria. I help businesses & startups to
-          develop accessible, human-centered products that meet their {"customers'"} needs.
-        </p>
-        <div className="self-center md:self-start flex justify-center md:justify-start gap-5 w-full mt-6">
-          <Link
-            href="/#my-works"
-            className="w-[200px] h-[45px] px-3 py-5 rounded-full leading-4 tracking-tighter shadow-lg flex items-center justify-center gap-10 text-base md:text-lg text-[var(--cta)] bg-inherit border border-[var(--primary)] hover:bg-[var(--cta)] hover:text-[var(--ctaText)] hover:border hover:border-[var(--cta)]"
+    <div className="relative isolate overflow-hidden">
+      {/* Mesh Background */}
+      <div className="absolute inset-0 -z-10 bg-[var(--bg)]">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cta/5 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-cta/10 blur-[120px]" />
+      </div>
+
+      <main
+        className="flex flex-col-reverse lg:flex-row items-center justify-between p-6 md:p-12 lg:p-24 min-h-[80vh] gap-16"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
+        <div className="w-full lg:flex-1 space-y-8">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cta/5 border border-cta/10 text-cta text-xs font-bold tracking-widest uppercase"
           >
-            My works
-          </Link>
-          <ResumeModal />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cta opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cta"></span>
+            </span>
+            Available for new projects
+          </motion.div>
+
+          <HeroTitleAnimation />
+
+          <p
+            className="text-lg md:text-xl text-softText leading-relaxed max-w-2xl"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            I architect and build accessible, human-centered digital products.
+            Focused on performance, scalability, and <span className="text-textColor font-bold">intuitive user experiences</span>.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/#my-works"
+              className="px-8 py-4 bg-cta text-ctaText font-bold rounded-2xl shadow-2xl shadow-cta/20 hover:scale-105 active:scale-95 transition-all text-sm tracking-wide"
+            >
+              Explore My Work
+            </Link>
+            <ResumeModal />
+          </div>
+
+          <div className="pt-4 border-t border-softBg/50 flex flex-col gap-4">
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-softText/60">Connect & Socials</span>
+            <HeroSocialIcons />
+          </div>
         </div>
 
-        <HeroSocialIcons />
-        {/* <Companies /> */}
-      </div>
-      <div className="w-full md:flex-1 rounded-full [clip-path:circle(50%_at_50%_30%)]">
-        <Image
-          // src="/images/ola.png"
-          src="https://avatars.githubusercontent.com/u/45001916?v=4"
-          alt="Hero Image"
-          width={1024}
-          height={1024}
-          loading="lazy"
-          className="h-[36rem] w-full md:w-11/12 object-cover"
-        />
-      </div>
-    </main>
+        <div className="relative w-full lg:flex-1 max-w-lg mx-auto">
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative z-10 w-full aspect-square rounded-[2rem] bg-cta/10 overflow-hidden shadow-2xl rotate-3"
+          >
+            <Image
+              src="https://avatars.githubusercontent.com/u/45001916?v=4"
+              alt="Oladipupo Ishola"
+              fill
+              priority
+              className="object-cover -rotate-3 scale-110 grayscale-[30%] hover:grayscale-0 transition-all duration-700"
+            />
+          </motion.div>
+          {/* Decorative Ring */}
+          <div className="absolute -inset-4 border border-cta/10 rounded-[2.5rem] -rotate-6 -z-10" />
+        </div>
+      </main>
+    </div>
   );
 }

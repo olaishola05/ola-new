@@ -28,107 +28,106 @@ export default function DashBoardSidebar({ session }: any) {
   };
 
   return (
-    <aside className="flex flex-col gap-20 mt-5 mx-auto items-center">
-      <div className="flex flex-col gap-5 mt-10">
-        <div className="flex gap-2 items-center">
+    <aside className="flex flex-col flex-1 justify-between pb-10 w-full items-center">
+      <div className="flex flex-col gap-6 mt-10">
+        <div className="flex gap-3 items-center group cursor-pointer">
           {Circle(isActive, "/")}
-          <Link href="/" className="text-base text-ctaText">
+          <Link href="/" className="text-base font-medium text-ctaText">
             Home
           </Link>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-3 items-center group cursor-pointer">
           {Circle(isActive, "/admin/dashboard")}
-          <Link href="/admin/dashboard" className="text-base text-ctaText">
+          <Link href="/admin/dashboard" className="text-base font-medium text-ctaText">
             Analytics
           </Link>
         </div>
         {session?.user?.role.includes("admin") && (
           <>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-3 items-center group cursor-pointer">
               {Circle(isActive, "/admin/dashboard/projects")}
               <Link
                 href="/admin/dashboard/projects"
-                className="text-base text-ctaText"
+                className="text-base font-medium text-ctaText"
               >
                 Projects
               </Link>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-3 items-center group cursor-pointer">
               {Circle(isActive, "/admin/dashboard/create")}
               <Link
                 href="/admin/dashboard/create"
-                className="text-base text-ctaText"
+                className="text-base font-medium text-ctaText"
               >
                 Add Project
               </Link>
             </div>
 
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-3 items-center group cursor-pointer">
               {Circle(isActive, "/admin/dashboard/testimonials")}
               <Link
                 href="/admin/dashboard/testimonials"
-                className="text-base text-ctaText"
+                className="text-base font-medium text-ctaText"
               >
                 Testimonials
               </Link>
             </div>
           </>
         )}
-        <>
-          <div className="flex gap-2 items-center">
-            {Circle(isActive, "/admin/dashboard/posts")}
-            <Link
-              href="/admin/dashboard/posts"
-              className="text-base text-ctaText"
-            >
-              All Posts
-            </Link>
-          </div>
-          <div className="flex gap-2 items-center">
-            {Circle(isActive, "/admin/dashboard/posts/drafts")}
-            <Link
-              href="/admin/dashboard/posts/drafts"
-              className="text-base text-ctaText"
-            >
-              Draft Posts
-            </Link>
-          </div>
-          <div className="flex gap-2 items-center">
-            {Circle(isActive, "/admin/dashboard/posts/published")}
-            <Link
-              href="/admin/dashboard/posts/published"
-              className="text-base text-ctaText"
-            >
-              Published Posts
-            </Link>
-          </div>
-        </>
+        <div className="flex gap-3 items-center group cursor-pointer">
+          {Circle(isActive, "/admin/dashboard/posts")}
+          <Link
+            href="/admin/dashboard/posts"
+            className="text-base font-medium text-ctaText"
+          >
+            All Posts
+          </Link>
+        </div>
+        <div className="flex gap-3 items-center group cursor-pointer">
+          {Circle(isActive, "/admin/dashboard/posts/drafts")}
+          <Link
+            href="/admin/dashboard/posts/drafts"
+            className="text-base font-medium text-ctaText"
+          >
+            Draft Posts
+          </Link>
+        </div>
+        <div className="flex gap-3 items-center group cursor-pointer">
+          {Circle(isActive, "/admin/dashboard/posts/published")}
+          <Link
+            href="/admin/dashboard/posts/published"
+            className="text-base font-medium text-ctaText"
+          >
+            Published Posts
+          </Link>
+        </div>
       </div>
-      <div className="flex flex-col">
-        <div className="flex items-center flex-col gap-1">
+
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex items-center flex-col gap-2">
           {session.user.image && (
-            <div className="relative h-[40px] w-10 rounded-full">
+            <div className="relative h-12 w-12 rounded-full overflow-hidden border-2 border-white/20 shadow-lg">
               <Image
                 src={session.user.image}
                 alt={session.user.name}
-                className="absolute w-10 h-10 rounded-full object-cover"
                 fill
+                className="object-cover"
               />
             </div>
           )}
-          <span className="font-bold text-lg text-ctaText">
+          <span className="font-extrabold text-2xl text-white tracking-tight">
             {session.user.name
               .split(" ")
               .map((name: string) => name[0])
               .join("")}
           </span>
         </div>
-        <span
-          className="cursor-pointer text-base capitalize mt-auto text-ctaText"
+        <button
+          className="cursor-pointer text-sm font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors"
           onClick={handleLogout}
         >
           Logout
-        </span>
+        </button>
       </div>
     </aside>
   );

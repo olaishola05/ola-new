@@ -44,7 +44,12 @@ const AboutPage = ({ data }: AboutPageProps) => {
               <AboutImage photo={aboutData?.profileImgUrl} />}
           </div>
           <div className='current w-[95%] my-8 mx-auto flex flex-col justify-between items-center md:w-[90%] md:my-12' data-aos="fade-up">
-            <h2 className='text-center my-8 mx-auto text-2xl md:text-5xl'>Work History</h2>
+            <div className="flex flex-col items-center justify-center gap-3 mb-10 mt-8">
+              <span className="text-xs font-bold uppercase tracking-widest text-cta">Recent Roles</span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center">
+                Work History
+              </h2>
+            </div>
             {aboutData?.currentWorks?.map((work, idx) => (
               <CurrentWork
                 key={idx}
@@ -65,8 +70,13 @@ const AboutPage = ({ data }: AboutPageProps) => {
         </>
       )}
 
-      <div className='resume flex my-8 mx-auto md:mx-0 md:my-20 flex-col' data-aos="fade-up">
-        <h2 className='sub-header text-center my-6 mx-auto text-2xl md:text-5xl font-semibold' data-aos="fade-up" id='resume'>My Resume</h2>
+      <div className='resume flex my-16 mx-auto md:mx-0 md:my-20 flex-col items-center' data-aos="fade-up">
+        <div className="flex flex-col items-center justify-center gap-3 mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-cta">Qualifications</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center" id="resume">
+            My Resume
+          </h2>
+        </div>
         <ResumeTabs />
       </div>
     </main>

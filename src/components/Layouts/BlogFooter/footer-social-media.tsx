@@ -1,19 +1,14 @@
 'use client';
 
 import React from 'react'
-import Link from 'next/link'
-import styles from './blogFooter.module.css'
 import { socialLinks } from '@/app/utils'
-import CustomIcon from '@/components/IconsComponent/CustomIcon'
+import { Icons } from '@/components'
 
 export default function FooterSocialMedia() {
   return (
-    <div className={styles.icons}>
-      {socialLinks.map(({ id, path, icon }) => (
-        <Link href={path} target='_blank'
-          rel='noopener noreferrer' key={id}>
-          <CustomIcon icon={icon} className='h-[18px] w-[18px] text-[var(--primary)]' />
-        </Link>
+    <div className='flex justify-center items-center gap-3'>
+      {socialLinks.map((link) => (
+        <Icons link={link} key={link.id} />
       ))}
     </div>
   )

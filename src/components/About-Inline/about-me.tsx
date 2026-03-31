@@ -10,17 +10,13 @@ export default function AboutMe() {
   ]
   return (
     <div>
-      <h2
-        className='text-2xl md:text-4xl font-semibold text-primary'
+      <h3
+        className='text-2xl md:text-3xl font-extrabold text-[var(--textColor)] tracking-tight mb-6'
         data-aos="zoom-in-right"
         data-aos-duration="3000"
         data-aos-anchor-placement="top-center"
-      >About Me</h2>
-      <hr className='border-textColor w-1/6 my-2 mb-6'
-        data-aos="zoom-in-left"
-        data-aos-duration="4000"
-        data-aos-anchor-placement="top-center"
-      />
+      >About Me</h3>
+
 
       <div className="w-full md:w-10/12 md:px-0"
         data-aos="zoom-in-up"
@@ -30,7 +26,7 @@ export default function AboutMe() {
         {about.map((text, index) => (
           <p
             key={index}
-            className="text-lg text-textColor mb-6"
+            className="text-base md:text-lg text-softText leading-relaxed mb-6"
           >
             {text}
           </p>

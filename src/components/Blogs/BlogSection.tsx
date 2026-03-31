@@ -18,15 +18,12 @@ const BlogSection = ({ data }: BlogSectionProps) => {
       className="md:px-2 pb-9 w-full mb-10 lg:px-10"
     >
       <div className="w-full flex flex-col gap-2">
-        <p
-          data-aos="fade-up"
-          className="info text-[var(--textColor)] text-center text-base md:text-xl font-light"
-        >
-          Check some of my Technical articles
-        </p>
-        <h1 data-aos="fade-up" className="text-2xl md:text-6xl text-center">
-          Recent Articles
-        </h1>
+        <div className="flex flex-col items-center justify-center gap-3 mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-cta" data-aos="fade-up">From The Blog</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center" data-aos="fade-up">
+            Recent Articles
+          </h2>
+        </div>
         <div className="md:mt-10">
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8">
             {data?.items &&

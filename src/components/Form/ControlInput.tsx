@@ -38,7 +38,7 @@ const ControlInput: React.FC<Props> = ({
           {type === 'textarea' ? (
             <textarea
               style={{ width, border: error && '1px solid red' }}
-              className='p-3 rounded-md outline-none bg-white focus:bg-[var(--cta)] text-black focus:text-[var(--formText)] border-[var(--primary)] border-[1px] focus:border-solid focus:border-[var(--textColor)]'
+              className='p-4 rounded-xl outline-none w-full bg-softBg/10 dark:bg-softBg/20 text-[var(--textColor)] border border-softBg/30 focus:border-cta/50 focus:ring-2 focus:ring-cta/20 transition-all duration-300 backdrop-blur-sm placeholder-softText/70 resize-none font-medium text-base'
               placeholder={placeholder}
               onChange={onChange}
               onBlur={onBlur}
@@ -52,7 +52,7 @@ const ControlInput: React.FC<Props> = ({
               <input
                 type="file"
                 style={{ width, border: error && otherProps.watchPhoto && '1px solid red' }}
-                className='p-2 rounded-md outline-none bg-white focus:bg-[var(--cta)] text-black focus:text-[var(--formText)] border-[var(--primary)] border-[1px] focus:border-solid focus:border-[var(--textColor)]'
+                className='file:cursor-pointer p-4 rounded-xl outline-none w-full bg-softBg/10 dark:bg-softBg/20 text-[var(--textColor)] border border-softBg/30 focus:border-cta/50 focus:ring-2 focus:ring-cta/20 transition-all duration-300 backdrop-blur-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cta/10 file:text-cta hover:file:bg-cta/20'
                 placeholder={placeholder}
                 accept="image/*"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +70,7 @@ const ControlInput: React.FC<Props> = ({
               id="outlined-basic"
               style={{ width, border: error && '1px solid red' }}
               placeholder={placeholder}
-              className={`w-[${width} || 100%] p-3 rounded-md outline-none bg-white focus:bg-[var(--cta)] text-black focus:text-[var(--formText)] border-[var(--primary)] border-[1px] focus:border-solid focus:border-[var(--textColor)]`}
+              className={`w-[${width} || 100%] p-4 rounded-xl outline-none bg-softBg/10 dark:bg-softBg/20 text-[var(--textColor)] border border-softBg/30 focus:border-cta/50 focus:ring-2 focus:ring-cta/20 transition-all duration-300 backdrop-blur-sm placeholder-softText/70 font-medium text-base`}
               onChange={onChange}
               onBlur={onBlur}
               value={value as string}

@@ -37,7 +37,10 @@ const ResumeTabs = () => {
               <li key={tab.label} className='list-none'>
                 <button
                   onClick={(e) => handleChange(e, index)}
-                  className={`px-4 py-2 border border-[var(--cta)] hover:bg-[var(--cta)] hover:text-[var(--ctaText)] rounded-full ${activeTab === index ? 'bg-[var(--btnMode)] text-white' : 'text-primary'}`}
+                  className={`px-6 py-2.5 rounded-full font-bold text-sm tracking-widest uppercase transition-all duration-300 ${activeTab === index
+                      ? 'bg-cta text-ctaText shadow-lg shadow-cta/20 scale-105'
+                      : 'bg-softBg/30 text-[var(--textColor)] hover:bg-softBg/60 hover:scale-105'
+                    }`}
                 >
                   {tab.label}
                 </button>

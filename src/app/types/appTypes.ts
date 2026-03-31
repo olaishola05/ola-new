@@ -3,18 +3,19 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 export type Project = {
   [x: string]: any;
+  id?: string;
   name: string,
-  description: string[] | string | undefined,
+  description: string[] | string | null | undefined,
   stacks: string[],
-  githubUrl: string,
-  liveUrl: string,
+  githubUrl?: string | null,
+  liveUrl?: string | null,
   images: string[],
-  coverImgUrl: string,
-  tag: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string,
-  published: boolean,
+  coverImgUrl?: string | null,
+  tag?: string | null,
+  createdAt?: string | Date,
+  updatedAt?: string | Date,
+  deletedAt?: string | Date | null,
+  published?: boolean,
   author?: {
     name: string,
     email: string,
