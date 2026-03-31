@@ -1,94 +1,184 @@
 import React from 'react'
-import Image from 'next/image'
-import styles from './slug.module.css'
-import Comments from '@/components/Comments/Comments'
-import Subscribe from '@/components/Subscribe/Subscribe'
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { fetchPublishedPosts, getPost } from '@/app/lib'
+import {
+  getPublishedPosts,
+  getPostBySlug,
+  getRelatedPosts,
+  getPostHeadings,
+  SITE_CONFIG,
+} from '@/lib/posts'
 import CustomMDX from '@/components/MDX/custom-mdx'
-import ReadTracker from '@/components/Posts/post-tracker/read-tracker'
-import { headers } from 'next/headers';
-import { trackEvent } from '@/actions'
-import PostsTags from "@/components/Posts/post-tags/posts-tags";
-import PostMetaData from "@/components/Posts/post-meta/post-metatdata";
-import RelatedPosts from "@/components/Posts/suggest posts/related-post";
-import PreviousPage from "@/components/Posts/previousPage/PreviousPage";
-import Menu from '@/components/Menu/Menu'
-import Toc from '@/components/MDX/Toc'
+import PostHeader from '@/components/blog/PostHeader'
+import ReadingProgress from '@/components/blog/ReadingProgress'
+import ReadTracker from '@/components/blog/ReadTracker'
+import RelatedPosts from '@/components/blog/RelatedPosts'
+import BackButton from '@/components/blog/BackButton'
+import TableOfContents from '@/components/MDX/toc-component'
+import Subscribe from '@/components/Subscribe/Subscribe'
+import EngagementTracker from '@/components/Analytic/EngagementTracker'
+import SharePost from '@/components/blog/SharePost'
+
+export const revalidate = 3600 // ISR: Revalidate every 1 hour
+
+// ─── Static Params (ISR) ───────────────────────────────────────────
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = await fetchPublishedPosts()
-  if (!posts) return []
-
-  return posts
-    .filter(post => post?.data?.slug)
-    .map((post) => ({
-      slug: post?.data.slug as string
-    }))
+  const posts = await getPublishedPosts()
+  return posts.map((post) => ({ slug: post.frontmatter.slug }))
 }
 
-const fetchPost = async (slug: string) => {
-  return await getPost(slug)
-}
+// ─── Dynamic Metadata (SEO + OG) ──────────────────────────────────
 
-export default async function SinglePost({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const post = await fetchPost(slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug)
 
   if (!post) {
-    return notFound()
+    return { title: 'Post Not Found' }
   }
 
-  const { data, body } = post;
+  const { title, description, date, tags, coverImage, slug } =
+    post.frontmatter
 
-  const headersList = headers();
-  const referrer = headersList.get('referer') || null;
-  await trackEvent({ slug: slug, eventType: 'view', referrer });
-  const { title, postImg, author, date, categories, postId } = data
+  return {
+    title: `${title} | ${SITE_CONFIG.author}`,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime: date,
+      authors: [SITE_CONFIG.author],
+      tags,
+      url: `${SITE_CONFIG.siteUrl}/blog/posts/${slug}`,
+      images: coverImage
+        ? [{ url: coverImage, width: 1200, height: 630, alt: title }]
+        : [
+          {
+            url: SITE_CONFIG.authorAvatar,
+            width: 400,
+            height: 400,
+            alt: SITE_CONFIG.author,
+          },
+        ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: coverImage ? [coverImage] : [SITE_CONFIG.authorAvatar],
+    },
+  }
+}
+
+// ─── Page Component ────────────────────────────────────────────────
+
+export default async function SinglePostPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const post = await getPostBySlug(params.slug)
+
+  if (!post) {
+    notFound()
+  }
+
+  const [relatedPosts, headings] = await Promise.all([
+    getRelatedPosts(params.slug, 2),
+    getPostHeadings(post.body),
+  ])
 
   return (
-    <div className='w-full md:w-10/12 flex gap-10 mt-4 md:mt-20 mx-auto relative'>
-      <div className='w-full md:w-8/12'>
-        <div className='w-full overflow-scroll'>
-          <div className='flex flex-col gap-5'>
-            <div className='flex flex-col gap-3'>
-              <h1 className='text-2xl md:text-5xl text-textColor w-full font-semibold'>{title}</h1>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.frontmatter.title,
+            "image": post.frontmatter.coverImage ? [post.frontmatter.coverImage] : [SITE_CONFIG.authorAvatar],
+            "datePublished": post.frontmatter.date,
+            "author": [{
+              "@type": "Person",
+              "name": SITE_CONFIG.author,
+              "url": SITE_CONFIG.siteUrl
+            }]
+          })
+        }}
+      />
+      
+      <ReadingProgress />
+
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 mt-4 md:mt-12">
+        <BackButton />
+
+        <div className="flex flex-col md:flex-row gap-10 lg:gap-16 relative">
+          {/* Main Content */}
+          <article className="w-full md:w-[65%] lg:w-[70%] xl:w-[75%] min-w-0">
+            <PostHeader post={post} />
+
+            <div id="post-content" className="prose prose-lg dark:prose-invert max-w-none
+              prose-headings:text-textColor prose-headings:font-bold prose-headings:tracking-tight
+              prose-h1:text-3xl md:prose-h1:text-4xl prose-h1:mb-8
+              prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-softBg prose-h2:pb-2
+              prose-h3:text-xl md:prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+              prose-p:text-textColor/90 prose-p:leading-relaxed prose-p:mb-6
+              prose-a:text-cta prose-a:no-underline hover:prose-a:underline font-medium
+              prose-strong:text-textColor prose-strong:font-bold
+              prose-code:text-cta prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+              prose-blockquote:border-l-4 prose-blockquote:border-cta prose-blockquote:bg-softBg/30 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:italic
+              prose-li:text-textColor/90 prose-li:my-1
+              prose-img:rounded-2xl prose-img:shadow-lg
+              mt-10">
+              <CustomMDX source={post.body} />
             </div>
-            {postImg && postImg.startsWith('http') && (
-              <div className='relative w-full h-[250px] md:h-[400px]'>
-                <Image
-                  sizes="100vw"
-                  src={postImg || ''} alt={postImg}
-                  className='object-cover rounded-lg'
-                  fill
-                  loading='lazy'
-                  style={{ width: '100%', height: '100%' }}
-                />
+
+            {/* Tags at bottom */}
+            <div className="flex gap-2 flex-wrap mt-16 pt-8 border-t border-softBg">
+              {post.frontmatter.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-sm px-4 py-2 rounded-full bg-softBg text-textColor border border-cta/20 hover:border-cta/50 transition-colors font-medium capitalize cursor-default"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Share Post */}
+            <SharePost title={post.frontmatter.title} slug={params.slug} />
+
+            {/* Related Posts */}
+            <RelatedPosts posts={relatedPosts} currentCategory={post.frontmatter.category} />
+
+            {/* Subscribe */}
+            <div className="mt-12 pt-8 border-t border-softBg">
+              <Subscribe />
+            </div>
+
+            {/* Read Tracker & Engagement */}
+            <ReadTracker slug={params.slug} />
+            <EngagementTracker slug={params.slug} />
+          </article>
+
+          {/* Sidebar: Table of Contents */}
+          <aside className="hidden md:block w-[35%] lg:w-[30%] xl:w-[25%] self-start sticky top-24 h-fit">
+            {headings.length > 0 && (
+              <div className="p-6 rounded-2xl bg-softBg/30 border border-softBg backdrop-blur-sm">
+                <TableOfContents nodes={headings} />
               </div>
             )}
-            <PostMetaData author={author} body={body} date={date} />
-          </div>
-          <div className={styles.content}>
-            <div className={styles.post}>
-              <div id='post-content'>
-                <CustomMDX source={body} />
-                <PostsTags categories={categories} />
-              </div>
-              <PreviousPage referrer={referrer} />
-              <RelatedPosts slug={slug} />
-              <div className={styles.comments}>
-                <Subscribe />
-                {/* <Comments postSlug={slug} /> */}
-              </div>
-            </div>
-          </div>
-          <ReadTracker slug={slug} />
+          </aside>
         </div>
       </div>
-      <div className='hidden md:block w-[25%] md:fixed right-36'>
-        <Toc postId={postId} />
-        <Menu />
-      </div>
-    </div>
+
+      <div className="h-16" />
+    </>
   )
 }
