@@ -78,6 +78,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={monserrat.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Oladipupo Ishola",
+              "url": "https://olaishola.tech",
+              "image": "https://olaishola.tech/images/portrait-me.jpeg",
+              "sameAs": [
+                "https://github.com/olaishola05",
+                "https://www.linkedin.com/in/oladipupo-ishola/",
+                "https://twitter.com/olaishola05"
+              ],
+              "jobTitle": "Fullstack Software Developer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Self-Employed"
+              }
+            })
+          }}
+        />
         <AuthProvider>
           <AnimationProvider>
             <AppThemeProvider>
