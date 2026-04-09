@@ -44,8 +44,9 @@ export default function HeroSection() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            I architect and build accessible, human-centered digital products.
-            Focused on performance, scalability, and <span className="text-textColor font-bold">intuitive user experiences</span>.
+            I help developers and founders{" "}
+            <span className="text-textColor font-bold">build real products faster</span>{" "}
+            using AI, engineering principles, and systems that scale. Builder first. Educator always.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -53,7 +54,7 @@ export default function HeroSection() {
               href="/#my-works"
               className="px-8 py-4 bg-cta text-ctaText font-bold rounded-2xl shadow-2xl shadow-cta/20 hover:scale-105 active:scale-95 transition-all text-sm tracking-wide"
             >
-              Explore My Work
+              See What I&apos;ve Built
             </Link>
             <ResumeModal />
           </div>

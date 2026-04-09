@@ -15,15 +15,14 @@ const monserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://olaishola.tech/'),
-  title: 'Ola - Fullstack Developer',
-  description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
+  title: 'Oladipupo Ishola — Builder. Educator. Maker.',
+  description: 'Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably. Real products. Real results.',
   icons: [
     {
       media: '(prefers-color-scheme: light)',
       url: '/images/brand-purple.png',
       href: '/images/brand-purple.png',
       type: 'image/png',
-
     },
     {
       media: '(prefers-color-scheme: dark)',
@@ -33,8 +32,8 @@ export const metadata: Metadata = {
     },
   ],
   openGraph: {
-    title: 'Ola - Fullstack Developer',
-    description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
+    title: 'Oladipupo Ishola — Builder. Educator. Maker.',
+    description: 'Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably. Real products. Real results.',
     type: 'website',
     locale: 'en_IE',
     url: 'https://olaishola.tech',
@@ -43,30 +42,29 @@ export const metadata: Metadata = {
         url: '/images/portrait-me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Oladipupo Ishola - Fullstack Developer',
+        alt: 'Oladipupo Ishola — Builder. Educator. Maker.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@olaishola05',
-    title: 'Ola - Fullstack Developer',
-    description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
+    site: '@_olaishola',
+    title: 'Oladipupo Ishola — Builder. Educator. Maker.',
+    description: 'Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably. Real products. Real results.',
     images: [
       {
         url: '/images/portrait-me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Oladipupo Ishola - Fullstack Developer',
+        alt: 'Oladipupo Ishola — Builder. Educator. Maker.',
       },
     ],
   },
   verification: {
     other: {
-      'p:domain_verify':
-        '861620612d1417f5d3f0043781c79dd0'
+      'p:domain_verify': '861620612d1417f5d3f0043781c79dd0',
     },
-  }
+  },
 }
 
 export default function RootLayout({
@@ -87,12 +85,16 @@ export default function RootLayout({
               "name": "Oladipupo Ishola",
               "url": "https://olaishola.tech",
               "image": "https://olaishola.tech/images/portrait-me.jpeg",
+              "description": "Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably.",
               "sameAs": [
                 "https://github.com/olaishola05",
-                "https://www.linkedin.com/in/oladipupo-ishola/",
-                "https://twitter.com/olaishola05"
+                "https://www.linkedin.com/in/oladipupoishola/",
+                "https://twitter.com/_olaishola",
+                "https://www.youtube.com/@BuildShipTeach",
+                "https://medium.com/@olaishola",
+                "https://www.instagram.com/_olaishola"
               ],
-              "jobTitle": "Fullstack Software Developer",
+              "jobTitle": "Software Engineer, Product Builder & Educator",
               "worksFor": {
                 "@type": "Organization",
                 "name": "Self-Employed"

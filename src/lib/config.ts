@@ -4,9 +4,10 @@
 export const SITE_CONFIG = {
   author: 'Oladipupo Ishola',
   authorAvatar: '/images/portrait-me.jpeg',
+  tagline: 'Build. Ship. Teach.',
   blogTitle: "Code 'n' Beyond",
   blogDescription:
-    "Thoughts and experiences on web development, deep dives into technical solutions, faith, life in general, and insights into the technologies shaping our digital world.",
+    "Practical writing on AI-assisted development, building real products, monetising tech skills, and the honest lessons from doing all three. No hype. No shortcuts.",
   siteUrl: 'https://olaishola.tech',
   postsPerPage: 9,
 }
