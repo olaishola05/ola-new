@@ -38,15 +38,10 @@ export default function Niches() {
                   Software development
                 </span>
                 <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
-                  Build your App solution with help from an expert
+                  Build real products with AI-assisted engineering
                 </h3>
                 <p className="text-base md:text-lg text-softText leading-relaxed">
-                  I excel in developing premium software solutions customized to
-                  your unique requirements across various web platforms. I
-                  leverage a range of cutting-edge technologies including React,
-                  Next.js, Tailwind CSS, MUI, Node.js, Express, MongoDB,
-                  PostgreSQL, and other relevant tools to align with your
-                  business objectives.
+                  I design and build scalable web products using React, Next.js, Node.js, TypeScript, and AI-assisted workflows. Whether you have an idea that needs engineering or a product that needs to scale, I bring the technical depth to make it real — not just functional, but built to last.
                 </p>
                 <Link
                   // href={`${process.env.NEXT_PUBLIC_RESUME_URL}`}
@@ -92,15 +87,10 @@ export default function Niches() {
                   Technical writing
                 </span>
                 <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
-                  Write technical articles and documentation for your software
-                  projects
+                  Technical writing that actually teaches, not just documents
                 </h3>
                 <p className="text-base md:text-lg text-softText leading-relaxed">
-                  I am adept at crafting insightful technical articles
-                  encompassing web and software development, as well as offering
-                  potential solutions to technical challenges and other
-                  pertinent topics. Furthermore, I excel in creating
-                  comprehensive technical documentation for software projects.
+                  I write technical articles and documentation that treat readers like intelligent people — not beginners who need hand-holding or experts who already know everything. Clear structure, real examples, and honest explanations of why things work the way they do.
                 </p>
                 <Link
                   href={`${process.env.NEXT_PUBLIC_ADMIN_MEDIUM_URL}`}
@@ -145,15 +135,10 @@ export default function Niches() {
                   Coding Instructor
                 </span>
                 <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
-                  Learn to code with help from an expert
+                  Learn to build and ship, not just watch tutorials
                 </h3>
                 <p className="text-base md:text-lg text-softText leading-relaxed">
-                  I specialize in providing personalized coding education
-                  through a project-based approach, offering individualized
-                  mentorship and guidance to aspiring developers. My focus is on
-                  equipping others with the skills they need to create
-                  innovative software solutions, while also facilitating access
-                  to supportive communities of like-minded individuals.
+                  Most developers finish courses and still have nothing deployed. My teaching is project-based and mentorship-led — you build real things from day one. I have coached developers from zero to their first client, their first deployed product, and their first income from tech. The goal is never just to learn. It is to ship.
                 </p>
                 <Link
                   href="https://10nth-mnoht-brytebee.vercel.app"
