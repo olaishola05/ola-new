@@ -5,9 +5,7 @@ import { usePathname } from 'next/navigation'
 
 export default function ConditionalWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-
-  // Exclude /business and /admin from wrapper
-  const excludeWrapper = pathname.startsWith('/admin') || pathname.startsWith('/business');
+  const excludeWrapper = pathname.startsWith('/admin') || pathname.startsWith('/business') || pathname.startsWith('/links');
 
   return (
     <>
