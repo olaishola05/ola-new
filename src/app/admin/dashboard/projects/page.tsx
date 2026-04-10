@@ -1,5 +1,5 @@
 import React from "react";
-import { Drafts } from "@/components";
+import { ProjectDrafts } from "@/components";
 import CreateButton from "@/components/Button/CreateProjectBtn";
 import Noprojects from "@/components/Projects/NoProject";
 import { Metadata } from "next";
@@ -16,6 +16,7 @@ const getProjects = async () => {
 
 async function Projects() {
   const projects = await getProjects();
+
   return (
     <>
       <div className="my-0 mx-auto">
@@ -28,7 +29,7 @@ async function Projects() {
           Project Drafts
         </h1>
         {projects?.length === 0 && <Noprojects />}
-        {projects?.length > 0 && <Drafts projects={projects} />}
+        {projects?.length > 0 && <ProjectDrafts projects={projects} />}
       </div>
     </>
   );

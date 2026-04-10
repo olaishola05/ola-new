@@ -31,7 +31,7 @@ export default function MiniEducationTimeline() {
     <div className='md:p-5 w-full md:w-11/12'>
       <div className="flex items-center mb-6">
         <GraduationCap className="h-6 w-6 text-blue-600 mr-2" />
-        <h3 className="text-2xl font-bold">Education</h3>
+        <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--textColor)] tracking-tight">Education</h3>
       </div>
 
       <div className="pl-1 md:pl-4">
@@ -42,12 +42,12 @@ export default function MiniEducationTimeline() {
               <div className="absolute left-0 top-1 w-8 h-8 flex items-center justify-center rounded-full bg-bg shadow-md border border-gray-200">
                 {iconMap[edu.iconKey]}
               </div>
-              <h4 className="text-xl font-semibold">{edu.degree}</h4>
+              <h4 className="text-xl font-bold tracking-tight text-[var(--textColor)]">{edu.degree}</h4>
               <div className="flex justify-between text-softText mb-2">
                 <span>{edu.institution}</span>
                 <span className="text-sm">{edu.period}</span>
               </div>
-              <p className="text-textColor">{edu.description}</p>
+              <p className="text-base md:text-lg text-softText leading-relaxed mt-2">{edu.description}</p>
             </div>
           </div>
         ))}

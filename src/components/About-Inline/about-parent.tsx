@@ -13,14 +13,12 @@ export default function AboutParentComponent() {
       data-aos-easing="ease-in-out"
       data-aos-delay="200"
     >
-      <p
-        className="info text-[var(--textColor)] text-center text-base md:text-xl font-light"
-        data-aos="zoom-in-up"
-        data-aos-duration="8000"
-      >
-        Get to know me better and my skills
-      </p>
-      <h1 className="text-2xl md:text-6xl text-center">Me & My Tools</h1>
+      <div className="flex flex-col items-center justify-center gap-3 mb-6">
+        <span className="text-xs font-bold uppercase tracking-widest text-cta" data-aos="zoom-in-up">About</span>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center">
+          Me & My Tools
+        </h2>
+      </div>
       <div className='w-full md:w-11/12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 py-10 mx-auto'>
         <AboutMe />
         <AboutSkills />

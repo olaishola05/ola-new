@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { CustomButton } from '@/components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import ControlInput from './ControlInput';
@@ -130,15 +129,13 @@ const ContactForm = () => {
           />
           {errors.message?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.message.message}*`}</small>}
         </div>
-        <CustomButton
-          variant='contained'
+        <button
           type='submit'
           disabled={isSubmitting}
-          size='large'
-          className='self-center md:self-center'
+          className='w-full md:w-auto px-10 py-4 bg-cta text-ctaText font-bold rounded-xl shadow-lg shadow-cta/20 hover:scale-[1.03] active:scale-95 transition-all text-sm tracking-widest uppercase disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-4'
         >
-          {isSubmitting ? 'Loading' : 'Send'}
-        </CustomButton>
+          {isSubmitting ? 'Sending...' : 'Send Message'}
+        </button>
       </form>
     </main>
   );

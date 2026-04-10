@@ -4,23 +4,18 @@ import Link from 'next/link'
 
 export default function AboutMe() {
   const about = [
-    "Oladipupo Ishola is a Software Developer passionate about building human-centered, scalable web applications that solve real-world problems across Africa and beyond. Currently contributing to EdTech innovation at Techverse Academy, he collaborates with cross-functional teams to build dynamic learning platforms using Next.js, NestJS, and PostgreSQL. His goal is to leverage his growing expertise to lead the development of impactful, AI-powered tools that bridge digital access gaps in emerging markets.",
-    "Previously, Ola worked as a Full Stack Developer at Automated Affairs, where he co-built an AI resume builder tailored for the African job market, implementing over 20 high-accuracy RESTful APIs. He also served as a mentor at Microverse Inc., helping junior developers succeed in a rigorous full-stack program, with many finishing in the top 10% of their cohort.",
-    "With an MSc in Computer Networking from the University of Bedfordshire, UK and over three years of experience in full-stack development, Ola is committed to continuous learning and using technology as a force for good."
+    "Oladipupo Ishola is a software engineer, product builder, and educator who helps developers and founders use AI to build faster, smarter, and more profitably. With a background spanning network engineering, two failed startups, a self-built edtech school, and years of freelance product development, he brings rare depth to a space full of surface-level advice.",
+    "He has mentored developers across Nigeria, Austria, and beyond — many landing their first roles or shipping their first real products within months. He now builds AI-assisted development workflows, teaches what actually works, and documents the honest lessons from doing both.",
+    "His approach is simple: learn the right things, build real things, and create a system that works with or without a team."
   ]
   return (
     <div>
-      <h2
-        className='text-2xl md:text-4xl font-semibold text-primary'
+      <h3
+        className='text-2xl md:text-3xl font-extrabold text-[var(--textColor)] tracking-tight mb-6'
         data-aos="zoom-in-right"
         data-aos-duration="3000"
         data-aos-anchor-placement="top-center"
-      >About Me</h2>
-      <hr className='border-textColor w-1/6 my-2 mb-6'
-        data-aos="zoom-in-left"
-        data-aos-duration="4000"
-        data-aos-anchor-placement="top-center"
-      />
+      >About Me</h3>
 
       <div className="w-full md:w-10/12 md:px-0"
         data-aos="zoom-in-up"
@@ -30,7 +25,7 @@ export default function AboutMe() {
         {about.map((text, index) => (
           <p
             key={index}
-            className="text-lg text-textColor mb-6"
+            className="text-base md:text-lg text-softText leading-relaxed mb-6"
           >
             {text}
           </p>

@@ -173,7 +173,8 @@ export async function deleteProject(id: string, url: string) {
   }
 }
 
-export async function updateProject(id: string, data: Project, url: string) {
+export async function updateProject(id: string | undefined, data: Project, url: string) {
+  if (!id) return "Project ID is required";
   try {
     const response = await axios.patch(`${url}/projects/${id}`, data, {
       headers: {
@@ -233,13 +234,14 @@ export const readTimeInfo = (content: any) => {
   return stats.text;
 };
 
-export const slugify = (str: string) =>
-  str?.toLowerCase()
+export function slugify(str: string) {
+  return str?.toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-")
     .replace(/^-+/, "")
     .replace(/-+$/, "");
+}
 
 export class Storage {
   static setToStorage(key: string, value: any) {
@@ -274,30 +276,7 @@ export const passwordTips: PasswordTip[] = [
   { text: "At least 1 special character", key: "specialChar" },
 ];
 
-export const languages =
-{
-  js: 'js',
-  jsx: 'jsx',
-  css: 'css',
-  txt: 'text',
-  tsx: 'tsx',
-  ts: 'ts',
-  python: 'Python',
-  html: 'html',
-  yaml: 'yaml',
-  nginx: 'nginx',
-  json: 'json',
-  dockerFile: 'docker',
-  go: 'go',
-  ruby: 'ruby',
-  md: 'markdown',
-  shell: 'shell',
-}
 
-export const codeMap = new Map<string, string>();
-for (const [key, value] of Object.entries(languages)) {
-  codeMap.set(key, value);
-}
 
 export const skillCategories = [
   {
@@ -570,7 +549,7 @@ export const skillCategories = [
   },
 ];
 
-export const extractPublicId = (url: string | undefined): string => {
+export const extractPublicId = (url: string | null | undefined): string => {
   if (!url) return "";
   const parts = url.split("/upload/");
   if (parts.length < 2) return "";

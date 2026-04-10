@@ -10,6 +10,7 @@ import AdminRoutes from './AdminRoutes';
 import CustomIcon from '../IconsComponent/CustomIcon';
 import { ConditionalRoutes } from './ConditionalRoutes';
 import { useSession } from 'next-auth/react';
+import SearchPalette from '../Search/SearchPalette';
 
 export default function TopNav() {
   const { status }: any = useSession()
@@ -18,33 +19,34 @@ export default function TopNav() {
   const isBlogPath = routePath.startsWith('/blog');
 
   const userLoggedIn = status === 'authenticated';
-  // console.log(userLoggedIn);
 
   const navItems = removeMyWorksWhenNotOnHome(routePath);
 
   return (
-    <div className='flex items-center justify-between h-[80px] sticky top-0 z-10 bg-[var(--bg)]'>
-      <div className='flex gap-1 flex-1 items-center'>
+    <div className='flex items-center justify-between h-[80px] sticky top-0 z-50 bg-[var(--bg)]/80 backdrop-blur-md border-b border-softBg/30 px-6 lg:px-12 transition-all duration-300'>
+      <div className='flex gap-2 flex-1 items-center'>
         {isBlogPath ? (
-          <h1 className="md:hidden text-2xl font-bold text-[var(--primary)]">{"Code 'n' Beyond"}</h1>
+          <h1 className="md:hidden text-2xl font-extrabold tracking-tight text-[var(--textColor)]">{"Code 'n' Beyond"}</h1>
         ) : <Logo />}
-        <Link href={isBlogPath ? '/blog' : '/'}>
-          <h1 className='hidden md:block text-2xl font-bold text-[var(--primary)]'>
+        <Link href={isBlogPath ? '/blog' : '/'} className="hover:opacity-80 transition-opacity">
+          <h1 className='hidden md:block text-2xl font-extrabold tracking-tight text-[var(--textColor)]'>
             {isBlogPath ? "Code 'n' Beyond" : 'Oladipupo Ishola'}
           </h1>
         </Link>
       </div>
-      {!userLoggedIn && (
-        <div className='hidden lg:flex gap-3 flex-1'>
+      {!userLoggedIn && !isBlogPath && (
+        <div className='hidden lg:flex gap-3 flex-1 items-center'>
           {socialLinks.map(({ id, path, icon }) => (
             <Link href={path} target='_blank'
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-black/5 dark:bg-white/10 hover:bg-cta hover:text-white text-[var(--textColor)] transition-all duration-300 hover:scale-110 shadow-sm"
               rel='noopener noreferrer' key={id}>
-              <CustomIcon icon={icon} className='h-5 w-5 text-[var(--primary)]' />
+              <CustomIcon icon={icon} className='h-5 w-5' />
             </Link>
           ))}
         </div>
       )}
-      <div className='flex md:flex-1 gap-4 items-center text-base'>
+      <div className='flex md:flex-1 gap-6 items-center justify-end text-base font-medium'>
+        <SearchPalette />
         <ThemeToggle />
         <ConditionalRoutes
           routePath={routePath}

@@ -13,7 +13,7 @@ const getCookieBasedOnEnv = (req: NextRequest) => {
   return cookie;
 };
 
-const protectedRoutes = ["/admin", "/blog/write"];
+const protectedRoutes = ["/admin"];
 
 export default async function middleware(req: NextRequest) {
   const isLoggedIn = getCookieBasedOnEnv(req);
@@ -21,9 +21,8 @@ export default async function middleware(req: NextRequest) {
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route),
   );
-  const isOnBlogEditPage = pathname.match(/^\/blog\/([^/]+)\/edit$/);
 
-  if ((isProtectedRoute || isOnBlogEditPage) && !isLoggedIn) {
+  if (isProtectedRoute && !isLoggedIn) {
     const loginUrl = new URL("/auths/signin", req?.nextUrl.origin);
     loginUrl.searchParams.set("from", req.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
@@ -33,5 +32,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/blog/write", "/blog/:id*/edit"],
+  matcher: ["/admin/:path*"],
 };

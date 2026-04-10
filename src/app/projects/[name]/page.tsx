@@ -78,7 +78,6 @@ export default async function ProjectDetailsPage({ params }: { params: { name: s
       <Link href='/' className='flex gap-1 absolute top-28 left-2 md:left-8 text-cta font-semibold text-base hover:text-primary transition-colors'>
         <ArrowBigLeft className='w-6 h-6' />Back to Home
       </Link>
-      <h1 className='text-2xl md:text-4xl text-center text-pry font-semibold mb-5'>{title}</h1>
       <ProjectDetails data={project.images} project={project} />
       <ProjectsNavigations prevProject={prevProject} nextProject={nextProject} />
     </div>

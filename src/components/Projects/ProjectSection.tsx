@@ -66,14 +66,12 @@ const ProjectSection = ({ data }: props) => {
       className="md:px-2 pb-9 w-full mb-10"
     >
       <div className="w-full flex flex-col gap-2">
-        <p
-          className="info text-[var(--textColor)] text-center text-base md:text-xl font-light"
-          data-aos="zoom-in-up"
-          data-aos-duration="8000"
-        >
-          Visit my portfolio for my latest projects
-        </p>
-        <h1 className="text-2xl md:text-6xl text-center">My Recent Works</h1>
+        <div className="flex flex-col items-center justify-center gap-3 mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-cta" data-aos="zoom-in-up">Portfolio</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center">
+            My Recent Works
+          </h2>
+        </div>
 
         <div
           data-aos="fade-up"

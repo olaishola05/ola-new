@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { subscribeSchema } from '@/app/utils/validations';
 import { tailwindToast } from '../Toast/Toast';
+import { motion } from 'framer-motion';
 
 const schema = yupResolver(subscribeSchema)
 interface ISubscribe {
@@ -41,12 +42,40 @@ export default function SubscribeForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 w-full md:flex-row'>
-      <label htmlFor="email" className='flex flex-col gap-1 w-full'>
-        <input type="email" placeholder="Enter your email" {...register('email')} className={`p-3 rounded-md bg-primary outline-none bg-white`} style={errors.email && { border: '1px solid red' }} />
-        {errors.email && <span className={errors && 'text-sm text-ctaText'}>{errors.email.message}</span>}
-      </label>
-      <button type="submit" className='flex max-w-max py-3 px-5 text-ctaText bg-cta rounded-lg self-center md:self-start border border-ctaText hover:bg-inherit hover:text-cta hover:border hover:border-cta disabled:bg-gray-500' disabled={isSubmitting}>Subscribe</button>
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+      <div className="relative flex flex-col gap-3 md:flex-row md:items-stretch md:gap-0">
+        <div className="relative flex-1">
+          <input
+            type="email"
+            placeholder="Work email address"
+            {...register('email')}
+            className={`w-full p-4 rounded-xl md:rounded-r-none bg-white dark:bg-softBg/20 text-textColor dark:text-white placeholder:text-softText/50 border-2 transition-all outline-none ${errors.email
+              ? 'border-red-400 focus:border-red-500'
+              : 'border-transparent focus:border-cta/30'
+              }`}
+          />
+          {errors.email && (
+            <motion.span
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute -bottom-6 left-2 text-[10px] font-bold uppercase tracking-wider text-red-500"
+            >
+              {errors.email.message}
+            </motion.span>
+          )}
+        </div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="px-8 py-4 bg-cta text-ctaText font-bold rounded-xl md:rounded-l-none hover:bg-cta/90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:active:scale-100 flex items-center justify-center gap-2 whitespace-nowrap"
+        >
+          {isSubmitting ? (
+            <div className="w-5 h-5 border-2 border-ctaText/30 border-t-ctaText rounded-full animate-spin" />
+          ) : (
+            'Join Now'
+          )}
+        </button>
+      </div>
     </form>
   )
 }
