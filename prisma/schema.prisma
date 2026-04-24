@@ -236,3 +236,18 @@ model Otp {
   createdAt DateTime @default(now())
   expiresAt DateTime
 }
+
+model LinkPageView {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  referrer  String?
+  device    String?
+  country   String?
+}
+
+model LinkClick {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  linkTitle String
+  linkUrl   String
+  createdAt DateTime @default(now())
+}

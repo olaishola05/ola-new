@@ -13,7 +13,7 @@ interface Props {
 export default function App({ children }: Props) {
   const pathname = usePathname();
   const { status } = useSession();
-  const excludePaths = ["/auth", "/admin", "/business"];
+  const excludePaths = ["/auth", "/admin", "/business", "/links"];
   const isStartWith = excludePaths.some((path) => pathname.startsWith(path));
 
   if (status === "loading") {

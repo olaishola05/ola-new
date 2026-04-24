@@ -39,7 +39,13 @@ export default function DashBoardSidebar({ session }: any) {
         <div className="flex gap-3 items-center group cursor-pointer">
           {Circle(isActive, "/admin/dashboard")}
           <Link href="/admin/dashboard" className="text-base font-medium text-ctaText">
-            Analytics
+            Post Analytics
+          </Link>
+        </div>
+        <div className="flex gap-3 items-center group cursor-pointer">
+          {Circle(isActive, "/admin/dashboard/links-analytics")}
+          <Link href="/admin/dashboard/links-analytics" className="text-base font-medium text-ctaText">
+            Bio Link Analytics
           </Link>
         </div>
         {session?.user?.role.includes("admin") && (
