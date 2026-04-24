@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import ProfileHeader from '@/components/links/ProfileHeader'
 import LinkCard from '@/components/links/LinkCard'
+import PageViewTracker from '@/components/links/PageViewTracker'
 
 export const metadata: Metadata = {
   title: 'Oladipupo Ishola — Links',
@@ -105,7 +106,7 @@ export default function LinksPage() {
 
   return (
     <div className="min-h-screen bg-[#0F172A] font-sans selection:bg-[#392467] selection:text-white flex items-center justify-center p-4 md:p-10">
-      
+      <PageViewTracker />
       <main className="w-full max-w-[1024px] mx-auto bg-[#1a2333]/80 backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-2xl">
         
         <div className="w-full md:w-[35%] p-8 md:p-10 flex flex-col md:sticky md:top-0 md:h-auto self-start justify-center">

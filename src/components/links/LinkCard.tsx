@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link'
 import React from 'react'
 
@@ -34,9 +36,20 @@ export default function LinkCard({ title, description, url, icon, comingSoon = f
     )
   }
 
+  const handleTrackClick = () => {
+    // Fire and forget
+    fetch('/api/analytics/track?type=click', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, url }),
+      keepalive: true
+    }).catch(() => {});
+  };
+
   return (
     <Link
       href={url}
+      onClick={handleTrackClick}
       target="_blank"
       rel="noopener noreferrer"
       className="group flex items-center gap-4 w-full px-4 py-4 rounded-xl border border-white/8 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[#392467] hover:shadow-lg hover:shadow-[#392467]/20"
