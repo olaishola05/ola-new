@@ -515,8 +515,11 @@ body .w-md-editor-textArea {
 
 /* Unified Code Block Styles */
 [data-rehype-pretty-code-fragment] pre,
-[data-rehype-pretty-code-fragment] code {
+[data-rehype-pretty-code-fragment] code,
+[data-rehype-pretty-code-figure] pre,
+[data-rehype-pretty-code-figure] code {
   background-color: transparent !important;
+  background: transparent !important;
 }
 
 pre {
@@ -527,8 +530,19 @@ pre {
 }
 
 /* Rehype Pretty Code Integration */
-[data-rehype-pretty-code-fragment] {
+[data-rehype-pretty-code-fragment],
+[data-rehype-pretty-code-figure] {
   @apply m-0 p-0 border-none bg-transparent shadow-none !important;
+  border-radius: 0 !important;
+
+  /* Strip any inline style backgrounds injected by the library */
+  pre, code {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 
   /* Handle dual themes (hide/show based on active theme) */
   [data-theme='light'] {
@@ -540,7 +554,8 @@ pre {
   }
 }
 
-.dark [data-rehype-pretty-code-fragment] {
+.dark [data-rehype-pretty-code-fragment],
+.dark [data-rehype-pretty-code-figure] {
   [data-theme='light'] {
     display: none;
   }
@@ -554,10 +569,12 @@ pre {
   display: none;
 }
 
-[data-rehype-pretty-code-fragment] code {
+[data-rehype-pretty-code-fragment] code,
+[data-rehype-pretty-code-figure] code {
   @apply block py-1 px-6 text-sm md:text-[15px] leading-relaxed font-mono !important;
   background: transparent !important;
   background-color: transparent !important;
+  border-radius: 0 !important;
   white-space: pre;
 }
 

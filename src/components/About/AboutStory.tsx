@@ -16,10 +16,10 @@ export default function AboutStory() {
             The Person Behind The Code
           </span>
           <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight leading-tight">
-            Builder. Educator. Maker.
+            Software Engineer & Product Builder
           </h1>
           <p className="text-base md:text-lg text-softText leading-relaxed">
-            Oladipupo grew up curious. The kind of kid who watched a TV repairman work and then fixed the same fault himself the next time it broke. That instinct — to figure things out, to build rather than wait — has never left him.
+            I’m a software engineer and product builder with experience building full-stack applications, backend systems, and digital products for startups and teams.
           </p>
         </div>
 
@@ -38,30 +38,30 @@ export default function AboutStory() {
 
       {/* Story paragraphs */}
       <p className="text-base md:text-lg text-softText leading-relaxed">
-        After two degrees (Mathematics and Statistics, then Computer Networking from the UK) he returned to Africa and hit a wall. He discovered that code was the one skill where you could show your work without anyone&apos;s permission. He started building obsessively — not just to get a job, but to prove what was possible. He co-founded two startups: one killed by overhead costs, one wiped out by a bank launching the same product.
+        I’m currently pursuing an MSc in Artificial Intelligence and Adaptive Systems at the University of Sussex, where I’m deepening my understanding of machine learning, intelligent systems, and adaptive behavior. My work sits at the intersection of software engineering, product development, and AI — building practical systems while exploring how intelligent technologies can make products more capable, useful, and scalable.
       </p>
 
       <p className="text-base md:text-lg text-softText leading-relaxed">
-        Through all of it — students from Nigeria to Austria, a growing body of work in AI-assisted development, and a freelance practice built on real results — he has kept building. Not because it is easy. Because he cannot help it.
+        I grew up curious — the kind of kid who watched a technician work and then repaired the device when it broke. Over the years, that instinct has driven my work across startups, edtech platforms, and contract engineering. Code has always been the medium where proof matters more than credentials: you build it, deploy it, and let the software speak for itself.
       </p>
 
       {/* Pullquote */}
       <div className="border-l-4 border-cta pl-6 py-2">
         <p className="text-base md:text-lg text-textColor font-medium leading-relaxed italic">
-          &ldquo;Technology, especially AI, has made it possible for anyone with the right knowledge and the right system to build real products, make real money, and create real impact. The gap is no longer talent or tools. It is access to the right guidance.&rdquo;
+          &ldquo;Software engineering is about turning ambiguity into working, dependable systems. With AI-assisted engineering and disciplined foundations, small teams and founders can ship software that competes with much larger organizations.&rdquo;
         </p>
       </div>
 
       <p className="text-base md:text-lg text-softText leading-relaxed">
-        Today, Oladipupo works as a software engineer, product builder, and educator — helping developers and founders use AI to build faster, smarter, and more profitably. His approach is simple: learn the right things, build real things, and create a system that works with or without a team.
+        Today, I partner with founders, teams, and clients across freelance projects, contract engineering, and product collaborations — focusing on reliable architecture, clean codebases, and measurable outcomes.
       </p>
 
       {/* Pillars */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
         {[
-          { label: 'Builder', desc: 'Shipped real products across multiple industries and countries.' },
-          { label: 'Educator', desc: 'Mentored developers from Nigeria to Austria through hands-on learning.' },
-          { label: 'Maker', desc: 'Building AI-assisted workflows, edtech platforms, and systems that scale.' },
+          { label: 'Product Engineer', desc: 'Shipping performant full-stack applications with modern web technologies, clean architecture, and great UX standards.' },
+          { label: 'Backend Architect', desc: 'Designing secure, scalable REST APIs, modular NestJS services, and resilient data models.' },
+          { label: 'AI Specialization', desc: 'Deepening adaptive systems and machine learning workflows through MSc research at Sussex.' },
         ].map(({ label, desc }) => (
           <div key={label} className="p-4 rounded-xl bg-softBg/40 border border-softBg flex flex-col gap-2">
             <span className="text-xs font-black tracking-widest uppercase text-cta">{label}</span>

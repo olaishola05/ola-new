@@ -1,15 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  TabPanel,
-  AllProjects,
-  BackendProjects,
-  FrontendProjects,
-  FullstackProjects,
-  CustomCard,
-} from "@/components";
-import { tabs } from "@/app/utils";
+import React from "react";
+import { CustomCard } from "@/components";
 import { slugify } from "@/app/utils/utilities";
 
 type props = {
@@ -24,99 +16,84 @@ type props = {
     images: string[];
     tag: string | null;
     authorId: string | null;
-  }[]
+  }[];
+};
+
+const isValidHttpUrl = (val?: string | null): val is string => {
+  if (!val) return false;
+  const trimmed = val.trim();
+  return (
+    trimmed.length > 0 &&
+    trimmed !== "#" &&
+    trimmed !== "/" &&
+    (trimmed.startsWith("http://") || trimmed.startsWith("https://"))
+  );
 };
 
 const ProjectSection = ({ data }: props) => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const handleChange = (
-    event: null,
-    newValue: React.SetStateAction<number>,
-  ) => {
-    setActiveTab(newValue);
-  };
-
-  const switchComponent = (value: string) => {
-    switch (value) {
-      case "all":
-        return <AllProjects data={data} />;
-      case "frontend":
-        return (
-          <FrontendProjects projects={data} />
-        );
-      case "backend":
-        return (
-          <BackendProjects projects={data} />
-        );
-      case "fullstack":
-        return (
-          <FullstackProjects projects={data} />
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div
-      id="my-works"
+    <section
+      id="selected-work"
       data-aos="fade-up"
       data-aos-anchor-placement="top-center"
-      className="md:px-2 pb-9 w-full mb-10"
+      className="w-full px-4 md:px-6 lg:px-8 py-12 md:py-20 mb-10"
     >
-      <div className="w-full flex flex-col gap-2">
-        <div className="flex flex-col items-center justify-center gap-3 mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-cta" data-aos="zoom-in-up">Portfolio</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center">
-            My Recent Works
+      <div className="max-w-3xl mx-auto flex flex-col gap-10 md:gap-14">
+        {/* Section Header */}
+        <div className="flex flex-col items-center justify-center gap-3 text-center">
+          <span
+            className="text-xs font-bold uppercase tracking-widest text-cta"
+            data-aos="zoom-in-up"
+          >
+            Proven Engineering
+          </span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight">
+            Selected Work
           </h2>
+          <p className="text-softText text-base md:text-lg max-w-2xl mt-1">
+            Production systems, full-stack web applications, and backend APIs — engineered in collaborative cross-functional teams.
+          </p>
         </div>
 
-        <div
-          data-aos="fade-up"
-          data-aos-duration="3000"
-          className="md:hidden lg:hidden flex flex-col gap-10 mt-5"
-        >
-          {data?.map((project: any) => (
-            <CustomCard
-              key={project.id}
-              image={project.coverImgUrl}
-              overlayText="View Project"
-              name={project.name}
-              role={project.tag}
-              description={project.description[0]}
-              url={`/projects/${slugify(project.name)}`}
-            />
-          ))}
-        </div>
+        {/* Curated Projects List (Text-first, no images) */}
+        <div className="flex flex-col gap-5 sm:gap-6">
+          {data?.map((project: any, idx: number) => {
+            const slug = slugify(project.name);
+            const isPortfolio = slug === "portfolio" || project.name.toLowerCase() === "portfolio";
+            const effectiveLiveUrl = isPortfolio
+              ? "https://portfolio-phi-seven-88.vercel.app/"
+              : project.liveUrl;
 
-        <div
-          data-aos="fade-up"
-          data-aos-duration="3000"
-          className="hidden md:block"
-        >
-          <ul className="w-90 flex justify-center gap-5 mx-auto mt-10 md:mb-7 lg:mb-0">
-            {tabs.map((tab, index) => (
-              <li key={tab.label}>
-                <button
-                  onClick={() => handleChange(null, index)}
-                  className={`px-4 py-2 border border-[var(--cta)] hover:bg-[var(--cta)] hover:text-[var(--ctaText)]  rounded-full ${activeTab === index ? "bg-[var(--btnMode)] text-white" : "text-primary"}`}
-                >
-                  {tab.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+            const isCaseStudy = ["ohiole-lagos", "techverse-academy"].includes(slug);
+            const hasLive = isValidHttpUrl(effectiveLiveUrl);
+            const hasGithub = isValidHttpUrl(project.githubUrl);
 
-          {tabs.map((tab, index) => (
-            <TabPanel key={tab.label} value={activeTab} index={index}>
-              {switchComponent(tab.value)}
-            </TabPanel>
-          ))}
+            const destinationUrl = isCaseStudy
+              ? `/projects/${slug}`
+              : hasLive
+              ? effectiveLiveUrl!
+              : hasGithub
+              ? project.githubUrl!
+              : `/projects/${slug}`;
+
+            return (
+              <CustomCard
+                key={project.id}
+                index={idx}
+                stacks={project.stacks}
+                name={project.name}
+                role={project.tag}
+                description={project.description?.[0] || ""}
+                url={destinationUrl}
+                liveUrl={effectiveLiveUrl}
+                githubUrl={project.githubUrl}
+                isCaseStudy={isCaseStudy}
+              />
+            );
+          })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

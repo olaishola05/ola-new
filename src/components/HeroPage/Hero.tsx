@@ -28,13 +28,13 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cta/5 border border-cta/10 text-cta text-xs font-bold tracking-widest uppercase"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cta/5 border border-cta/15 text-cta text-xs font-semibold tracking-wide"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cta opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cta"></span>
             </span>
-            Available for new projects
+            Available for freelance, contract, product collaboration & select remote roles
           </motion.div>
 
           <HeroTitleAnimation />
@@ -44,17 +44,23 @@ export default function HeroSection() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            I help developers and founders{" "}
-            <span className="text-textColor font-bold">build real products faster</span>{" "}
-            using AI, engineering principles, and systems that scale. Builder first. Educator always.
+          I build and ship web products, APIs, and backend systems for startups and teams — across{" "}
+            <span className="text-textColor font-semibold">TypeScript and Python stacks</span> with{" "}
+            <span className="text-textColor font-semibold">AI-assisted engineering</span>.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
             <Link
-              href="/#my-works"
-              className="px-8 py-4 bg-cta text-ctaText font-bold rounded-2xl shadow-2xl shadow-cta/20 hover:scale-105 active:scale-95 transition-all text-sm tracking-wide"
+              href="#selected-work"
+              className="px-8 py-4 bg-cta text-ctaText font-bold rounded-2xl shadow-xl shadow-cta/20 hover:scale-105 active:scale-95 transition-all text-sm tracking-wide"
             >
-              See What I&apos;ve Built
+              View Selected Work
+            </Link>
+            <Link
+              href="#contact"
+              className="px-8 py-4 bg-softBg hover:bg-softBg/80 text-[var(--textColor)] font-semibold rounded-2xl border border-softBg/80 hover:scale-105 active:scale-95 transition-all text-sm tracking-wide"
+            >
+              Work With Me
             </Link>
             <ResumeModal />
           </div>

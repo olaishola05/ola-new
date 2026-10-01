@@ -2,87 +2,61 @@
 
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Post } from '@/lib/posts'
+import { ArrowUpRight, Clock } from 'lucide-react'
 
 interface PostCardProps {
   post: Post
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const { title, description, slug, date, tags, coverImage } =
-    post.frontmatter
+  const { title, description, slug, date, category, tags } = post.frontmatter
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
   })
 
-  const hasCoverImage = coverImage && coverImage.trim() !== ''
+  const primaryCategory = category || tags[0] || 'Article'
 
   return (
     <Link
       href={`/blog/posts/${slug}`}
-      className="group block rounded-xl overflow-hidden bg-softBg hover:shadow-xl 
-        transition-all duration-300 ease-out hover:-translate-y-1 border border-transparent
-        hover:border-[var(--cta)]/20"
+      className="group flex flex-col justify-between h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-6 shadow-sm hover:shadow-xl hover:border-cta/40 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+      aria-label={`Read article: ${title}`}
     >
-      {/* Cover Image or Gradient Placeholder */}
-      <div className="hidden relative w-full h-48 md:h-52 overflow-hidden">
-        {hasCoverImage ? (
-          <Image
-            src={coverImage}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="hidden w-full h-full bg-gradient-to-br from-[var(--cta)] via-purple-500 to-indigo-600 flexs items-center justify-center">
-            <span className="text-5xl font-bold text-white/20 select-none">
-              {title.charAt(0).toUpperCase()}
-            </span>
-          </div>
-        )}
+      <div className="flex flex-col gap-3">
+        {/* Category Pill */}
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-cta/10 text-cta dark:text-purple-300 font-semibold uppercase tracking-wider">
+            {primaryCategory}
+          </span>
 
-        {/* Reading time pill */}
-        <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full">
-          {post.readingTime}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex flex-col gap-3">
-        {/* Tags */}
-        <div className="flex gap-1.5 flex-wrap">
-          {tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-0.5 rounded-full bg-[var(--cta)]/10 text-cta font-medium capitalize"
-            >
-              {tag}
-            </span>
-          ))}
+          <span className="text-xs text-softText/80 inline-flex items-center gap-1">
+            <Clock className="w-3 h-3 text-softText/60" />
+            {post.readingTime}
+          </span>
         </div>
 
-        {/* Title */}
-        <h2 className="text-lg md:text-xl font-semibold text-textColor line-clamp-2 group-hover:text-cta transition-colors duration-200">
+        {/* Title — allows full 2-3 lines so it never truncates mid-word */}
+        <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[var(--textColor)] group-hover:text-cta transition-colors duration-200 leading-snug line-clamp-2">
           {title}
         </h2>
 
-        {/* Description */}
+        {/* Excerpt */}
         <p className="text-sm text-softText line-clamp-3 leading-relaxed">
           {description}
         </p>
+      </div>
 
-        {/* Footer: Date */}
-        <div className="flex items-center justify-between mt-auto pt-3 border-t border-[var(--softBg)]">
-          <time className="text-xs text-softText">{formattedDate}</time>
-          <span className="text-xs text-cta font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            Read →
-          </span>
-        </div>
+      {/* Footer: Date & Read Action */}
+      <div className="flex items-center justify-between pt-4 mt-4 border-t border-slate-200/80 dark:border-slate-800/80 text-xs">
+        <time className="text-softText font-medium">{formattedDate}</time>
+        <span className="inline-flex items-center gap-1 font-bold text-cta group-hover:translate-x-0.5 transition-transform duration-200">
+          Read
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </span>
       </div>
     </Link>
   )

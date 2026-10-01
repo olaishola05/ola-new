@@ -4,13 +4,22 @@ import LinkCard from '@/components/links/LinkCard'
 import PageViewTracker from '@/components/links/PageViewTracker'
 
 export const metadata: Metadata = {
-  title: 'Oladipupo Ishola — Links',
+  title: 'Links',
   description: 'Software engineer, product builder, and educator helping developers and founders build, ship, and monetise with AI.',
+  alternates: {
+    canonical: 'https://olaishola.tech/links',
+  },
   openGraph: {
-    title: 'Oladipupo Ishola — Links',
+    title: 'Links | Oladipupo Ishola',
     description: 'Software engineer, product builder, and educator helping developers and founders build, ship, and monetise with AI.',
     type: 'website',
-    images: [{ url: 'https://avatars.githubusercontent.com/u/45001916?v=4' }]
+    url: 'https://olaishola.tech/links',
+    images: [{ url: '/images/portrait-me.jpeg' }]
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Links | Oladipupo Ishola',
+    description: 'Software engineer, product builder, and educator helping developers and founders build, ship, and monetise with AI.',
   }
 }
 
@@ -19,7 +28,7 @@ export default function LinksPage() {
     {
       title: 'My Portfolio',
       description: 'Projects, case studies, and what I have built',
-      url: 'https://portfolio-phi-seven-88.vercel.app',
+      url: 'https://olaishola.tech',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
           <rect width={20} height={14} x={2} y={7} rx={2} ry={2} />

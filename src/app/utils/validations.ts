@@ -7,13 +7,6 @@ export const contactSchema = yup.object().shape({
     .min(3, 'Name should be at least 3 characters long')
     .max(20, 'Name should be less than 20 characters long'),
 
-  number: yup
-    .string()
-    .required('Phone number is required')
-    .min(13, 'Number should be at least 13 characters long (including country code)')
-    .max(15, 'Number should be less than 15 characters long')
-    .matches(/^\+?[1-9][0-9]{7,14}$/, 'Number should be numeric'),
-
   email:
     yup.string()
       .required('Email is required')
@@ -38,14 +31,24 @@ const MAX_FILE_SIZE = 2000000; // 2MB
 
 const supportedFormats: { [key: string]: string[] } = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
 
-function isValidFileType(fileName: string, fileType: keyof typeof supportedFormats) {
-  return fileName && supportedFormats[fileType].includes(fileName.split('.').pop()!.toLowerCase());
+function isValidFileType(fileName: string, fileType: keyof typeof supportedFormats): boolean {
+  return Boolean(fileName && supportedFormats[fileType].includes(fileName.split('.').pop()!.toLowerCase()));
 }
 
-function isValidFileSize(fileSize: number) {
-  return fileSize && fileSize <= MAX_FILE_SIZE;
+function isValidFileSize(fileSize: number): boolean {
+  return Boolean(fileSize && fileSize <= MAX_FILE_SIZE);
 }
 
+
+export const RELATIONSHIP_OPTIONS = [
+  { value: 'colleague', label: 'Same Team / Colleague' },
+  { value: 'client', label: 'Client / Product Owner' },
+  { value: 'mentee', label: 'Mentee / Student' },
+  { value: 'opensource', label: 'Open Source Collaboration' },
+  { value: 'reference', label: 'Professional Reference' },
+] as const;
+
+export type RelationshipValue = typeof RELATIONSHIP_OPTIONS[number]['value'];
 
 export const TestimonialSchema = yup.object().shape({
   name: yup
@@ -63,33 +66,44 @@ export const TestimonialSchema = yup.object().shape({
   jobTitle: yup
     .string()
     .required('Job Title is required')
-    .min(3, 'Job Title should be at least 6 characters long')
+    .min(3, 'Job Title should be at least 3 characters long')
     .max(40, 'Job Title should be less than 40 characters long'),
+
+  relationship: yup
+    .string()
+    .required('Please select how you know Oladipupo')
+    .oneOf(
+      RELATIONSHIP_OPTIONS.map((o) => o.value),
+      'Please select a valid relationship'
+    ),
+
+  linkedinUrl: yup
+    .string()
+    .optional()
+    .test('valid-url', 'Please enter a valid LinkedIn URL', function (value) {
+      if (!value || value.trim() === '') return true;
+      return value.startsWith('https://www.linkedin.com/') || value.startsWith('https://linkedin.com/');
+    }),
 
   photo: yup
     .mixed()
-    .test('required', 'Photo is required', function (value: any) {
-      if (value) return true;
-      return false;
+    .optional()
+    .test('fileSize', 'File is too large (max 2 MB)', function (value: any) {
+      if (!value || value.length === 0) return true;
+      const fileSize = value[0]?.size;
+      return isValidFileSize(fileSize);
     })
-    .test('fileSize', 'File Size is too large', function (value: any) {
-      if (value.length > 0) {
-        const fileSize = value[0]?.size;
-        if (isValidFileSize(fileSize)) return true;
-      }
-    })
-    .test('fileType', 'Unsupported File Format', function (value: any) {
-      if (value.length > 0) {
-        const fileName = value[0]?.name;
-        if (isValidFileType(fileName, 'image')) return true;
-      }
+    .test('fileType', 'Unsupported format — use JPG, PNG, or WebP', function (value: any) {
+      if (!value || value.length === 0) return true;
+      const fileName = value[0]?.name;
+      return isValidFileType(fileName, 'image');
     }),
 
   message: yup
     .string()
     .required('Message is required')
     .min(3, 'Message should be at least 3 characters long')
-    .max(200, 'Message should be less than or equals to 200 characters long'),
+    .max(200, 'Message should be less than or equal to 200 characters long'),
 });
 
 export const subscribeSchema = yup.object().shape({

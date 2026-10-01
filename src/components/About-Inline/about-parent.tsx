@@ -19,10 +19,9 @@ export default function AboutParentComponent() {
           Me & My Tools
         </h2>
       </div>
-      <div className='w-full md:w-11/12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 py-10 mx-auto'>
+      <div className='w-full md:w-11/12 flex flex-col gap-10 py-10 mx-auto'>
         <AboutMe />
         <AboutSkills />
-        {/* <ElevatorPitch /> */}
       </div>
     </section>
   )

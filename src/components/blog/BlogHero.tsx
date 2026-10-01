@@ -25,14 +25,18 @@ export default function BlogHero() {
 
         {/* Content pillars */}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {['AI Development', 'Product Building', 'Monetising Skills', 'Edtech', 'AI Automation'].map((pillar) => (
-            <span
-              key={pillar}
-              className="px-3 py-1 text-xs font-semibold rounded-full border border-cta/20 text-cta bg-cta/5"
-            >
-              {pillar}
-            </span>
-          ))}
+          {['AI Development', 'Product Building', 'Monetising Skills', 'Edtech', 'AI Automation'].map((pillar) => {
+            const slug = pillar.toLowerCase().replace(/\s+/g, '-');
+            return (
+              <a
+                key={pillar}
+                href={`/blog?tag=${slug}`}
+                className="px-3.5 py-1.5 text-xs font-semibold rounded-full border border-cta/25 text-cta bg-cta/5 hover:bg-cta hover:text-ctaText active:scale-95 transition-all shadow-sm"
+              >
+                {pillar}
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -36,17 +36,17 @@ export const metadata: Metadata = {
     title: "Full-Stack Web Developer | Turn Ideas into Production-Ready Apps",
     description:
       "I help founders and small businesses build scalable web applications combining solid backend engineering with intuitive frontends. From MVP to DevOps automation.",
-    url: "https://yourdomain.com/business",
-    siteName: "Oladipupo Ishola - Full-Stack Developer",
+    url: "https://olaishola.tech/business",
+    siteName: "Oladipupo Ishola",
     images: [
       {
-        url: "https://yourdomain.com/og-image.png",
+        url: "https://olaishola.tech/images/portrait-me.jpeg",
         width: 1200,
         height: 630,
-        alt: "Full-Stack Web Development Services",
+        alt: "Full-Stack Web Development Services by Oladipupo Ishola",
       },
     ],
-    locale: "en_US",
+    locale: "en_IE",
     type: "website",
   },
   twitter: {
@@ -54,8 +54,9 @@ export const metadata: Metadata = {
     title: "Full-Stack Web Developer | SaaS & MVP Development",
     description:
       "Turning complex ideas into simple, scalable, and impactful digital products. Expert in React, Next.js, Node.js, Python, and DevOps.",
-    creator: "@olaishola05",
-    images: ["https://yourdomain.com/twitter-image.png"],
+    creator: "@_olaishola",
+    site: "@_olaishola",
+    images: ["https://olaishola.tech/images/portrait-me.jpeg"],
   },
   robots: {
     index: true,
@@ -68,11 +69,8 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
   alternates: {
-    canonical: "https://yourdomain.com/business",
+    canonical: "https://olaishola.tech/business",
   },
 };
 

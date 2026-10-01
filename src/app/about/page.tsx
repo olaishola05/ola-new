@@ -4,8 +4,33 @@ import { Metadata } from 'next'
 import prisma from '@/app/lib/prisma'
 
 export const metadata: Metadata = {
-  title: 'About | Oladipupo Ishola',
-  description: 'I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.',
+  title: 'About',
+  description:
+    'Software engineer and product builder with expertise in TypeScript, Python, Next.js, FastAPI, and AI-assisted workflows. Learn about my background, experience, and engineering philosophy.',
+  alternates: {
+    canonical: 'https://olaishola.tech/about',
+  },
+  openGraph: {
+    title: 'About | Oladipupo Ishola',
+    description:
+      'Software engineer and product builder with expertise in TypeScript, Python, Next.js, and AI-assisted workflows.',
+    url: 'https://olaishola.tech/about',
+    type: 'profile',
+    images: [
+      {
+        url: '/images/portrait-me.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Oladipupo Ishola',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About | Oladipupo Ishola',
+    description:
+      'Software engineer and product builder with expertise in TypeScript, Python, Next.js, and AI-assisted workflows.',
+  },
 }
 
 export const revalidate = 3600

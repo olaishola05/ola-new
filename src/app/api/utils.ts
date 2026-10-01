@@ -52,11 +52,17 @@ export interface Contact {
 }
 
 export interface ITestimonial {
+  id?: string;
   name: string;
   email: string;
   message: string;
-  photo: string;
+  photo?: string | null;
   jobTitle: string;
+  linkedinUrl?: string | null;
+  relationship?: string | null;
+  published?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IEmailNotification {

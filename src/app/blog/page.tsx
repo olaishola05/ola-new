@@ -10,13 +10,31 @@ import Pagination from '@/components/blog/Pagination'
 export const revalidate = 3600 // ISR: Revalidate every 1 hour
 
 export const metadata: Metadata = {
-  title: `Blog | ${SITE_CONFIG.author}`,
+  title: 'Writing',
   description: SITE_CONFIG.blogDescription,
+  alternates: {
+    canonical: `${SITE_CONFIG.siteUrl}/blog`,
+  },
   openGraph: {
-    title: `Blog | ${SITE_CONFIG.author}`,
+    title: `Writing | ${SITE_CONFIG.author}`,
     description: SITE_CONFIG.blogDescription,
     type: 'website',
     url: `${SITE_CONFIG.siteUrl}/blog`,
+    siteName: 'Code \'n\' Beyond',
+    images: [
+      {
+        url: '/images/portrait-me.jpeg',
+        width: 1200,
+        height: 630,
+        alt: `Code 'n' Beyond by ${SITE_CONFIG.author}`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Writing | ${SITE_CONFIG.author}`,
+    description: SITE_CONFIG.blogDescription,
+    images: ['/images/portrait-me.jpeg'],
   },
 }
 
@@ -56,7 +74,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           )}
 
           {/* Post Grid */}
-          <PostGrid posts={posts} />
+          <PostGrid posts={posts} showFeatured={page === 1 && !activeTag && !activeCategory} />
 
           {/* Pagination */}
           <div className="mt-16">

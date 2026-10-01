@@ -78,7 +78,7 @@ const Table: React.FC<React.TableHTMLAttributes<HTMLTableElement>> = ({ children
 );
 
 // Pre (Code Block Wrapper)
-const Pre: React.FC<React.HTMLAttributes<HTMLPreElement>> = ({ children, ...props }) => {
+const Pre: React.FC<React.HTMLAttributes<HTMLPreElement>> = ({ children, style: _style, ...props }) => {
   let language = '';
   if ((props as any)['data-language']) {
     language = (props as any)['data-language'];
@@ -87,33 +87,48 @@ const Pre: React.FC<React.HTMLAttributes<HTMLPreElement>> = ({ children, ...prop
     if (match) language = match[1];
   }
 
-  // Extract title if rehype-pretty-code provides it as a data attribute or regular title
   const title = (props as any)['data-title'] || (props as any)['title'] || '';
 
+  // Map common language identifiers to display labels
+  const langDisplay: Record<string, string> = {
+    js: 'JavaScript', jsx: 'JSX', ts: 'TypeScript', tsx: 'TSX',
+    py: 'Python', python: 'Python', bash: 'Bash', sh: 'Shell',
+    css: 'CSS', scss: 'SCSS', html: 'HTML', json: 'JSON',
+    md: 'Markdown', sql: 'SQL', yaml: 'YAML', yml: 'YAML',
+  };
+  const langLabel = language ? (langDisplay[language.toLowerCase()] ?? language.toUpperCase()) : '';
+
   return (
-    <div className="my-8 rounded-xl border border-softBg/60 bg-[#fafafa] dark:bg-[#0d1117] flex flex-col w-full relative">
-      {/* OpenAI Style Header */}
-      <div className="flex items-center justify-between px-6 pt-4 pb-2">
-        <div className="text-[13px] font-mono text-softText truncate flex-1 pr-4">
-          {title}
+    <div className="group my-8 rounded-2xl overflow-hidden w-full border border-slate-200 dark:border-slate-800 shadow-sm">
+      {/* Header bar — always dark (GitHub-style) */}
+      <div className="flex items-center justify-between px-5 py-2.5 bg-[#161b22] border-b border-[#30363d]">
+        <div className="flex items-center gap-2">
+          {/* macOS traffic-light dots */}
+          <span className="w-3 h-3 rounded-full bg-[#ff5f57] opacity-80" />
+          <span className="w-3 h-3 rounded-full bg-[#febc2e] opacity-80" />
+          <span className="w-3 h-3 rounded-full bg-[#28c840] opacity-80" />
+          {title && (
+            <span className="ml-3 text-[12px] font-mono text-[#8b949e] truncate max-w-[240px]">{title}</span>
+          )}
         </div>
-        <div className="flex items-center gap-4 shrink-0">
-          {language && (
-            <div className="flex items-center gap-1.5 text-[13px] text-textColor/70 font-mono">
-              {language}
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
-            </div>
+        <div className="flex items-center gap-3 shrink-0">
+          {langLabel && (
+            <span className="text-[11px] font-mono font-medium text-[#8b949e] bg-[#30363d] px-2.5 py-0.5 rounded-full tracking-wide">
+              {langLabel}
+            </span>
           )}
           <CopyCodeButton>{children}</CopyCodeButton>
         </div>
       </div>
-      
-      {/* Code Content */}
-      <div className="relative w-full overflow-x-auto px-6 pb-6">
-        <pre {...props} className={`m-0 p-0 bg-transparent min-w-full text-[13px] leading-6 text-textColor font-mono ${props.className || ''}`}>
-          {children}
+
+      {/* Code fills the container flush — inline style from rehype-pretty-code is dropped via _style */}
+      <pre
+        {...props}
+        style={{ backgroundColor: '#0d1117' }}
+        className={`m-0 w-full overflow-x-auto px-6 py-5 text-[13px] leading-[1.75] font-mono ${props.className || ''}`}
+      >
+        {children}
         </pre>
-      </div>
     </div>
   );
 };
@@ -127,16 +142,27 @@ export const mdxComponents: MDXComponents = {
       </Link>
     )
   },
-  img: ({ children, ...props }) => {
-    const { src, alt, width, height, ...rest } = props
-    return <Image
-      sizes="100vw"
-      style={{ width: '100%', borderRadius: '8px', margin: '30px 0' }}
-      {...(props as ImageProps)}
-      width={500}
-      height={500}
-      alt={alt!}
-    />
+  img: ({ src, alt, ...props }: any) => {
+    if (!src) return null;
+    return (
+      <figure className="my-10 block">
+        <div className="overflow-hidden rounded-2xl md:rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/50 shadow-md">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={alt || 'Article image'}
+            loading="lazy"
+            className="w-full h-auto max-h-[560px] object-cover object-center m-0 transition-transform duration-500 hover:scale-[1.01]"
+            {...props}
+          />
+        </div>
+        {alt && (
+          <figcaption className="text-center text-xs text-softText mt-3 font-medium tracking-wide">
+            {alt}
+          </figcaption>
+        )}
+      </figure>
+    );
   },
   ol: OrderedList,
   ul: UnorderedList,

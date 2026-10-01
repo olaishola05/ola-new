@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"No test suite specified\" && exit 0",
     "prebuild": "npx prisma generate"
   },
   "dependencies": {
@@ -60,7 +62,6 @@
     "react-icons": "^4.12.0",
     "react-markdown": "^9.0.1",
     "react-scroll": "^1.9.0",
-    "react-spinners": "^0.13.8",
     "react-type-animation": "^3.2.0",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",

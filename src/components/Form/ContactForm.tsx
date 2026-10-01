@@ -7,6 +7,7 @@ import ControlInput from './ControlInput';
 import { contactSchema as schema } from '@/app/utils';
 import { FormValues } from '@/app/types';
 import { toast } from 'react-hot-toast';
+import { ArrowUpRight } from 'lucide-react';
 
 const formValidation = yupResolver(schema);
 
@@ -15,14 +16,12 @@ const ContactForm = () => {
     mode: 'onBlur',
     defaultValues: {
       name: '',
-      number: '',
       email: '',
       subject: '',
       message: '',
     },
     resolver: formValidation,
   });
-
 
   const onSubmit = async (data: FormValues) => {
     try {
@@ -57,87 +56,98 @@ const ContactForm = () => {
     }
   }, [isSubmitSuccessful, reset]);
 
-
   return (
-    <main data-aos="fade-up" className='w-full flex-2 h-full flex flex-col items-center justify-center md:h-full lg:h-full'>
-      <form
-        className='m-1 w-full flex flex-col gap-3'
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div>
-          <div className='flex flex-col gap-3 lg:flex-row'>
-            <div className='w-full'>
-              <ControlInput
-                control={control}
-                name="name"
-                placeholder="e.g John Doe"
-                inputprops={register('name')}
-                width={'100%'}
-                error={errors.name?.message}
-              />
-              {errors.name?.message && (<small className={errors && 'text-red-700 text-sm'}>{`${errors.name.message}`}</small>)}
-            </div>
-
-            <div className='w-full'>
-              <ControlInput
-                control={control}
-                name="number"
-                placeholder="e.g +2348012345678"
-                inputprops={register('number')}
-                width={'100%'}
-                error={errors.number?.message}
-              />
-              {errors.number?.message && (<small className={errors && 'text-red-700 text-sm'}>{`${errors.number.message}`}</small>)}
-            </div>
-          </div>
+    <form
+      className='w-full flex flex-col gap-5'
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      {/* Name + Email — side by side on md+ */}
+      <div className='flex flex-col gap-5 md:flex-row'>
+        <div className='w-full flex flex-col gap-1'>
+          <label htmlFor='name' className='text-xs font-semibold uppercase tracking-widest text-softText'>
+            Full Name
+          </label>
+          <ControlInput
+            control={control}
+            name="name"
+            placeholder="Adeola Martins"
+            inputprops={register('name')}
+            width={'100%'}
+            error={errors.name?.message}
+          />
+          {errors.name?.message && (
+            <small className='text-red-500 text-xs'>{errors.name.message}</small>
+          )}
         </div>
 
-        <div className='w-full'>
+        <div className='w-full flex flex-col gap-1'>
+          <label htmlFor='email' className='text-xs font-semibold uppercase tracking-widest text-softText'>
+            Email Address
+          </label>
           <ControlInput
             control={control}
             name="email"
-            placeholder="e.g youremail@something.com"
+            placeholder="you@example.com"
             inputprops={register('email')}
             width={'100%'}
             error={errors.email?.message}
           />
-          {errors.email?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.email.message}`}</small>}
+          {errors.email?.message && (
+            <small className='text-red-500 text-xs'>{errors.email.message}</small>
+          )}
         </div>
+      </div>
 
+      {/* Subject */}
+      <div className='w-full flex flex-col gap-1'>
+        <label htmlFor='subject' className='text-xs font-semibold uppercase tracking-widest text-softText'>
+          Subject
+        </label>
+        <ControlInput
+          control={control}
+          name="subject"
+          placeholder="Project inquiry / collaboration / consulting"
+          inputprops={register('subject')}
+          width={'100%'}
+          error={errors.subject?.message}
+        />
+        {errors.subject?.message && (
+          <small className='text-red-500 text-xs'>{errors.subject.message}</small>
+        )}
+      </div>
 
-        <div className='full'>
-          <ControlInput
-            control={control}
-            name="subject"
-            placeholder="e.g I want to hire you"
-            inputprops={register('subject')}
-            width={'100%'}
-            error={errors.subject?.message}
-          />
-          {errors.subject?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.subject.message}`}</small>}
-        </div>
+      {/* Message */}
+      <div className='w-full flex flex-col gap-1'>
+        <label htmlFor='message' className='text-xs font-semibold uppercase tracking-widest text-softText'>
+          Message
+        </label>
+        <ControlInput
+          control={control}
+          name="message"
+          type='textarea'
+          placeholder='Tell me about your project, timeline, or what you need help with.'
+          inputprops={register('message')}
+          width={'100%'}
+          error={errors.message?.message}
+        />
+        {errors.message?.message && (
+          <small className='text-red-500 text-xs'>{`${errors.message.message}`}</small>
+        )}
+      </div>
 
-        <div className='w-full'>
-          <ControlInput
-            control={control}
-            name="message"
-            type='textarea'
-            placeholder='Say hello!'
-            inputprops={register('message')}
-            width={'100%'}
-            error={errors.message?.message}
-          />
-          {errors.message?.message && <small className={errors && 'text-red-700 text-sm'}>{`${errors.message.message}*`}</small>}
-        </div>
-        <button
-          type='submit'
-          disabled={isSubmitting}
-          className='w-full md:w-auto px-10 py-4 bg-cta text-ctaText font-bold rounded-xl shadow-lg shadow-cta/20 hover:scale-[1.03] active:scale-95 transition-all text-sm tracking-widest uppercase disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-4'
-        >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
-        </button>
-      </form>
-    </main>
+      <button
+        type='submit'
+        disabled={isSubmitting}
+        className='inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start px-8 py-4 bg-cta text-ctaText font-bold rounded-2xl shadow-lg shadow-cta/20 hover:scale-[1.03] active:scale-95 transition-all text-sm tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-2'
+      >
+        {isSubmitting ? 'Sending…' : (
+          <>
+            Send Direct Message
+            <ArrowUpRight className='w-4 h-4' />
+          </>
+        )}
+      </button>
+    </form>
   );
 };
 

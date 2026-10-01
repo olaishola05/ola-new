@@ -6,7 +6,7 @@ import * as actions from "@/actions";
 
 interface Props {
   testimonial: {
-    photo: string;
+    photo: string | null;
     name: string;
     jobTitle: string;
     message: string;

@@ -13,7 +13,8 @@ import {
   updateAboutInfo,
   updateProject
 } from "./utilities";
-import { contactSchema, TestimonialSchema } from "./validations";
+import { contactSchema, TestimonialSchema, RELATIONSHIP_OPTIONS } from "./validations";
+export type { RelationshipValue } from "./validations";
 import { educationItems, workExpItems } from "./data";
 
 export { greetings } from "./utilities";
@@ -35,6 +36,7 @@ export {
   workExpItems,
   readTimeInfo,
   TestimonialSchema,
+  RELATIONSHIP_OPTIONS,
   blogLinks,
   formatDate
 };

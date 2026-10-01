@@ -14,9 +14,46 @@ import ConditionalWrapper from '@/components/Wrapper/ConditionalWrapper'
 const monserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://olaishola.tech/'),
-  title: 'Oladipupo Ishola — Builder. Educator. Maker.',
-  description: 'Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably. Real products. Real results.',
+  metadataBase: new URL('https://olaishola.tech'),
+  title: {
+    default: 'Oladipupo Ishola — Software Engineer & Product Builder',
+    template: '%s | Oladipupo Ishola',
+  },
+  description: 'Software engineer and product builder building web products, APIs, and backend systems for startups and teams — across TypeScript, Python, and AI-assisted engineering.',
+  keywords: [
+    'Oladipupo Ishola',
+    'Software Engineer',
+    'Full Stack Engineer',
+    'Product Builder',
+    'TypeScript',
+    'Python',
+    'Next.js',
+    'React',
+    'Node.js',
+    'FastAPI',
+    'AI-assisted Engineering',
+    'Dublin',
+    'Ireland',
+    'Web Development',
+    'SaaS Builder',
+  ],
+  authors: [{ name: 'Oladipupo Ishola', url: 'https://olaishola.tech' }],
+  creator: 'Oladipupo Ishola',
+  publisher: 'Oladipupo Ishola',
+  alternates: {
+    canonical: 'https://olaishola.tech',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: [
     {
       media: '(prefers-color-scheme: light)',
@@ -32,31 +69,33 @@ export const metadata: Metadata = {
     },
   ],
   openGraph: {
-    title: 'Oladipupo Ishola — Builder. Educator. Maker.',
-    description: 'Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably. Real products. Real results.',
+    title: 'Oladipupo Ishola — Software Engineer & Product Builder',
+    description: 'Software engineer and product builder building web products, APIs, and backend systems for startups and teams — across TypeScript, Python, and AI-assisted engineering.',
     type: 'website',
     locale: 'en_IE',
     url: 'https://olaishola.tech',
+    siteName: 'Oladipupo Ishola',
     images: [
       {
         url: '/images/portrait-me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Oladipupo Ishola — Builder. Educator. Maker.',
+        alt: 'Oladipupo Ishola — Software Engineer & Product Builder',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@_olaishola',
-    title: 'Oladipupo Ishola — Builder. Educator. Maker.',
-    description: 'Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably. Real products. Real results.',
+    creator: '@_olaishola',
+    title: 'Oladipupo Ishola — Software Engineer & Product Builder',
+    description: 'Software engineer and product builder building web products, APIs, and backend systems for startups and teams — across TypeScript, Python, and AI-assisted engineering.',
     images: [
       {
         url: '/images/portrait-me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Oladipupo Ishola — Builder. Educator. Maker.',
+        alt: 'Oladipupo Ishola — Software Engineer & Product Builder',
       },
     ],
   },
@@ -81,24 +120,35 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Oladipupo Ishola",
-              "url": "https://olaishola.tech",
-              "image": "https://olaishola.tech/images/portrait-me.jpeg",
-              "description": "Software engineer, product builder, and educator helping developers and founders use AI to build faster, smarter, and more profitably.",
-              "sameAs": [
-                "https://github.com/olaishola05",
-                "https://www.linkedin.com/in/oladipupoishola/",
-                "https://twitter.com/_olaishola",
-                "https://www.youtube.com/@BuildShipTeach",
-                "https://medium.com/@olaishola",
-                "https://www.instagram.com/_olaishola"
-              ],
-              "jobTitle": "Software Engineer, Product Builder & Educator",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "Self-Employed"
-              }
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://olaishola.tech/#person",
+                  "name": "Oladipupo Ishola",
+                  "url": "https://olaishola.tech",
+                  "image": "https://olaishola.tech/images/portrait-me.jpeg",
+                  "description": "Software engineer, product builder, and educator helping developers and founders build, ship, and monetise with AI.",
+                  "sameAs": [
+                    "https://github.com/olaishola05",
+                    "https://www.linkedin.com/in/oladipupoishola/",
+                    "https://twitter.com/_olaishola",
+                    "https://www.youtube.com/@BuildShipTeach",
+                    "https://medium.com/@olaishola",
+                    "https://www.instagram.com/olaishola05"
+                  ],
+                  "jobTitle": "Software Engineer & Product Builder"
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://olaishola.tech/#website",
+                  "url": "https://olaishola.tech",
+                  "name": "Oladipupo Ishola",
+                  "description": "Software Engineer & Product Builder Portfolio and Blog",
+                  "publisher": {
+                    "@id": "https://olaishola.tech/#person"
+                  }
+                }
+              ]
             })
           }}
         />

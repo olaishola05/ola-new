@@ -3,14 +3,15 @@ import Link from 'next/link'
 import SubscribeForm from '@/components/Subscribe/SubscribeForm'
 import Tags from './Tags'
 import FooterSocialMedia from './footer-social-media'
+import BlogLogo from '../BlogLogo'
 
 export default function BlogFooter() {
   return (
     <footer className="w-full max-w-7xl mx-auto px-6 py-16 mt-20 border-t border-softBg/50 relative">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-        <div className="flex flex-col gap-6 lg:col-span-1">
+        <div id="newsletter" className="flex flex-col gap-6 lg:col-span-1 scroll-mt-24">
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-extrabold tracking-tight text-[var(--textColor)]">Code &apos;n&apos; Beyond</h1>
+            <BlogLogo showText={true} />
           </div>
           <p className="text-base text-softText leading-relaxed">
             Be the first to read my posts, join the conversation,

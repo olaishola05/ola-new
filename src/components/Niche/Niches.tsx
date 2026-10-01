@@ -1,166 +1,127 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Layers, Server, Sparkles, ArrowRight, BookOpen, Users, GraduationCap } from "lucide-react";
 
 export default function Niches() {
+  const capabilities = [
+    {
+      icon: Layers,
+      tag: "Full-Stack Development",
+      title: "Product Engineering",
+      description:
+        "Build and ship full-stack web applications, end-to-end features, and internal tools. Focused on responsive frontends, state architecture, and maintainable, scalable foundations that grow with your team.",
+      deliverables: ["Next.js & React Apps", "Design Systems & UI", "Performance & CWV", "State Architecture"],
+    },
+    {
+      icon: Server,
+      tag: "Robust Architecture",
+      title: "Backend & API Engineering",
+      description:
+        "Design scalable REST APIs, secure authentication workflows, database schemas, and background jobs. Clean modular services with NestJS/Node.js, Python (FastAPI/Django), PostgreSQL, MongoDB, and thorough documentation.",
+      deliverables: ["Modular NestJS / Node APIs", "Auth & RBAC Workflows", "Database Modeling", "API Docs & Swagger"],
+    },
+    {
+      icon: Sparkles,
+      tag: "From Zero to Shipped",
+      title: "Engineering Partner for Founders",
+      description:
+        "Help turn early product ideas and MVPs into solid, working systems through focused contract or product collaboration. Pragmatic technical decisions, rapid execution, and production-ready code.",
+      deliverables: ["MVP Scoping & Build", "Technical Architecture", "AI-assisted Workflows", "Production Deployment"],
+    },
+  ];
+
   return (
     <section
-      className="py-14 mb-10"
+      id="what-i-do"
+      className="py-16 md:py-24 my-10"
       data-aos="fade-up"
-      data-aos-duration="3000"
     >
-      <div className="w-full mx-auto px-4 text-gray-600 md:px-0">
-        <div className="flex flex-col items-center justify-center gap-3 mb-12 lg:mb-20">
-          <span className="text-xs font-bold uppercase tracking-widest text-cta">Specialized Services</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight text-center">
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col items-center justify-center gap-3 mb-16 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-cta">Core Capabilities</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--textColor)] tracking-tight">
             What I Do
           </h2>
+          <p className="text-softText text-base md:text-lg max-w-2xl mt-2">
+            Engineering real, scalable products with disciplined architecture and AI-assisted velocity.
+          </p>
         </div>
 
-        <div
-          className="flex flex-col gap-20 lg:gap-32"
-          data-aos="fade-up"
-          data-aos-duration="3000"
-        >
-          <div className="max-w-screen-2xl mx-auto md:px-0 md:py-14">
-            <div className="items-center gap-x-12 sm:px-0 md:px-0 lg:flex">
-              <div className="flex-1 sm:hidden lg:block">
-                <Image
-                  width={640}
-                  height={383.66}
-                  src="https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mdHdhcmUlMjBkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D"
-                  className="md:max-w-2xl rounded-lg"
-                  alt="coding screen"
-                />
-              </div>
-              <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-                <span className="text-xs font-bold uppercase tracking-widest text-cta">
-                  Software development
-                </span>
-                <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
-                  Build real products with AI-assisted engineering
-                </h3>
-                <p className="text-base md:text-lg text-softText leading-relaxed">
-                  I design and build scalable web products using React, Next.js, Node.js, TypeScript, and AI-assisted workflows. Whether you have an idea that needs engineering or a product that needs to scale, I bring the technical depth to make it real — not just functional, but built to last.
-                </p>
-                <Link
-                  // href={`${process.env.NEXT_PUBLIC_RESUME_URL}`}
-                  href={`mailto:olaishola.dev@gmail.com`}
-                  target="_blank"
-                  className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium"
-                >
-                  {"Let's work together"}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
+        {/* 3 Core Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {capabilities.map((cap, idx) => {
+            const Icon = cap.icon;
+            return (
+              <div
+                key={idx}
+                className="relative flex flex-col justify-between p-8 rounded-3xl bg-softBg/30 border border-softBg/60 backdrop-blur-sm hover:border-cta/30 hover:shadow-xl hover:shadow-cta/5 transition-all duration-300 group"
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-cta/10 text-cta flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-cta">
+                    {cap.tag}
+                  </span>
+                  <h3 className="text-2xl font-bold text-[var(--textColor)] mt-2 mb-4 tracking-tight">
+                    {cap.title}
+                  </h3>
+                  <p className="text-softText text-sm md:text-base leading-relaxed mb-6">
+                    {cap.description}
+                  </p>
+                </div>
 
-          <div
-            className="max-w-screen-2xl mx-auto md:px-0 md:py-14"
-            data-aos="fade-up"
-            data-aos-duration="3000"
-          >
-            <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex lg:flex-row-reverse">
-              <div className="flex-1 sm:hidden lg:block">
-                <Image
-                  width={640}
-                  height={383.66}
-                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dGVjaG5pY2FsJTIwd3JpdGVyfGVufDB8fDB8fHww"
-                  className="md:max-w-2xl rounded-lg"
-                  alt="content writing"
-                />
-              </div>
-              <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-                <span className="text-xs font-bold uppercase tracking-widest text-cta">
-                  Technical writing
-                </span>
-                <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
-                  Technical writing that actually teaches, not just documents
-                </h3>
-                <p className="text-base md:text-lg text-softText leading-relaxed">
-                  I write technical articles and documentation that treat readers like intelligent people — not beginners who need hand-holding or experts who already know everything. Clear structure, real examples, and honest explanations of why things work the way they do.
-                </p>
-                <Link
-                  href={`${process.env.NEXT_PUBLIC_ADMIN_MEDIUM_URL}`}
-                  target="_blank"
-                  className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium"
-                >
-                  Visit my blog
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
+                <div>
+                  <div className="pt-4 border-t border-softBg/60 mb-6">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-softText/70 block mb-2">
+                      Key Highlights
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {cap.deliverables.map((item, i) => (
+                        <span
+                          key={i}
+                          className="px-2.5 py-1 rounded-lg bg-softBg/50 text-xs font-medium text-softText"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-          <div
-            className="max-w-screen-2xl mx-auto md:px-0 md:py-14"
-            data-aos="fade-up"
-            data-aos-duration="3000"
-          >
-            <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex">
-              <div className="flex-1 sm:hidden lg:block">
-                <Image
-                  width={640}
-                  height={383.66}
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHdlYnNpdGV8ZW58MHx8MHx8fDA%3D"
-                  className="md:max-w-2xl rounded-lg"
-                  alt="coding instructor"
-                />
-              </div>
-              <div className="max-w-xl px-0 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-                <span className="text-xs font-bold uppercase tracking-widest text-cta">
-                  Coding Instructor
-                </span>
-                <h3 className="text-[var(--textColor)] text-3xl font-extrabold tracking-tight sm:text-4xl mt-2 mb-4">
-                  Learn to build and ship, not just watch tutorials
-                </h3>
-                <p className="text-base md:text-lg text-softText leading-relaxed">
-                  Most developers finish courses and still have nothing deployed. My teaching is project-based and mentorship-led — you build real things from day one. I have coached developers from zero to their first client, their first deployed product, and their first income from tech. The goal is never just to learn. It is to ship.
-                </p>
-                <Link
-                  href="https://10nth-mnoht-brytebee.vercel.app"
-                  target="_blank"
-                  className="inline-flex gap-x-1 items-center text-[var(--cta)] hover:text-indigo-500 duration-150 font-medium"
-                >
-                  Join here
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-5 h-5"
+                  <Link
+                    href="#contact"
+                    className="inline-flex items-center gap-1.5 text-cta font-semibold text-sm group-hover:gap-2.5 transition-all"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
+                    Discuss a project <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            );
+          })}
+        </div>
+
+        {/* Supporting Proof Bar */}
+        <div className="mt-12 p-6 rounded-2xl bg-softBg/20 border border-softBg/40 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-left">
+            <span className="text-xs font-bold uppercase tracking-wider text-cta whitespace-nowrap">
+              Supporting Proof
+            </span>
+            <span className="hidden md:inline text-softText/40">|</span>
+            <p className="text-xs md:text-sm text-softText">
+              Writing & education support my engineering identity rather than competing as separate careers.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-softText">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-softBg/60 border border-softBg">
+              <BookOpen className="w-3.5 h-3.5 text-cta" /> Technical Writing
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-softBg/60 border border-softBg">
+              <Users className="w-3.5 h-3.5 text-cta" /> Mentoring
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-softBg/60 border border-softBg">
+              <GraduationCap className="w-3.5 h-3.5 text-cta" /> Teaching
+            </span>
           </div>
         </div>
       </div>

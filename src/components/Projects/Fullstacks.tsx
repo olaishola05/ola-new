@@ -15,10 +15,11 @@ const FullstackProjects: React.FC<ProjectProps> = ({ projects }) => {
 
   return (
     <ProjectsContainer>
-      {fullstackProjects?.map((item) => (
+      {fullstackProjects?.map((item, idx) => (
         <CustomCard
           key={item.id}
-          image={item.coverImgUrl}
+          index={idx}
+          stacks={item.stacks}
           overlayText='View Project'
           name={item.name}
           role={item.tag}

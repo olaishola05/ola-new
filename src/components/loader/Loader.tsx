@@ -1,26 +1,12 @@
-import React, { CSSProperties, useContext, useState } from 'react'
-import GridLoader from 'react-spinners/GridLoader'
-import { ThemeContext } from '@/app/config/ThemeContext';
+// Loader.tsx — kept as a named export for any future use,
+// but the main app now uses an inline pure-CSS spinner in App.tsx
+// react-spinners dependency has been removed.
 
 export default function Loader({ loading }: { loading: any }) {
-  const { theme } = useContext(ThemeContext);
-
-  const override: CSSProperties = {
-    display: 'block',
-    margin: '0 auto',
-    borderColor: 'red',
-  };
-
+  if (!loading) return null;
   return (
-    <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none w-auto">
-      <GridLoader
-        color={theme === "dark" ? '#fff' : "#392467"}
-        loading={loading}
-        size={20}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        cssOverride={override}
-      />
+    <div className="flex justify-center items-center fixed inset-0 z-50 bg-bg">
+      <div className="w-8 h-8 rounded-full border-2 border-softBg border-t-cta animate-spin" />
     </div>
-  )
+  );
 }

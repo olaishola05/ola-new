@@ -3,7 +3,7 @@ import { responseReturn, ITestimonial, sendTestimonialNotificationEmail, sendTes
 import prisma from '@/app/lib/prisma';
 
 export async function POST(req: NextRequest) {
-  const { name, email, message, photo, jobTitle }: ITestimonial = await req.json();
+  const { name, email, message, photo, jobTitle, linkedinUrl, relationship }: ITestimonial = await req.json();
 
   try {
     const checkEmail = await prisma.testimonial.findUnique({
@@ -20,7 +20,9 @@ export async function POST(req: NextRequest) {
         email,
         message,
         photo: photo || '',
-        jobTitle
+        jobTitle,
+        linkedinUrl: linkedinUrl || null,
+        relationship: relationship || null,
       }
     });
 

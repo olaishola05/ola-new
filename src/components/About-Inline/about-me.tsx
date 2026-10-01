@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 export default function AboutMe() {
   const about = [
-    "Oladipupo Ishola is a software engineer, product builder, and educator who helps developers and founders use AI to build faster, smarter, and more profitably. With a background spanning network engineering, two failed startups, a self-built edtech school, and years of freelance product development, he brings rare depth to a space full of surface-level advice.",
-    "He has mentored developers across Nigeria, Austria, and beyond — many landing their first roles or shipping their first real products within months. He now builds AI-assisted development workflows, teaches what actually works, and documents the honest lessons from doing both.",
-    "His approach is simple: learn the right things, build real things, and create a system that works with or without a team."
-  ]
+    "I’m a software engineer and product builder with experience building full-stack applications, robust backend systems, and digital products for startups and teams.",
+    "I’m currently pursuing an MSc in Artificial Intelligence and Adaptive Systems at the University of Sussex, where I’m deepening my understanding of machine learning, intelligent systems, and adaptive behavior.",
+    "My work sits at the intersection of software engineering, product development, and AI — building practical systems while exploring how intelligent technologies can make products more capable, useful, and scalable."
+  ];
   return (
     <div>
       <h3

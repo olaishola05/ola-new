@@ -3,9 +3,14 @@ import { Metadata } from "next";
 import Homepage from "@/components/Home/Homepage";
 
 export const metadata: Metadata = {
-  title: "Oladipupo Ishola | Software Engineer",
+  title: {
+    absolute: "Oladipupo Ishola — Software Engineer & Product Builder",
+  },
   description:
-    "I am a fullstack developer, I build web applications with React, Nextjs, Nodejs, Expressjs, MongoDB, PostgreSQL, and other technologies.",
+    "Software Engineer & Product Builder. I build and ship web products, APIs, and backend systems for startups and teams — across TypeScript, Python, and AI-assisted engineering.",
+  alternates: {
+    canonical: "https://olaishola.tech",
+  },
 };
 
 export default function Home() {

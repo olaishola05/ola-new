@@ -1,126 +1,165 @@
 'use client';
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { BiTimeFive as AccessTimeSharpIcon } from "react-icons/bi";
+import React from "react";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, Github, BookOpen } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface CustomCardProps {
   image?: string | null;
   name: string;
   description?: string | null;
   role?: string | null;
-  duration?: string;
+  url: string;
+  liveUrl?: string | null;
+  githubUrl?: string | null;
+  isCaseStudy?: boolean;
+  stacks?: string[];
+  index?: number;
   overlayText?: string;
-  onClick?: () => void;
-  url?: string;
+  duration?: string;
 }
 
+const isValidHttpUrl = (val?: string | null): val is string => {
+  if (!val) return false;
+  const trimmed = val.trim();
+  return (
+    trimmed.length > 0 &&
+    trimmed !== "#" &&
+    trimmed !== "/" &&
+    (trimmed.startsWith("http://") || trimmed.startsWith("https://"))
+  );
+};
+
 const CustomCard = ({
-  image,
   name,
   description,
   role,
-  duration,
-  overlayText,
   url,
+  liveUrl,
+  githubUrl,
+  isCaseStudy = false,
+  stacks,
+  index = 0,
 }: CustomCardProps) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const num = String(index + 1).padStart(2, "0");
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
+  const hasLive = isValidHttpUrl(liveUrl);
+  // Do NOT render GitHub link for private client/company case studies
+  const hasGithub = isValidHttpUrl(githubUrl) && !isCaseStudy;
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  const isExternalUrl = url.startsWith("http://") || url.startsWith("https://");
+  const externalProps = isExternalUrl
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
   return (
     <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateY,
-        rotateX,
-        transformStyle: "preserve-3d",
-      }}
-      className="relative flex flex-col gap-5 p-4 rounded-3xl bg-[var(--contactBg)] border border-softBg shadow-xl transition-all duration-300 group"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="group w-full"
     >
-      <div
-        style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}
-        className="relative w-full aspect-video rounded-2xl overflow-hidden bg-softBg/50"
-      >
-        <Image
-          src={image || '/images/placeholder.webp'}
-          alt={name}
-          fill
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-
-        {/* Overlay on Hover */}
-        <div className="absolute inset-0 bg-cta/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 backdrop-blur-sm">
-          <Link
-            href={url || "#"}
-            className="px-6 py-3 bg-white text-[#392467] font-extrabold tracking-wide rounded-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl"
-          >
-            {overlayText || 'View Project'}
-          </Link>
-        </div>
-      </div>
-
-      <div
-        style={{ transform: "translateZ(50px)" }}
-        className="space-y-3 px-1"
-      >
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold text-textColor tracking-tight uppercase">{name}</h3>
-          <span className="text-[10px] font-black tracking-widest uppercase py-1 px-3 rounded-full bg-cta/10 text-cta border border-cta/20">
-            {role || 'Fullstack'}
+      <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl border border-softBg/60 bg-[var(--contactBg)] hover:border-cta/40 hover:shadow-xl hover:shadow-cta/5 transition-all duration-300">
+        
+        {/* Left section: Number + Content */}
+        <div className="flex items-start gap-6 sm:gap-8 flex-1 min-w-0">
+          {/* Big Editorial Number */}
+          <span className="text-4xl sm:text-5xl font-black text-cta/30 group-hover:text-cta transition-colors tracking-tight shrink-0 select-none pt-1">
+            {num}
           </span>
+
+          {/* Project Details */}
+          <div className="space-y-3 flex-1 min-w-0">
+            <div className="flex flex-wrap items-center gap-3">
+              <Link href={url} {...externalProps} className="hover:text-cta transition-colors">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-textColor tracking-tight">
+                  {name}
+                </h3>
+              </Link>
+              <span className="text-[10px] font-bold tracking-widest uppercase py-0.5 px-2.5 rounded-full bg-cta/10 text-cta border border-cta/20">
+                {role || "Fullstack"}
+              </span>
+              {isCaseStudy && (
+                <span className="text-[10px] font-bold tracking-widest uppercase py-0.5 px-2.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  Case Study
+                </span>
+              )}
+            </div>
+
+            <p className="text-sm sm:text-base text-softText leading-relaxed line-clamp-2 max-w-2xl">
+              {description}
+            </p>
+
+            {/* Stack Pills */}
+            {stacks && stacks.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {stacks.slice(0, 6).map((stack, i) => (
+                  <span
+                    key={i}
+                    className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-softBg/60 text-softText border border-softBg"
+                  >
+                    {stack}
+                  </span>
+                ))}
+                {stacks.length > 6 && (
+                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-softBg/40 text-softText/60 border border-softBg">
+                    +{stacks.length - 6}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
-        <p className="text-sm text-softText line-clamp-3 leading-relaxed">
-          {description}
-        </p>
+        {/* Right section: Action Buttons with Strict Validation */}
+        <div className="shrink-0 flex items-center gap-3 self-end md:self-center pt-2 md:pt-0">
+          {/* Direct GitHub Link (Only for public projects with valid http URL, never for proprietary case studies) */}
+          {hasGithub && (
+            <Link
+              href={githubUrl!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl border border-softBg/80 text-softText hover:text-textColor hover:border-cta/40 hover:bg-softBg/40 transition-all"
+              title="View Source on GitHub"
+            >
+              <Github className="w-4 h-4" />
+            </Link>
+          )}
 
-        {duration && (
-          <div className="flex items-center gap-2 text-xs text-softText pt-2">
-            <AccessTimeSharpIcon className="w-4 h-4" />
-            <span>{duration}</span>
-          </div>
-        )}
+          {/* Direct Live App Link (if not a case study) */}
+          {hasLive && !isCaseStudy && (
+            <Link
+              href={liveUrl!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-cta text-ctaText font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-md shadow-cta/10"
+            >
+              Live App <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          )}
+
+          {/* Primary Action for Case Studies */}
+          {isCaseStudy ? (
+            <Link
+              href={url}
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-cta text-ctaText font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-md shadow-cta/10"
+            >
+              <BookOpen className="w-3.5 h-3.5" /> Read Case Study
+            </Link>
+          ) : !hasLive ? (
+            <Link
+              href={url}
+              {...externalProps}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-cta hover:gap-2.5 transition-all"
+            >
+              Explore <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          ) : null}
+        </div>
+
       </div>
-
-      {/* Shine Effect */}
-      <motion.div
-        style={{
-          background: "radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 80%)",
-          transform: "translateZ(100px)",
-          top: useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]),
-          left: useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]),
-        }}
-        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
-      />
     </motion.div>
   );
 };

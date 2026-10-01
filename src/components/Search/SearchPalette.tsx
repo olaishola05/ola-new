@@ -75,7 +75,7 @@ export default function SearchPalette() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [isBlogRelatedPath]);
 
   // Selection logic
   useEffect(() => {

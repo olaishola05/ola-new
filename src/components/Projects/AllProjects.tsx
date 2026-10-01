@@ -17,10 +17,11 @@ const AllProjects = ({ data }: props) => {
   return (
     <div className='h-full'>
       <ProjectsContainer>
-        {data?.map((item: Project) => (
+        {data?.map((item: Project, idx: number) => (
           <CustomCard
             key={item.id}
-            image={item.coverImgUrl}
+            index={idx}
+            stacks={item.stacks}
             overlayText='View Project'
             name={item.name}
             role={item.tag}

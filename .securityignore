@@ -1,0 +1,4 @@
+# Security scan ignore list
+# Ignores schema definitions and mock/example test fixtures that define column names or types
+
+prisma/schema.prisma

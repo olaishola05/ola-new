@@ -160,15 +160,17 @@ model VerificationToken {
 }
 
 model Testimonial {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String   @unique
-  jobTitle  String
-  message   String
-  photo     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String   @unique
+  jobTitle     String
+  message      String
+  photo        String?
+  linkedinUrl  String?
+  relationship String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  published    Boolean  @default(false)
 }
 
 model Category {

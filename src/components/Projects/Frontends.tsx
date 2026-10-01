@@ -15,10 +15,11 @@ const FrontendProjects = ({ projects }: ProjectProps) => {
 
   return (
     <ProjectsContainer>
-      {frontendProjects?.map((item) => (
+      {frontendProjects?.map((item, idx) => (
         <CustomCard
           key={item.id}
-          image={item.coverImgUrl}
+          index={idx}
+          stacks={item.stacks}
           overlayText='View Project'
           name={item.name}
           role={item.tag}

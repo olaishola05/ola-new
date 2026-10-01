@@ -1,60 +1,55 @@
 export const educationItems = [
   {
-    title: "Mar 2025 - Oct 2025",
-    cardTitle: "ProDev Back-End Developer",
-    cardSubtitle: "ALX Africa (March 2025 - October 2025)",
-    cardDetailedText: ["Advanced SQL and Python, mastering project planning and database design, and ensuring code quality with rigorous testing techniques.", "Streamlining development workflows with advanced shell commands, automated CI/CD pipelines, and scalable microservices architecture.", "Building secure and high-performing applications, covering crucial security best practices, authentication methods, and performance optimisation techniques.", "Advanced bug reporting and network traffic analysis, ensuring the highest quality of code and user experience."],
+    title: "Sept 2026 - Present",
+    cardTitle: "MSc in Artificial Intelligence and Adaptive Systems",
+    cardSubtitle: "University of Sussex, UK (2026 - Present)",
+    cardDetailedText: [
+      "Specializing in machine learning, adaptive systems, and algorithmic problem solving.",
+      "Exploring the intersection of intelligent systems and scalable software product architecture.",
+      "Engaged in advanced technical study of adaptive behavior and autonomous system workflows."
+    ],
   },
-  // {
-  // title: "Nov 2024 - Nov 2025",
-  // cardTitle: "Data Engineering",
-  // cardSubtitle: "AltSchool Africa (Nov 2024 - Nov 2025)",
-  // // // // // // // // // cardDetailedText: ["Handling and processing binary large objects (BLOBs) and files efficiently.", "Mastering advanced SQL querying to interact with relational databases effectively", "Understanding the principles and functionalities of relational databases", "Learning to design and manage data warehouses and data lakes for efficient data storage and retrieval", "Building data pipelines for both batch and real-time streaming data processing", "Job scheduling and orchestration to manage data workflows efficiently.", "Explore Apache Beam for unified batch and streaming data processing", "DBT for data transformation and modeling."],
-  // },
   {
     title: "Nov 2021 - June 2022",
     cardTitle: "Remote Full Stack Web Development Program",
     cardSubtitle: "Microverse Inc. (November 2021 - June 2022)",
-    cardDetailedText: ["Spent 1300+ hours mastering algorithms, data structures, and full-stack development while simultaneously developing projects with Ruby, Rails, JavaScript, React, and Redux", "Developed skills in remote pair programming using GitHub, industry-standard git-flow, and daily standups to communicate and collaborate with international remote developers.", "Completed 1000+ hours of remote pair programming with 30+ developers from 50+ countries.", "Developed 20+ projects in a remote environment using Agile methodologies and industry-standard tools."],
+    cardDetailedText: [
+      "Spent 1300+ hours mastering algorithms, data structures, and full-stack development while building production-ready projects in React, Redux, Ruby, and Rails.",
+      "Completed 1000+ hours of remote pair programming with international developers using standard git-flow and agile sprints.",
+    ],
   },
   {
-    title: "July 2021 - August 2021",
-    cardTitle: "Remote Explorer Preparation Program for the Fellowship",
-    cardSubtitle: "Major League Hacking Pre-Fellowship (July 2021 - August 2021)",
-    cardDetailedText: "Spent 160+ hours Collaborating, building a portfolio of personal projects, and experimenting with new technologies by collaborating in small groups through a short hackathon sprint.",
-  },
-  {
-    title: "November 2013–March 2015",
-    cardTitle: "MSC, Computer Networking",
+    title: "November 2013 – March 2015",
+    cardTitle: "MSc in Computer Networking",
     cardSubtitle: "University of Bedfordshire, UK",
-    cardDetailedText: "A thesis on the evaluation of open source cloud computing platforms' security models using OpenStack and Eucalyptus open source platforms.",
+    cardDetailedText: "A thesis on the evaluation of open source cloud computing platforms' security models using OpenStack and Eucalyptus environments.",
   },
   {
-    title: "September 2010–July 2013",
-    cardTitle: "BSC, Computer Networking",
+    title: "September 2010 – July 2013",
+    cardTitle: "BSc in Computer Networking",
     cardSubtitle: "University of Bedfordshire, UK",
-    cardDetailedText: "A thesis on the performance evaluation of virtualization in computing environments.",
+    cardDetailedText: "A thesis on the performance evaluation and virtualization optimization in computing environments.",
   },
 ];
 
 export const workExpItems = [
   {
-    title: "Sept 2023 – Dec 2024",
+    title: "Sept 2023 – 2025",
     cardTitle: "Co-Founder & Software Developer",
     cardSubtitle: "Techverse Academy",
-    cardDetailedText: "Collaborate with a team of 4 to build an LMS, landing page, and other pages for an online EdTech school using NextJS for fast dynamic pages and Tailwind CSS for a consistent and modern feel. Designed and implemented RESTful APIs using NestJS and PostgreSQL, facilitating seamless integration with the frontend and third-party systems."
+    cardDetailedText: "Engineered an EdTech platform and LMS using Next.js and Tailwind CSS on the frontend with modular NestJS and PostgreSQL on the backend. Designed scalable RESTful APIs and optimized database models."
   },
   {
     title: "Oct 2022 – Dec 2024",
     cardTitle: "Full Stack Developer",
-    cardSubtitle: "AUTOMATION AFFAIRS LIMITED",
-    cardDetailedText: "Collaborated in a team of six, a web application called JoHunter a resume builder specifically tailored for the African job market. The application is built with NextJS, and Tailwindcss on the frontend and Node.js, Express, and MongoDB on the backend.",
+    cardSubtitle: "Automated Affairs",
+    cardDetailedText: "Engineered JobHunter — an AI-powered resume and application material builder for African professionals. Shipped 20+ RESTful APIs with Node.js, Express, MongoDB, and modern Next.js interfaces.",
   },
   {
     title: "Jan 2022 - Jul 2022",
-    cardTitle: "Mentor",
+    cardTitle: "Technical Mentor",
     cardSubtitle: "Microverse Inc.",
-    cardDetailedText: ["Mentored junior web developers in the Microverse remote full-stack web development program.", "Proposed improvements to code organization to improve code quality, and overall performance using pair programing.", "Provided advice and tips on maintaining motivation to maintain longevity in the program which increases the level of motivation, reduces the chance of burnout, and results in placing students in the top 10% to complete the software development program within the specified time."],
+    cardDetailedText: ["Mentored junior web developers in full-stack web development.", "Conducted code reviews, pair programming, and architectural coaching to help students achieve top 10% performance."],
   },
   {
     title: "March 2018 – June 2021",

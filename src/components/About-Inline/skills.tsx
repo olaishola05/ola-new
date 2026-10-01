@@ -16,17 +16,19 @@ type SkillCategory = {
 
 export default function Skills({ skills }: { skills: SkillCategory[] }) {
   return (
-    <ul className='flex flex-col gap-5'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
       {skills.map((category, index) => (
-        <li key={index} className="flex gap-4">
-          <h3 className="hidden md:block text-xl font-semibold text-textColor mb-2">{category.name}:</h3>
-          <div className="flex flex-wrap gap-2 w-full md:w-10/12">
-            {category.skills.map((skill, index) => (
-              <SkillButton key={index} skill={skill} />
+        <div key={index} className="flex flex-col gap-3">
+          <h3 className="text-sm font-bold text-textColor tracking-wide uppercase border-b border-softBg/60 pb-2">
+            {category.name}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {category.skills.map((skill, idx) => (
+              <SkillButton key={idx} skill={skill} />
             ))}
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   )
 }
